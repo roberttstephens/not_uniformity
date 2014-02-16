@@ -104,7 +104,7 @@ class CaregiverClientService(db.Model, BaseMixin, CreateUpdateMixin):
     caregiver = db.relationship("Caregiver", uselist=False, backref='caregiver_client_service')
     client_id = db.Column(db.Integer, db.ForeignKey('client.id'), nullable=False)
     client = db.relationship("Client", uselist=False, backref='caregiver_client_service')
-    service_id = db.Column(db.Integer, db.ForeignKey('client.id'), nullable=False)
+    service_id = db.Column(db.Integer, db.ForeignKey('service.id'), nullable=False)
     service = db.relationship("Service", uselist=False, backref='caregiver_client_service')
 
 class Client(db.Model, BaseMixin, CreateUpdateMixin, PhoneMixin, AgencyMixin, AddressMixin):
@@ -125,11 +125,11 @@ class FormInstanceCaregiver(db.Model, BaseMixin, CreateUpdateMixin, FormInstance
 
 class FormInstanceCaregiverClientService(db.Model, BaseMixin, CreateUpdateMixin, FormInstanceMixin):
     caregiver_id = db.Column(db.Integer, db.ForeignKey('caregiver.id'), nullable=False)
-    caregiver = db.relationship("Caregiver", uselist=False, backref='caregiver')
+    caregiver = db.relationship("Caregiver", uselist=False, backref='form_instance_caregiver_client_service')
     client_id = db.Column(db.Integer, db.ForeignKey('client.id'), nullable=False)
-    client = db.relationship("Client", uselist=False, backref='client')
+    client = db.relationship("Client", uselist=False, backref='form_instance_caregiver_client_service')
     service_id = db.Column(db.Integer, db.ForeignKey('service.id'), nullable=False)
-    service = db.relationship("Service", uselist=False, backref='service')
+    service = db.relationship("Service", uselist=False, backref='form_instance_caregiver_client_service')
 
 class FormInstanceClient(db.Model, BaseMixin, CreateUpdateMixin, FormInstanceMixin):
     client_id = db.Column(db.Integer, db.ForeignKey('client.id'), nullable=False)

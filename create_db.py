@@ -10,7 +10,7 @@ os.environ['PYTHONINSPECT'] = 'True'
 
 
 from app import db
-from app.users.models import *
+from app.models import *
 db.drop_all()
 db.create_all()
 

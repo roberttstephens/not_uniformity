@@ -10,7 +10,7 @@ os.environ['PYTHONINSPECT'] = 'True'
 
 
 from app import db
-from app.users.models import *
+from app.models import *
 agencies = db.session.query(Agency).all()
 for agency in agencies:
     print('Agency: ' + agency.name)
