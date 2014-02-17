@@ -4,7 +4,7 @@
 {% block content %}
 {% include 'flash.html' %}
 <section class="container">
-    <div class="box client-light">
+    <div class="box {{ role }}-light">
         <form>
             <fieldset class="search-form">
                 <p>
@@ -16,7 +16,7 @@
         </form>
     </div>
     <br />
-    <table class="list client-light">
+    <table class="list {{ role }}-light">
         <colgroup>
             <col class="client-col">
             <col >
@@ -25,7 +25,7 @@
         </colgroup>
         <thead>
             <tr>
-                <th class="client-dark col1" rowspan="2"><p>clients</p></th>
+                <th class="{{ role }}-dark col1" rowspan="2"><p>{{ role }}s</p></th>
                 <th class="service-dark col3" colspan="2"><p>forms</p></th>
             </tr>
             <tr>
@@ -35,26 +35,32 @@
         </thead>
         <tbody >
             <tr>
+                <!--
+                TODO
+                for each expired and expiring-soon column
+                check if the td is empty. If not, add a class of 'red-cell'
+                or 'yellow-cell'.
+                -->
                 <td><p>Client Name</p></td>
-                <td class="svc-bdr red-cell"><p>2</p></td>
-                <td class="svc-bdr"><p></p></td>
+                <td class="svc-bdr expired"><p>2</p></td>
+                <td class="svc-bdr expiring-soon"></td>
             </tr>
             <tr>
                 <td><p>Client Name</p></td>
-                <td class="svc-bdr"><p></p></td>
-                <td class="svc-bdr yellow-cell"><p>4</p></td>
+                <td class="svc-bdr expired"></td>
+                <td class="svc-bdr expiring-soon"><p>4</p></td>
             </tr>
             <tr>
                 <td><p>Client Name</p></td>
-                <td class="svc-bdr"><p></p></td>
-                <td class="svc-bdr"><p></p></td>
+                <td class="svc-bdr expired"></td>
+                <td class="svc-bdr expiring-soon"></td>
             </tr>
             <tr>
                 <td><p>Client Name</p></td>
-                <td class="svc-bdr red-cell"><p>10</p></td>
-                <td class="svc-bdr"></td>
+                <td class="svc-bdr expired"><p>10</p></td>
+                <td class="svc-bdr expiring-soon"></td>
             </tr>
         </tbody>
-    </table><!-- client list -->   
+    </table>
 </section>
 {% endblock %}
