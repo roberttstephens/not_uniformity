@@ -1,0 +1,60 @@
+<!-- extend base layout -->
+{% extends "base.html" %}
+
+{% block content %}
+{% include 'flash.html' %}
+<section class="container">
+    <div class="box client-light">
+        <form>
+            <fieldset class="search-form">
+                <p>
+                    <label for="search">Search:</label>
+                    <input type="search" id="input-search" name="search" placeholder="Firstname Lastname" autofocus required/>
+                    <button><i class="icon-preview"> </i>search</button>
+                </p>
+            </fieldset>
+        </form>
+    </div>
+    <br />
+    <table class="list client-light">
+        <colgroup>
+            <col class="client-col">
+            <col >
+            <col class="forms-col">
+            <col class="forms-col">
+        </colgroup>
+        <thead>
+            <tr>
+                <th class="client-dark col1" rowspan="2"><p>clients</p></th>
+                <th class="service-dark col3" colspan="2"><p>forms</p></th>
+            </tr>
+            <tr>
+                <th class="service-dark col4"><p>expired</p></th>
+                <th class="service-dark col4"><p>expiring soon</p></th>
+            </tr>
+        </thead>
+        <tbody >
+            <tr>
+                <td><p>Client Name</p></td>
+                <td class="svc-bdr red-cell"><p>2</p></td>
+                <td class="svc-bdr"><p></p></td>
+            </tr>
+            <tr>
+                <td><p>Client Name</p></td>
+                <td class="svc-bdr"><p></p></td>
+                <td class="svc-bdr yellow-cell"><p>4</p></td>
+            </tr>
+            <tr>
+                <td><p>Client Name</p></td>
+                <td class="svc-bdr"><p></p></td>
+                <td class="svc-bdr"><p></p></td>
+            </tr>
+            <tr>
+                <td><p>Client Name</p></td>
+                <td class="svc-bdr red-cell"><p>10</p></td>
+                <td class="svc-bdr"></td>
+            </tr>
+        </tbody>
+    </table><!-- client list -->   
+</section>
+{% endblock %}
