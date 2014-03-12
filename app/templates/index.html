@@ -1,65 +1,11 @@
-<!-- extend base layout -->
 {% extends "base.html" %}
-
+{% block title %}Index{% endblock %}
 {% block content %}
 {% include 'flash.html' %}
-<div class="top grid">
-    <div class="col-1-2">
-        <section class="top-container caregiver-light caregiver-container">
-            <p class="mediumText uppercase">caregivers</p>
-            <form>
-                <fieldset class="grid search-form">
-                    <p>
-                        <div class="col-2-3">
-                            <input type="search" id="input-search" name="search" placeholder="search caregivers by name" autofocus required/>
-                        </div>
-                        <div class="col-1-3">
-                            <button><i class="icon-preview"> </i>search</button>
-                        </div>
-                    </p>
-                </fieldset>
-            </form>
-            <div class="grid">
-                <div class="col-1-2">
-                    <a href="#" class="button" role="button">view all caregivers</a>
-                </div>
-                <div class="col-1-2">
-                    <a href="#" class="button" role="button">add new caregiver</a>
-                </div>
-            </div>
-        </section>
-    </div>
-    <div class="col-1-2">
-        <section class="top-container client-light client-container">
-            <p class="mediumText uppercase">clients</p>
-            <form>
-                <fieldset class="grid search-form">
-                    <p>
-                        <div class="col-2-3">
-                            <input type="search" id="input-search" name="search" placeholder="search clients by name" autofocus required/>
-                        </div>
-                        <div class="col-1-3">
-                            <button><i class="icon-preview"> </i>search</button>
-                        </div>
-                    </p>
-                </fieldset>
-            </form>
-            <div class="grid">
-                <div class="col-1-2">
-                    <a href="#" class="button" role="button">view all clients</a>
-                </div>
-                <div class="col-1-2">
-                    <a href="#" class="button" role="button">add new client</a>
-                </div>
-            </div>
-        </section>
-    </div>
-</div>
-
 <section class="container">
     <table class="overview service-light">
         <caption class="service-dark">
-            <p class="caption">service forms</p>
+            <h3>service forms</h3>
         </caption>
         <thead>
             <tr>
@@ -71,13 +17,27 @@
         </thead>
         <tbody >
             <tr>
-                <td class="red-cell"><p>Form Title</p></td>
+                <td class="status red-cell">
+                    <span class="status">
+                        <i class="icon-uniF470"> </i><p>01-21-2014</p>
+                    </span>
+                    <p class="status">
+                        Document Title
+                    </p>
+                </td>
                 <td class="caregiver-cell"><p>Jane Smith</p></td>
                 <td><p>Supported Living Coach</p></td>
                 <td class="client-cell"><p>John Appleseed</p></td>
             </tr>
             <tr>
-                <td class="red-cell"><p>Form Title</p></td>
+                <td class="status red-cell">
+                    <span class="status">
+                        <i class="icon-uniF470"> </i><p>01-21-2014</p>
+                    </span>
+                    <p class="status">
+                        Document Title
+                    </p>
+                </td>
                 <td class="caregiver-cell"><p>Jane Smith</p></td>
                 <td><p>Supported Living Coach</p></td>
                 <td class="client-cell"><p>John Appleseed</p></td>
@@ -85,13 +45,27 @@
         </tbody>
         <tbody>
             <tr>
-                <td class="yellow-cell"><p>Form Title</p></td>
+                <td class="status yellow-cell">
+                    <span class="status">
+                        <i class="icon-error2"> </i><p>01-21-2014</p>
+                    </span>
+                    <p class="status">
+                        Document Title
+                    </p>
+                </td>
                 <td class="caregiver-cell"><p>Jane Smith</p></td>
                 <td><p>Supported Living Coach</p></td>
                 <td class="client-cell"><p>John Appleseed</p></td>
             </tr>
             <tr>
-                <td class="yellow-cell"><p>Form Title</p></td>
+                <td class="status yellow-cell">
+                    <span class="status">
+                        <i class="icon-error2"> </i><p>01-21-2014</p>
+                    </span>
+                    <p class="status">
+                        Document Title
+                    </p>
+                </td>
                 <td class="caregiver-cell"><p>Jane Smith</p></td>
                 <td><p>Supported Living Coach</p></td>
                 <td class="client-cell"><p>John Appleseed</p></td>
@@ -99,39 +73,71 @@
         </tbody>
     </table><!-- service -->
     <a href="#" class="button service-dark offset" role="button">view # more</a>
-    <table class="overview client-light">
-        <caption class="client-dark">
-            <p class="caption">caregiver forms</p>
+    <table class="overview caregiver-light">
+        <caption class="caregiver-dark">
+            <h3>caregiver forms</h3>
         </caption>
         <thead>
             <tr>
-                <th class="client-dark col1"><p>Form</p></th>
-                <th class="client-dark col2"><p>Caregiver</p></th>
+                <th class="caregiver-dark col1"><p>Form</p></th>
+                <th class="caregiver-dark col2"><p>Caregiver</p></th>
             </tr>
         </thead>
         <tbody >
             <tr>
-                <td class="red-cell"><p>Form Title</p></td>
+                <td class="status red-cell">
+                    <span class="status">
+                        <i class="icon-uniF470"> </i><p>01-21-2014</p>
+                    </span>
+                    <p class="status">
+                        Document Title
+                    </p>
+                </td>
                 <td><p>Jane Smith</p></td>
             </tr>
             <tr>
-                <td class="red-cell"><p>Form Title</p></td>
+                <td class="status red-cell">
+                    <span class="status">
+                        <i class="icon-uniF470"> </i><p>01-21-2014</p>
+                    </span>
+                    <p class="status">
+                        Document Title
+                    </p>
+                </td>
                 <td><p>Jane Smith</p></td>
             </tr>
         </tbody>
         <tbody>
             <tr>
-                <td class="yellow-cell"><p>Form Title</p></td>
+                <td class="status yellow-cell">
+                    <span class="status">
+                        <i class="icon-error2"> </i><p>01-21-2014</p>
+                    </span>
+                    <p class="status">
+                        Document Title
+                    </p>
+                </td>
                 <td><p>Jane Smith</p></td>
             </tr>
             <tr>
-                <td class="yellow-cell"><p>Form Title</p></td>
+                <td class="status yellow-cell">
+                    <span class="status">
+                        <i class="icon-error2"> </i><p>01-21-2014</p>
+                    </span>
+                    <p class="status">
+                        Document Title
+                    </p>
+                </td>
                 <td><p>Jane Smith</p></td>
             </tr>
         </tbody>
     </table><!-- caregiver -->
+    
+    <table class="overview client-light">
+        <caption class="client-dark">
+            <h3>client forms are all up to date!</h3>
+        </caption>
+    </table><!-- client -->
 
-    <span class="caption client-dark">client forms are all up to date!</span>
-
-</section>
+</section><!-- overview -->
 {% endblock %}

@@ -1,35 +1,64 @@
 <!DOCTYPE html>
 <html class="no-js">
+
 <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title></title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>{% block title %}{% endblock %} - Uniformity</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <!-- Place favicon.ico and apple-touch-icon(s) in the root directory -->
+    <!-- Place favicon.ico and apple-touch-icon(s) in the root directory -->
 
-        <link rel="stylesheet" href="{{ url_for('static', filename='css/normalize.css') }}">
-        <link rel="stylesheet/less" type="text/css" href="{{ url_for('static', filename='css/styles.less') }}">
-        <script src="{{ url_for('static', filename='js/vendor/modernizr-2.7.1.min.js') }}"></script>
-        <script src="{{ url_for('static', filename='js/less-1.5.0.min.js') }}" type="text/javascript"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/normalize.css') }}">
+    <link rel="stylesheet/less" type="text/css" href="{{ url_for('static', filename='css/styles.less') }}">
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <script src="{{ url_for('static', filename='js/vendor/modernizr-2.7.1.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/less-1.5.0.min.js') }}" type="text/javascript"></script>
 </head>
-  <body>
+
+<body>
     <div id="topbg">
         <header>
+            <nav>
+                <ul>
+                    <li><p class="header-nav-tab welcome-tab">welcome back #agency name</p></li>
+                    <li><a href="#"><p class="header-nav-tab link-tab"><i class="icon-managedhosting"> </i>settings</p></a></li>
+                    <li><a href="#"><p class="header-nav-tab link-tab"><i class="icon-switch"> </i>log out</p></a></li>
+                    <li><a href="#"><p class="header-nav-tab link-tab"><i class="icon-medkit"> </i>support</p></a></li>
+                </ul>            
+            </nav>
             <!--[if lt IE 8]>
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
             <![endif]-->
         </header>
+        
+        <div class="top">
 
-        {% include "nav.html" %}
+	{% if request.path == "/" %}
+	    {% include 'overview_top.html' %}
+	{% else %}
+	    {% include 'nav.html' %}
+	{% endif %}
+        
+        </div><!-- top -->
+
         {% block content %}{% endblock %}
         
-     </div>   
-      <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-      <script>window.jQuery || document.write('<script src="{{ url_for('static', filename='js/vendor/jquery-1.10.2.min.js') }}"><\/script>')</script>
-      <script src="{{ url_for('static', filename='js/plugins.js') }}"></script>
-      <script src="{{ url_for('static', filename='js/H5F.js') }}"></script>
-      <script src="{{ url_for('static', filename='js/functions.js') }}"></script>
-  </body>
+        <footer class="container">
+            <p>&copy; Copyright 2014 <a href="#" title="#">#</a> | All rights reserved.</a></p>
+        </footer>
+        <p class="service-text"><a href="{{ url_for('styles') }}">styles</a></p>
+
+    </div>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script>
+        window.jQuery || document.write('<script src="{{ url_for('static', filename='js/vendor/jquery-1.10.2.min.js') }}"><\/script>')
+    </script>
+    <script src="{{ url_for('static', filename='js/plugins.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/H5F.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/functions.js') }}"></script>
+</body>
+
 </html>
+

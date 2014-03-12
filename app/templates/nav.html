@@ -1,10 +1,7 @@
 <nav>
-  <ul>
-    <li>
-      The first element.
-    </li>
-    <li>
-      The second element.
-    </li>
-  </ul>
+    <ul>
+        <li><a href="{{ url_for('index') }}"><p class="top-nav-tab service-text">overview</p></a></li>
+        <li><a href="{{ url_for('caregiver_index') }}"><p class="top-nav-tab caregiver-text">caregivers</p></a></li>
+        <li><a href="{{ url_for('client_index') }}"><p class="top-nav-tab client-text">clients</p></a></li>
+    </ul>            
 </nav>

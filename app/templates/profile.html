@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% include 'flash.html' %}
+
+ <section class="container">
+    <div class="grid">
+      <div class="col-1-2">
+         <div class="profile-info caregiver-text">
+            <p class="name">Jennifer Lawrence</p>
+            <p>3440 N. Goldenrod Rd.<br />Winter Park FL, 32792 Apt. 1221</p>
+            <p>555-555-1234</p>
+            <p>09/22/1959</p>
+            <div class="grid">
+              <div class="col-1-2">
+                 <div class="box summary yellow-light"># Forms Expiring Soon
+                 </div>
+              </div>
+              <div class="expired col-1-2">
+                 <div class="box summary red-light"># Forms Expired
+                 </div>
+              </div>
+            </div>
+         </div>
+      </div>
+      <div class="col-1-2">
+         <a href="https://www.google.com/maps/preview#!q=3440+N.+Goldenrod+Rd.+Winter+Park+FL%2C+32792+Apt.+1221" class="googlemap" style="background-image:url(http://maps.google.com/maps/api/staticmap?size=640x250&zoom=13&maptype=roadmap&markers=color:green|3440+N.+Goldenrod+Rd.+Winter+Park+FL,+32792+Apt.+1221&sensor=false)" target="_blank" >
+         <p><span>Map Data &copy; Google</span></p>
+         <img src="http://maps.google.com/maps/api/staticmap?size=640x250&zoom=13&maptype=roadmap&markers=color:green|3440+N.+Goldenrod+Rd.+Winter+Park+FL,+32792+Apt.+1221&sensor=false" alt"Map" class="map" />
+         </a>
+
+      </div>
+    </div>
+</section>
+
+<section class="container">
+    <table class="profile client-light">
+        <colgroup>
+            <col class="client-col">
+            <col class="service-col">
+            <col >
+            <col class="forms-col">
+            <col class="forms-col">
+        </colgroup>
+        <thead>
+            <tr>
+                <th class="client-dark col1" rowspan="2"><p>clients</p></th>
+                <th class="service-dark col2" rowspan="2"><p>service provided</p></th>
+                <th class="service-dark col3" colspan="2"><p>forms</p></th>
+            </tr>
+            <tr>
+                <th class="service-dark col4"><p>expired</p></th>
+                <th class="service-dark col4"><p>expiring soon</p></th>
+            </tr>
+        </thead>
+        <tbody >
+            <tr>
+                <td><p>Client Name</p></td>
+                <td class="service-cell"><p>Supported Living Coach</p></td>
+                <td class="service-bdr red-cell"><p>2</p></td>
+                <td class="service-bdr"><p></p></td>
+            </tr>
+            <tr>
+                <td><p>Client Name</p></td>
+                <td class="service-cell"><p>Supported Living Coach</p></td>
+                <td class="service-bdr"><p></p></td>
+                <td class="service-bdr yellow-cell"><p>4</p></td>
+            </tr>
+            <tr>
+                <td><p>Client Name</p></td>
+                <td class="service-cell"><p>Supported Living Coach</p></td>
+                <td class="service-bdr"><p></p></td>
+                <td class="service-bdr"><p></p></td>
+            </tr>
+            <tr>
+                <td><p>Client Name</p></td>
+                <td class="service-cell"><p>Supported Living Coach</p></td>
+                <td class="service-bdr red-cell"><p>10</p></td>
+                <td class="service-bdr"></td>
+            </tr>
+        </tbody>
+    </table><!-- client list -->
+    <button class="client-dark"><i class="icon-user-add"> </i>add client</button>
+</section>
+
+{% endblock content %}

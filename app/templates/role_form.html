@@ -1,0 +1,127 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% include 'flash.html' %}
+
+<section class="container">
+    <div class="box page-title {{ role }}-light">
+        <p class="title">{{ role }}</p>
+        <p class="hugeText">jennifer lawrence</p>
+    </div><!-- {{ role }} -->
+</section>
+
+<section class="container">
+    <table class="form service-light">
+        <caption class="service-dark">
+            <p class="caption">form title</p>
+        </caption>
+        <tbody>
+            <tr>
+                <td class="current-status green-cell">
+                    <div class="grid">
+                        <div class="col-4-5">
+                            <span class="status">
+                                <i class="icon-uniF471"> </i><p>01-21-2014</p>
+                            </span>
+                            <p class="status">
+                                Received #
+                            </p>
+                        </div>
+                        <div class="col-1-5">
+                            <button><i class="icon-uniF47C"> </i>edit</button>
+                        </div>
+                    </div><!-- grid -->
+                </td>
+            </tr>
+            <tr>
+                <td class="current-status yellow-cell">
+                    <div class="grid">
+                        <div class="col-4-5">
+                            <span class="status">
+                                <i class="icon-error2"> </i><p>01-21-2014</p>
+                            </span>
+                            <p class="status">
+                                this form will expire soon
+                            </p>
+                        </div>
+                        <div class="col-1-5">
+                            <button><i class="icon-uniF47C"> </i>edit</button>
+                        </div>
+                    </div><!-- grid -->
+                </td>
+            </tr>
+            <tr>
+                <td class="current-status red-cell">
+                    <div class="grid">
+                        <div class="col-4-5">
+                            <span class="status">
+                                <i class="icon-uniF470"> </i><p>01-21-2014</p>
+                            </span>
+                            <p class="status">
+                                This form is expired
+                            </p>
+                        </div>
+                        <div class="col-1-5">
+                            <button><i class="icon-uniF47C"> </i>edit</button>
+                        </div>
+                    </div><!-- grid -->
+                </td>
+            </tr>
+        </tbody>
+        <tbody>
+            <tr>
+                <td class="status green-cell">
+                    <div class="grid">
+                        <div class="col-4-5">
+                            <span class="status">
+                                <i class="icon-uniF471"> </i><p>01-21-2013</p>
+                            </span>
+                            <p class="status">
+                                received #
+                            </p>
+                        </div>
+                        <div class="col-1-5">
+                            <button><i class="icon-uniF47C"> </i>edit</button>
+                        </div>
+                    </div><!-- grid -->
+                </td>
+            </tr>
+            <tr>
+                <td class="status green-cell">
+                    <div class="grid">
+                        <div class="col-4-5">
+                            <span class="status">
+                                <i class="icon-uniF471"> </i><p>01-21-2012</p>
+                            </span>
+                            <p class="status">
+                                received #
+                            </p>
+                        </div>
+                        <div class="col-1-5">
+                            <button><i class="icon-uniF47C"> </i>edit</button>
+                        </div>
+                    </div><!-- grid -->
+                </td>
+            </tr>
+            <tr>
+                <td class="status green-cell">
+                    <div class="grid">
+                        <div class="col-4-5">
+                            <span class="status">
+                                <i class="icon-uniF471"> </i><p>01-21-2011</p>
+                            </span>
+                            <p class="status">
+                                received #
+                            </p>
+                        </div>
+                        <div class="col-1-5">
+                            <button><i class="icon-uniF47C"> </i>edit</button>
+                        </div>
+                    </div><!-- grid -->
+                </td>
+            </tr>
+        </tbody>
+    </table><!-- {{ role }} -->
+</section>
+
+{% endblock content %}

@@ -1,4 +1,3 @@
-<!-- extend base layout -->
 {% extends "base.html" %}
 
 {% block content %}
@@ -17,12 +16,6 @@
     </div>
     <br />
     <table class="list {{ role }}-light">
-        <colgroup>
-            <col class="client-col">
-            <col >
-            <col class="forms-col">
-            <col class="forms-col">
-        </colgroup>
         <thead>
             <tr>
                 <th class="{{ role }}-dark col1" rowspan="2"><p>{{ role }}s</p></th>
@@ -41,26 +34,27 @@
                 check if the td is empty. If not, add a class of 'red-cell'
                 or 'yellow-cell'.
                 -->
+		<!-- TODO remove the above todo -->
                 <td><p>Client Name</p></td>
-                <td class="svc-bdr expired"><p>2</p></td>
-                <td class="svc-bdr expiring-soon"></td>
+                <td class="service-bdr expired"><p>2</p></td>
+                <td class="service-bdr expiring-soon"><p>2</p></td>
             </tr>
             <tr>
                 <td><p>Client Name</p></td>
-                <td class="svc-bdr expired"></td>
-                <td class="svc-bdr expiring-soon"><p>4</p></td>
+                <td class="service-bdr expired"></td>
+                <td class="service-bdr expiring-soon"><p>4</p></td>
             </tr>
             <tr>
                 <td><p>Client Name</p></td>
-                <td class="svc-bdr expired"></td>
-                <td class="svc-bdr expiring-soon"></td>
+                <td class="service-bdr expired"></td>
+                <td class="service-bdr expiring-soon"></td>
             </tr>
             <tr>
                 <td><p>Client Name</p></td>
-                <td class="svc-bdr expired"><p>10</p></td>
-                <td class="svc-bdr expiring-soon"></td>
+                <td class="service-bdr expired"><p>10</p></td>
+                <td class="service-bdr expiring-soon"></td>
             </tr>
         </tbody>
     </table>
 </section>
-{% endblock %}
+{% endblock content %}
