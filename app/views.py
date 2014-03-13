@@ -1,8 +1,6 @@
 from flask import render_template
 from app import app
 
-# On branch develop.
-
 @app.route('/')
 @app.route('/index', alias=True)
 def index():
