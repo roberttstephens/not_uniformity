@@ -16,6 +16,7 @@ db.create_all()
 
 abc = Agency()
 abc.name = 'ABC LLC'
+abc.password = 'abc'
 abc.status = True
 abc.contact_name = 'Tyler Stephens'
 abc.contact_title = 'Customer Service Representative'
