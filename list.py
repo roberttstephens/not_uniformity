@@ -13,6 +13,7 @@ from app import db
 from app.models import *
 agencies = db.session.query(Agency).all()
 for agency in agencies:
+    print('Agency id: ' + agency.get_id())
     print('Agency: ' + agency.name)
     for caregiver in agency.caregivers:
         print('Caregiver: ' + caregiver.name)
