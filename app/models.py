@@ -89,6 +89,18 @@ class Agency(db.Model, BaseMixin, CreateUpdateMixin, PhoneMixin, AddressMixin):
     status = db.Column(db.Boolean, nullable=False)
     caregivers = db.relationship('Caregiver')
 
+    def get_id(self):
+        return str(self.id)
+
+    def is_active(self):
+        return self.status
+
+    def is_anonymous(self):
+        return False
+
+    def is_authenticated(self):
+        return True
+
 class Caregiver(db.Model, BaseMixin, CreateUpdateMixin, PhoneMixin, AgencyMixin, AddressMixin):
     __table_args__ = (
         db.UniqueConstraint('name', 'agency_id'),
