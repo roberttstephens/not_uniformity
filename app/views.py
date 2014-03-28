@@ -2,6 +2,7 @@ from flask import Flask, session, request, flash, url_for, redirect, render_temp
 from flask.ext.login import login_user, logout_user, current_user, login_required
 from app import app
 from app.models import Agency
+from app.forms import LoginForm
 
 @app.route('/')
 @app.route('/index', alias=True)
@@ -19,17 +20,22 @@ def client_index():
 
 @app.route('/login', methods=['GET','POST'])
 def login():
-    if request.method == 'GET':
-        return render_template('login.html')
-    username = request.form['username']
-    password = request.form['password']
-    registered_user = Agency.query.filter_by(name=username, password=password).first()
-    if registered_user is None:
-        flash('Username or Password is invalid' , 'error')
-        return redirect(url_for('login'))
-    login_user(registered_user)
-    flash('Logged in successfully')
-    return redirect(request.args.get('next') or url_for('index'))
+    form = LoginForm(request.form)
+    if request.method == 'POST' and form.validate():
+        name = request.form['agency_name']
+        password = request.form['password']
+        registered_user = Agency.query.filter_by(name=name).first()
+        if registered_user is None:
+            flash('The name you entered does not belong to any account.<br>TODO link to a form where you input your email and it sends an email with the agency name.' , 'error')
+            return render_template('login.html', form=form)
+        if not registered_user.check_password(password):
+            flash('The password you entered is incorrect.<br>TODO Forgot your password.' , 'error')
+            return render_template('login.html', form=form)
+        login_user(registered_user)
+        flash('Welcome back, ' + registered_user.name)
+        return redirect(request.args.get('next') or url_for('index'))
+    return render_template('login.html', form=form)
+
 
 @app.route('/logout')
 def logout():
