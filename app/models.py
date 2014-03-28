@@ -2,6 +2,8 @@ from app import db
 import datetime
 import re
 
+from werkzeug.security import generate_password_hash, check_password_hash
+
 from sqlalchemy import event
 from sqlalchemy.ext.declarative import declared_attr
 
@@ -89,6 +91,9 @@ class Agency(db.Model, BaseMixin, CreateUpdateMixin, PhoneMixin, AddressMixin):
     status = db.Column(db.Boolean, nullable=False)
     caregivers = db.relationship('Caregiver')
 
+    def check_password(self, password):
+        return check_password_hash(self.password, password)
+
     def get_id(self):
         return str(self.id)
 
@@ -100,6 +105,9 @@ class Agency(db.Model, BaseMixin, CreateUpdateMixin, PhoneMixin, AddressMixin):
 
     def is_authenticated(self):
         return True
+
+    def set_password(self, password):
+        self.password = generate_password_hash(password, 'pbkdf2:sha512:1000')
 
 class Caregiver(db.Model, BaseMixin, CreateUpdateMixin, PhoneMixin, AgencyMixin, AddressMixin):
     __table_args__ = (
