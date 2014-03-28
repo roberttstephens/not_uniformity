@@ -22,7 +22,7 @@ def client_index():
 def login():
     form = LoginForm(request.form)
     if request.method == 'POST' and form.validate():
-        name = request.form['agency_name']
+        name = request.form['name']
         password = request.form['password']
         registered_user = Agency.query.filter_by(name=name).first()
         if registered_user is None:

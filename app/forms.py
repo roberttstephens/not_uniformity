@@ -3,7 +3,7 @@ from wtforms.fields import StringField, PasswordField
 from wtforms import validators
 
 class LoginForm(Form):
-    agency_name = StringField('Agency name', validators=[
+    name = StringField('Agency name', validators=[
         validators.input_required(),
         validators.Length(min=3, max=128)
     ])
