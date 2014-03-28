@@ -1,10 +1,12 @@
 {% extends "base.html" %}
 {% block content %}
-  <form action="" method=post class="form-horizontal">
-    <p>User: ABC LLC</p>
-    <p>Pass: abc</p>
-      <input type="text" id="username" name="username" placeholder="Enter Username" required>
-      <input type="password" id="password" name="password" placeholder="Enter Password" required>
-      <button type="submit">Login</button>
-  </form>
+{% include 'flash.html' %}
+    <p>User: abcllc</p>
+    <p>Pass: uniformity</p>
+    {% from "_formhelpers.html" import render_field %}
+    <form method=post action="">
+      {{ render_field(form.agency_name, autofocus=true, required=true, pattern=".{3,128}", title="3 to 128 characters") }}
+      {{ render_field(form.password, required=true, pattern=".{8,1000}", title="Minimum of 8 characters.") }}
+      <input type=submit value=Login>
+    </form>
 {% endblock %}
