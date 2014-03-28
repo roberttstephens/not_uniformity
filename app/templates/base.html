@@ -22,9 +22,9 @@
         <header>
             <nav>
                 <ul>
-                    <li><p class="header-nav-tab welcome-tab">welcome back #agency name</p></li>
+		    <li><p class="header-nav-tab welcome-tab">welcome back {{ current_user.name }}</p></li>
                     <li><a href="#"><p class="header-nav-tab link-tab"><i class="icon-managedhosting"> </i>settings</p></a></li>
-                    <li><a href="#"><p class="header-nav-tab link-tab"><i class="icon-switch"> </i>log out</p></a></li>
+		    <li><a href="{{ url_for('logout')}}"><p class="header-nav-tab link-tab"><i class="icon-switch"> </i>log out</p></a></li>
                     <li><a href="#"><p class="header-nav-tab link-tab"><i class="icon-medkit"> </i>support</p></a></li>
                 </ul>            
             </nav>
