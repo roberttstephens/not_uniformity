@@ -15,8 +15,8 @@ db.drop_all()
 db.create_all()
 
 abc = Agency()
-abc.name = 'ABC LLC'
-abc.password = 'abc'
+abc.name = 'abcllc'
+abc.set_password('uniformity')
 abc.status = True
 abc.contact_name = 'Tyler Stephens'
 abc.contact_title = 'Customer Service Representative'
