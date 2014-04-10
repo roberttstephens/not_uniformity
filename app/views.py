@@ -1,8 +1,9 @@
 from flask import Flask, session, request, flash, url_for, redirect, render_template, abort, g
 from flask.ext.login import login_user, logout_user, current_user, login_required
 from app import app
+from app import db
 from app.models import Agency
-from app.forms import LoginForm
+from app.forms import LoginForm, RegisterForm
 
 @app.route('/')
 @app.route('/index', alias=True)
@@ -20,8 +21,8 @@ def client_index():
 
 @app.route('/login', methods=['GET','POST'])
 def login():
-    form = LoginForm(request.form)
-    if request.method == 'POST' and form.validate():
+    form = LoginForm()
+    if form.validate_on_submit():
         name = request.form['name']
         password = request.form['password']
         registered_user = Agency.query.filter_by(name=name).first()
@@ -42,15 +43,22 @@ def logout():
     logout_user()
     return redirect(url_for('index'))
 
-@app.route('/register' , methods=['GET','POST'])
+@app.route('/register', methods=['GET','POST'])
 def register():
-    if request.method == 'GET':
-        return render_template('register.html')
-    user = User(request.form['username'] , request.form['password'],request.form['email'])
-    db.session.add(user)
-    db.session.commit()
-    flash('User successfully registered')
-    return redirect(url_for('login'))
+    from flask.ext.wtf import Form
+    from wtforms.ext.sqlalchemy.orm import model_form
+    from .models import Agency
+    RegisterForm = model_form(Agency, db_session=db.session, base_class=Form)
+    model = Agency()
+    form = RegisterForm(request.form, model)
+    if form.validate_on_submit():
+        phone_number = request.form['phone_number']
+        phone_extension = request.form['phone_extension']
+        flash('Please log in to continue.')
+        return redirect(request.args.get('next') or url_for('index'))
+    from pprint import pprint
+    pprint(vars(form))
+    return render_template('register.html', form=form)
 
 @app.route('/styles')
 def styles():
