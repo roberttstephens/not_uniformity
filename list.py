@@ -18,6 +18,12 @@ for agency in agencies:
     for caregiver in agency.caregivers:
         print('Caregiver: ' + caregiver.name)
         for form in caregiver.forms:
-            print('Form: ' + form.form.name + ' expires on ' + form.expiration_date.strftime("%Y-%m-%d"))
+            print('Caregiver form: ' + form.name)
+            for instance in form.instance:
+                print('Instance of ' + form.name + ' expires on ' + instance.expiration_date.strftime("%Y-%m-%d"))
+                if instance.received_date:
+                    print('Instance of ' + form.name + ' received on ' + instance.received_date.strftime("%Y-%m-%d"))
+                else:
+                    print('Instance of ' + form.name + ' has not been received yet!')
 
 exit()

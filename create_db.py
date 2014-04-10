@@ -48,25 +48,22 @@ chase = Caregiver(
 )
 db.session.add(chase)
 db.session.commit()
-fingerprint_card = Form(
+fingerprint_card = CaregiverForm(
     name = 'Fingerprint Card',
-    agency = abc,
-    status = True,
+    caregiver = chase,
 )
 db.session.add(fingerprint_card)
 db.session.commit()
-fingerprint_card_instance = FormInstanceCaregiver(
-    form = fingerprint_card,
-    caregiver = chase,
+fingerprint_card_instance = CaregiverFormInstance(
+    caregiver_form = fingerprint_card,
     status = True,
     expiration_date = datetime.datetime(2012, 2, 22, 4, 10, 12, 247929),
     received_date = datetime.datetime(2012, 1, 22, 4, 10, 12, 247929),
 )
 db.session.add(fingerprint_card)
 db.session.commit()
-fingerprint_card_instance = FormInstanceCaregiver(
-    form = fingerprint_card,
-    caregiver = chase,
+fingerprint_card_instance = CaregiverFormInstance(
+    caregiver_form = fingerprint_card,
     status = True,
     expiration_date = datetime.datetime(2014, 2, 22, 4, 10, 12, 247929),
 )
