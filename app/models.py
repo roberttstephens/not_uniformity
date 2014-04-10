@@ -7,6 +7,8 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from sqlalchemy import event
 from sqlalchemy.ext.declarative import declared_attr
 
+#TODO increase the length of names.
+
 class AddressMixin(object):
     @declared_attr
     def address_id(cls):
@@ -56,10 +58,12 @@ class CreateUpdateMixin(object):
         event.listen(cls, 'before_insert', cls.on_create)
         event.listen(cls, 'before_update', cls.on_update)
 
+class FormMixin(object):
+    name = db.Column(db.String(128))
+
 class FormInstanceMixin(object):
     expiration_date = db.Column(db.DateTime, nullable=False)
     received_date = db.Column(db.DateTime, nullable=True)
-    name = db.Column(db.String(128))
     status = db.Column(db.Boolean, nullable=False)
 
 class PhoneMixin(object):
@@ -120,17 +124,29 @@ class Client(db.Model, BaseMixin, CreateUpdateMixin, PhoneMixin, AgencyMixin, Ad
     guardian = db.relationship("Guardian", uselist=False, backref='client')
     forms = db.relationship('FormInstanceClient')
 
-class CaregiverForm(db.Model, BaseMixin, CreateUpdateMixin, FormInstanceMixin):
+class CaregiverForm(db.Model, BaseMixin, CreateUpdateMixin, FormMixin):
     caregiver_id = db.Column(db.Integer, db.ForeignKey('caregiver.id'), nullable=False)
     caregiver = db.relationship("Caregiver", uselist=False, backref='caregiver')
 
-class ClientForm(db.Model, BaseMixin, CreateUpdateMixin, FormInstanceMixin):
+class ClientForm(db.Model, BaseMixin, CreateUpdateMixin, FormMixin):
     client_id = db.Column(db.Integer, db.ForeignKey('client.id'), nullable=False)
     client = db.relationship("Client", uselist=False, backref='client')
 
-class ServiceForm(db.Model, BaseMixin, CreateUpdateMixin, FormInstanceMixin):
+class ServiceForm(db.Model, BaseMixin, CreateUpdateMixin, FormMixin):
     service_id = db.Column(db.Integer, db.ForeignKey('service.id'), nullable=False)
     service = db.relationship("Service", uselist=False, backref='form_instance_caregiver_client_service')
+
+class CaregiverFormInstance(db.Model, BaseMixin, CreateUpdateMixin, FormInstanceMixin):
+    caregiver_form_id = db.Column(db.Integer, db.ForeignKey('caregiver_form.id'), nullable=False)
+    caregiver_form = db.relationship("CaregiverForm", uselist=False, backref='caregiver_form')
+
+class ClientFormInstance(db.Model, BaseMixin, CreateUpdateMixin, FormInstanceMixin):
+    client_form_id = db.Column(db.Integer, db.ForeignKey('client_form.id'), nullable=False)
+    client_form = db.relationship("ClientForm", uselist=False, backref='client_form')
+
+class ServiceFormInstance(db.Model, BaseMixin, CreateUpdateMixin, FormInstanceMixin):
+    service_form_id = db.Column(db.Integer, db.ForeignKey('service_form.id'), nullable=False)
+    service_form = db.relationship("ServiceForm", uselist=False, backref='service_form')
 
 class Guardian(db.Model, BaseMixin, CreateUpdateMixin, PhoneMixin, AddressMixin):
     name = db.Column(db.String(128))
