@@ -1,35 +1,19 @@
 {% extends "base.html" %}
-{% block body %}
-  <form action="" method=post class="form-horizontal">
-    <h2>Sign up for FlaskLogin(Todo) Application </h2>
-    <div class="control-group">
-        <div class="controls">
-          <input type="text" id="username" name="username" class="input-xlarge"
-            placeholder="Enter Username" value="{{ request.form.username }}"
-            required>
-        </div>
-    </div>
- 
-    <div class="control-group">
-        <div class="controls">
-          <input type="password" id="password" name="password" class="input-xlarge"
-            placeholder="Enter Password" value="{{ request.form.password }}"
-            required>
-        </div>
-    </div>
- 
-    <div class="control-group">
-        <div class="controls">
-          <input type="email" id="email" name="email" class="input-xlarge"
-            placeholder="Enter Email" value="{{ request.form.username }}"
-            required>
-        </div>
-    </div>
- 
-    <div class="control-group">
-        <div class="controls">
-          <button type="submit" class="btn btn-success">Signup</button>
-        </div>
-    </div>
-  </form>
+{% block content %}
+{% include 'flash.html' %}
+    {% from "_formhelpers.html" import render_field %}
+    <form method=post action="">
+      {{ form.hidden_tag() }}
+      {{ render_field(form.address, required=true) }}
+      {{ render_field(form.phone_number, autofocus=true, required=true) }}
+      {{ render_field(form.phone_extension) }}
+      <input type=submit value=Register>
+    </form>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery.maskedinput/1.3.1/jquery.maskedinput.min.js"></script>
+    <script>
+        jQuery(function($) {
+            $("#phone_number").mask("(999) 999-9999");
+        });
+    </script>
 {% endblock %}
