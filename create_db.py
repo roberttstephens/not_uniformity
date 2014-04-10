@@ -23,11 +23,11 @@ abc.contact_title = 'Customer Service Representative'
 abc.phone_number = '4076830456'
 abc.phone_extension = '12345'
 abc.address = Address(
-    address_1 = '1025 North Street',
+    address_1 = '123 Fake st.',
     address_2 = '',
-    city = 'Longwood',
+    city = 'Hello',
     state = 'FL',
-    zip_code = '32759',
+    zip_code = '42239',
 )
 db.session.add(abc)
 db.session.commit()
