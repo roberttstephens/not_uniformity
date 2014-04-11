@@ -12,13 +12,13 @@ from app.forms import LoginForm, RegisterForm
 def index():
     return render_template('index.html')
 
-@app.route('/caregiver')
+@app.route('/caregivers')
 def caregiver_index():
     caregivers = Caregiver.query.all()
     return render_template('role_index.html', role='caregiver',
         items=caregivers)
 
-@app.route('/client')
+@app.route('/clients')
 def client_index():
     clients = Client.query.all()
     return render_template('role_index.html', role='client',
