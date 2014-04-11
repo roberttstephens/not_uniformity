@@ -2,7 +2,7 @@ from flask import Flask, session, request, flash, url_for, redirect, render_temp
 from flask.ext.login import login_user, logout_user, current_user, login_required
 from app import app
 from app import db
-from app.models import Agency
+from app.models import Agency, Caregiver, Client
 from app.forms import LoginForm, RegisterForm
 
 @app.route('/')
@@ -13,11 +13,15 @@ def index():
 
 @app.route('/caregiver')
 def caregiver_index():
-    return render_template('role_index.html', role='caregiver')
+    caregivers = Caregiver.query.all()
+    return render_template('role_index.html', role='caregiver',
+        items=caregivers)
 
 @app.route('/client')
 def client_index():
-    return render_template('role_index.html', role='client')
+    clients = Client.query.all()
+    return render_template('role_index.html', role='client',
+        items=clients)
 
 @app.route('/login', methods=['GET','POST'])
 def login():
@@ -52,8 +56,7 @@ def register():
     model = Agency()
     form = RegisterForm(request.form, model)
     if form.validate_on_submit():
-        phone_number = request.form['phone_number']
-        phone_extension = request.form['phone_extension']
+        form.populate_obj(model)
         flash('Please log in to continue.')
         return redirect(request.args.get('next') or url_for('index'))
     from pprint import pprint
