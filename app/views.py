@@ -7,6 +7,7 @@ from app.forms import LoginForm, RegisterForm
 
 @app.route('/')
 @app.route('/index', alias=True)
+@app.route('/overview', alias=True)
 @login_required
 def index():
     return render_template('index.html')
