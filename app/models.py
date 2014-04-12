@@ -1,11 +1,13 @@
 from app import db
-import datetime
+from app.constants import EXPIRING_SOON_DAYS
+from datetime import datetime, date, timedelta
 import re
 
 from werkzeug.security import generate_password_hash, check_password_hash
 
 from sqlalchemy import event
 from sqlalchemy.ext.declarative import declared_attr
+from sqlalchemy.ext.hybrid import hybrid_property
 
 #TODO increase the length of names.
 
@@ -39,18 +41,18 @@ class BaseMixin(object):
     id = db.Column(db.Integer, primary_key=True, nullable=False)
 
 class CreateUpdateMixin(object):
-    created = db.Column(db.DateTime, nullable=False)
-    updated = db.Column(db.DateTime, nullable=False)
+    created = db.Column(db.Date, nullable=False)
+    updated = db.Column(db.Date, nullable=False)
 
     @staticmethod
     def on_create(mapper, connection, instance):
-        now = datetime.datetime.utcnow()
+        now = datetime.utcnow()
         instance.created = now
         instance.updated = now
 
     @staticmethod
     def on_update(mapper, connection, instance):
-        now = datetime.datetime.utcnow()
+        now = datetime.utcnow()
         instance.updated = now
 
     @classmethod
@@ -62,8 +64,8 @@ class FormMixin(object):
     name = db.Column(db.String(128))
 
 class FormInstanceMixin(object):
-    expiration_date = db.Column(db.DateTime, nullable=False)
-    received_date = db.Column(db.DateTime, nullable=True)
+    expiration_date = db.Column(db.Date, nullable=False)
+    received_date = db.Column(db.Date, nullable=True)
     status = db.Column(db.Boolean, nullable=False)
 
 class PhoneMixin(object):
@@ -82,7 +84,7 @@ class Agency(db.Model, BaseMixin, CreateUpdateMixin, PhoneMixin, AddressMixin):
     name = db.Column(db.String(128), unique=True)
     email = db.Column(db.String(254), unique=True)
     password = db.Column(db.String(120))
-    access = db.Column(db.DateTime)
+    access = db.Column(db.Date)
     contact_name = db.Column(db.String(128), nullable=False)
     contact_title = db.Column(db.String(128), nullable=False)
     status = db.Column(db.Boolean, nullable=False)
@@ -112,13 +114,27 @@ class Caregiver(db.Model, BaseMixin, CreateUpdateMixin, PhoneMixin, AgencyMixin,
     )
     name = db.Column(db.String(128))
     email = db.Column(db.String(254), unique=True)
-    birth_date = db.Column(db.DateTime)
+    birth_date = db.Column(db.Date)
     status = db.Column(db.Boolean, nullable=False)
-    forms = db.relationship('CaregiverForm')
+    forms = db.relationship('CaregiverForm', lazy='dynamic')
+
+    @hybrid_property
+    def expired(self):
+        return str(self.forms.join(CaregiverFormInstance).filter(CaregiverFormInstance.expiration_date <= date.today()).count())
+
+
+    @hybrid_property
+    def expiring_soon(self):
+        instance = CaregiverFormInstance
+        count = self.forms.join(instance)\
+        .filter(instance.expiration_date >= date.today()-timedelta(days=EXPIRING_SOON_DAYS))\
+        .filter(instance.expiration_date)\
+        .count()
+        return str(count)
 
 class Client(db.Model, BaseMixin, CreateUpdateMixin, PhoneMixin, AgencyMixin, AddressMixin):
     name = db.Column(db.String(128))
-    birth_date = db.Column(db.DateTime)
+    birth_date = db.Column(db.Date)
     status = db.Column(db.Boolean, nullable=False)
     guardian_id = db.Column(db.Integer, db.ForeignKey('guardian.id'), nullable=False)
     guardian = db.relationship("Guardian", uselist=False, backref='client')
@@ -138,19 +154,22 @@ class ServiceForm(db.Model, BaseMixin, CreateUpdateMixin, FormMixin):
 
 class CaregiverFormInstance(db.Model, BaseMixin, CreateUpdateMixin, FormInstanceMixin):
     caregiver_form_id = db.Column(db.Integer, db.ForeignKey('caregiver_form.id'), nullable=False)
-    caregiver_form = db.relationship("CaregiverForm", uselist=False, backref='instance')
+    caregiver_form = db.relationship("CaregiverForm", uselist=False, 
+        backref='instances')
 
 class ClientFormInstance(db.Model, BaseMixin, CreateUpdateMixin, FormInstanceMixin):
     client_form_id = db.Column(db.Integer, db.ForeignKey('client_form.id'), nullable=False)
-    client_form = db.relationship("ClientForm", uselist=False, backref='instance')
+    client_form = db.relationship("ClientForm", uselist=False,
+        backref='instances')
 
 class ServiceFormInstance(db.Model, BaseMixin, CreateUpdateMixin, FormInstanceMixin):
     service_form_id = db.Column(db.Integer, db.ForeignKey('service_form.id'), nullable=False)
-    service_form = db.relationship("ServiceForm", uselist=False, backref='instance')
+    service_form = db.relationship("ServiceForm", uselist=False,
+        backref='instance')
 
 class Guardian(db.Model, BaseMixin, CreateUpdateMixin, PhoneMixin, AddressMixin):
     name = db.Column(db.String(128))
-    birth_date = db.Column(db.DateTime)
+    birth_date = db.Column(db.Date)
 
 class Service(db.Model, BaseMixin, CreateUpdateMixin):
     name = db.Column(db.String(128))
