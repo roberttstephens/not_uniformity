@@ -90,4 +90,37 @@ first_aid_instance = CaregiverFormInstance(
 )
 db.session.add(first_aid_instance)
 db.session.commit()
+angela = Guardian(
+    name = 'Angela',
+    birth_date = datetime.datetime(1991, 1, 2, 4, 10, 12, 247929),
+    phone_number = 4076781234,
+    phone_extension = '',
+    address = Address(
+        address_1 = '123 Hello',
+        address_2 = '',
+        city = 'Winter Park',
+        state = 'FL',
+        zip_code = '32817',
+    )
+)
+db.session.add(angela)
+db.session.commit()
+emmanuel = Client(
+    name = 'Emmanuel',
+    birth_date = datetime.datetime(1988, 1, 2, 4, 10, 12, 247929),
+    status = True,
+    phone_number = 4076781234,
+    phone_extension = '',
+    guardian = angela,
+    agency = abc,
+    address = Address(
+        address_1 = '123 Hello',
+        address_2 = '',
+        city = 'Winter Park',
+        state = 'FL',
+        zip_code = '32817',
+    )
+)
+db.session.add(emmanuel)
+db.session.commit()
 exit()
