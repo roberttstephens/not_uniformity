@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 import os
 import readline
-from datetime import timedelta
+from datetime import timedelta, date
 
 from flask import *
 from app import *
@@ -57,15 +57,15 @@ db.session.commit()
 fingerprint_card_instance = CaregiverFormInstance(
     caregiver_form = fingerprint_card,
     status = True,
-    expiration_date = datetime.datetime(2012, 2, 22, 4, 10, 12, 247929),
-    received_date = datetime.datetime(2012, 1, 22, 4, 10, 12, 247929),
+    expiration_date = date(2014, 4, 15),
+    received_date = date(2012, 1, 22),
 )
 db.session.add(fingerprint_card_instance)
 db.session.commit()
 fingerprint_card_instance = CaregiverFormInstance(
     caregiver_form = fingerprint_card,
     status = True,
-    expiration_date = datetime.datetime(2014, 2, 22, 4, 10, 12, 247929),
+    expiration_date = date(2015, 2, 22),
 )
 db.session.add(fingerprint_card_instance)
 db.session.commit()
@@ -78,21 +78,21 @@ db.session.commit()
 first_aid_instance = CaregiverFormInstance(
     caregiver_form = first_aid,
     status = True,
-    expiration_date = datetime.datetime(2013, 3, 28, 4, 10, 12, 247929),
-    received_date = datetime.datetime(2013, 5, 2, 4, 10, 12, 247929),
+    expiration_date = date(2013, 3, 28),
+    received_date = date(2013, 5, 2),
 )
 db.session.add(first_aid_instance)
 db.session.commit()
 first_aid_instance = CaregiverFormInstance(
     caregiver_form = first_aid,
     status = True,
-    expiration_date = datetime.datetime(2014, 1, 2, 4, 10, 12, 247929),
+    expiration_date = date(2014, 1, 2),
 )
 db.session.add(first_aid_instance)
 db.session.commit()
 angela = Guardian(
     name = 'Angela',
-    birth_date = datetime.datetime(1991, 1, 2, 4, 10, 12, 247929),
+    birth_date = date(1991, 1, 2),
     phone_number = 4076781234,
     phone_extension = '',
     address = Address(
@@ -107,7 +107,7 @@ db.session.add(angela)
 db.session.commit()
 emmanuel = Client(
     name = 'Emmanuel',
-    birth_date = datetime.datetime(1988, 1, 2, 4, 10, 12, 247929),
+    birth_date = date(1988, 1, 2),
     status = True,
     phone_number = 4076781234,
     phone_extension = '',
