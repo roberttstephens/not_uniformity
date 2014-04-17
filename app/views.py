@@ -13,16 +13,28 @@ def index():
     return render_template('index.html')
 
 @app.route('/caregivers')
+@login_required
 def caregiver_index():
     caregivers = Caregiver.query.all()
     return render_template('role_index.html', role='caregiver',
         items=caregivers)
 
+@app.route('/caregiver/<int:id>')
+@login_required
+def caregiver(id):
+    return render_template('caregiver.html', caregiver=Caregiver.query.get(id))
+
 @app.route('/clients')
+@login_required
 def client_index():
     clients = Client.query.all()
     return render_template('role_index.html', role='client',
         items=clients)
+
+@app.route('/client/<int:id>')
+@login_required
+def client(id):
+    return render_template('caregiver.html', caregiver=Client.query.get(id))
 
 @app.route('/login', methods=['GET','POST'])
 def login():
@@ -44,6 +56,7 @@ def login():
 
 
 @app.route('/logout')
+@login_required
 def logout():
     logout_user()
     return redirect(url_for('index'))
