@@ -2,7 +2,7 @@ from app import db
 from app.constants import EXPIRING_SOON_DAYS
 from datetime import datetime, date, timedelta
 import re
-
+from urllib.parse import quote_plus
 from werkzeug.security import generate_password_hash, check_password_hash
 
 from sqlalchemy import event
@@ -79,6 +79,21 @@ class Address(db.Model, BaseMixin, CreateUpdateMixin):
     state = db.Column(db.CHAR(2), nullable=False)
     zip_code = db.Column(db.CHAR(5), nullable=False)
 
+    @hybrid_property
+    def urlencode(self):
+        fields = [
+            'address_1',
+            'address_2',
+            'city',
+            'state',
+            'zip_code',
+        ]
+        #combined = [if x is not None else ''
+        values = [getattr(self, field)
+            if getattr(self, field) is not None
+            else ''
+            for field in fields]
+        return quote_plus(' '.join(values))
 
 class Agency(db.Model, BaseMixin, CreateUpdateMixin, PhoneMixin, AddressMixin):
     name = db.Column(db.String(128), unique=True)
