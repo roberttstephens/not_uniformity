@@ -132,6 +132,7 @@ class Caregiver(db.Model, BaseMixin, CreateUpdateMixin, PhoneMixin, AgencyMixin,
     birth_date = db.Column(db.Date)
     status = db.Column(db.Boolean, nullable=False)
     forms = db.relationship('CaregiverForm', lazy='dynamic')
+    services = db.relationship('Service', uselist=True, backref='caregiver')
 
     @hybrid_property
     def expired(self):
@@ -154,6 +155,7 @@ class Client(db.Model, BaseMixin, CreateUpdateMixin, PhoneMixin, AgencyMixin, Ad
     guardian_id = db.Column(db.Integer, db.ForeignKey('guardian.id'), nullable=False)
     guardian = db.relationship("Guardian", uselist=False, backref='client')
     forms = db.relationship('ClientForm')
+    services = db.relationship('Service', uselist=False, backref='client')
 
 class CaregiverForm(db.Model, BaseMixin, CreateUpdateMixin, FormMixin):
     caregiver_id = db.Column(db.Integer, db.ForeignKey('caregiver.id'), nullable=False)
@@ -165,7 +167,7 @@ class ClientForm(db.Model, BaseMixin, CreateUpdateMixin, FormMixin):
 
 class ServiceForm(db.Model, BaseMixin, CreateUpdateMixin, FormMixin):
     service_id = db.Column(db.Integer, db.ForeignKey('service.id'), nullable=False)
-    service = db.relationship("Service", uselist=False, backref='service')
+    service = db.relationship("Service", uselist=False, backref='form')
 
 class CaregiverFormInstance(db.Model, BaseMixin, CreateUpdateMixin, FormInstanceMixin):
     caregiver_form_id = db.Column(db.Integer, db.ForeignKey('caregiver_form.id'), nullable=False)
@@ -190,7 +192,5 @@ class Service(db.Model, BaseMixin, CreateUpdateMixin):
     name = db.Column(db.String(128))
     status = db.Column(db.Boolean, nullable=False)
     caregiver_id = db.Column(db.Integer, db.ForeignKey('caregiver.id'), nullable=False)
-    caregiver = db.relationship("Caregiver", uselist=False, backref='caregiver_client_service')
     client_id = db.Column(db.Integer, db.ForeignKey('client.id'), nullable=False)
-    client = db.relationship("Client", uselist=False, backref='caregiver_client_service')
 
