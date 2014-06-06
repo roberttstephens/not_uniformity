@@ -68,6 +68,33 @@ class FormInstanceMixin(object):
     received_date = db.Column(db.Date, nullable=True)
     status = db.Column(db.Boolean, nullable=False)
 
+    @property
+    def received(self):
+        if self.received_date:
+            return True
+        return False
+
+    @property
+    def expired(self):
+        if self.expiration_date <= date.today():
+            return True
+        return False
+
+    @property
+    def expiring_soon(self):
+        if self.expired:
+            return False
+        if self.expiration_date <= date.today()+timedelta(days=EXPIRING_SOON_DAYS):
+            return True
+        return False
+
+    @property
+    def urgent(self):
+        if (not self.received) and (self.expired or self.expiring_soon):
+            return True
+        return False
+
+
 class PhoneMixin(object):
     phone_number = db.Column(db.String(15), nullable=False)
     phone_extension = db.Column(db.String(10), nullable=False)
@@ -142,17 +169,40 @@ class Caregiver(db.Model, BaseMixin, CreateUpdateMixin, PhoneMixin, AgencyMixin,
             order_by(CaregiverFormInstance.expiration_date.desc()).\
             all()
 
+    def get_non_urgent_form_instances(self):
+        return CaregiverFormInstance.query.\
+            join(CaregiverForm).\
+            join(Caregiver).\
+            filter(
+                (
+                    CaregiverFormInstance.received_date!=None)\
+                    | CaregiverFormInstance.expiration_date >= (date.today()+timedelta(days=EXPIRING_SOON_DAYS))
+            ).\
+            order_by(CaregiverFormInstance.expiration_date.desc()).\
+            all()
+
+    def get_urgent_form_instances(self):
+        return CaregiverFormInstance.query.\
+            join(CaregiverForm).\
+            join(Caregiver).\
+            filter(CaregiverFormInstance.received_date==None).\
+            filter(
+                (CaregiverFormInstance.expiration_date <= date.today()-timedelta(days=EXPIRING_SOON_DAYS))\
+                | (CaregiverFormInstance.expiration_date <= date.today())
+                    ).\
+            order_by(CaregiverFormInstance.expiration_date.desc()).\
+            all()
+
     @hybrid_property
-    def expired(self):
+    def num_expired(self):
         return str(self.forms.join(CaregiverFormInstance).filter(CaregiverFormInstance.expiration_date <= date.today()).count())
 
 
     @hybrid_property
-    def expiring_soon(self):
+    def num_expiring_soon(self):
         instance = CaregiverFormInstance
         count = self.forms.join(instance)\
         .filter(instance.expiration_date >= date.today()-timedelta(days=EXPIRING_SOON_DAYS))\
-        .filter(instance.expiration_date)\
         .count()
         return str(count)
 
@@ -188,11 +238,6 @@ class CaregiverFormInstance(db.Model, BaseMixin, CreateUpdateMixin, FormInstance
     caregiver_form = db.relationship("CaregiverForm", uselist=False, 
         backref='instances')
 
-    @hybrid_property
-    def received(self):
-        if self.received_date:
-            return True
-        return False
 
 class ClientFormInstance(db.Model, BaseMixin, CreateUpdateMixin, FormInstanceMixin):
     client_form_id = db.Column(db.Integer, db.ForeignKey('client_form.id'), nullable=False)
@@ -212,7 +257,7 @@ class Service(db.Model, BaseMixin, CreateUpdateMixin):
     forms = db.relationship('ServiceForm', lazy='dynamic')
 
     @hybrid_property
-    def expired(self):
+    def num_expired(self):
         instance = ServiceFormInstance
         count = self.forms.join(instance)\
         .filter(instance.expiration_date <= date.today())\
@@ -220,7 +265,7 @@ class Service(db.Model, BaseMixin, CreateUpdateMixin):
         return str(count)
 
     @hybrid_property
-    def expiring_soon(self):
+    def num_expiring_soon(self):
         instance = ServiceFormInstance
         count = self.forms.join(instance)\
         .filter(instance.expiration_date >= date.today()-timedelta(days=EXPIRING_SOON_DAYS))\
