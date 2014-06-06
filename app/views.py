@@ -2,7 +2,7 @@ from flask import Flask, session, request, flash, url_for, redirect, render_temp
 from flask.ext.login import login_user, logout_user, current_user, login_required
 from app import app
 from app import db
-from app.models import Agency, Caregiver, Client
+from app.models import Agency, Caregiver, Client, Service, CaregiverForm, CaregiverFormInstance, ClientForm, ClientFormInstance
 from app.forms import LoginForm, RegisterForm
 
 @app.route('/')
@@ -11,6 +11,21 @@ from app.forms import LoginForm, RegisterForm
 @login_required
 def index():
     return render_template('index.html')
+
+@app.route('/services/forms')
+@login_required
+def service_overview():
+    return render_template('services_overview.html')
+    
+@app.route('/caregiver/forms')
+@login_required
+def caregiver_overview():
+    return render_template('caregiver_overview.html')
+    
+@app.route('/client/forms')
+@login_required
+def client_overview():
+    return render_template('client_overview.html')
 
 @app.route('/caregivers')
 @login_required
@@ -22,7 +37,11 @@ def caregiver_index():
 @app.route('/caregiver/<int:id>')
 @login_required
 def caregiver(id):
-    return render_template('caregiver.html', caregiver=Caregiver.query.get(id))
+    caregiver = Caregiver.query.get(id)
+    form_instances = caregiver.get_form_instances()
+    return render_template('caregiver.html',
+            caregiver=caregiver,
+            form_instances=form_instances)
 
 @app.route('/clients')
 @login_required
@@ -34,7 +53,15 @@ def client_index():
 @app.route('/client/<int:id>')
 @login_required
 def client(id):
-    return render_template('caregiver.html', caregiver=Client.query.get(id))
+    form_instances = db.session.query(ClientFormInstance).\
+        join(ClientForm).\
+        join(Client).\
+        filter(Client.id==id).\
+        order_by(ClientFormInstance.expiration_date.desc()).\
+        all()
+    return render_template('client.html',
+            caregiver=Client.query.get(id),
+            form_instances=form_instances)
 
 @app.route('/login', methods=['GET','POST'])
 def login():
@@ -85,13 +112,23 @@ def styles():
 def form():
     return render_template('form.html')
 
-@app.route('/caregiver_form')
-def caregiver_form():
-    return render_template('role_form.html', role='caregiver')
+@app.route('/caregiver/<int:caregiver_id>/form/<int:form_id>')
+def caregiver_form(caregiver_id, form_id):
+    print(caregiver_id)
+    caregiver = Caregiver.query.get(caregiver_id)
+    return render_template('role_form.html', role='caregiver', item=caregiver)
+    
+@app.route('/client/<int:client_id>/form/<int:form_id>')
+def client_form(client_id, form_id):
+    print(client_id)
+    client = Client.query.get(client_id)
+    return render_template('role_form.html', role='client', item=client)
 
-@app.route('/client_form')
-def client_form():
-    return render_template('role_form.html', role='client')
+@app.route('/service/<int:service_id>/form/<int:form_id>')
+def services_form(service_id, form_id):
+    print(service_id)
+    service = Service.query.get(service_id)
+    return render_template('service_form.html', item=service)
 
 @app.before_request
 def before_request():
