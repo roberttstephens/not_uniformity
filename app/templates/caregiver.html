@@ -1,6 +1,109 @@
 {% extends "base.html" %}
-
+{% block title %}The name{% endblock %}
 {% block content %}
-<h1>This is the main caregiver page.</h1>
 {% include 'flash.html' %}
+<section class="container">
+    <div class="grid">
+        <div class="col-1-2">
+            <div class="profile-info caregiver-text">
+                <p class="name">{{ caregiver.name }}</p>
+                <p class="address">
+                    {{ caregiver.address.address_1 }}
+                    {{ caregiver.address.address_2 }}
+                    <br />
+                    {{ caregiver.address.city }}
+                    {{ caregiver.address.state }}
+                    {{ caregiver.address.zip_code }}
+                </p>
+                <p class="phone">
+                    <span class="phone-number">{{ caregiver.phone_number }}</span>
+                    <span class="phone-extension">{{ caregiver.phone_extension }}</span>
+                </p>
+                {% if caregiver.birth_date %}
+                <p class="birth-date">
+                    {{ caregiver.birth_date }}
+                </p>
+                {% endif %}
+                <div class="grid">
+                    <div class="col-1-2">
+                        <div class="box summary yellow-light">{{ caregiver.expiring_soon }} Forms Expiring Soon
+                        </div>
+                    </div>
+                    <div class="expired col-1-2">
+                        <div class="box summary red-light">{{ caregiver.expired }} Forms Expired
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-1-2">
+            <a href="https://www.google.com/maps/preview#!q={{ caregiver.address.urlencode }}" class="googlemap" style="background-image:url(http://maps.google.com/maps/api/staticmap?size=640x250&zoom=13&maptype=roadmap&markers=color:green|{{ caregiver.address.urlencode }}&sensor=false)" target="_blank">
+                <p>
+                    <span>Map Data &copy; Google</span>
+                </p>
+                <img src="http://maps.google.com/maps/api/staticmap?size=640x250&zoom=13&maptype=roadmap&markers=color:green|{{ caregiver.address.urlencode }}&sensor=false" alt="Map" class="map" />
+            </a>
+
+        </div>
+    </div>
+</section>
+
+
+
+<section class="container">
+    <table class="profile client-light">
+        <colgroup>
+            <col class="client-col">
+            <col class="service-col">
+            <col>
+            <col class="forms-col">
+            <col class="forms-col">
+        </colgroup>
+        <thead>
+            <tr>
+                <th class="client-dark col1" rowspan="2">clients</th>
+                <th class="service-dark col2" rowspan="2">service provided</p></th>
+                <th class="service-dark col3" colspan="2">forms</th>
+            </tr>
+            <tr>
+                <th class="service-dark col4">expired</th>
+                <th class="service-dark col4">expiring soon</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for service in caregiver.services %}
+                <tr>
+                    <td>{{ service.client.name }}</td>
+                    <td class="service-cell">{{ service.name }}</td>
+                    <td class="service-bdr red-cell expired">{{ service.expired }}</td>
+                    <td class="service-bdr expiring-soon">
+                        {{ service.expiring_soon }}
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table><!-- client list -->
+    <a href="#" class="button client-dark" role="button">add client</a>
+    <br/><br/>
+    <table class="profile caregiver-light role-forms">
+        <thead>
+            <tr>
+                <th class="caregiver-dark" colspan="2">caregiver forms</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% if form_instances %}
+                {% for instance in form_instances %}
+                    <tr>
+                        <td class="expiration-date red-cell">
+                            <span class="expiration-date"><span class="icon-cirlcereceived"></span>{{ instance.expiration_date }}</span>
+                        </td>
+                        <td class="form-title red-cell">{{ instance.caregiver_form.name }}</td>
+                    </tr>
+                {% endfor %}
+            {% endif %}
+        </tbody>
+    </table><!-- caregiver forms -->
+    <a href="#" class="button caregiver-dark" role="button">add new caregiver form</a>
+</section>
 {% endblock %}
