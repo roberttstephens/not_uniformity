@@ -134,6 +134,14 @@ class Caregiver(db.Model, BaseMixin, CreateUpdateMixin, PhoneMixin, AgencyMixin,
     forms = db.relationship('CaregiverForm', lazy='dynamic')
     services = db.relationship('Service', uselist=True, backref='caregiver')
 
+    def get_form_instances(self):
+        return CaregiverFormInstance.query.\
+            join(CaregiverForm).\
+            join(Caregiver).\
+            filter(Caregiver.id==1).\
+            order_by(CaregiverFormInstance.expiration_date.desc()).\
+            all()
+
     @hybrid_property
     def expired(self):
         return str(self.forms.join(CaregiverFormInstance).filter(CaregiverFormInstance.expiration_date <= date.today()).count())
@@ -152,10 +160,16 @@ class Client(db.Model, BaseMixin, CreateUpdateMixin, PhoneMixin, AgencyMixin, Ad
     name = db.Column(db.String(128))
     birth_date = db.Column(db.Date)
     status = db.Column(db.Boolean, nullable=False)
-    guardian_id = db.Column(db.Integer, db.ForeignKey('guardian.id'), nullable=False)
-    guardian = db.relationship("Guardian", uselist=False, backref='client')
     forms = db.relationship('ClientForm')
     services = db.relationship('Service', uselist=False, backref='client')
+
+    def get_form_instances(self):
+        return ClientFormInstance.query.\
+            join(ClientForm).\
+            join(Client).\
+            filter(Client.id==1).\
+            order_by(ClientFormInstance.expiration_date.desc()).\
+            all()
 
 class CaregiverForm(db.Model, BaseMixin, CreateUpdateMixin, FormMixin):
     caregiver_id = db.Column(db.Integer, db.ForeignKey('caregiver.id'), nullable=False)
@@ -174,6 +188,12 @@ class CaregiverFormInstance(db.Model, BaseMixin, CreateUpdateMixin, FormInstance
     caregiver_form = db.relationship("CaregiverForm", uselist=False, 
         backref='instances')
 
+    @hybrid_property
+    def received(self):
+        if self.received_date:
+            return True
+        return False
+
 class ClientFormInstance(db.Model, BaseMixin, CreateUpdateMixin, FormInstanceMixin):
     client_form_id = db.Column(db.Integer, db.ForeignKey('client_form.id'), nullable=False)
     client_form = db.relationship("ClientForm", uselist=False,
@@ -183,10 +203,6 @@ class ServiceFormInstance(db.Model, BaseMixin, CreateUpdateMixin, FormInstanceMi
     service_form_id = db.Column(db.Integer, db.ForeignKey('service_form.id'), nullable=False)
     service_form = db.relationship("ServiceForm", uselist=False,
         backref='instances')
-
-class Guardian(db.Model, BaseMixin, CreateUpdateMixin, PhoneMixin, AddressMixin):
-    name = db.Column(db.String(128))
-    birth_date = db.Column(db.Date)
 
 class Service(db.Model, BaseMixin, CreateUpdateMixin):
     name = db.Column(db.String(128))
