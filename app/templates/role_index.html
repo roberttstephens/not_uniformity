@@ -1,20 +1,8 @@
 {% extends "base.html" %}
-
+{% block title %}{{ role|capitalize }}s{% endblock %}
 {% block content %}
 {% include 'flash.html' %}
 <section class="container">
-    <div class="box {{ role }}-light">
-        <form>
-            <fieldset class="search-form">
-                <p>
-                    <label for="search">Search:</label>
-                    <input type="search" id="input-search" name="search" placeholder="Firstname Lastname" autofocus required/>
-                    <button><i class="icon-preview"> </i>search</button>
-                </p>
-            </fieldset>
-        </form>
-    </div>
-    <br />
     <table class="list {{ role }}-light">
         <thead>
             <tr>
@@ -27,33 +15,19 @@
             </tr>
         </thead>
         <tbody >
-            <tr>
-                <!--
-                TODO
-                for each expired and expiring-soon column
-                check if the td is empty. If not, add a class of 'red-cell'
-                or 'yellow-cell'.
-                -->
-		<!-- TODO remove the above todo -->
-                <td><p>Client Name</p></td>
-                <td class="service-bdr expired"><p>2</p></td>
-                <td class="service-bdr expiring-soon"><p>2</p></td>
-            </tr>
-            <tr>
-                <td><p>Client Name</p></td>
-                <td class="service-bdr expired"></td>
-                <td class="service-bdr expiring-soon"><p>4</p></td>
-            </tr>
-            <tr>
-                <td><p>Client Name</p></td>
-                <td class="service-bdr expired"></td>
-                <td class="service-bdr expiring-soon"></td>
-            </tr>
-            <tr>
-                <td><p>Client Name</p></td>
-                <td class="service-bdr expired"><p>10</p></td>
-                <td class="service-bdr expiring-soon"></td>
-            </tr>
+            {% for item in items %}
+                <tr>
+                    {% if role == 'caregiver' %}
+                        <td><p><a href="{{ url_for('caregiver', id=item.id)}}">{{ item.name }}</a></p></td>
+                        <td class="service-bdr expired">{{item.expired}}</td>
+                        <td class="service-bdr expiring-soon"><p>{{item.expiring_soon}}</p></td>
+                    {% else %}
+                        <td><p><a href="{{ url_for('client', id=item.id)}}">{{ item.name }}</a></p></td>
+                        <td class="service-bdr expired"></td>
+                        <td class="service-bdr expiring-soon"><p>4</p></td>
+                    {% endif %}
+                </tr>
+            {% endfor %}
         </tbody>
     </table>
 </section>
