@@ -182,7 +182,7 @@ class ClientFormInstance(db.Model, BaseMixin, CreateUpdateMixin, FormInstanceMix
 class ServiceFormInstance(db.Model, BaseMixin, CreateUpdateMixin, FormInstanceMixin):
     service_form_id = db.Column(db.Integer, db.ForeignKey('service_form.id'), nullable=False)
     service_form = db.relationship("ServiceForm", uselist=False,
-        backref='instance')
+        backref='instances')
 
 class Guardian(db.Model, BaseMixin, CreateUpdateMixin, PhoneMixin, AddressMixin):
     name = db.Column(db.String(128))
@@ -193,4 +193,20 @@ class Service(db.Model, BaseMixin, CreateUpdateMixin):
     status = db.Column(db.Boolean, nullable=False)
     caregiver_id = db.Column(db.Integer, db.ForeignKey('caregiver.id'), nullable=False)
     client_id = db.Column(db.Integer, db.ForeignKey('client.id'), nullable=False)
+    forms = db.relationship('ServiceForm', lazy='dynamic')
 
+    @hybrid_property
+    def expired(self):
+        instance = ServiceFormInstance
+        count = self.forms.join(instance)\
+        .filter(instance.expiration_date <= date.today())\
+        .count()
+        return str(count)
+
+    @hybrid_property
+    def expiring_soon(self):
+        instance = ServiceFormInstance
+        count = self.forms.join(instance)\
+        .filter(instance.expiration_date >= date.today()-timedelta(days=EXPIRING_SOON_DAYS))\
+        .count()
+        return str(count)
