@@ -26,11 +26,11 @@
                 {% endif %}
                 <div class="grid">
                     <div class="col-1-2">
-                        <div class="box summary yellow-light">{{ caregiver.expiring_soon }} Forms Expiring Soon
+                        <div class="box summary yellow-light">{{ caregiver.num_expiring_soon }} Forms Expiring Soon
                         </div>
                     </div>
                     <div class="expired col-1-2">
-                        <div class="box summary red-light">{{ caregiver.expired }} Forms Expired
+                        <div class="box summary red-light">{{ caregiver.num_expired }} Forms Expired
                         </div>
                     </div>
                 </div>
@@ -75,9 +75,9 @@
                 <tr>
                     <td>{{ service.client.name }}</td>
                     <td class="service-cell">{{ service.name }}</td>
-                    <td class="service-bdr red-cell expired">{{ service.expired }}</td>
+                    <td class="service-bdr red-cell expired">{{ service.num_expired }}</td>
                     <td class="service-bdr expiring-soon">
-                        {{ service.expiring_soon }}
+                        {{ service.num_expiring_soon }}
                     </td>
                 </tr>
             {% endfor %}
