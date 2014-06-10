@@ -125,7 +125,7 @@ class Address(db.Model, BaseMixin, CreateUpdateMixin):
 class Agency(db.Model, BaseMixin, CreateUpdateMixin, PhoneMixin, AddressMixin):
     name = db.Column(db.String(128), unique=True)
     email = db.Column(db.String(254), unique=True)
-    password = db.Column(db.String(120))
+    password = db.Column(db.String(156))
     access = db.Column(db.Date)
     contact_name = db.Column(db.String(128), nullable=False)
     contact_title = db.Column(db.String(128), nullable=False)
