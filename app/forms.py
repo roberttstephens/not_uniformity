@@ -1,5 +1,5 @@
 from flask.ext.wtf import Form
-from wtforms.fields import StringField, PasswordField
+from wtforms.fields import StringField, PasswordField, TextField
 from wtforms.fields.html5 import TelField, EmailField
 from wtforms import validators
 
@@ -43,3 +43,9 @@ class RegisterForm(Form):
     #contact_title VARCHAR(128) NOT NULL,
     #status BOOLEAN NOT NULL,
     #address_id INTEGER NOT NULL,
+
+class EmailForm(Form):
+    email = TextField('Email', validators=[validators.Required(), validators.Email()])
+
+class PasswordForm(Form):
+    password = PasswordField('Password', validators=[validators.Required()])
