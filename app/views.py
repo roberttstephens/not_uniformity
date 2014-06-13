@@ -21,7 +21,63 @@ from .models import (
     ClientForm,
     ClientFormInstance
 )
-from .forms import LoginForm
+from .forms import LoginForm, EmailForm, PasswordForm
+from .util.security import ts
+
+@app.route('/reset', methods=["GET", "POST"])
+def reset():
+    form = EmailForm()
+    if form.validate_on_submit():
+        agency = Agency.query.filter_by(email=form.email.data).first_or_404()
+
+        subject = "Password reset requested."
+
+        token = ts.dumps(agency.email, salt='recover-key')
+
+        recover_url = url_for(
+            'reset_with_token',
+            token=token,
+            _external=True
+        )
+
+        html = 'hello ' + recover_url
+
+        from flask_mail import Mail, Message
+
+        mail = Mail()
+        mail.init_app(app)
+        msg = Message(
+            "hello",
+            sender="staff@roberttstephens.com",
+            recipients=["roberttstephens@gmail.com"]
+        )
+        msg.html = html
+        mail.send(msg)
+        flash('after mail.send')
+        return redirect(url_for("index"))
+    return render_template('reset.html', form=form)
+
+@app.route('/reset/<token>', methods=["GET", "POST"])
+def reset_with_token(token):
+    try:
+        email = ts.loads(token, salt="recover-key", max_age=86400)
+    except:
+        abort(404)
+
+    form = PasswordForm()
+
+    if form.validate_on_submit():
+        agency = Agency.query.filter_by(email=email).first_or_404()
+
+        agency.password = form.password.data
+
+        db.session.add(agency)
+        db.session.commit()
+
+        return redirect(url_for('login'))
+
+    return render_template('reset_with_token.html', form=form, token=token)
+
 
 @app.route('/')
 @app.route('/index', alias=True)
