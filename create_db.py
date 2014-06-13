@@ -18,6 +18,7 @@ abc = Agency()
 abc.name = 'abcllc'
 abc.set_password('uniformity')
 abc.status = True
+abc.email = 'example@example.com'
 abc.contact_name = 'Tyler Stephens'
 abc.contact_title = 'Customer Service Representative'
 abc.phone_number = '9049389444'
