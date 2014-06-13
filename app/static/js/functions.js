@@ -7,4 +7,8 @@ $(document).ready(function() {
 	$('td.expired:not(:empty)').addClass('red-cell');
 	$('td.expiring-soon:not(:empty)').addClass('yellow-cell');
 
+  /* When the 'x' of a flashed message is clicked, close the message. */
+  $('a.js-close-message').click(function () {
+    $(this).parent().hide();
+  });
 });
