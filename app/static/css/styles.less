@@ -246,8 +246,9 @@ header nav ul li {display:inline-block;padding-left:2px;}
     padding:8px;
     border:2px solid;
     }
-    
-.box.warning {.red-light;}
+
+.message {color:#6a6a6a;text-align: center;.mediumText;}
+.message.error {.red-light;}
     
 .offset {margin:-12px 0 14px 0;}
 .offset-bottom {margin-bottom:0px}
@@ -266,6 +267,23 @@ header nav ul li {display:inline-block;padding-left:2px;}
 FOOTER
 --*/
 footer .box {border-color:#b3e9fb;background:#d8f0ff;}
+
+footer {border:2px solid;border-color:@service-med;
+    width:60%;margin:20px auto;padding:20px;
+    -moz-box-shadow:    0px 0px 5px @service-dark,0px 0px 8px 1px @service-dark,inset 0px 0px 100px 1px #29a4eb;
+    -webkit-box-shadow: 0px 0px 5px @service-dark,0px 0px 8px 1px @service-dark,inset 0px 0px 100px 1px #29a4eb;
+    box-shadow:         0px 0px 5px @service-dark,0px 0px 8px 1px @service-dark,inset 0px 0px 100px 1px #29a4eb;
+    -moz-border-radius: 18px;
+    -webkit-border-radius:18px;
+    border-radius:18px;/* future proofing */
+    -khtml-border-radius:18px;/* for old Konqueror browsers */
+    text-align:center;
+    background: -webkit-gradient(linear, 0% 0%, 0% 110%, from(@service-dark), to(@service-med));/* Safari 4-5, Chrome 1-9 */
+    background: -webkit-linear-gradient(top, @service-med, @service-dark);/* Safari 5.1, Chrome 10+ */
+    background: -moz-linear-gradient(top, @service-med, @service-dark);/* Firefox 3.6+ */
+    background: -ms-linear-gradient(top, @service-med, @service-dark);/* IE 10 */
+    background: -o-linear-gradient(top, @service-med, @service-dark);/* Opera 11.10+ */
+    color:white;}
 
 
 
@@ -657,9 +675,6 @@ label {display:inline-block;width:100px;text-align:right;text-transform:none;}
 
 input:valid { }
 
-
-
-p.loginMsg {text-align: center;.mediumText;color:#6a6a6a;}
 
 .loginBox {border:2px solid;border-color:@service-med;
     width:60%;margin:20px auto;padding:20px;

@@ -1,10 +1,12 @@
 {% with messages = get_flashed_messages(with_categories=true) %}
     {% if messages %}
         {% for category, message in messages %}
+        <section class="container">
             <div class="message {{ category }}">
                 <a class="js-close-message" href="#">x</a>
                 {{ message|safe }}
             </div>
+        </section>
         {% endfor %}
     {% endif %}
 {% endwith %}
