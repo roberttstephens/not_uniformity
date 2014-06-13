@@ -17,12 +17,65 @@ def index():
 def service_overview():
     return render_template('services_overview.html')
 
-@app.route('/caregiver/forms')
+@app.route('/caregivers/forms')
 @login_required
 def caregiver_overview():
     return render_template('caregiver_overview.html')
 
-@app.route('/client/forms')
+@app.route('/caregivers/add')
+@login_required
+def caregiver_add_edit():
+    return render_template('role_add_edit.html')
+
+@app.route('/caregivers/<int:id>/edit')
+@login_required
+def caregiver_edit(id):
+    return render_template('role_add_edit.html')
+
+
+@app.route('/clients/add')
+@login_required
+def client_add_edit():
+    return render_template('role_add_edit.html')
+
+
+@app.route('/clients/<int:id>/edit')
+@login_required
+def client_edit(id):
+    return render_template('role_add_edit.html')
+
+@app.route('/services/add')
+@login_required
+def service_add_edit():
+    return render_template('service_add_edit.html')
+
+@app.route('/services/<int:id>/edit')
+@login_required
+def service_edit(id):
+    return render_template('service_add_edit.html')
+
+@app.route('/caregivers/<int:id>/forms/add')
+@login_required
+def caregiver_form_add(id):
+    return render_template('role_form_add_edit.html')
+
+@app.route('/clients/<int:id>/forms/add')
+@login_required
+def client_form_add(id):
+    return render_template('role_form_add_edit.html')
+
+@app.route('/caregivers/<int:caregiver_id>/forms/<int:form_id>/edit')
+@login_required
+def caregiver_form_edit(caregiver_id, form_id):
+    return render_template('role_form_add_edit.html')
+
+@app.route('/clients/<int:client_id>/forms/<int:form_id>/edit')
+@login_required
+def client_form_edit(client_id, form_id):
+    return render_template('role_form_add_edit.html')
+
+
+@app.route('/clients/forms')
 @login_required
 def client_overview():
     return render_template('client_overview.html')
@@ -34,7 +87,7 @@ def caregiver_index():
     return render_template('role_index.html', role='caregiver',
         items=caregivers)
 
-@app.route('/caregiver/<int:id>')
+@app.route('/caregivers/<int:id>')
 @login_required
 def caregiver(id):
     caregiver = Caregiver.query.get(id)
@@ -54,7 +107,7 @@ def client_index():
     return render_template('role_index.html', role='client',
         items=clients)
 
-@app.route('/client/<int:id>')
+@app.route('/clients/<int:id>')
 @login_required
 def client(id):
     form_instances = db.session.query(ClientFormInstance).\
@@ -112,27 +165,42 @@ def register():
 def styles():
     return render_template('styles.html')
 
-@app.route('/form')
+@app.route('/forms')
 def form():
     return render_template('form.html')
 
-@app.route('/caregiver/<int:caregiver_id>/form/<int:form_id>')
+@app.route('/caregivers/<int:caregiver_id>/forms/<int:form_id>')
 def caregiver_form(caregiver_id, form_id):
     print(caregiver_id)
     caregiver = Caregiver.query.get(caregiver_id)
     return render_template('role_form.html', role='caregiver', item=caregiver)
 
-@app.route('/client/<int:client_id>/form/<int:form_id>')
+@app.route('/clients/<int:client_id>/forms/<int:form_id>')
 def client_form(client_id, form_id):
     print(client_id)
     client = Client.query.get(client_id)
     return render_template('role_form.html', role='client', item=client)
 
-@app.route('/service/<int:service_id>/form/<int:form_id>')
-def services_form(service_id, form_id):
+@app.route('/services/<int:service_id>/forms/<int:form_id>')
+def service_form(service_id, form_id):
     print(service_id)
     service = Service.query.get(service_id)
     return render_template('service_form.html', item=service)
+
+@app.route('/services/<int:service_id>')
+def service(service_id):
+    service = Service.query.get(service_id)
+    return render_template('service.html', item=service)
+
+@app.route('/services/<int:service_id>/forms/<int:form_id>/edit')
+def service_form_edit(service_id, form_id):
+    service = Service.query.get(service_id)
+    return render_template('service_form_add_edit.html', item=service)
+
+@app.route('/services/<int:service_id>/forms/add')
+def service_form_add(service_id):
+    service = Service.query.get(service_id)
+    return render_template('service_form_add_edit.html', item=service)
 
 @app.before_request
 def before_request():
