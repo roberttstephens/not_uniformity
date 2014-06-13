@@ -16,12 +16,12 @@ def index():
 @login_required
 def service_overview():
     return render_template('services_overview.html')
-    
+
 @app.route('/caregiver/forms')
 @login_required
 def caregiver_overview():
     return render_template('caregiver_overview.html')
-    
+
 @app.route('/client/forms')
 @login_required
 def client_overview():
@@ -119,7 +119,7 @@ def caregiver_form(caregiver_id, form_id):
     print(caregiver_id)
     caregiver = Caregiver.query.get(caregiver_id)
     return render_template('role_form.html', role='caregiver', item=caregiver)
-    
+
 @app.route('/client/<int:client_id>/form/<int:form_id>')
 def client_form(client_id, form_id):
     print(client_id)
