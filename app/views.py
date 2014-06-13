@@ -54,8 +54,8 @@ def reset():
         )
         msg.html = html
         mail.send(msg)
-        flash('after mail.send')
-        return redirect(url_for("index"))
+        flash('An email has been sent to ' + agency.email + ' with a password reset link.')
+        return redirect(url_for("login"))
     return render_template('reset.html', form=form)
 
 @app.route('/reset/<token>', methods=["GET", "POST"])
@@ -70,10 +70,12 @@ def reset_with_token(token):
     if form.validate_on_submit():
         agency = Agency.query.filter_by(email=email).first_or_404()
 
-        agency.password = form.password.data
+        agency.set_password(form.password.data)
 
         db.session.add(agency)
         db.session.commit()
+
+        flash('Your password has been successfully changed.')
 
         return redirect(url_for('login'))
 
@@ -220,7 +222,9 @@ def login():
             return render_template('login.html', form=form)
         if not registered_user.check_password(password):
             flash(
-                'The password you entered is incorrect.<br>TODO Forgot your password.',
+                'The password you entered is incorrect. <br>'
+                '<a href="' + url_for('reset', _external=True) + '">Click here'
+                '</a> to reset your password.',
                 'error'
             )
             return render_template('login.html', form=form)
