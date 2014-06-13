@@ -20,6 +20,7 @@ for agency in agencies:
                 received = False
                 if instance.received_date:
                     received = True
+                print('Name: ' + form.name)
                 print('Received: ' + str(received))
                 print('Expiration date ' + str(instance.expiration_date))
                 print('expired: ' + str(instance.expired))

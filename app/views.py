@@ -16,12 +16,12 @@ def index():
 @login_required
 def service_overview():
     return render_template('services_overview.html')
-    
+
 @app.route('/caregiver/forms')
 @login_required
 def caregiver_overview():
     return render_template('caregiver_overview.html')
-    
+
 @app.route('/client/forms')
 @login_required
 def client_overview():
@@ -38,11 +38,13 @@ def caregiver_index():
 @login_required
 def caregiver(id):
     caregiver = Caregiver.query.get(id)
-    urgent_forms = caregiver.get_urgent_forms()
+    expired_forms = caregiver.get_expired_forms()
+    expiring_soon_forms = caregiver.get_expiring_soon_forms()
     non_urgent_forms = caregiver.get_non_urgent_forms()
     return render_template('caregiver.html',
             caregiver=caregiver,
-            urgent_forms=urgent_forms,
+            expired_forms = expired_forms,
+            expiring_soon_forms = expiring_soon_forms,
             non_urgent_forms=non_urgent_forms)
 
 @app.route('/clients')
@@ -119,7 +121,7 @@ def caregiver_form(caregiver_id, form_id):
     print(caregiver_id)
     caregiver = Caregiver.query.get(caregiver_id)
     return render_template('role_form.html', role='caregiver', item=caregiver)
-    
+
 @app.route('/client/<int:client_id>/form/<int:form_id>')
 def client_form(client_id, form_id):
     print(client_id)
