@@ -12,8 +12,8 @@ from flask.ext.login import (
     current_user,
     login_required
 )
-from app import app, db
-from app.models import (
+from . import app, db
+from .models import (
     Agency,
     Caregiver,
     Client,
@@ -21,7 +21,7 @@ from app.models import (
     ClientForm,
     ClientFormInstance
 )
-from app.forms import LoginForm
+from .forms import LoginForm
 
 @app.route('/')
 @app.route('/index', alias=True)
