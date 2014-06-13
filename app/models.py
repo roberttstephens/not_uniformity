@@ -116,10 +116,12 @@ class Address(db.Model, BaseMixin, CreateUpdateMixin):
             'zip_code',
         ]
         #combined = [if x is not None else ''
-        values = [getattr(self, field)
+        values = [
+            getattr(self, field)
             if getattr(self, field) is not None
             else ''
-            for field in fields]
+            for field in fields
+        ]
         return quote_plus(' '.join(values))
 
 class Agency(db.Model, BaseMixin, CreateUpdateMixin, PhoneMixin, AddressMixin):
@@ -250,7 +252,7 @@ class ServiceForm(db.Model, BaseMixin, CreateUpdateMixin, FormMixin):
 
 class CaregiverFormInstance(db.Model, BaseMixin, CreateUpdateMixin, FormInstanceMixin):
     caregiver_form_id = db.Column(db.Integer, db.ForeignKey('caregiver_form.id'), nullable=False)
-    caregiver_form = db.relationship("CaregiverForm", uselist=False, 
+    caregiver_form = db.relationship("CaregiverForm", uselist=False,
         backref='instances')
 
 

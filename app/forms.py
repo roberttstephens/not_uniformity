@@ -31,15 +31,15 @@ class RegisterForm(Form):
         validators.input_required(),
         validators.Length(min=3, max=128)
     ])
-    #email VARCHAR(120), 
+    #email VARCHAR(120),
     email = EmailField('Email', validators=[
         validators.input_required(),
         validators.Length(min=3, max=254),
         validators.Email()
     ])
-    #password VARCHAR(120), 
-    #access DATETIME, 
-    #contact_name VARCHAR(128) NOT NULL, 
-    #contact_title VARCHAR(128) NOT NULL, 
-    #status BOOLEAN NOT NULL, 
-    #address_id INTEGER NOT NULL, 
+    #password VARCHAR(120),
+    #access DATETIME,
+    #contact_name VARCHAR(128) NOT NULL,
+    #contact_title VARCHAR(128) NOT NULL,
+    #status BOOLEAN NOT NULL,
+    #address_id INTEGER NOT NULL,

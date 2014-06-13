@@ -1,9 +1,27 @@
-from flask import Flask, session, request, flash, url_for, redirect, render_template, abort, g
-from flask.ext.login import login_user, logout_user, current_user, login_required
-from app import app
-from app import db
-from app.models import Agency, Caregiver, Client, Service, CaregiverForm, CaregiverFormInstance, ClientForm, ClientFormInstance
-from app.forms import LoginForm, RegisterForm
+from flask import (
+    request,
+    flash,
+    url_for,
+    redirect,
+    render_template,
+    g
+)
+from flask.ext.login import (
+    login_user,
+    logout_user,
+    current_user,
+    login_required
+)
+from app import app, db
+from app.models import (
+    Agency,
+    Caregiver,
+    Client,
+    Service,
+    ClientForm,
+    ClientFormInstance
+)
+from app.forms import LoginForm
 
 @app.route('/')
 @app.route('/index', alias=True)
@@ -84,8 +102,11 @@ def client_overview():
 @login_required
 def caregiver_index():
     caregivers = Caregiver.query.all()
-    return render_template('role_index.html', role='caregiver',
-        items=caregivers)
+    return render_template(
+        'role_index.html',
+        role='caregiver',
+        items=caregivers
+    )
 
 @app.route('/caregivers/<int:id>')
 @login_required
@@ -94,18 +115,23 @@ def caregiver(id):
     expired_forms = caregiver.get_expired_forms()
     expiring_soon_forms = caregiver.get_expiring_soon_forms()
     non_urgent_forms = caregiver.get_non_urgent_forms()
-    return render_template('caregiver.html',
-            caregiver=caregiver,
-            expired_forms = expired_forms,
-            expiring_soon_forms = expiring_soon_forms,
-            non_urgent_forms=non_urgent_forms)
+    return render_template(
+        'caregiver.html',
+        caregiver=caregiver,
+        expired_forms=expired_forms,
+        expiring_soon_forms=expiring_soon_forms,
+        non_urgent_forms=non_urgent_forms
+    )
 
 @app.route('/clients')
 @login_required
 def client_index():
     clients = Client.query.all()
-    return render_template('role_index.html', role='client',
-        items=clients)
+    return render_template(
+        'role_index.html',
+        role='client',
+        items=clients
+    )
 
 @app.route('/clients/<int:id>')
 @login_required
@@ -113,14 +139,16 @@ def client(id):
     form_instances = db.session.query(ClientFormInstance).\
         join(ClientForm).\
         join(Client).\
-        filter(Client.id==id).\
+        filter(Client.id == id).\
         order_by(ClientFormInstance.expiration_date.desc()).\
         all()
-    return render_template('client.html',
-            caregiver=Client.query.get(id),
-            form_instances=form_instances)
+    return render_template(
+        'client.html',
+        caregiver=Client.query.get(id),
+        form_instances=form_instances
+    )
 
-@app.route('/login', methods=['GET','POST'])
+@app.route('/login', methods=['GET', 'POST'])
 def login():
     form = LoginForm()
     if form.validate_on_submit():
@@ -128,10 +156,16 @@ def login():
         password = request.form['password']
         registered_user = Agency.query.filter_by(name=name).first()
         if registered_user is None:
-            flash('The name you entered does not belong to any account.<br>TODO link to a form where you input your email and it sends an email with the agency name.' , 'error')
+            flash(
+                'The name you entered does not belong to any account.<br>TODO link to a form where you input your email and it sends an email with the agency name.',
+                'error'
+            )
             return render_template('login.html', form=form)
         if not registered_user.check_password(password):
-            flash('The password you entered is incorrect.<br>TODO Forgot your password.' , 'error')
+            flash(
+                'The password you entered is incorrect.<br>TODO Forgot your password.',
+                'error'
+            )
             return render_template('login.html', form=form)
         login_user(registered_user)
         flash('Welcome back, ' + registered_user.name)
@@ -145,7 +179,7 @@ def logout():
     logout_user()
     return redirect(url_for('index'))
 
-@app.route('/register', methods=['GET','POST'])
+@app.route('/register', methods=['GET', 'POST'])
 def register():
     from flask.ext.wtf import Form
     from wtforms.ext.sqlalchemy.orm import model_form
