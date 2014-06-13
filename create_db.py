@@ -112,6 +112,23 @@ some_caregiver_form_instance = CaregiverFormInstance(
 db.session.add(some_caregiver_form_instance)
 db.session.commit()
 
+
+non_urgent = CaregiverForm(
+    name = 'Non urgent',
+    caregiver = chase,
+)
+db.session.add(non_urgent)
+db.session.commit()
+
+non_urgent_form_instance = CaregiverFormInstance(
+    caregiver_form = non_urgent,
+    status = True,
+    expiration_date = date(2014, 1, 2),
+    received_date = date(2014, 1, 1),
+)
+db.session.add(non_urgent_form_instance)
+db.session.commit()
+
 emmanuel = Client(
     name = 'Emmanuel',
     birth_date = date(1988, 1, 2),

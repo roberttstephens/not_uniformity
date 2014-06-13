@@ -38,11 +38,13 @@ def caregiver_index():
 @login_required
 def caregiver(id):
     caregiver = Caregiver.query.get(id)
-    urgent_forms = caregiver.get_urgent_forms()
+    expired_forms = caregiver.get_expired_forms()
+    expiring_soon_forms = caregiver.get_expiring_soon_forms()
     non_urgent_forms = caregiver.get_non_urgent_forms()
     return render_template('caregiver.html',
             caregiver=caregiver,
-            urgent_forms=urgent_forms,
+            expired_forms = expired_forms,
+            expiring_soon_forms = expiring_soon_forms,
             non_urgent_forms=non_urgent_forms)
 
 @app.route('/clients')

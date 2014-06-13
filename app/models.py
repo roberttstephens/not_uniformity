@@ -161,16 +161,38 @@ class Caregiver(db.Model, BaseMixin, CreateUpdateMixin, PhoneMixin, AgencyMixin,
     forms = db.relationship('CaregiverForm', lazy='dynamic')
     services = db.relationship('Service', uselist=True, backref='caregiver')
 
-    def get_urgent_forms_query(self):
+    def get_expired_forms(self):
+        return CaregiverForm.query.\
+            join(CaregiverFormInstance).\
+            join(Caregiver).\
+            filter(CaregiverFormInstance.received_date==None).\
+            filter(CaregiverFormInstance.expiration_date <= date.today()).\
+            order_by(CaregiverFormInstance.expiration_date.desc()).\
+            all()
+
+
+    def get_expiring_soon_forms(self):
+        expiring_soon_forms = CaregiverForm.query.\
+            join(CaregiverFormInstance).\
+            join(Caregiver).\
+            filter(CaregiverFormInstance.received_date==None).\
+            filter(CaregiverFormInstance.expiration_date <= date.today()+timedelta(days=EXPIRING_SOON_DAYS)).\
+            order_by(CaregiverFormInstance.expiration_date.desc()).\
+            all()
+        # Filter out expired forms.
+        return set(expiring_soon_forms) - set(self.get_expired_forms())
+
+    def get_urgent_forms(self):
         return CaregiverForm.query.\
             join(CaregiverFormInstance).\
             join(Caregiver).\
             filter(CaregiverFormInstance.received_date==None).\
             filter(
-                (CaregiverFormInstance.expiration_date <= date.today()-timedelta(days=EXPIRING_SOON_DAYS))\
+                (CaregiverFormInstance.expiration_date <= date.today()+timedelta(days=EXPIRING_SOON_DAYS))\
                 | (CaregiverFormInstance.expiration_date <= date.today())
                     ).\
-            order_by(CaregiverFormInstance.expiration_date.desc())
+            order_by(CaregiverFormInstance.expiration_date.desc()).\
+            all()
 
     def get_form_instances(self):
         return CaregiverFormInstance.query.\
@@ -181,11 +203,10 @@ class Caregiver(db.Model, BaseMixin, CreateUpdateMixin, PhoneMixin, AgencyMixin,
             all()
 
     def get_non_urgent_forms(self):
-        urgent_forms_subquery =  self.get_urgent_forms_query().subquery()
-        return None
-
-    def get_urgent_forms(self):
-        return self.get_urgent_forms_query().all()
+        all_forms = CaregiverForm.query.\
+            join(Caregiver).\
+            all()
+        return set(all_forms) - set(self.get_expired_forms()) - set(self.get_expiring_soon_forms())
 
     @hybrid_property
     def num_expired(self):

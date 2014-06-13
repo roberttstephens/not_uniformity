@@ -92,13 +92,23 @@
             </tr>
         </thead>
         <tbody>
-            {% if urgent_forms %}
-                {% for form in urgent_forms %}
+            {% if expired_forms %}
+                {% for form in expired_forms %}
                     <tr>
                         <td class="expiration-date red-cell">
                             <span class="expiration-date"><span class="icon-cirlcereceived"></span>weeeeee</span>
                         </td>
                         <td class="form-title red-cell">{{ form.name }}</td>
+                    </tr>
+                {% endfor %}
+            {% endif %}
+            {% if expiring_soon_forms %}
+                {% for form in expiring_soon_forms %}
+                    <tr>
+                        <td class="expiration-date yellow-cell">
+                            <span class="expiration-date"><span class="icon-cirlcereceived"></span>weeeeee</span>
+                        </td>
+                        <td class="form-title yellow-cell">{{ form.name }}</td>
                     </tr>
                 {% endfor %}
             {% endif %}
