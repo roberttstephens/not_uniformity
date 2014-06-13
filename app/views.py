@@ -1,3 +1,4 @@
+from datetime import datetime
 from flask import (
     request,
     flash,
@@ -224,6 +225,9 @@ def login():
             )
             return render_template('login.html', form=form)
         login_user(registered_user)
+        registered_user.access = datetime.utcnow()
+        db.session.add(registered_user)
+        db.session.commit()
         flash('Welcome back, ' + registered_user.name)
         return redirect(request.args.get('next') or url_for('index'))
     return render_template('login.html', form=form)
