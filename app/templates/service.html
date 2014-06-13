@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+{% block title %}Index{% endblock %}
+{% block content %}
+{% include 'flash.html' %}
+<section class="container">
+    <div class="grid">
+        <div class="col-1-3">
+            <div class="box-title caregiver-light">
+                <p class="title">caregiver</p>
+                <p class="name">jennifer lawrence</p>
+                <p class="phone">
+                    <i class="icon-user-add"></i>555-555-1234</p>
+            </div><!-- caregiver -->
+        </div>
+        <div class="col-1-3">
+            <div class="box-title service-light">
+                <p class="title">service</p>
+                <div class="service-wrap">
+                    <p class="service">supported living coach</p>
+                </div>
+            </div><!-- service -->
+        </div>
+        <div class="col-1-3">
+            <div class="box-title client-light">
+                <p class="title">client</p>
+                <p class="name">miley cyrus</p>
+                <p class="phone">555-555-1234</p>
+            </div><!-- client -->
+        </div>
+    </div>
+</section><!-- service header -->
+<section class="container">
+   <table class="form current-status service-light">
+      <caption class="service-dark">
+        <h3>form title</h3>
+      </caption>
+        <tbody>
+            <tr>
+                <td class="expiration-date yellow-cell">
+                    <span class="expiration-date"><span class="icon-cirlcereceived"></span>00-00-0000</span>
+                </td>
+                <td class="status yellow-cell">this form will expire soon!</td>
+                <td class="edit yellow-cell"><a href="#" class="button" role="button">edit status</a></td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="form record service-light">
+        <tbody>
+            <tr>
+                <td class="expiration-date green-cell">
+                    <span class="expiration-date"><span class="icon-cirlcereceived"></span>00-00-0000</span>
+                </td>
+                <td class="status green-cell">reveived on 00-00-0000</td>
+                <td class="edit green-cell"><a href="#">edit</a></td>
+            </tr>
+            <tr>
+                <td class="expiration-date green-cell">
+                    <span class="expiration-date"><span class="icon-cirlcereceived"></span>00-00-0000</span>
+                </td>
+                <td class="status green-cell">reveived on 00-00-0000</td>
+                <td class="edit green-cell"><a href="#">edit</a></td>
+            </tr>
+            <tr>
+                <td class="expiration-date green-cell">
+                    <span class="expiration-date"><span class="icon-cirlcereceived"></span>00-00-0000</span>
+                </td>
+                <td class="status green-cell">reveived on 00-00-0000</td>
+                <td class="edit green-cell"><a href="#">edit</a></td>
+            </tr>
+            <tr>
+                <td class="expiration-date green-cell">
+                    <span class="expiration-date"><span class="icon-cirlcereceived"></span>00-00-0000</span>
+                </td>
+                <td class="status green-cell">reveived on 00-00-0000</td>
+                <td class="edit green-cell"><a href="#">edit</a></td>
+            </tr>
+        </tbody>
+    </table><!-- role forms -->
+    <a href="#" class="button service-dark" role="button">add service form</a>
+</section><!-- overview -->
+
+{% endblock %}
