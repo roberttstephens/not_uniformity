@@ -155,10 +155,7 @@ def register():
     form = RegisterForm(request.form, model)
     if form.validate_on_submit():
         form.populate_obj(model)
-        flash('Please log in to continue.')
         return redirect(request.args.get('next') or url_for('index'))
-    from pprint import pprint
-    pprint(vars(form))
     return render_template('register.html', form=form)
 
 @app.route('/styles')

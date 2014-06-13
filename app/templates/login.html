@@ -1,9 +1,8 @@
 {% extends "base.html" %}
 {% block title %}Login{% endblock %}
 {% block content %}
-{% include 'flash.html' %}
     <section class="container">
-    <p class="loginMsg">Please login to access this page.</p>
+    {% include 'flash.html' %}
     <div class="box loginBox">
         {% from "_formhelpers.html" import render_field %}
         <form method=post action="">
