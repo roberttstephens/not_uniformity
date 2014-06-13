@@ -24,7 +24,7 @@ html {
 }
 
 /*
- * Remove text-shadow in selection highlight: h5bp.com/i
+ * Remove text-shadow in selection highlight: h5bp.com/i 
  * These selection rule sets have to be separate.
  * Customize the background color to match your design.
  */
@@ -226,8 +226,14 @@ header nav ul li {display:inline-block;padding-left:2px;}
     -moz-box-shadow:    0px 0px 8px 1px #fff;
     -webkit-box-shadow: 0px 0px 8px 1px #fff;
     box-shadow:         0px 0px 8px 1px #fff;
-    -moz-border-radius:18px;-webkit-border-radius:18px;border-radius:18px;/* future proofing */-khtml-border-radius:18px;/* for old Konqueror browsers */
-    text-transform:uppercase;}
+    -moz-border-radius:18px;-webkit-border-radius:18px;border-radius:18px;/* future proofing */-khtml-border-radius:18px;/* for old Konqueror browsers */}
+    
+.container > *:last-child,
+.container > *:last-child > *:last-child,
+.container > *:last-child > *:last-child > *:last-child,
+.container > table:last-child {
+  margin-bottom: 0;
+}
 
 .radius (@radius:10px){
     -moz-border-radius:@radius;
@@ -321,9 +327,8 @@ COLORS
     .caregiver-light input::-moz-placeholder {color:@caregiver-med;}
     .caregiver-light input:-ms-input-placeholder {color:@caregiver-med;}
     .caregiver-light button, .caregiver-light input[type="button"], .caregiver-light input[type="submit"], .caregiver-light a.button {background-color:@caregiver-dark;border-color:@caregiver-dark;color:#fff;}
+    .caregiver-light a {color:@caregiver-dark;}
     table.caregiver-light {background:none;}
-    table.overview.caregiver-light .col1 {width:50%;}
-    table.overview.caregiver-light .col2 {width:50%;}
 .client-light {background-color:@client-light;border-color:@client-dark;color:@client-dark;border-color:@client-dark;}
     .client-light input, .client-light select {border-color:@client-dark;color:@client-dark;}
     .client-light input::-webkit-input-placeholder, {color:@client-med;}
@@ -331,9 +336,8 @@ COLORS
     .client-light input::-moz-placeholder {color:@client-med;}
     .client-light input:-ms-input-placeholder {color:@client-med;}
     .client-light button, .client-light a.button {background-color:@client-dark;border-color:@client-dark;color:#fff;}
+    .client-light a {color:@client-dark;}
     table.client-light {background:none;}
-    table.overview.client-light .col1 {width:50%;}
-    table.overview.client-light .col2 {width:50%;}
 .service-light {background-color:@service-light;border-color:@service-dark;;color:@service-dark;border-color:@service-dark;}
     .service-light input, .service-light select {border-color:@service-dark;color:@service-dark;}
     .service-light input::-webkit-input-placeholder, {color:@service-med;}
@@ -341,9 +345,9 @@ COLORS
     .service-light input::-moz-placeholder {color:@service-med;}
     .service-light input:-ms-input-placeholder {color:@service-med;}
     .service-light button, .service-light a.button {background-color:@service-dark;border-color:@service-dark;color:#fff;}
+    .service-light a {color:@service-dark;}
     table.service-light {background:none;}
-    table.overview.service-light .col1 {width:34%;border-color:@service-dark;}
-    table.overview.service-light .col2, .col3, .col4 {width:22%;}
+    table.overview.service-light .col1 {border-color:@service-dark;}
     
     table.caregiver-light td.red-light, table.caregiver-light td.yellow-light {border-color:@caregiver-dark;}
     table.client-light td.red-light, table.lient-light td.yellow-light {border-color:@client-dark;}
@@ -371,6 +375,10 @@ COLORS
 .caregiver-bdr {border-color:@caregiver-dark;}
 .client-bdr {border-color:@client-dark;}
 .service-bdr {border-color:@service-dark;}
+
+.red-cell a {color:@red-dark;}
+.yellow-cell a {color:@yellow-dark;}
+.green-cell a {color:@green-dark;}
 
 
 
@@ -404,8 +412,9 @@ TEXT STYLES
 .largeText {font-size:@largeText;line-height:@largeTextLH;}
 .hugeText {font-size:@hugeText;line-height:@hugeTextLH;}
 .uppercase {text-transform:uppercase;}
+.capitalize {text-transform:capitalize;}
 
-p, span {text-transform:capitalize;margin:0;padding:0;vertical-align:middle;}
+p, {text-transform:capitalize;margin:0;padding:0;vertical-align:middle;}
     .box.warning p {.mediumText;text-transform:none;margin:10px 0px;}
 p.title {.regularText;.uppercase;}
 p.name {font-size:2.5em;line-height:1.2em;}/*unique line-height*/
@@ -420,18 +429,16 @@ h3 {.mediumText; .uppercase; margin: 0;text-align: left;}
     .overview-top-client h3 {text-shadow: 0px 0px 8px @client-light;}
 
 
-input::-webkit-input-placeholder {text-transform: capitalize;}
-input:-moz-placeholder {text-transform: capitalize;}
-input::-moz-placeholder {text-transform: capitalize;}
-input:-ms-input-placeholder {text-transform: capitalize;}
-
-.icon {display:inline-block;background:yellow;}
+input::-webkit-input-placeholder {.capitalize;}
+input:-moz-placeholder {.capitalize;}
+input::-moz-placeholder {.capitalize;}
+input:-ms-input-placeholder {.capitalize;}
 
 .commandnav p {font-size:1.6em;line-height:1em;}
 .profile-info p.name {.hugeText;}
 .profile-info p {.mediumText;margin-bottom:8px;}
 .profile p {.mediumText;}
-.profile span {background:red;display:block;}
+.profile span {;display:block;}
 .box p, .search-form p {.regularText;} 
 .container button, .container input[type="button"], .container input[type="submit"], .container a.button,
 .overview-top button, .overview-top input[type="button"], .overview-top input[type="submit"], .overview-top a.button,
@@ -442,75 +449,77 @@ input:-ms-input-placeholder {text-transform: capitalize;}
 .page-title p {.hugeText;}
 .page-title p.title {.regularText;.uppercase;}
 
-a {text-decoration:none;}
+a {text-decoration:none;font-size:inherit;}
 
-
+nav {.capitalize;}
 
 /*--
 TABLE TEXT
 --*/
-table.overview tr td p,
-table.list tr td p {.regularText;}
-table.profile tr td p {.mediumText;}
+table {}
+table tr td {.capitalize;vertical-align: middle;}
+table tr td span.expiration-date {display:inline-block;background:#fff;border:2px solid;padding:0px 4px 0px 4px;border-radius:10px;width:100%;text-align:right;line-height:1.1em;font-size:.78em;vertical-align: middle;}
+table tr td span.expiration-date [class*="icon-"] {font-size:.9em;display: block;float:left;}
 
-table.overview tr th p {.regularText;}
-table.profile tr th p, table.list tr th p {.mediumText;}
-table.profile tr th.col3 p, table.list tr th.col3 p {.regularText;}
-table.profile tr th.col4 p, table.list tr th.col4 p {.smallText;text-transform:uppercase;}
+table.overview tr th {.regularText;.capitalize;}/*--headers--*/
+table.overview.service-light .col2, .col3, .col4 {width:20%;}
+table.overview.caregiver-light th.col2,
+table.overview.client-light th.col2 {width:40%;}
+table.overview tr td {padding:1px 4px;}
+table.overview tr td.expiration-date {width:98px;}
+table.overview span.expiration-date {margin:1px 0px;}
+table.overview tr td.expiration-date span.expiration-date [class*="icon-"] {margin:1px 0px 0px 0px;}
+
+
+/*--Expiration Date Border Remove--*/
+table tr td.expiration-date {border-right:none;padding-right:0px;}
+table tr td.form-title {border-left:none;}
+table.form tr td.status {border-left:none;border-right:none;}
+table.form tr td.edit {border-left:none;}
+
+
+table.current-status.form tr td {.largeText;height:80px;}
+table.current-status.form tr td.expiration-date {width:150px;padding:0px 4px;}
+table.current-status.form tr td.expiration-date span.expiration-date {margin-bottom:6px;}
+table.current-status.form tr td.expiration-date span[class*="icon-"] {}
+
+table.record.form {.mediumText;}
+table.record.form tbody:after {height:0px;}
+table.record.form tr td.expiration-date {padding:4px 4px;width:128px;}
+table.record.form tr td.expiration-date span.expiration-date {margin-bottom:1px;}
+table.record.form tr td.expiration-date span.expiration-date [class*="icon-"] {}
+
+/*--Edit Buttons--*/
+table.form tr td.edit {font-size:1.2em;width:120px;padding-right:4px;}
+table.form tr td.edit a.button {width:100%!important;min-width: 100%!important;}
+table.record.form tr td.edit {width:50px;text-align: center;}
+table.record.form tr td.edit a {font-size:.7em;}
+
+table.list tbody:after {height: 0px;}
+
+
+
+
+table.overview tr td,
+table.list tr td {.regularText;.capitalize;}/*--cells--*/
+table.profile tr td {.mediumText;}
+
+table.profile tr th, table.list tr th {.mediumText;.capitalize;}/*--headers--*/
+table.profile tr th.col3, table.list tr th.col3 {.regularText;}
+table.profile tr th.col4, table.list tr th.col4 {.smallText;text-transform:uppercase;}
 table.profile td.red-cell, table.profile td.yellow-cell,
 table.list td.red-cell, table.list td.yellow-cell {text-align:center;}
 
-table.form tr th {.mediumText;}
-table.form tr td.current-status {line-height:60px;vertical-align: middle;}
-table.form tr td.current-status p {.largeText;margin-bottom:5px;}
-table.form tr td.current-status span {.regularText;padding-top:3px;}
-table.form tr td.current-status span p {.smallText;padding-bottom:0px;}
-
-table.form tr td.status {line-height:25px;vertical-align: middle;}
-table.form tr td.status p {.mediumText;}
-table.form tr td.status span {font-size:1.2em;padding-top:3px;}
-table.form tr td.status span p {font-size:1.2em;padding-bottom:4px;}
-
-table.form tr td.current-status [class*='col-'] button,
-table.form tr td.current-status [class*='col-'] input[type="button"],
-table.form tr td.current-status [class*='col-'] input[type="submit"],
-table.form tr td.current-status [class*='col-'] a.button {.regularText;min-width:inherit;margin-top:5px;}
-
-table.form tr td.status [class*='col-'] button,
-table.form tr td.status [class*='col-'] input[type="button"],
-table.form tr td.status [class*='col-'] input[type="submit"],
-table.form tr td.status [class*='col-'] a.button {.smallText;height:23px;min-width:inherit;width:100px;margin-top:2px;}
-
-table.form tr td.status .col-1-5 {text-align: right;}
-
-table.form tr td.green-cell [class*='col-'] button,
-table.form tr td.green-cell [class*='col-'] input[type="button"],
-table.form tr td.green-cell [class*='col-'] input[type="submit"],
-table.form tr td.green-cell [class*='col-'] a.button {.green-mid;}
-
-table.form tr td.green-cell.status [class*='col-'] button,
-table.form tr td.green-cell.status [class*='col-'] input[type="button"],
-table.form tr td.green-cell.status [class*='col-'] input[type="submit"],
-table.form tr td.green-cell.status [class*='col-'] a.button {.green-dark;}
-
-table.form tr td.yellow-cell [class*='col-'] button,
-table.form tr td.yellow-cell [class*='col-'] input[type="button"],
-table.form tr td.yellow-cell [class*='col-'] input[type="submit"],
-table.form tr td.yellow-cell [class*='col-'] a.button {.yellow-dark;}
-
-table.form tr td.red-cell [class*='col-'] button,
-table.form tr td.red-cell [class*='col-'] input[type="button"],
-table.form tr td.red-cell [class*='col-'] input[type="submit"],
-table.form tr td.red-cell [class*='col-'] a.button {.red-dark;}
-
-table.overview tr td.status {line-height:16px;vertical-align: middle;}
-table.overview tr td.status p {.regularText;}
-table.overview tr td.status span.status {font-size:1.1em;padding:0px 2px 0px 4px;}
-table.overview tr td.status span p {font-size:1.1em;padding-bottom:4px;}
+table.role-forms tr th {padding-top:5px;padding-bottom:5px;}
+table.role-forms tr td.expiration-date {padding:4px 4px;width:128px;}
+table.role-forms tr td.expiration-date span.expiration-date {margin-bottom:1px;}
+table.role-forms tr td.expiration-date span.expiration-date [class*="icon-"] {}
+table.role-forms tr td.form-title {text-align: left;}
 
 
-
-span.status {background-color:white;.radius;padding:2px 2px 2px 4px;border:1px solid;margin:0 4px 0 4px;}
+table tr td.green-cell a.button {.green-mid;}
+table tr td.yellow-cell a.button {.yellow-dark;}
+table tr td.red-cell a.button {.red-dark;}
 
 
 
@@ -519,13 +528,13 @@ span.status {background-color:white;.radius;padding:2px 2px 2px 4px;border:1px s
 TABLES
 --*/
 table {width:100%;border-collapse:collapse;text-align:left;}
-    table.overview {margin-bottom:12px;}
+    table.overview {margin-bottom:0px;}
 table caption {margin-bottom:5px;padding:7px 10px;}
     span.caption {padding:7px 10px;display:block;}
 table tbody::after {content: '';display: block;height: 6px;}
 table tr {border-left:6px solid;}
-table td, th {border:2px solid;padding:2px 4px;}
-table tr td p {display:inline-block;}
+table td, th {border:2px solid;}
+
 
 table.profile .col1 {width:25%;}
 table.profile .col2 {width:50%;}
@@ -536,7 +545,6 @@ table.profile .forms-col, table.list .forms-col {text-align:center;}
 table.list .col1 {width:60%;}
 table.list .col3 {width:40%;text-align:center;}
 table.list .col4 {width:20%;text-align:center;}
-table.overview tr td,
 table.list tr td {padding:5px 4px;}
 
 
@@ -569,9 +577,6 @@ a.button {
 	@outerBorderWidth: 2px;
 	@innerBorderWidth: 2px;
 	position: relative;
-	@include hideTapHighlightColor();
-	@include hardwareAccel();
-	@include improveAntiAlias();
 
         &:before {
             content: '';
@@ -619,6 +624,7 @@ form p {margin:14px 0;}
 .search-form p {margin:0px;}
 
 input[type="text"],
+input[type="password"],
 input[type="tel"],
 input[type="search"],
 input[type="date"],
@@ -653,6 +659,60 @@ input:valid { }
 
 
 
+p.loginMsg {text-align: center;.mediumText;color:#6a6a6a;}
+
+.loginBox {border:2px solid;border-color:@service-med;
+    width:60%;margin:20px auto;padding:20px;
+    -moz-box-shadow:    0px 0px 5px @service-dark,0px 0px 8px 1px @service-dark,inset 0px 0px 100px 1px #29a4eb;
+    -webkit-box-shadow: 0px 0px 5px @service-dark,0px 0px 8px 1px @service-dark,inset 0px 0px 100px 1px #29a4eb;
+    box-shadow:         0px 0px 5px @service-dark,0px 0px 8px 1px @service-dark,inset 0px 0px 100px 1px #29a4eb;
+    -moz-border-radius: 18px;
+    -webkit-border-radius:18px;
+    border-radius:18px;/* future proofing */
+    -khtml-border-radius:18px;/* for old Konqueror browsers */
+    text-align:center;
+    background: -webkit-gradient(linear, 0% 0%, 0% 110%, from(@service-dark), to(@service-med));/* Safari 4-5, Chrome 1-9 */
+    background: -webkit-linear-gradient(top, @service-med, @service-dark);/* Safari 5.1, Chrome 10+ */
+    background: -moz-linear-gradient(top, @service-med, @service-dark);/* Firefox 3.6+ */
+    background: -ms-linear-gradient(top, @service-med, @service-dark);/* IE 10 */
+    background: -o-linear-gradient(top, @service-med, @service-dark);/* Opera 11.10+ */
+    color:white;}
+    
+.loginBox form {width:350px;text-align: left;margin:auto;text-align: center;}
+    
+.loginBox form label {.regularText;width: 100%;text-align: left;}
+    
+.loginBox input[type="text"] {margin-bottom:20px;}
+    
+.loginBox input[type="text"], .loginBox input[type="password"] {
+    border:none;width:100%;
+    background-color:rgba(53,170,227,0.38);
+    -moz-box-shadow:    0px 2px 1px #98dfff,inset 0px 0px 7px #1784b7;
+    -webkit-box-shadow: 0px 2px 1px #98dfff,inset 0px 0px 7px #1784b7;
+    box-shadow:         0px 2px 1px #98dfff,inset 0px 0px 7px #1784b7;
+    color:white;
+    font-size: 2em;
+    transition: all 0.4s ease;}
+    
+.loginBox input[type="text"]:hover, .loginBox input[type="password"]:hover {
+    border:1px solid #98dfff;}
+
+.loginBox input[type="text"]:focus, .loginBox input[type="password"]:focus {
+    border:1px solid #98dfff;
+    -moz-box-shadow:    0px 0px 4px #ccefff,0px 2px 1px #98dfff,inset 0px 0px 7px #1784b7;
+    -webkit-box-shadow: 0px 0px 4px #ccefff,0px 2px 1px #98dfff,inset 0px 0px 7px #1784b7;
+    box-shadow:         0px 0px 4px #ccefff,0px 2px 1px #98dfff,inset 0px 0px 7px #1784b7;}
+    
+.loginBox input[type="submit"] {border:1px solid #ee9046;
+    -moz-box-shadow:    inset 0px 1px 1px #fffced,inset 0px 0px 10px #fc9e56,2px 2px 7px #0279b7;
+    -webkit-box-shadow: inset 0px 1px 1px #fffced,inset 0px 0px 10px #fc9e56,2px 2px 7px #0279b7;
+    box-shadow:         inset 0px 1px 1px #fffced,inset 0px 0px 10px #fc9e56,2px 2px 7px #0279b7;
+    background-color:#ffca60;
+    color:#ff4200;
+    height:35px;}
+
+
+
 /*--
 GOOGLE MAP
 --*/
@@ -670,11 +730,11 @@ ICONS
 --*/
 @font-face {
 	font-family: 'icomoon';
-	src:url('fonts/icomoon.eot?-u1hk0z');
-	src:url('fonts/icomoon.eot?#iefix-u1hk0z') format('embedded-opentype'),
-		url('fonts/icomoon.woff?-u1hk0z') format('woff'),
-		url('fonts/icomoon.ttf?-u1hk0z') format('truetype'),
-		url('fonts/icomoon.svg?-u1hk0z#icomoon') format('svg');
+	src:url('fonts/icomoon.eot?-i5ec8o');
+	src:url('fonts/icomoon.eot?#iefix-i5ec8o') format('embedded-opentype'),
+		url('fonts/icomoon.woff?-i5ec8o') format('woff'),
+		url('fonts/icomoon.ttf?-i5ec8o') format('truetype'),
+		url('fonts/icomoon.svg?-i5ec8o#icomoon') format('svg');
 	font-weight: normal;
 	font-style: normal;
 }
@@ -686,65 +746,118 @@ ICONS
 	font-weight: normal;
 	font-variant: normal;
 	text-transform: none;
-	line-height: normal;
-	
-	/* Better Font Rendering */
+	line-height: inherit;
+
+	/* Better Font Rendering =========== */
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
+    font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
 }
 
-span i[class^="icon-"],
-span i[class*=" icon-"] {l1ne-height:50px;height:1em;}
+.icon-expand:before {content: "\f055";
+}
+.icon-minimize:before {content: "\f056";
+}
+.icon-phone:before {content: "\f095";
+}
+.icon-print:before {content: "\e62f";
+}
+.icon-medkit:before {content: "\e630";
+}
+.icon-location:before {content: "\e600";
+}
+.icon-add-user:before {content: "\e601";
+}
+.icon-form:before {content: "\e602";
+}
+.icon-lifebuoy:before {content: "\e637";
+}
+.icon-users:before {content: "\e636";
+}
+.icon-credit-card:before {content: "\e604";
+}
+.icon-email:before {content: "\e60a";
+}
+.icon-shopping-cart:before {content: "\e603";
+}
+.icon-checkmark:before {content: "\e607";
+}
+.icon-xmark:before {content: "\e608";
+}
+.icon-trash:before {content: "\e609";
+}
+.icon-site-map:before {content: "\e60b";
+}
+.icon-stop:before {content: "\e60c";
+}
+.icon-login-out:before {content: "\e60d";
+}
+.icon-clipboard:before {content: "\e60e";
+}
+.icon-stats:before {content: "\e60f";
+}
+.icon-number1:before {content: "\e610";
+}
+.icon-number2:before {content: "\e611";
+}
+.icon-number3:before {content: "\e612";
+}
+.icon-number4:before {content: "\e613";
+}
+.icon-number5:before {content: "\e614";
+}
+.icon-number6:before {content: "\e615";
+}
+.icon-number7:before {content: "\e616";
+}
+.icon-number8:before {content: "\e617";
+}
+.icon-number9:before {content: "\e618";
+}
+.icon-file-cabinet:before {content: "\e606";
+}
+.icon-bullet:before {content: "\e635";
+}
+.icon-account:before {content: "\e633";
+}
+.icon-report:before {content: "\e61a";
+}
+.icon-pie-chart:before {content: "\e619";
+}
+.icon-signup:before {content: "\e61c";
+}
+.icon-file:before {content: "\e61e";
+}
+.icon-addform:before {content: "\e620";
+}
+.icon-alarm:before {content: "\e621";
+}
+.icon-stocks:before {content: "\e622";
+}
+.icon-preview:before {content: "\e623";
+}
+.icon-reliability:before {content: "\e625";
+}
+.icon-caution:before {content: "\e626";
+}
+.icon-cirlcereceived:before {content: "\e627";
+}
+.icon-cirlceexpired:before {content: "\e628";
+}
+.icon-received:before {content: "\e629";
+}
+.icon-expired:before {content: "\e62a";
+}
+.icon-managedhosting:before {content: "\e62b";
+}
+.icon-circlewarning:before {content: "\e62c";
+}
+.icon-warning:before {content: "\e62d";
+}
+.icon-edit:before {content: "\e62e";
+}
 
-.icon-location:before {content: "\e600";}
-.icon-user-add:before {content: "\e601";}
-.icon-archive:before {content: "\e602";}
-.icon-credit-card:before {content: "\e604";}
-.icon-help:before {content: "\e605";}
-.icon-mail:before {content: "\e60a";}
-.icon-shopping-cart:before {content: "\e603";}
-.icon-checkmark2:before {content: "\e607";}
-.icon-cancel2:before {content: "\e608";}
-.icon-trashcan:before {content: "\e609";}
-.icon-site-map:before {content: "\e60b";}
-.icon-stop:before {content: "\e60c";}
-.icon-switch:before {content: "\e60d";}
-.icon-clipboard:before {content: "\e60e";}
-.icon-stats:before {content: "\e60f";}
-.icon-number:before {content: "\e610";}
-.icon-number2:before {content: "\e611";}
-.icon-number3:before {content: "\e612";}
-.icon-number4:before {content: "\e613";}
-.icon-number5:before {content: "\e614";}
-.icon-number6:before {content: "\e615";}
-.icon-number7:before {content: "\e616";}
-.icon-number8:before {content: "\e617";}
-.icon-number9:before {content: "\e618";}
-.icon-cabinet:before {content: "\e606";}
-.icon-file-powerpoint:before {content: "\e61a";}
-.icon-radio-checked:before {content: "\e61b";}
-.icon-briefcase:before {content: "\e61d";}
-.icon-chart-alt:before {content: "\e619";}
-.icon-signup:before {content: "\e61c";}
-.icon-file:before {content: "\e61e";}
-.icon-uniF5C7:before {content: "\e61f";}
-.icon-createfile:before {content: "\e620";}
-.icon-alarm:before {content: "\e621";}
-.icon-stocks:before {content: "\e622";}
-.icon-preview:before {content: "\e623";}
-.icon-security2:before {content: "\e624";}
-.icon-reliability:before {content: "\e625";}
-.icon-uniF654:before {content: "\e626";}
-.icon-uniF471:before {content: "\e627";}
-.icon-uniF470:before {content: "\e628";}
-.icon-circleselect:before {content: "\e629";}
-.icon-circledelete:before {content: "\e62a";}
-.icon-managedhosting:before {content: "\e62b";}
-.icon-error2:before {content: "\e62c";}
-.icon-error:before {content: "\e62d";}
-.icon-uniF47C:before {content: "\e62e";}
-.icon-print:before {content: "\e62f";}
-.icon-medkit:before {content: "\e630";}
 
 
 

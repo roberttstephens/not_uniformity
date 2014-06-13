@@ -1,13 +1,20 @@
 {% extends "base.html" %}
+{% block title %}Login{% endblock %}
 {% block content %}
 {% include 'flash.html' %}
-    <p>User: abcllc</p>
-    <p>Pass: uniformity</p>
-    {% from "_formhelpers.html" import render_field %}
-    <form method=post action="">
-      {{ form.hidden_tag() }}
-      {{ render_field(form.name, autofocus=true, required=true, pattern=".{3,128}", title="3 to 128 characters") }}
-      {{ render_field(form.password, required=true, pattern=".{8,1000}", title="Minimum of 8 characters.") }}
-      <input type=submit value=Login>
-    </form>
+    <section class="container">
+    <p class="loginMsg">Please login to access this page.</p>
+    <div class="box loginBox">
+        {% from "_formhelpers.html" import render_field %}
+        <form method=post action="">
+          {{ form.hidden_tag() }}
+          <label>Username</label>
+          {{ render_field(form.name, autofocus=true, required=true, pattern=".{3,128}", title="3 to 128 characters") }}
+          <label>Password</label>
+          {{ render_field(form.password, required=true, pattern=".{8,1000}", title="Minimum of 8 characters.") }}
+          <input type=submit value=Login>
+        </form>
+    </div>
+    abcllc uniformity
+    </section>
 {% endblock %}

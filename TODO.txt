@@ -1,0 +1,5 @@
+Redo form classes to use model_form.
+Use flask.ext.script.Manager in __init__.py
+Remove keys from config.
+Add the db command to manager.
+Add migrations/versions

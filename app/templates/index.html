@@ -9,134 +9,133 @@
         </caption>
         <thead>
             <tr>
-                <th class="service-dark col1"><p>form</p></th>
-                <th class="caregiver-dark col2"><p>caregiver</p></th>
-                <th class="service-dark col3"><p>service provided</p></th>
-                <th class="client-dark col4"><p>client</p></th>
+                <th class="service-dark col1" colspan="2">form</th>
+                <th class="caregiver-dark col2">caregiver</th>
+                <th class="service-dark col3">service provided</th>
+                <th class="client-dark col4">client</th>
             </tr>
         </thead>
-        <tbody >
-            <tr>
-                <td class="status red-cell">
-                    <span class="status">
-                        <i class="icon-uniF470"> </i><p>01-21-2014</p>
-                    </span>
-                    <p class="status">
-                        Document Title
-                    </p>
-                </td>
-                <td class="caregiver-cell"><p>Jane Smith</p></td>
-                <td><p>Supported Living Coach</p></td>
-                <td class="client-cell"><p>John Appleseed</p></td>
-            </tr>
-            <tr>
-                <td class="status red-cell">
-                    <span class="status">
-                        <i class="icon-uniF470"> </i><p>01-21-2014</p>
-                    </span>
-                    <p class="status">
-                        Document Title
-                    </p>
-                </td>
-                <td class="caregiver-cell"><p>Jane Smith</p></td>
-                <td><p>Supported Living Coach</p></td>
-                <td class="client-cell"><p>John Appleseed</p></td>
-            </tr>
-        </tbody>
         <tbody>
             <tr>
-                <td class="status yellow-cell">
-                    <span class="status">
-                        <i class="icon-error2"> </i><p>01-21-2014</p>
-                    </span>
-                    <p class="status">
-                        Document Title
-                    </p>
+                <td class="expiration-date red-cell">
+                    <span class="expiration-date"><span class="icon-cirlcereceived"></span>00-00-0000</span>
                 </td>
-                <td class="caregiver-cell"><p>Jane Smith</p></td>
-                <td><p>Supported Living Coach</p></td>
-                <td class="client-cell"><p>John Appleseed</p></td>
+                <td class="form-title red-cell">document title</td>
+                <td class="caregiver-cell">firstname lastname</text></td>
+                <td>service provided</td>
+                <td class="client-cell">firstname lastname</td>
             </tr>
             <tr>
-                <td class="status yellow-cell">
-                    <span class="status">
-                        <i class="icon-error2"> </i><p>01-21-2014</p>
-                    </span>
-                    <p class="status">
-                        Document Title
-                    </p>
+                <td class="expiration-date red-cell">
+                    <span class="expiration-date"><span class="icon-cirlcereceived"></span>00-00-0000</span>
                 </td>
-                <td class="caregiver-cell"><p>Jane Smith</p></td>
-                <td><p>Supported Living Coach</p></td>
-                <td class="client-cell"><p>John Appleseed</p></td>
+                <td class="form-title red-cell">what if there's a really long document title</td>
+                <td class="caregiver-cell">firstname lastname</text></td>
+                <td>service provided</td>
+                <td class="client-cell">firstname lastname</td>
+            </tr>
+            <tr>
+                <td class="expiration-date red-cell">
+                    <span class="expiration-date"><span class="icon-cirlcereceived"></span>00-00-0000</span>
+                </td>
+                <td class="form-title red-cell">document title</td>
+                <td class="caregiver-cell">firstname lastname</text></td>
+                <td>service provided</td>
+                <td class="client-cell">firstname lastname</td>
             </tr>
         </tbody>
     </table><!-- service -->
-    <a href="#" class="button service-dark offset" role="button">view # more</a>
+    <a href="{{ url_for('service_overview') }}" class="button service-dark" role="button">view # more</a>
+    <br/><br/>
     <table class="overview caregiver-light">
         <caption class="caregiver-dark">
             <h3>caregiver forms</h3>
         </caption>
         <thead>
             <tr>
-                <th class="caregiver-dark col1"><p>Form</p></th>
-                <th class="caregiver-dark col2"><p>Caregiver</p></th>
+                <th class="caregiver-dark" colspan="2">Form</th>
+                <th class="caregiver-dark col2">Caregiver</th>
             </tr>
         </thead>
-        <tbody >
+        <tbody>
             <tr>
-                <td class="status red-cell">
-                    <span class="status">
-                        <i class="icon-uniF470"> </i><p>01-21-2014</p>
-                    </span>
-                    <p class="status">
-                        Document Title
-                    </p>
+                <td class="expiration-date red-cell">
+                    <span class="expiration-date"><span class="icon-cirlcereceived"></span>00-00-0000</span>
                 </td>
-                <td><p>Jane Smith</p></td>
+                <td class="form-title red-cell">document title</td>
+                <td>Jane Smith</td>
             </tr>
             <tr>
-                <td class="status red-cell">
-                    <span class="status">
-                        <i class="icon-uniF470"> </i><p>01-21-2014</p>
-                    </span>
-                    <p class="status">
-                        Document Title
-                    </p>
+                <td class="expiration-date red-cell">
+                    <span class="expiration-date"><span class="icon-cirlcereceived"></span>00-00-0000</span>
                 </td>
-                <td><p>Jane Smith</p></td>
+                <td class="form-title red-cell">document title</td>
+                <td>Jane Smith</td>
             </tr>
         </tbody>
         <tbody>
             <tr>
-                <td class="status yellow-cell">
-                    <span class="status">
-                        <i class="icon-error2"> </i><p>01-21-2014</p>
-                    </span>
-                    <p class="status">
-                        Document Title
-                    </p>
+                <td class="expiration-date yellow-cell">
+                    <span class="expiration-date"><span class="icon-cirlcereceived"></span>00-00-0000</span>
                 </td>
-                <td><p>Jane Smith</p></td>
+                <td class="form-title yellow-cell">document title</td>
+                <td>Jane Smith</td>
             </tr>
             <tr>
-                <td class="status yellow-cell">
-                    <span class="status">
-                        <i class="icon-error2"> </i><p>01-21-2014</p>
-                    </span>
-                    <p class="status">
-                        Document Title
-                    </p>
+                <td class="expiration-date yellow-cell">
+                    <span class="expiration-date"><span class="icon-cirlcereceived"></span>00-00-0000</span>
                 </td>
-                <td><p>Jane Smith</p></td>
+                <td class="form-title yellow-cell">document title</td>
+                <td>Jane Smith</td>
             </tr>
         </tbody>
     </table><!-- caregiver -->
-    
+    <a href="{{ url_for('caregiver_overview') }}" class="button caregiver-dark" role="button">view # more</a>
+    <br/><br/>
     <table class="overview client-light">
         <caption class="client-dark">
-            <h3>client forms are all up to date!</h3>
+            <h3>caregiver forms</h3>
         </caption>
+        <thead>
+            <tr>
+                <th class="client-dark" colspan="2">Form</th>
+                <th class="client-dark col2">Caregiver</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="expiration-date red-cell">
+                    <span class="expiration-date"><span class="icon-cirlcereceived"></span>00-00-0000</span>
+                </td>
+                <td class="form-title red-cell">document title</td>
+                <td>Jane Smith</td>
+            </tr>
+            <tr>
+                <td class="expiration-date red-cell">
+                    <span class="expiration-date"><span class="icon-cirlcereceived"></span>00-00-0000</span>
+                </td>
+                <td class="form-title red-cell">document title</td>
+                <td>Jane Smith</td>
+            </tr>
+        </tbody>
+        <tbody>
+            <tr>
+                <td class="expiration-date yellow-cell">
+                    <span class="expiration-date"><span class="icon-cirlcereceived"></span>00-00-0000</span>
+                </td>
+                <td class="form-title yellow-cell">document title</td>
+                <td>Jane Smith</td>
+            </tr>
+            <tr>
+                <td class="expiration-date yellow-cell">
+                    <span class="expiration-date"><span class="icon-cirlcereceived"></span>00-00-0000</span>
+                </td>
+                <td class="form-title yellow-cell">document title</td>
+                <td>Jane Smith</td>
+            </tr>
+        </tbody>
     </table><!-- client -->
+    <a href="{{ url_for('client_overview') }}" class="button client-dark" role="button">view # more</a>
 </section><!-- overview -->
+
 {% endblock %}
