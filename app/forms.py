@@ -23,8 +23,11 @@ class RegisterForm(Form):
     phone_extension = TelField('Phone extension', validators=[
         validators.Regexp('^\d*$', 0, 'Please only use numbers.'),
         validators.Optional(),
-        validators.Length(min=1, max=10,
-            message='Please enter between 1 and 10 characters.')
+        validators.Length(
+            min=1,
+            max=10,
+            message='Please enter between 1 and 10 characters.'
+        )
     ])
     # TODO unique validator.
     name = StringField('Agency name', validators=[
@@ -45,7 +48,10 @@ class RegisterForm(Form):
     #address_id INTEGER NOT NULL,
 
 class EmailForm(Form):
-    email = TextField('Email', validators=[validators.Required(), validators.Email()])
+    email = TextField(
+        'Email',
+        validators=[validators.Required(), validators.Email()]
+    )
 
 class PasswordForm(Form):
     password = PasswordField('Password', validators=[validators.Required()])
