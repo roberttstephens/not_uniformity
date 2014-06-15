@@ -167,7 +167,7 @@ class Caregiver(db.Model, BaseMixin, CreateUpdateMixin, PhoneMixin, AgencyMixin,
         return CaregiverForm.query.\
             join(CaregiverFormInstance).\
             join(Caregiver).\
-            filter(CaregiverFormInstance.received_date==None).\
+            filter(CaregiverFormInstance.received_date == None).\
             filter(CaregiverFormInstance.expiration_date <= date.today()).\
             order_by(CaregiverFormInstance.expiration_date.desc()).\
             all()
@@ -177,7 +177,7 @@ class Caregiver(db.Model, BaseMixin, CreateUpdateMixin, PhoneMixin, AgencyMixin,
         expiring_soon_forms = CaregiverForm.query.\
             join(CaregiverFormInstance).\
             join(Caregiver).\
-            filter(CaregiverFormInstance.received_date==None).\
+            filter(CaregiverFormInstance.received_date == None).\
             filter(CaregiverFormInstance.expiration_date <= date.today()+timedelta(days=EXPIRING_SOON_DAYS)).\
             order_by(CaregiverFormInstance.expiration_date.desc()).\
             all()
@@ -188,11 +188,11 @@ class Caregiver(db.Model, BaseMixin, CreateUpdateMixin, PhoneMixin, AgencyMixin,
         return CaregiverForm.query.\
             join(CaregiverFormInstance).\
             join(Caregiver).\
-            filter(CaregiverFormInstance.received_date==None).\
+            filter(CaregiverFormInstance.received_date == None).\
             filter(
                 (CaregiverFormInstance.expiration_date <= date.today()+timedelta(days=EXPIRING_SOON_DAYS))\
                 | (CaregiverFormInstance.expiration_date <= date.today())
-                    ).\
+            ).\
             order_by(CaregiverFormInstance.expiration_date.desc()).\
             all()
 
@@ -200,7 +200,7 @@ class Caregiver(db.Model, BaseMixin, CreateUpdateMixin, PhoneMixin, AgencyMixin,
         return CaregiverFormInstance.query.\
             join(CaregiverForm).\
             join(Caregiver).\
-            filter(Caregiver.id==1).\
+            filter(Caregiver.id == 1).\
             order_by(CaregiverFormInstance.expiration_date.desc()).\
             all()
 
@@ -234,7 +234,7 @@ class Client(db.Model, BaseMixin, CreateUpdateMixin, PhoneMixin, AgencyMixin, Ad
         return ClientFormInstance.query.\
             join(ClientForm).\
             join(Client).\
-            filter(Client.id==1).\
+            filter(Client.id == 1).\
             order_by(ClientFormInstance.expiration_date.desc()).\
             all()
 
@@ -252,19 +252,28 @@ class ServiceForm(db.Model, BaseMixin, CreateUpdateMixin, FormMixin):
 
 class CaregiverFormInstance(db.Model, BaseMixin, CreateUpdateMixin, FormInstanceMixin):
     caregiver_form_id = db.Column(db.Integer, db.ForeignKey('caregiver_form.id'), nullable=False)
-    caregiver_form = db.relationship("CaregiverForm", uselist=False,
-        backref='instances')
+    caregiver_form = db.relationship(
+        "CaregiverForm",
+        uselist=False,
+        backref='instances'
+    )
 
 
 class ClientFormInstance(db.Model, BaseMixin, CreateUpdateMixin, FormInstanceMixin):
     client_form_id = db.Column(db.Integer, db.ForeignKey('client_form.id'), nullable=False)
-    client_form = db.relationship("ClientForm", uselist=False,
-        backref='instances')
+    client_form = db.relationship(
+        "ClientForm",
+        uselist=False,
+        backref='instances'
+    )
 
 class ServiceFormInstance(db.Model, BaseMixin, CreateUpdateMixin, FormInstanceMixin):
     service_form_id = db.Column(db.Integer, db.ForeignKey('service_form.id'), nullable=False)
-    service_form = db.relationship("ServiceForm", uselist=False,
-        backref='instances')
+    service_form = db.relationship(
+        "ServiceForm",
+        uselist=False,
+        backref='instances'
+    )
 
 class Service(db.Model, BaseMixin, CreateUpdateMixin):
     name = db.Column(db.String(128))
