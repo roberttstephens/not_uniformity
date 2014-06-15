@@ -15,4 +15,13 @@ THREADS_PER_PAGE = 2
 CSRF_ENABLED = True
 CSRF_SESSION_KEY = "something_impossible"
 
+# email server
+MAIL_SERVER = 'smtp.googlemail.com'
+MAIL_PORT = 465
+MAIL_USE_TLS = False
+MAIL_USE_SSL = True
+MAIL_USERNAME = 'your-gmail-username'
+MAIL_PASSWORD = 'your-gmail-password'
 
+# administrator list
+ADMINS = ['your-gmail-username@gmail.com']
