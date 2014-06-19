@@ -203,7 +203,7 @@ def client(id):
         all()
     return render_template(
         'client.html',
-        caregiver=Client.query.get(id),
+        client=Client.query.get(id),
         form_instances=form_instances
     )
 
