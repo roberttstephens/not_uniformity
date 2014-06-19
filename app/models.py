@@ -125,9 +125,9 @@ class Address(db.Model, BaseMixin, CreateUpdateMixin):
         return quote_plus(' '.join(values))
 
 class Agency(db.Model, BaseMixin, CreateUpdateMixin, PhoneMixin, AddressMixin):
-    name = db.Column(db.String(128), unique=True)
-    email = db.Column(db.String(254), unique=True)
-    password = db.Column(db.String(156))
+    name = db.Column(db.String(128), nullable=False, unique=True)
+    email = db.Column(db.String(254), nullable=False, unique=True)
+    password = db.Column(db.String(156), nullable=False)
     access = db.Column(db.Date)
     contact_name = db.Column(db.String(128), nullable=False)
     contact_title = db.Column(db.String(128), nullable=False)
