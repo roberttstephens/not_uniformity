@@ -1,5 +1,6 @@
+from .constants import STATES
 from flask.ext.wtf import Form
-from wtforms.fields import StringField, PasswordField, TextField
+from wtforms.fields import StringField, PasswordField, TextField, SelectField
 from wtforms.fields.html5 import TelField, EmailField
 from wtforms import validators
 
@@ -54,6 +55,23 @@ class RegisterForm(Form):
             max=10,
             message='Please enter between 1 and 10 characters.'
         )
+    ])
+    address_1 = StringField('Address 1', validators=[
+        validators.input_required(),
+        validators.Length(min=3, max=512)
+    ])
+    address_2 = StringField('Address 2', validators=[
+        validators.Optional(),
+        validators.Length(min=3, max=512)
+    ])
+    city = StringField('City', validators=[
+        validators.input_required(),
+        validators.Length(min=3, max=255)
+    ])
+    state = SelectField('State', choices=list(sorted(STATES.items())))
+    zip_code = StringField('Zip code', validators=[
+        validators.input_required(),
+        validators.Length(min=5, max=5)
     ])
 
 class EmailForm(Form):

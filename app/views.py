@@ -15,6 +15,7 @@ from flask.ext.login import (
 )
 from . import app, db
 from .models import (
+    Address,
     Agency,
     Caregiver,
     Client,
@@ -247,6 +248,13 @@ def logout():
 def register():
     form = RegisterForm()
     if form.validate_on_submit():
+        address = Address(
+            address_1 = form.address_1.data,
+            address_2 = form.address_2.data,
+            city = form.city.data,
+            state = form.state.data,
+            zip_code = form.zip_code.data,
+        )
         agency = Agency(
             name = form.name.data,
             contact_name = form.contact_name.data,
@@ -254,6 +262,7 @@ def register():
             phone_number = form.phone_number.data,
             phone_extension = form.phone_extension.data,
             status = True,
+            address = address,
         )
         agency.set_password(form.password.data)
         db.session.add(agency)
