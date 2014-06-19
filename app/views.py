@@ -22,7 +22,7 @@ from .models import (
     ClientForm,
     ClientFormInstance
 )
-from .forms import LoginForm, EmailForm, PasswordForm
+from .forms import LoginForm, EmailForm, PasswordForm, RegisterForm
 from .util.security import ts
 
 @app.route('/reset', methods=["GET", "POST"])
@@ -245,14 +245,19 @@ def logout():
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
-    from flask.ext.wtf import Form
-    from wtforms.ext.sqlalchemy.orm import model_form
-    from .models import Agency
-    RegisterForm = model_form(Agency, db_session=db.session, base_class=Form)
-    model = Agency()
-    form = RegisterForm(request.form, model)
+    form = RegisterForm()
     if form.validate_on_submit():
-        form.populate_obj(model)
+        agency = Agency(
+            name = form.name.data,
+            contact_name = form.contact_name.data,
+            contact_title = form.contact_title.data,
+            phone_number = form.phone_number.data,
+            phone_extension = form.phone_extension.data,
+            status = True,
+        )
+        agency.set_password(form.password.data)
+        db.session.add(agency)
+        db.session.commit()
         return redirect(request.args.get('next') or url_for('index'))
     return render_template('register.html', form=form)
 
