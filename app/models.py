@@ -228,7 +228,7 @@ class Client(db.Model, BaseMixin, CreateUpdateMixin, PhoneMixin, AgencyMixin, Ad
     birth_date = db.Column(db.Date)
     status = db.Column(db.Boolean, nullable=False)
     forms = db.relationship('ClientForm')
-    services = db.relationship('Service', uselist=False, backref='client')
+    services = db.relationship('Service', uselist=True, backref='client')
 
     def get_form_instances(self):
         return ClientFormInstance.query.\
