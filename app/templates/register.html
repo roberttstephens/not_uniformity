@@ -3,8 +3,13 @@
     {% from "_formhelpers.html" import render_field %}
     <form method=post action="">
       {{ form.hidden_tag() }}
-      {{ render_field(form.address, required=true) }}
-      {{ render_field(form.phone_number, autofocus=true, required=true) }}
+      {{ render_field(form.name) }}
+      {{ render_field(form.email) }}
+      {{ render_field(form.password) }}
+      {{ render_field(form.confirm) }}
+      {{ render_field(form.contact_name) }}
+      {{ render_field(form.contact_title) }}
+      {{ render_field(form.phone_number) }}
       {{ render_field(form.phone_extension) }}
       <input type=submit value=Register>
     </form>
