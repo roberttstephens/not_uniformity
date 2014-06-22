@@ -4,6 +4,12 @@ from wtforms.fields import StringField, PasswordField, TextField, SelectField
 from wtforms.fields.html5 import TelField, EmailField
 from wtforms import validators
 
+class EmailForm(Form):
+    email = TextField(
+        'Email',
+        validators=[validators.Required(), validators.Email()]
+    )
+
 class LoginForm(Form):
     name = StringField('Agency name', validators=[
         validators.input_required(),
@@ -13,6 +19,9 @@ class LoginForm(Form):
         validators.input_required(),
         validators.Length(min=8, max=1000)
     ])
+
+class PasswordForm(Form):
+    password = PasswordField('Password', validators=[validators.Required()])
 
 class RegisterForm(Form):
     """
@@ -73,12 +82,3 @@ class RegisterForm(Form):
         validators.input_required(),
         validators.Length(min=5, max=5)
     ])
-
-class EmailForm(Form):
-    email = TextField(
-        'Email',
-        validators=[validators.Required(), validators.Email()]
-    )
-
-class PasswordForm(Form):
-    password = PasswordField('Password', validators=[validators.Required()])
