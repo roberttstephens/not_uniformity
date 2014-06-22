@@ -112,7 +112,7 @@ def caregiver_add_edit():
 @app.route('/caregivers/<int:id>/edit')
 @login_required
 def caregiver_edit(id):
-    return render_template('role_add_edit.html')
+    return render_template('tmp_caregiver_add.html')
 
 
 @app.route('/clients/add')
