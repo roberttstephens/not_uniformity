@@ -44,7 +44,7 @@ chase = Caregiver(
     name = 'Chase',
     email = 'chase@chase.chase',
     status = True,
-    phone_number = '12345',
+    phone_number = '1234567890',
     phone_extension = '123',
 )
 db.session.add(chase)
