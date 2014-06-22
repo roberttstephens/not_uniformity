@@ -265,6 +265,7 @@ def register():
         )
         agency = Agency(
             name = form.name.data,
+            email = form.email.data,
             contact_name = form.contact_name.data,
             contact_title = form.contact_title.data,
             phone_number = form.phone_number.data,
