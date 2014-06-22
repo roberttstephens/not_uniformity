@@ -5,39 +5,54 @@
     <div class="grid">
         <div class="col-1-2">
             <div class="profile-info client-text">
-                <p class="name">Emmanuel</p>
-                <p>3440 N. Goldenrod Rd.
-                    <br />Winter Park FL, 32792 Apt. 1221</p>
-                <p>555-555-1234</p>
-                <p>09/22/1959</p>
+                <p class="name">{{ client.name }}</p>
+                <p class="address">
+                    {{ client.address.address_1 }}
+                    {{ client.address.address_2 }}
+                    <br />
+                    {{ client.address.city }}
+                    {{ client.address.state }}
+                    {{ client.address.zip_code }}
+                </p>
+                <p class="phone">
+                    <span class="phone-number">{{ client.phone_number }}</span>
+                    <span class="phone-extension">{{ client.phone_extension }}</span>
+                </p>
+                {% if client.birth_date %}
+                <p class="birth-date">
+                    {{ client.birth_date }}
+                </p>
+                {% endif %}
                 <div class="grid">
                     <div class="col-1-2">
-                        <div class="box summary yellow-light"># Forms Expiring Soon
+                        <div class="box summary yellow-light">{{ client.num_expiring_soon }} Forms Expiring Soon
                         </div>
                     </div>
                     <div class="expired col-1-2">
-                        <div class="box summary red-light"># Forms Expired
+                        <div class="box summary red-light">{{ client.num_expired }} Forms Expired
                         </div>
                     </div>
                 </div>
             </div>
         </div>
         <div class="col-1-2">
-            <a href="https://www.google.com/maps/preview#!q=3440+N.+Goldenrod+Rd.+Winter+Park+FL%2C+32792+Apt.+1221" class="googlemap" style="background-image:url(http://maps.google.com/maps/api/staticmap?size=640x250&zoom=13&maptype=roadmap&markers=color:green|3440+N.+Goldenrod+Rd.+Winter+Park+FL,+32792+Apt.+1221&sensor=false)" target="_blank">
+            <a href="https://www.google.com/maps/preview#!q={{ client.address.urlencode }}" class="googlemap" style="background-image:url(http://maps.google.com/maps/api/staticmap?size=640x250&zoom=13&maptype=roadmap&markers=color:green|{{ client.address.urlencode }}&sensor=false)" target="_blank">
                 <p>
                     <span>Map Data &copy; Google</span>
                 </p>
-                <img src="http://maps.google.com/maps/api/staticmap?size=640x250&zoom=13&maptype=roadmap&markers=color:green|3440+N.+Goldenrod+Rd.+Winter+Park+FL,+32792+Apt.+1221&sensor=false" alt "Map" class="map" />
+                <img src="http://maps.google.com/maps/api/staticmap?size=640x250&zoom=13&maptype=roadmap&markers=color:green|{{ client.address.urlencode }}&sensor=false" alt="Map" class="map" />
             </a>
 
         </div>
     </div>
 </section>
 
-
-
 <section class="container">
-    <table class="profile caregiver-light">
+    <ul class="actionNav">
+        <li><i class="icon-edit"> </i><a href="{{ url_for('client_edit', id=client.id)}}">edit client</a></li>
+        <li><i class="icon-print"> </i>print record</li>
+    </ul>
+    <table class="profile client-light">
         <colgroup>
             <col class="client-col">
             <col class="service-col">
@@ -47,7 +62,7 @@
         </colgroup>
         <thead>
             <tr>
-                <th class="caregiver-dark col1" rowspan="2">caregiver</th>
+                <th class="client-dark col1" rowspan="2">clients</th>
                 <th class="service-dark col2" rowspan="2">service provided</th>
                 <th class="service-dark col3" colspan="2">forms</th>
             </tr>
@@ -57,53 +72,61 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>Client Name</td>
-                <td class="service-cell">Supported Living Coach</td>
-                <td class="service-bdr red-cell">2</td>
-                <td class="service-bdr">
-                    <p></p>
-                </td>
-            </tr>
+            {% for service in client.services %}
+                <tr>
+                    <td>{{ service.client.name }}</td>
+                    <td class="service-cell">{{ service.name }}</td>
+                    <td class="service-bdr red-cell expired">{{ service.num_expired }}</td>
+                    <td class="service-bdr expiring-soon">
+                        {{ service.num_expiring_soon }}
+                    </td>
+                </tr>
+            {% endfor %}
         </tbody>
     </table><!-- client list -->
-    <a href="#" class="button caregiver-dark" role="button">add caregiver</a>
+    <a href="#" class="button client-dark" role="button">add client</a>
     <br/><br/>
-    <table class="profile client-light role-forms">
+    <table class="profile caregiver-light role-forms">
         <thead>
             <tr>
-                <th class="client-dark" colspan="2">client forms</th>
+                <th class="caregiver-dark" colspan="2">caregiver forms</th>
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td class="expiration-date red-cell">
-                    <span class="expiration-date"><span class="icon-cirlcereceived"></span>00-00-0000</span>
-                </td>
-                <td class="form-title red-cell">form title</td>
-            </tr>
-            <tr>
-                <td class="expiration-date yellow-cell">
-                    <span class="expiration-date"><span class="icon-cirlcereceived"></span>00-00-0000</span>
-                </td>
-                <td class="form-title yellow-cell">form title</td>
-            </tr>
+            {% if expired_forms %}
+                {% for form in expired_forms %}
+                    <tr>
+                        <td class="expiration-date red-cell">
+                            <span class="expiration-date"><span class="icon-cirlcereceived"></span>weeeeee</span>
+                        </td>
+                        <td class="form-title red-cell">{{ form.name }}</td>
+                    </tr>
+                {% endfor %}
+            {% endif %}
+            {% if expiring_soon_forms %}
+                {% for form in expiring_soon_forms %}
+                    <tr>
+                        <td class="expiration-date yellow-cell">
+                            <span class="expiration-date"><span class="icon-cirlcereceived"></span>weeeeee</span>
+                        </td>
+                        <td class="form-title yellow-cell">{{ form.name }}</td>
+                    </tr>
+                {% endfor %}
+            {% endif %}
         </tbody>
         <tbody>
-            <tr>
-                <td class="expiration-date green-cell">
-                    <span class="expiration-date"><span class="icon-cirlcereceived"></span>00-00-0000</span>
-                </td>
-                <td class="form-title green-cell">form title</td>
-            </tr>
-            <tr>
-                <td class="expiration-date green-cell">
-                    <span class="expiration-date"><span class="icon-cirlcereceived"></span>00-00-0000</span>
-                </td>
-                <td class="form-title green-cell">form title</td>
-            </tr>
+            {% if non_urgent_forms %}
+                {% for form in non_urgent_forms %}
+                    <tr>
+                        <td class="expiration-date">
+                            <span class="expiration-date"><span class="icon-cirlcereceived"></span>weee</span>
+                        </td>
+                        <td class="form-title">{{ form.name }}</td>
+                    </tr>
+                {% endfor %}
+            {% endif %}
         </tbody>
     </table><!-- caregiver forms -->
-    <a href="#" class="button client-dark" role="button">add new client form</a>
+    <a href="#" class="button caregiver-dark" role="button">add new caregiver form</a>
 </section>
 {% endblock %}
