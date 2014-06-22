@@ -1,5 +1,5 @@
 {% macro render_field(field) %}
-    <div class="form_field">
+    <div class="form-field">
     <p>{{ field.label }}
     {% if field.errors %}
         {% set css_class = 'error ' + kwargs.pop('class', '') %}
