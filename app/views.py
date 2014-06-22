@@ -23,7 +23,13 @@ from .models import (
     ClientForm,
     ClientFormInstance
 )
-from .forms import LoginForm, EmailForm, PasswordForm, RegisterForm
+from .forms import (
+    CaregiverForm,
+    EmailForm,
+    LoginForm,
+    PasswordForm,
+    RegisterForm
+)
 from .util.security import ts
 
 @app.route('/reset', methods=["GET", "POST"])
@@ -112,7 +118,13 @@ def caregiver_add_edit():
 @app.route('/caregivers/<int:id>/edit')
 @login_required
 def caregiver_edit(id):
-    return render_template('role_add_edit.html')
+    caregiver = Caregiver.query.filter_by(id=id).first_or_404()
+    form = CaregiverForm(obj=caregiver, **caregiver.address.data)
+    return render_template(
+        'tmp_caregiver_add.html',
+        caregiver=caregiver,
+        form=form,
+    )
 
 
 @app.route('/clients/add')
@@ -175,7 +187,7 @@ def caregiver_index():
 @app.route('/caregivers/<int:id>')
 @login_required
 def caregiver(id):
-    caregiver = Caregiver.query.get(id)
+    caregiver = Caregiver.query.filter_by(id=id).first_or_404()
     expired_forms = caregiver.get_expired_forms()
     expiring_soon_forms = caregiver.get_expiring_soon_forms()
     non_urgent_forms = caregiver.get_non_urgent_forms()

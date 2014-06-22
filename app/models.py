@@ -107,6 +107,20 @@ class Address(db.Model, BaseMixin, CreateUpdateMixin):
     zip_code = db.Column(db.CHAR(5), nullable=False)
 
     @hybrid_property
+    def data(self):
+        fields = [
+            'address_1',
+            'address_2',
+            'city',
+            'state',
+            'zip_code',
+        ]
+        data = {}
+        for field in fields:
+            data[field] = getattr(self, field)
+        return data
+
+    @hybrid_property
     def urlencode(self):
         fields = [
             'address_1',
