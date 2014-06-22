@@ -6,6 +6,8 @@ app.config.from_object('config')
 
 db = SQLAlchemy(app)
 
+from .util import assets
+
 from app import views, models, forms
 
 # Login

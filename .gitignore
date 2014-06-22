@@ -1,3 +1,5 @@
 *.pyc
 app.db
 venv/
+app/static/.webassets-cache/*
+app/static/gen/*
