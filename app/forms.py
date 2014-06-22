@@ -19,35 +19,35 @@ class RegisterForm(Form):
     The registration form.
     """
     # TODO unique validator.
-    name = StringField('Agency name', validators=[
+    name = StringField('Agency Name', validators=[
         validators.input_required(),
         validators.Length(min=3, max=128)
+    ])
+    contact_name = StringField('Contact name', validators=[
+        validators.input_required(),
+        validators.Length(min=3, max=128)
+    ])
+    contact_title = StringField('Contact Title', validators=[
+        validators.input_required(),
+        validators.Length(min=3, max=128)
+    ])
+    password = PasswordField('Password', validators=[
+        validators.DataRequired(),
+        validators.Length(min=6, max=40)
+    ])
+    confirm = PasswordField('Verify Password', validators=[
+        validators.DataRequired(),
+        validators.EqualTo('password', message='Passwords must match')
     ])
     email = EmailField('Email', validators=[
         validators.input_required(),
         validators.Length(min=3, max=254),
         validators.Email()
     ])
-    password = PasswordField('Password', validators=[
-        validators.DataRequired(),
-        validators.Length(min=6, max=40)
-    ])
-    confirm = PasswordField('Verify password', validators=[
-        validators.DataRequired(),
-        validators.EqualTo('password', message='Passwords must match')
-    ])
-    contact_name = StringField('Contact name', validators=[
-        validators.input_required(),
-        validators.Length(min=3, max=128)
-    ])
-    contact_title = StringField('Contact title', validators=[
-        validators.input_required(),
-        validators.Length(min=3, max=128)
-    ])
-    phone_number = TelField('Phone number', validators=[
+    phone_number = TelField('Primary Phone', validators=[
         validators.input_required(),
     ])
-    phone_extension = TelField('Phone extension', validators=[
+    phone_extension = TelField('Phone Extension', validators=[
         validators.Regexp('^\d*$', 0, 'Please only use numbers.'),
         validators.Optional(),
         validators.Length(
