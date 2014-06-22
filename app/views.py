@@ -121,7 +121,7 @@ def caregiver_edit(id):
     caregiver = Caregiver.query.filter_by(id=id).first_or_404()
     form = CaregiverForm(obj=caregiver, **caregiver.address.data)
     return render_template(
-        'tmp_caregiver_add.html',
+        'tmp_caregiver_edit.html',
         caregiver=caregiver,
         form=form,
     )
