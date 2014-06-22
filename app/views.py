@@ -175,7 +175,7 @@ def caregiver_index():
 @app.route('/caregivers/<int:id>')
 @login_required
 def caregiver(id):
-    caregiver = Caregiver.query.get(id)
+    caregiver = Caregiver.query.filter_by(id=id).first_or_404()
     expired_forms = caregiver.get_expired_forms()
     expiring_soon_forms = caregiver.get_expiring_soon_forms()
     non_urgent_forms = caregiver.get_non_urgent_forms()
