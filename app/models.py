@@ -183,6 +183,7 @@ class Caregiver(db.Model, BaseMixin, CreateUpdateMixin, PhoneMixin, AgencyMixin,
             join(Caregiver).\
             filter(CaregiverFormInstance.received_date == None).\
             filter(CaregiverFormInstance.expiration_date <= date.today()).\
+            filter(Caregiver.id == self.id).\
             order_by(CaregiverFormInstance.expiration_date.desc()).\
             all()
 
@@ -193,6 +194,7 @@ class Caregiver(db.Model, BaseMixin, CreateUpdateMixin, PhoneMixin, AgencyMixin,
             join(Caregiver).\
             filter(CaregiverFormInstance.received_date == None).\
             filter(CaregiverFormInstance.expiration_date <= date.today()+timedelta(days=EXPIRING_SOON_DAYS)).\
+            filter(Caregiver.id == self.id).\
             order_by(CaregiverFormInstance.expiration_date.desc()).\
             all()
         # Filter out expired forms.
@@ -207,6 +209,7 @@ class Caregiver(db.Model, BaseMixin, CreateUpdateMixin, PhoneMixin, AgencyMixin,
                 (CaregiverFormInstance.expiration_date <= date.today()+timedelta(days=EXPIRING_SOON_DAYS))\
                 | (CaregiverFormInstance.expiration_date <= date.today())
             ).\
+            filter(Caregiver.id == self.id).\
             order_by(CaregiverFormInstance.expiration_date.desc()).\
             all()
 
@@ -214,13 +217,14 @@ class Caregiver(db.Model, BaseMixin, CreateUpdateMixin, PhoneMixin, AgencyMixin,
         return CaregiverFormInstance.query.\
             join(CaregiverForm).\
             join(Caregiver).\
-            filter(Caregiver.id == 1).\
+            filter(Caregiver.id == self.id).\
             order_by(CaregiverFormInstance.expiration_date.desc()).\
             all()
 
     def get_non_urgent_forms(self):
         all_forms = CaregiverForm.query.\
             join(Caregiver).\
+            filter(Caregiver.id == self.id).\
             all()
         return set(all_forms) - set(self.get_expired_forms()) - set(self.get_expiring_soon_forms())
 
