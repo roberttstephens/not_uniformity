@@ -114,9 +114,6 @@ def caregiver_overview():
 @login_required
 def caregiver_add():
     form = CaregiverForm()
-    from pprint import pprint
-    pprint(g.user)
-    pprint(dir(g.user))
     if form.validate_on_submit():
         caregiver = Caregiver()
         address = Address()
