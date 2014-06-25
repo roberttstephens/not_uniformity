@@ -121,8 +121,8 @@ def caregiver_edit(caregiver_id):
     caregiver = Caregiver.query.filter_by(id=caregiver_id).first_or_404()
     form = CaregiverForm(obj=caregiver, **caregiver.address.data)
     if form.validate_on_submit():
-        for k, v in caregiver.address.data.items():
-            setattr(caregiver.address, k, v)
+        form.populate_obj(caregiver)
+        form.populate_obj(caregiver.address)
         db.session.add(caregiver)
         db.session.commit()
     return render_template(
