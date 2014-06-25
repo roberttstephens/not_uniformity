@@ -17,11 +17,11 @@
             {% for item in items %}
                 <tr>
                     {% if role == 'caregiver' %}
-                        <td><p><a href="{{ url_for('caregiver', id=item.id)}}">{{ item.name }}</a></p></td>
+                        <td><p><a href="{{ url_for('caregiver', caregiver_id=item.id)}}">{{ item.name }}</a></p></td>
                         <td class="service-bdr expired">{{item.num_expired}}</td>
                         <td class="service-bdr expiring-soon"><p>{{item.num_expiring_soon}}</p></td>
                     {% else %}
-                        <td><p><a href="{{ url_for('client', id=item.id)}}">{{ item.name }}</a></p></td>
+                        <td><p><a href="{{ url_for('client', client_id=item.id)}}">{{ item.name }}</a></p></td>
                         <td class="service-bdr expired"></td>
                         <td class="service-bdr expiring-soon"><p>4</p></td>
                     {% endif %}

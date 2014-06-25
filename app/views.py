@@ -25,6 +25,7 @@ from .models import (
 )
 from .forms import (
     CaregiverForm,
+    ClientForm,
     EmailForm,
     LoginForm,
     PasswordForm,
@@ -140,7 +141,7 @@ def caregiver_edit(caregiver_id):
         form.populate_obj(caregiver.address)
         db.session.add(caregiver)
         db.session.commit()
-        return redirect(url_for("caregiver", id=caregiver.id))
+        return redirect(url_for("caregiver", caregiver_id=caregiver.id))
     return render_template(
         'tmp_caregiver_edit.html',
         caregiver=caregiver,
@@ -148,10 +149,25 @@ def caregiver_edit(caregiver_id):
     )
 
 
-@app.route('/clients/add')
+@app.route('/clients/add', methods=['GET', 'POST'])
 @login_required
-def client_add_edit():
-    return render_template('role_add_edit.html')
+def client_add():
+    form = ClientForm()
+    if form.validate_on_submit():
+        client = Client()
+        address = Address()
+        form.populate_obj(address)
+        form.populate_obj(client)
+        client.address = address
+        client.status = True
+        client.agency = g.user
+        db.session.add(client)
+        db.session.commit()
+        return redirect(url_for("client", id=client.id))
+    return render_template(
+        'tmp_client_add.html',
+        form=form,
+    )
 
 
 @app.route('/clients/<int:id>/edit')
@@ -205,10 +221,10 @@ def caregiver_index():
         items=caregivers
     )
 
-@app.route('/caregivers/<int:id>')
+@app.route('/caregivers/<int:caregiver_id>')
 @login_required
-def caregiver(id):
-    caregiver = Caregiver.query.filter_by(id=id).first_or_404()
+def caregiver(caregiver_id):
+    caregiver = Caregiver.query.filter_by(id=caregiver_id).first_or_404()
     expired_forms = caregiver.get_expired_forms()
     expiring_soon_forms = caregiver.get_expiring_soon_forms()
     non_urgent_forms = caregiver.get_non_urgent_forms()
@@ -230,18 +246,14 @@ def client_index():
         items=clients
     )
 
-@app.route('/clients/<int:id>')
+@app.route('/clients/<int:client_id>')
 @login_required
-def client(id):
-    form_instances = db.session.query(ClientFormInstance).\
-        join(ClientForm).\
-        join(Client).\
-        filter(Client.id == id).\
-        order_by(ClientFormInstance.expiration_date.desc()).\
-        all()
+def client(client_id):
+    client = Client.query.filter_by(id=client_id).first_or_404()
+    form_instances = client.get_form_instances()
     return render_template(
         'client.html',
-        client=Client.query.get(id),
+        client=client,
         form_instances=form_instances
     )
 
