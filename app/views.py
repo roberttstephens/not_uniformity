@@ -115,11 +115,16 @@ def caregiver_overview():
 def caregiver_add_edit():
     return render_template('role_add_edit.html')
 
-@app.route('/caregivers/<int:id>/edit')
+@app.route('/caregivers/<int:caregiver_id>/edit', methods=['GET', 'POST'])
 @login_required
-def caregiver_edit(id):
-    caregiver = Caregiver.query.filter_by(id=id).first_or_404()
+def caregiver_edit(caregiver_id):
+    caregiver = Caregiver.query.filter_by(id=caregiver_id).first_or_404()
     form = CaregiverForm(obj=caregiver, **caregiver.address.data)
+    if form.validate_on_submit():
+        for k, v in caregiver.address.data.items():
+            setattr(caregiver.address, k, v)
+        db.session.add(caregiver)
+        db.session.commit()
     return render_template(
         'tmp_caregiver_edit.html',
         caregiver=caregiver,
