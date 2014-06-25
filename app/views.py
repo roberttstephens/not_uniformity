@@ -143,6 +143,7 @@ def caregiver_edit(caregiver_id):
         form.populate_obj(caregiver.address)
         db.session.add(caregiver)
         db.session.commit()
+        return redirect(url_for("caregiver", id=caregiver.id))
     return render_template(
         'tmp_caregiver_edit.html',
         caregiver=caregiver,
