@@ -110,10 +110,28 @@ def service_overview():
 def caregiver_overview():
     return render_template('caregiver_overview.html')
 
-@app.route('/caregivers/add')
+@app.route('/caregivers/add', methods=['GET', 'POST'])
 @login_required
-def caregiver_add_edit():
-    return render_template('role_add_edit.html')
+def caregiver_add():
+    form = CaregiverForm()
+    from pprint import pprint
+    pprint(g.user)
+    pprint(dir(g.user))
+    if form.validate_on_submit():
+        caregiver = Caregiver()
+        address = Address()
+        form.populate_obj(address)
+        form.populate_obj(caregiver)
+        caregiver.address = address
+        caregiver.status = True
+        caregiver.agency = g.user
+        db.session.add(caregiver)
+        db.session.commit()
+        return redirect(url_for("caregiver", id=caregiver.id))
+    return render_template(
+        'tmp_caregiver_add.html',
+        form=form,
+    )
 
 @app.route('/caregivers/<int:caregiver_id>/edit', methods=['GET', 'POST'])
 @login_required
