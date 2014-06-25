@@ -6,9 +6,7 @@
         {% from "_formhelpers.html" import render_field %}
         <form method=post action="">
           {{ form.hidden_tag() }}
-          <label>Username</label>
           {{ render_field(form.name, autofocus=true, required=true, pattern=".{3,128}", title="3 to 128 characters") }}
-          <label>Password</label>
           {{ render_field(form.password, required=true, pattern=".{8,1000}", title="Minimum of 8 characters.") }}
           <input type=submit value=Login>
         </form>
