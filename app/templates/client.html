@@ -52,9 +52,9 @@
         <li><i class="icon-edit"> </i><a href="{{ url_for('client_edit', id=client.id)}}">edit client</a></li>
         <li><i class="icon-print"> </i>print record</li>
     </ul>
-    <table class="profile client-light">
+    <table class="profile caregiver-light">
         <colgroup>
-            <col class="client-col">
+            <col class="caregiver-col">
             <col class="service-col">
             <col>
             <col class="forms-col">
@@ -62,7 +62,7 @@
         </colgroup>
         <thead>
             <tr>
-                <th class="client-dark col1" rowspan="2">clients</th>
+                <th class="caregiver-dark col1" rowspan="2">caregivers</th>
                 <th class="service-dark col2" rowspan="2">service provided</th>
                 <th class="service-dark col3" colspan="2">forms</th>
             </tr>
@@ -84,12 +84,12 @@
             {% endfor %}
         </tbody>
     </table><!-- client list -->
-    <a href="#" class="button client-dark" role="button">add client</a>
+    <a href="#" class="button caregiver-dark" role="button">add caregiver</a>
     <br/><br/>
-    <table class="profile caregiver-light role-forms">
+    <table class="profile client-light role-forms">
         <thead>
             <tr>
-                <th class="caregiver-dark" colspan="2">caregiver forms</th>
+                <th class="client-dark" colspan="2">client forms</th>
             </tr>
         </thead>
         <tbody>
@@ -127,6 +127,6 @@
             {% endif %}
         </tbody>
     </table><!-- caregiver forms -->
-    <a href="#" class="button caregiver-dark" role="button">add new caregiver form</a>
+    <a href="#" class="button client-dark" role="button">add new client form</a>
 </section>
 {% endblock %}

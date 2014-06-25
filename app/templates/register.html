@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% block content %}
+<!-- register.html -->
 <section class="container">
     {% from "_formhelpers.html" import render_field %}
         <form method=post action="">
@@ -23,8 +24,8 @@
           {{ render_field(form.phone_number) }}
           {{ render_field(form.phone_extension) }}
           </div>
+          <input class="service-dark" type="submit" value="Register">
         </form>
-    <input class="service-dark" type="submit" value="Register">
 </section>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery.maskedinput/1.3.1/jquery.maskedinput.min.js"></script>
