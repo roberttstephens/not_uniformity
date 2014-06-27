@@ -12,6 +12,9 @@ class CaregiverForm(Form):
         validators.input_required(),
         validators.Length(min=2, max=128)
     ])
+    birth_date  = DateField('Birth date', format='%Y-%m-%d', validators=[
+        validators.Optional(),
+    ])
     email = EmailField('Email', validators=[
         validators.input_required(),
         validators.Length(min=3, max=254),
