@@ -170,10 +170,22 @@ def client_add():
     )
 
 
-@app.route('/clients/<int:id>/edit')
+@app.route('/clients/<int:client_id>/edit', methods=['GET', 'POST'])
 @login_required
-def client_edit(id):
-    return render_template('role_add_edit.html')
+def client_edit(client_id):
+    client = Client.query.filter_by(id=client_id).first_or_404()
+    form = ClientForm(obj=client, **client.address.data)
+    if form.validate_on_submit():
+        form.populate_obj(client)
+        form.populate_obj(client.address)
+        db.session.add(client)
+        db.session.commit()
+        return redirect(url_for("client", client_id=client.id))
+    return render_template(
+        'tmp_client_edit.html',
+        client=client,
+        form=form,
+    )
 
 @app.route('/services/add')
 @login_required

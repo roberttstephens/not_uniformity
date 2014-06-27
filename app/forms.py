@@ -1,7 +1,7 @@
 from .constants import STATES
 from flask.ext.wtf import Form
 from wtforms.fields import StringField, PasswordField, TextField, SelectField
-from wtforms.fields.html5 import TelField, EmailField
+from wtforms.fields.html5 import TelField, EmailField, DateField
 from wtforms import validators
 
 class CaregiverForm(Form):
@@ -54,6 +54,9 @@ class ClientForm(Form):
     name = StringField('Name', validators=[
         validators.input_required(),
         validators.Length(min=2, max=128)
+    ])
+    birth_date  = DateField('Birth date', format='%Y-%m-%d', validators=[
+        validators.Optional(),
     ])
     phone_number = TelField('Phone number', validators=[
         validators.input_required(),
