@@ -29,7 +29,8 @@ from .forms import (
     EmailForm,
     LoginForm,
     PasswordForm,
-    RegisterForm
+    RegisterForm,
+    ServiceForm
 )
 from .util.security import ts
 
@@ -163,7 +164,7 @@ def client_add():
         client.agency = g.user
         db.session.add(client)
         db.session.commit()
-        return redirect(url_for("client", id=client.id))
+        return redirect(url_for("client", client_id=client.id))
     return render_template(
         'tmp_client_add.html',
         form=form,
@@ -187,10 +188,36 @@ def client_edit(client_id):
         form=form,
     )
 
-@app.route('/services/add')
+@app.route('/services/add', methods=['GET', 'POST'])
 @login_required
 def service_add_edit():
-    return render_template('service_add_edit.html')
+    form = ServiceForm(
+        caregiver_id=request.args.get('caregiver_id'),
+        client_id=request.args.get('client_id')
+    )
+    caregivers = Caregiver.query.\
+        join(Agency).\
+        filter(Agency.id == g.user.id).\
+        order_by(Caregiver.name.asc()).\
+        all()
+    form.caregiver_id.choices = [(c.id, c.name) for c in caregivers]
+    clients = Client.query.\
+        join(Agency).\
+        filter(Agency.id == g.user.id).\
+        order_by(Client.name.asc()).\
+        all()
+    form.client_id.choices = [(c.id, c.name) for c in clients]
+    if form.validate_on_submit():
+        service = Service()
+        form.populate_obj(service)
+        service.status = True
+        service.agency = g.user
+        db.session.add(service)
+        db.session.commit()
+    return render_template(
+        'service_add_edit.html',
+        form=form
+    )
 
 @app.route('/services/<int:id>/edit')
 @login_required
