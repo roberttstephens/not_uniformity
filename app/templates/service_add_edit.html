@@ -8,28 +8,26 @@
     </div><!-- caregiver -->
 </section><!-- service header -->
 <section class="container">
-    <div class="grid">
-        <div class="col-1-3">
-            <div class="box-title caregiver-light">
-                <p class="title">caregiver</p>
-                <p class="name">jennifer lawrence</p>
-            
-            </div><!-- caregiver -->
-        </div>
-        <div class="col-1-3">
-            <div class="box-title service-light">
-                <p class="title">service</p>
-                <div class="service-wrap">
-                    <p class="service">supported living coach</p>
-                </div>
-            </div><!-- service -->
-        </div>
-        <div class="col-1-3">
-            <div class="box-title client-light">
-                <p class="title">client</p>
-                <p class="name">miley cyrus</p>
-            </div><!-- client -->
-        </div>
-    </div>
+    {% from "_formhelpers.html" import render_field %}
+    <form method=post action="">
+      {{ form.hidden_tag() }}
+      {{ render_field(form.name) }}
+      {{ render_field(form.caregiver_id) }}
+      {{ render_field(form.client_id) }}
+      <input type=submit value=Save>
+    </form>
+<!--
+<form method="POST" action="">
+    <select name="caregiver">
+        <option value="1">The poopiest head</option>
+        <option value="2">The poopier head</option>
+    </select>
+    <input type="text" name="service-name" placeholder="the service name" id="" value="" />
+    <select name="client">
+        <option value="1">Emmanuel</option>
+    </select>
+    <input type="submit" name="" id="" value="submit" />
+</form>
+-->
 </section>
 {% endblock %}
