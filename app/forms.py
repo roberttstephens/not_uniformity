@@ -1,5 +1,10 @@
 from .constants import STATES
 from flask.ext.wtf import Form
+from flask import g
+from . import app, db
+from .models import (
+    Service,
+)
 from wtforms.fields import StringField, PasswordField, TextField, SelectField
 from wtforms.fields.html5 import TelField, EmailField, DateField
 from wtforms import validators
@@ -169,3 +174,14 @@ class RegisterForm(Form):
         validators.input_required(),
         validators.Length(min=5, max=5)
     ])
+
+class ServiceForm(Form):
+    """
+    A form used to add/edit services.
+    """
+    name = StringField('Name', validators=[
+        validators.input_required(),
+        validators.Length(min=2, max=128)
+    ])
+    caregiver_id = SelectField('Caregiver', coerce=int)
+    client_id = SelectField('Client', coerce=int)
