@@ -219,10 +219,32 @@ def service_add_edit():
         form=form
     )
 
-@app.route('/services/<int:service_id>/edit')
+@app.route('/services/<int:service_id>/edit', methods=['GET', 'POST'])
 @login_required
-def service_edit(id):
-    return render_template('service_add_edit.html')
+def service_edit(service_id):
+    service = Service.query.filter_by(id=service_id).first_or_404()
+    form = ServiceForm(obj=service)
+    caregivers = Caregiver.query.\
+        join(Agency).\
+        filter(Agency.id == g.user.id).\
+        order_by(Caregiver.name.asc()).\
+        all()
+    form.caregiver_id.choices = [(c.id, c.name) for c in caregivers]
+    clients = Client.query.\
+        join(Agency).\
+        filter(Agency.id == g.user.id).\
+        order_by(Client.name.asc()).\
+        all()
+    form.client_id.choices = [(c.id, c.name) for c in clients]
+    if form.validate_on_submit():
+        form.populate_obj(service)
+        db.session.add(service)
+        db.session.commit()
+        return redirect(url_for("service", service_id=service.id))
+    return render_template(
+        'service_add_edit.html',
+        form=form
+    )
 
 @app.route('/caregivers/<int:id>/forms/add')
 @login_required
