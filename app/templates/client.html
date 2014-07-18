@@ -74,8 +74,12 @@
         <tbody>
             {% for service in client.services %}
                 <tr>
-                    <td>{{ service.client.name }}</td>
-                    <td class="service-cell">{{ service.name }}</td>
+                    <td>
+                        <a href="{{ url_for('caregiver', caregiver_id=service.caregiver.id) }}">{{ service.caregiver.name }}</a>
+                    </td>
+                    <td class="service-cell">
+                        <a href="{{ url_for('service', service_id=service.id) }}">{{ service.name }}</a>
+                    </td>
                     <td class="service-bdr red-cell expired">{{ service.num_expired }}</td>
                     <td class="service-bdr expiring-soon">
                         {{ service.num_expiring_soon }}
