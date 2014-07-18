@@ -179,7 +179,7 @@ class ServiceForm(Form):
     """
     A form used to add/edit services.
     """
-    name = StringField('Name', validators=[
+    name = StringField('Service', validators=[
         validators.input_required(),
         validators.Length(min=2, max=128)
     ])
