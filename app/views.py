@@ -219,7 +219,7 @@ def service_add_edit():
         form=form
     )
 
-@app.route('/services/<int:id>/edit')
+@app.route('/services/<int:service_id>/edit')
 @login_required
 def service_edit(id):
     return render_template('service_add_edit.html')
@@ -391,8 +391,8 @@ def service_form(service_id, form_id):
 
 @app.route('/services/<int:service_id>')
 def service(service_id):
-    service = Service.query.get(service_id)
-    return render_template('service.html', item=service)
+    service = Service.query.filter_by(id=service_id).first_or_404()
+    return render_template('service.html', service=service)
 
 @app.route('/services/<int:service_id>/forms/<int:form_id>/edit')
 def service_form_edit(service_id, form_id):
