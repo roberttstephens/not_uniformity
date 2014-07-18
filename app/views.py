@@ -128,7 +128,7 @@ def caregiver_add():
         db.session.commit()
         return redirect(url_for("caregiver", caregiver_id=caregiver.id))
     return render_template(
-        'tmp_caregiver_add.html',
+        'caregiver_add.html',
         form=form,
     )
 
@@ -144,7 +144,7 @@ def caregiver_edit(caregiver_id):
         db.session.commit()
         return redirect(url_for("caregiver", caregiver_id=caregiver.id))
     return render_template(
-        'tmp_caregiver_edit.html',
+        'caregiver_edit.html',
         caregiver=caregiver,
         form=form,
     )
@@ -166,7 +166,7 @@ def client_add():
         db.session.commit()
         return redirect(url_for("client", client_id=client.id))
     return render_template(
-        'tmp_client_add.html',
+        'client_add.html',
         form=form,
     )
 
@@ -183,7 +183,7 @@ def client_edit(client_id):
         db.session.commit()
         return redirect(url_for("client", client_id=client.id))
     return render_template(
-        'tmp_client_edit.html',
+        'client_edit.html',
         client=client,
         form=form,
     )
