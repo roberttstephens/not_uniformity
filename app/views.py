@@ -126,7 +126,7 @@ def caregiver_add():
         caregiver.agency = g.user
         db.session.add(caregiver)
         db.session.commit()
-        return redirect(url_for("caregiver", id=caregiver.id))
+        return redirect(url_for("caregiver", caregiver_id=caregiver.id))
     return render_template(
         'tmp_caregiver_add.html',
         form=form,
