@@ -1,6 +1,7 @@
 from .constants import STATES
 from flask.ext.wtf import Form
 from flask import g
+import re
 from . import app, db
 from .models import (
     Service,
@@ -8,6 +9,9 @@ from .models import (
 from wtforms.fields import StringField, PasswordField, TextField, SelectField
 from wtforms.fields.html5 import TelField, EmailField, DateField
 from wtforms import validators
+
+def only_digits(string):
+    return re.sub(r'\D', '', string)
 
 class CaregiverForm(Form):
     """
@@ -25,11 +29,19 @@ class CaregiverForm(Form):
         validators.Length(min=3, max=254),
         validators.Email()
     ])
-    phone_number = TelField('Phone number', validators=[
-        validators.input_required(),
-    ])
+    phone_number = TelField(
+        'Phone number',
+        validators=[
+            validators.input_required(),
+            validators.Regexp(
+                r'^\d{10}$',
+                message='Must be in the format of (123) 456-7890'
+            )
+        ],
+        filters=[only_digits]
+    )
     phone_extension = TelField('Phone extension', validators=[
-        validators.Regexp('^\d*$', 0, 'Please only use numbers.'),
+        validators.Regexp(r'^\d*$', 0, 'Please only use numbers.'),
         validators.Optional(),
         validators.Length(
             min=1,
@@ -66,11 +78,19 @@ class ClientForm(Form):
     birth_date  = DateField('Birth date', format='%Y-%m-%d', validators=[
         validators.Optional(),
     ])
-    phone_number = TelField('Phone number', validators=[
-        validators.input_required(),
-    ])
+    phone_number = TelField(
+        'Phone number',
+        validators=[
+            validators.input_required(),
+            validators.Regexp(
+                r'^\d{10}$',
+                message='Must be in the format of (123) 456-7890'
+            )
+        ],
+        filters=[only_digits]
+    )
     phone_extension = TelField('Phone extension', validators=[
-        validators.Regexp('^\d*$', 0, 'Please only use numbers.'),
+        validators.Regexp(r'^\d*$', 0, 'Please only use numbers.'),
         validators.Optional(),
         validators.Length(
             min=1,
@@ -145,11 +165,19 @@ class RegisterForm(Form):
         validators.Length(min=3, max=254),
         validators.Email()
     ])
-    phone_number = TelField('Primary Phone', validators=[
-        validators.input_required(),
-    ])
+    phone_number = TelField(
+        'Phone number',
+        validators=[
+            validators.input_required(),
+            validators.Regexp(
+                r'^\d{10}$',
+                message='Must be in the format of (123) 456-7890'
+            )
+        ],
+        filters=[only_digits]
+    )
     phone_extension = TelField('Phone Extension', validators=[
-        validators.Regexp('^\d*$', 0, 'Please only use numbers.'),
+        validators.Regexp(r'^\d*$', 0, 'Please only use numbers.'),
         validators.Optional(),
         validators.Length(
             min=1,
