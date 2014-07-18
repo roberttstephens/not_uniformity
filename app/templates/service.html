@@ -37,46 +37,39 @@
       <caption class="service-dark">
         <h3>form title</h3>
       </caption>
-        <tbody>
-            <tr>
-                <td class="expiration-date yellow-cell">
-                    <span class="expiration-date"><span class="icon-cirlcereceived"></span>00-00-0000</span>
-                </td>
-                <td class="status yellow-cell">this form will expire soon!</td>
-                <td class="edit yellow-cell"><a href="#" class="button" role="button">edit status</a></td>
-            </tr>
+       <tbody>
+            {% if expired_forms %}
+                {% for form in expired_forms %}
+                    <tr>
+                        <td class="expiration-date red-cell">
+                            <span class="expiration-date"><span class="icon-cirlcereceived"></span>weeeeee</span>
+                        </td>
+                        <td class="form-title red-cell">{{ form.name }}</td>
+                    </tr>
+                {% endfor %}
+            {% endif %}
+            {% if expiring_soon_forms %}
+                {% for form in expiring_soon_forms %}
+                    <tr>
+                        <td class="expiration-date yellow-cell">
+                            <span class="expiration-date"><span class="icon-cirlcereceived"></span>weeeeee</span>
+                        </td>
+                        <td class="form-title yellow-cell">{{ form.name }}</td>
+                    </tr>
+                {% endfor %}
+            {% endif %}
         </tbody>
-    </table>
-    <table class="form record service-light">
         <tbody>
-            <tr>
-                <td class="expiration-date green-cell">
-                    <span class="expiration-date"><span class="icon-cirlcereceived"></span>00-00-0000</span>
-                </td>
-                <td class="status green-cell">reveived on 00-00-0000</td>
-                <td class="edit green-cell"><a href="#">edit</a></td>
-            </tr>
-            <tr>
-                <td class="expiration-date green-cell">
-                    <span class="expiration-date"><span class="icon-cirlcereceived"></span>00-00-0000</span>
-                </td>
-                <td class="status green-cell">reveived on 00-00-0000</td>
-                <td class="edit green-cell"><a href="#">edit</a></td>
-            </tr>
-            <tr>
-                <td class="expiration-date green-cell">
-                    <span class="expiration-date"><span class="icon-cirlcereceived"></span>00-00-0000</span>
-                </td>
-                <td class="status green-cell">reveived on 00-00-0000</td>
-                <td class="edit green-cell"><a href="#">edit</a></td>
-            </tr>
-            <tr>
-                <td class="expiration-date green-cell">
-                    <span class="expiration-date"><span class="icon-cirlcereceived"></span>00-00-0000</span>
-                </td>
-                <td class="status green-cell">reveived on 00-00-0000</td>
-                <td class="edit green-cell"><a href="#">edit</a></td>
-            </tr>
+            {% if non_urgent_forms %}
+                {% for form in non_urgent_forms %}
+                    <tr>
+                        <td class="expiration-date">
+                            <span class="expiration-date"><span class="icon-cirlcereceived"></span>weee</span>
+                        </td>
+                        <td class="form-title">{{ form.name }}</td>
+                    </tr>
+                {% endfor %}
+            {% endif %}
         </tbody>
     </table><!-- role forms -->
     <a href="#" class="button service-dark" role="button">add service form</a>

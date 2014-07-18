@@ -1,11 +1,11 @@
 {% extends "base.html" %}
-{% block title %}The name{% endblock %}
+{% block title %}{{ client.name }}{% endblock %}
 {% block content %}
 <section class="container">
     <div class="grid">
         <div class="col-1-2">
             <div class="profile-info client-text">
-                <p class="name">{{ client.name }}</p>
+                <h1>{{ client.name }}</h1>
                 <p class="address">
                     {{ client.address.address_1 }}
                     {{ client.address.address_2 }}

@@ -1,11 +1,11 @@
 {% extends "base.html" %}
-{% block title %}The name{% endblock %}
+{% block title %}{{ caregiver.name }}{% endblock %}
 {% block content %}
 <section class="container">
     <div class="grid">
         <div class="col-1-2">
             <div class="profile-info caregiver-text">
-                <p class="name">{{ caregiver.name }}</p>
+                <h1>{{ caregiver.name }}</h1>
                 <p class="address">
                     {{ caregiver.address.address_1 }}
                     {{ caregiver.address.address_2 }}
