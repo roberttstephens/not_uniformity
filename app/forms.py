@@ -11,7 +11,8 @@ from wtforms.fields.html5 import TelField, EmailField, DateField
 from wtforms import validators
 
 def only_digits(string):
-    return re.sub(r'\D', '', string)
+    if string:
+        return re.sub(r'\D', '', string)
 
 class CaregiverForm(Form):
     """
