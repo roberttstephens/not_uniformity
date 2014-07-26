@@ -14,7 +14,11 @@
     <div class="grid">
         <div class="col-1-3">
             <div class="box-title caregiver-light">
-                {{ render_field(form.caregiver_id) }}
+                {% if caregiver_disabled %}
+                    {{ render_field(form.caregiver_id, disabled=True) }}
+                {% else %}
+                    {{ render_field(form.caregiver_id) }}
+                {% endif %}
             </div><!-- caregiver -->
         </div>
         <div class="col-1-3">
