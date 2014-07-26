@@ -1,7 +1,9 @@
 {% extends "base.html" %}
 {% block title %}{{ role|capitalize }}s{% endblock %}
 {% block content %}
+<!-- role_index.html -->
 <section class="container">
+    <a href="#" class="button {{role}}-dark" role="button">add new {{role}}</a>
     <table class="list {{ role }}-light">
         <thead>
             <tr>
