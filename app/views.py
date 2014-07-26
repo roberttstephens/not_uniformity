@@ -190,11 +190,17 @@ def client_edit(client_id):
 
 @app.route('/services/add', methods=['GET', 'POST'])
 @login_required
-def service_add_edit():
+def service_add():
     form = ServiceForm(
         caregiver_id=request.args.get('caregiver_id'),
         client_id=request.args.get('client_id')
     )
+    caregiver_disabled = False
+    client_disabled = False
+    if request.args.get('caregiver_id'):
+        caregiver_disabled = True
+    if request.args.get('client_id'):
+        client_disabled = True
     caregivers = Caregiver.query.\
         join(Agency).\
         filter(Agency.id == g.user.id).\
@@ -214,9 +220,12 @@ def service_add_edit():
         service.agency = g.user
         db.session.add(service)
         db.session.commit()
+        flash('Successfully added ' + service.name)
     return render_template(
         'service_add_edit.html',
-        form=form
+        form=form,
+        caregiver_disabled=caregiver_disabled,
+        client_disabled=client_disabled,
     )
 
 @app.route('/services/<int:service_id>/edit', methods=['GET', 'POST'])
