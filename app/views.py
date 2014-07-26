@@ -190,7 +190,7 @@ def client_edit(client_id):
 
 @app.route('/services/add', methods=['GET', 'POST'])
 @login_required
-def service_add_edit():
+def service_add():
     form = ServiceForm(
         caregiver_id=request.args.get('caregiver_id'),
         client_id=request.args.get('client_id')

@@ -88,7 +88,7 @@
             {% endfor %}
         </tbody>
     </table><!-- client list -->
-    <a href="#" class="button client-dark" role="button">add client</a>
+    <a href="{{ url_for('service_add', caregiver_id=caregiver.id) }}" class="button client-dark" role="button">add client</a>
     <br/><br/>
     <table class="profile caregiver-light role-forms">
         <thead>
