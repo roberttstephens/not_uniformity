@@ -4,8 +4,8 @@ $(document).ready(function() {
 	H5F.setup(document.getElementsByTagName('form'));
 
 	/* style expired and expiring-soon columns. */
-	$('td.expired:not(:empty)').addClass('red-cell');
-	$('td.expiring-soon:not(:empty)').addClass('yellow-cell');
+	$('td.expired:not(:empty)').addClass('expired');
+	$('td.expiring-soon:not(:empty)').addClass('expiring-soon');
 
   /* When the 'x' of a flashed message is clicked, close the message. */
   $('a.js-close-message').click(function () {
