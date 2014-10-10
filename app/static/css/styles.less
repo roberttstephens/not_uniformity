@@ -167,13 +167,25 @@ h4 {font-size:2em;line-height: 1em;}
 a {color:inherit;}
 a:visited {color:inherit;}
 
-
-
-td.expired {background:@red-light;color:@red-dark;border-color:inherit;
+td.expired {
+    background:@red-light;
+    color:@red-dark;
+    border-color:inherit;
+    text-align:center;
     span {border-color:@red-dark;}
 }
-td.expiring-soon {background:@yellow-light;color:@yellow-dark;border-color:inherit;
+td.expiring-soon {
+    background:@yellow-light;
+    color:@yellow-dark;
+    border-color:inherit;
+    text-align:center;
     span {border-color:@yellow-dark;}
+}
+td.non-urgent {
+    background:@green-light;
+    color:@green-dark;
+    border-color:inherit;
+    span {border-color:@green-dark;}
 }
 
 .global (@dark,@mid,@light) {
@@ -197,11 +209,23 @@ td.expiring-soon {background:@yellow-light;color:@yellow-dark;border-color:inher
         th.forms {.regularText;width:25%;text-align:center;}
         th.expired, th.expiring-soon {.smallText;text-transform:uppercase;width:12.5%;text-align:center;padding:0px 0px 2px 0px;}
         td {.mediumText;.capitalize;padding:2px 4px;}
-        td.expired, td.expiring-soon {text-align:center;border-color:@service-dark;}
+        td.expired, td.expiring-soon {border-color:@service-dark;}
     }
+    
+    table.roleForms {border-color:@dark;color:@dark;
+        th {background-color:@dark;border-color:@dark;color:white;.mediumText;.capitalize;padding:2px 4px;}
+        tr td.form-title {text-align: left;padding:2px 4px 4px 4px;}
+        td {.mediumText;.capitalize;text-align:left;}
+        span.expiration-date {margin:1px 0px;}
+        td.expiration-date {width:120px;padding:1px 0px 2px 4px;
+            span.expiration-date [class*="icon-"] {margin:1px 0px 0px 0px;}
+        }
+    }
+    
     .button {background-color:@dark;}
      
 }
+
 
 .caregiver {.global(@dark:@caregiver-dark,@mid:@caregiver-med,@light:@caregiver-light);}
 .client {.global(@dark:@client-dark,@mid:@client-med,@light:@client-light);}
@@ -288,7 +312,6 @@ nav {.capitalize;}
 /*--
 TABLE TEXT
 --*/
-table {}
 table tr td {.capitalize;vertical-align: middle;}
 table tr td span.expiration-date {display:inline-block;background:#fff;border:2px solid;padding:0px 4px 0px 4px;border-radius:10px;width:100%;text-align:right;line-height:1.1em;font-size:.78em;vertical-align: middle;}
 table tr td span.expiration-date [class*="icon-"] {font-size:.9em;display: block;float:left;}
@@ -325,13 +348,6 @@ table.list tbody:after {height: 0px;}
 
 
 table.list tr td {.regularText;.capitalize;}/*--cells--*/
-
-table.role-forms tr th {padding-top:5px;padding-bottom:5px;}
-table.role-forms tr td.expiration-date {padding:4px 4px;width:128px;}
-table.role-forms tr td.expiration-date span.expiration-date {margin-bottom:1px;}
-table.role-forms tr td.expiration-date span.expiration-date [class*="icon-"] {}
-table.role-forms tr td.form-title {text-align: left;}
-
 
 table tr td.green-cell a.button {.green-mid;}
 table tr td.yellow-cell a.button {.yellow-dark;}
@@ -539,8 +555,9 @@ footer {
         background: url("../img/footer-logo.png");
         background-size:contain;
         text-indent: -9999px;
+        cursor: pointer;
     }
-    .footer-border {display: table-cell;width:100%;text-align: center;}
+    .footer-border {display: table-cell;width:100%;text-align: center;padding-top:15px;}
     .footer-menu {
         display: table-cell;
         padding:40px 0;
