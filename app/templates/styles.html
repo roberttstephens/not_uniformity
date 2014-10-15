@@ -2,8 +2,89 @@
 {% block title %}Index{% endblock %}
 {% block content %}
 <section class="container">
+<div class="service">   
+    <table class="form-current expiring-soon">
+        <caption>
+            <h3>form title</h3>
+        </caption>
+        <tbody>
+            <tr>
+                <td class="expiration-date">
+                    <span class="expiration-date"><span class="icon-cirlcereceived"></span>00-00-0000</span>
+                </td>
+                <td class="status">this form will expire soon!</td>
+                <td class="edit"><a href="#" class="button" role="button"><i class="icon-edit"> </i>edit status</a></td>
+            </tr>
+        </tbody>
+    </table>
+    
+    <table class="form-record expired">
+        <tbody>
+            <tr>
+                <td class="expiration-date">
+                    <span class="expiration-date"><span class="icon-cirlcereceived"></span>00-00-0000</span>
+                </td>
+                <td class="status">reveived on 00-00-0000</td>
+                <td class="edit"><a href="#"><i class="icon-edit"> </i>edit</a></td>
+            </tr>
+            <tr>
+                <td class="expiration-date">
+                    <span class="expiration-date"><span class="icon-cirlcereceived"></span>00-00-0000</span>
+                </td>
+                <td class="status">reveived on 00-00-0000</td>
+                <td class="edit"><a href="#"><i class="icon-edit"> </i>edit</a></td>
+            </tr>
+            <tr>
+                <td class="expiration-date">
+                    <span class="expiration-date"><span class="icon-cirlcereceived"></span>00-00-0000</span>
+                </td>
+                <td class="status">reveived on 00-00-0000</td>
+                <td class="edit"><a href="#"><i class="icon-edit"> </i>edit</a></td>
+            </tr>
+        </tbody>
+    </table>
+</div><!-- service --> 
+</section>
+
+
+
+
+
+<section class="container">
+<div class="service">   
+    <table class="forms">
+        <thead>
+            <tr>
+                <th class="caregiver-dark" colspan="2">service forms</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="expiration-date expired">
+                    <span class="expiration-date"><span class="icon-cirlcereceived"></span>07-14-1987</span>
+                </td>
+                <td class="form-title expired">form name</td>
+            </tr>
+            <tr>
+                <td class="expiration-date expiring-soon">
+                    <span class="expiration-date"><span class="icon-cirlcereceived"></span>07-14-2015</span>
+                </td>
+                <td class="form-title expiring-soon">form name</td>
+            </tr>
+        </tbody>
+        <tbody>
+            <tr>
+                <td class="expiration-date">
+                    <span class="expiration-date"><span class="icon-cirlcereceived"></span>07-14-2087</span>
+                </td>
+                <td class="form-title">form name</td>
+            </tr>
+        </tbody>
+    </table>
+</div><!-- service --> 
+
 <div class="client">   
-    <table class="roleForms">
+    <table class="forms">
         <thead>
             <tr>
                 <th class="caregiver-dark" colspan="2">client forms</th>
@@ -25,17 +106,17 @@
         </tbody>
         <tbody>
             <tr>
-                <td class="expiration-date non-urgent">
+                <td class="expiration-date">
                     <span class="expiration-date"><span class="icon-cirlcereceived"></span>07-14-2087</span>
                 </td>
-                <td class="form-title non-urgent">for name</td>
+                <td class="form-title">form name</td>
             </tr>
         </tbody>
     </table>
-</div><!-- caregiver --> 
+</div><!-- client --> 
 
 <div class="caregiver">   
-    <table class="roleForms">
+    <table class="forms">
         <thead>
             <tr>
                 <th class="caregiver-dark" colspan="2">caregiver forms</th>
@@ -57,10 +138,10 @@
         </tbody>
         <tbody>
             <tr>
-                <td class="expiration-date non-urgent">
+                <td class="expiration-date">
                     <span class="expiration-date"><span class="icon-cirlcereceived"></span>07-14-2087</span>
                 </td>
-                <td class="form-title non-urgent">for name</td>
+                <td class="form-title">form name</td>
             </tr>
         </tbody>
     </table>

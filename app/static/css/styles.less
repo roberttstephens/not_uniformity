@@ -167,21 +167,8 @@ h4 {font-size:2em;line-height: 1em;}
 a {color:inherit;}
 a:visited {color:inherit;}
 
-td.expired {
-    background:@red-light;
-    color:@red-dark;
-    border-color:inherit;
-    text-align:center;
-    span {border-color:@red-dark;}
-}
-td.expiring-soon {
-    background:@yellow-light;
-    color:@yellow-dark;
-    border-color:inherit;
-    text-align:center;
-    span {border-color:@yellow-dark;}
-}
-td.non-urgent {
+
+.non-urgent {
     background:@green-light;
     color:@green-dark;
     border-color:inherit;
@@ -190,6 +177,41 @@ td.non-urgent {
 
 .global (@dark,@mid,@light) {
     caption {background-color:@dark;color:white;}
+    
+    table {
+        tr td {.capitalize;vertical-align: middle;
+            span.expiration-date {
+                display:inline-block;
+                background:#fff;
+                border:2px solid;
+                padding:0px 4px 0px 4px;
+                border-radius:10px;
+                width:100%;
+                text-align:right;
+                line-height:1.1em;
+                font-size:.78em;
+                vertical-align: middle;
+                & [class*="icon-"] {font-size:.9em;display: block;float:left;}
+            }
+        }
+        tr td.expiration-date {border-right:none;padding-right:0px;}
+        tr td.form-title {border-left:none;}
+        td.expired {
+            background:@red-light!important;
+            color:@red-dark!important;
+            border-color:inherit;
+            text-align:center;
+            span {border-color:@red-dark!important;}
+        }
+        td.expiring-soon {
+            background:@yellow-light!important;
+            color:@yellow-dark!important;
+            border-color:inherit;
+            text-align:center;
+            span {border-color:@yellow-dark!important;}
+        }
+    }
+    
     table.overview {border-color:@dark;color:@dark;
         th {background-color:@dark;border-color:@dark;color:white;.regularText;.capitalize;padding:2px 4px;}
         th.role {width:40%;}
@@ -202,6 +224,7 @@ td.non-urgent {
             span.expiration-date [class*="icon-"] {margin:1px 0px 0px 0px;}
         }
     }
+    
     table.roleList {border-color:@dark;color:@dark;
         th {background-color:@dark;border-color:@dark;color:white;.capitalize;padding:0px 4px;}
         th.caregiver,th.service {.mediumText;.capitalize;}
@@ -212,13 +235,52 @@ td.non-urgent {
         td.expired, td.expiring-soon {border-color:@service-dark;}
     }
     
-    table.roleForms {border-color:@dark;color:@dark;
+    table.forms {border-color:@dark;color:@dark;
         th {background-color:@dark;border-color:@dark;color:white;.mediumText;.capitalize;padding:2px 4px;}
         tr td.form-title {text-align: left;padding:2px 4px 4px 4px;}
-        td {.mediumText;.capitalize;text-align:left;}
+        td {.mediumText;.capitalize;text-align:left;.non-urgent;}
         span.expiration-date {margin:1px 0px;}
         td.expiration-date {width:120px;padding:1px 0px 2px 4px;
             span.expiration-date [class*="icon-"] {margin:1px 0px 0px 0px;}
+        }
+    }
+    
+    table.form-current {border-color:@dark;color:@dark;
+        tr td.status {border-left:none;border-right:none;}
+        tr td.edit {border-left:none;font-size:1.2em;width:160px;padding-right:4px;
+            a.button {width:100%!important;min-width: 100%!important;}
+        }
+        tr td {.largeText;height:80px;}
+        tr td.expiration-date {width:150px;padding:0px 4px;
+            span.expiration-date {margin-bottom:6px;}
+            span[class*="icon-"] {}
+        }
+        &.expired {
+            td {background:@red-light;color:@red-dark;border-color:inherit;
+                span {border-color:@red-dark}
+            }
+            .button {background-color:@red-dark}
+        }
+        &.expiring-soon {
+            td {background:@yellow-light;color:@yellow-dark;border-color:inherit;
+                span {border-color:@yellow-dark}
+            }
+            .button {background-color:@yellow-dark}
+        }
+    }
+    
+    table.form-record {border-color:@dark;color:@dark;
+        tr td {.mediumText;.non-urgent;}
+        tr td.status {border-left:none;border-right:none;}
+        tr td.edit {border-left:none;width:160px;padding-right:4px;
+            a.button {width:100%!important;min-width: 100%!important;}
+        }
+        tr td.expiration-date {padding:4px 4px;width:128px;
+            span.expiration-date {margin-bottom:1px;}
+            span.expiration-date [class*="icon-"] {}
+        }
+        tr td.edit {width:75px;text-align: center;
+            a {font-size:.7em;}
         }
     }
     
@@ -234,14 +296,24 @@ td.non-urgent {
 
 
 
+/* not sure what this is...
 
+table.list tbody:after {height: 0px;}
+
+table.list tr td {.regularText;.capitalize;}--cells--
+
+table tr td.green-cell a.button {.green-mid;}
+table tr td.yellow-cell a.button {.yellow-dark;}
+table tr td.red-cell a.button {.red-dark;}
 
 table.list .forms-col {text-align:center;}
 
-
-table.list tr th {.mediumText;.capitalize;}/*--headers--*/
+table.list tr th {.mediumText;.capitalize;}--headers--
 table.list tr th.col3 {.regularText;}
 table.list tr th.col4 {.smallText;text-transform:uppercase;}
+*/
+
+
 
 
 /*--
@@ -266,7 +338,7 @@ TABLE COLORS
     min-height:65px;
     border:2px solid;
     text-align:center;
-    
+    height:100%;
     input[type="text"], select {font-size:2em;line-height:1em;.capitalize;width:100%;margin:none;}
     
     label {width:auto;margin:0;padding:0;vertical-align:middle;font-size:1.23em!important;.uppercase;}
@@ -309,49 +381,6 @@ a {text-decoration:none;font-size:inherit;}
 
 nav {.capitalize;}
 
-/*--
-TABLE TEXT
---*/
-table tr td {.capitalize;vertical-align: middle;}
-table tr td span.expiration-date {display:inline-block;background:#fff;border:2px solid;padding:0px 4px 0px 4px;border-radius:10px;width:100%;text-align:right;line-height:1.1em;font-size:.78em;vertical-align: middle;}
-table tr td span.expiration-date [class*="icon-"] {font-size:.9em;display: block;float:left;}
-
-
-
-
-/*--Expiration Date Border Remove--*/
-table tr td.expiration-date {border-right:none;padding-right:0px;}
-table tr td.form-title {border-left:none;}
-table.form tr td.status {border-left:none;border-right:none;}
-table.form tr td.edit {border-left:none;}
-
-
-table.current-status.form tr td {.largeText;height:80px;}
-table.current-status.form tr td.expiration-date {width:150px;padding:0px 4px;}
-table.current-status.form tr td.expiration-date span.expiration-date {margin-bottom:6px;}
-table.current-status.form tr td.expiration-date span[class*="icon-"] {}
-
-table.record.form {.mediumText;}
-table.record.form tr td.expiration-date {padding:4px 4px;width:128px;}
-table.record.form tr td.expiration-date span.expiration-date {margin-bottom:1px;}
-table.record.form tr td.expiration-date span.expiration-date [class*="icon-"] {}
-
-/*--Edit Buttons--*/
-table.form tr td.edit {font-size:1.2em;width:160px;padding-right:4px;}
-table.form tr td.edit a.button {width:100%!important;min-width: 100%!important;}
-table.record.form tr td.edit {width:75px;text-align: center;}
-table.record.form tr td.edit a {font-size:.7em;}
-
-table.list tbody:after {height: 0px;}
-
-
-
-
-table.list tr td {.regularText;.capitalize;}/*--cells--*/
-
-table tr td.green-cell a.button {.green-mid;}
-table tr td.yellow-cell a.button {.yellow-dark;}
-table tr td.red-cell a.button {.red-dark;}
 
 
 
@@ -621,7 +650,7 @@ old-footer {border:2px solid;border-color:@service-med;
 /*--
 GRID
 --*/
-[class*='col-'] {float: left;}
+[class*='col-'] {float: left;display:table-cell;height:100%;}
   
 .col-4-5 {width:80%;}
 .col-2-3 {width:66.66%;}
@@ -630,7 +659,7 @@ GRID
 .col-1-4 {width:25%;}
 .col-1-5 {width:20%;}
 .col-1-8 {width:12.5%;}
-.grid:after {content: "";display: table;clear: both;}
+.grid:after {content: "";display: table;clear: both;height:100%;}
   *, *:after, *:before {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
