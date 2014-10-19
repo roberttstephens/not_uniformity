@@ -110,6 +110,19 @@ body {background-image:url('../img/bg-gradient.jpg');background-position:center;
 
 header {height:75px;min-width:880px;width:75%;margin:0px auto 0px auto;}
 
+@radius:10px;
+.radius {
+    -moz-border-radius:@radius;
+    -webkit-border-radius:@radius;
+    border-radius:@radius; /* future proofing */
+    -khtml-border-radius:@radius; /* for old Konqueror browsers */}
+
+.box {
+    .radius;
+    padding:8px;
+    border:2px solid;
+    margin-bottom: 10px;
+}
 
 /* ==========================================================================
    
@@ -175,9 +188,83 @@ a:visited {color:inherit;}
     span {border-color:@green-dark;}
 }
 
+
+body {text-align: center;padding:10px;}
+
+.service-header {width:100%;}
+
+.service-wrap {
+    display:inline-block;
+    width:33.33%;
+    vertical-align: top;
+    text-align:center;
+    padding:0px 5px;
+      
+    &:last-of-type {padding-right: 0px;}
+    &:first-of-type {padding-left: 0px;}
+    
+    .caregiver,
+    .service,
+    .client {height:100%;width:100%}
+
+    .serviceBox {
+        .radius;
+        display:table;
+        border:2px solid;
+        height:100%;
+        width:100%;
+        padding:4px;
+        text-align:center;
+        vertical-align:middle;/*inner wrap*/
+
+        text {
+        display:table-row;
+        width:100%;
+        height:auto;
+        vertical-align:middle;
+            
+            &.service-title {
+                .smallText;
+                .uppercase;
+                padding:4px;
+                border:2px solid;
+            }
+
+            &.service {
+                .mediumText;
+                display:table-cell;
+                padding-top:2px;
+                padding-bottom:5px;
+                height:100%;
+
+                input[type="text"], select {
+                    font-size:2em;
+                    line-height:1em;
+                    .capitalize;
+                    width:100%;
+                    margin:none;}
+
+                label {
+                    width:auto;
+                    margin:0;
+                    padding:0;
+                    vertical-align:middle;
+                    font-size:1.23em!important;
+                    .uppercase;}
+            }
+
+            &.phone {
+                .regularText;
+            }
+        }/*text*/
+    }/*serviceBox*/
+}/*service-wrap*/
+
+
+
 .global (@dark,@mid,@light) {
     caption {background-color:@dark;color:white;}
-    
+    .serviceBox {background-color:@light;border-color:@dark;color:@dark;}
     table {
         tr td {.capitalize;vertical-align: middle;
             span.expiration-date {
@@ -332,26 +419,11 @@ TABLE COLORS
 
 
 
-.service-title {
-    .radius;
-    padding:4px;
-    min-height:65px;
-    border:2px solid;
-    text-align:center;
-    height:100%;
-    input[type="text"], select {font-size:2em;line-height:1em;.capitalize;width:100%;margin:none;}
-    
-    label {width:auto;margin:0;padding:0;vertical-align:middle;font-size:1.23em!important;.uppercase;}
 
-}
 
 p, {text-transform:capitalize;margin:0;padding:0;vertical-align:middle;}
     .box.warning p {.mediumText;text-transform:none;margin:10px 0px;}
-p.title {.regularText;.uppercase;}
-p.name {font-size:2.5em;line-height:1.2em;}/*unique line-height*/
-p.phone {.mediumText;.uppercase;}
-.service-wrap {display:table;width:100%;height:5em;vertical-align:middle;}
-    p.service {display:table-cell;font-size:2.2em;line-height:1em;}/*unique font-size*/
+
 
 h3 {.mediumText; .uppercase; margin:0 0 14px 0;text-align: left;}
 .overview-top h3 {text-align: center;magrin:0; padding-bottom:10px;}
@@ -537,20 +609,6 @@ header nav ul li {display:inline-block;padding-left:2px;}
 .container > table:last-child {
   margin-bottom: 0;
 }
-
-@radius:10px;
-.radius {
-    -moz-border-radius:@radius;
-    -webkit-border-radius:@radius;
-    border-radius:@radius; /* future proofing */
-    -khtml-border-radius:@radius; /* for old Konqueror browsers */}
-
-.box {
-    .radius;
-    padding:8px;
-    border:2px solid;
-    margin-bottom: 10px;
-    }
 
 .message {color:#6a6a6a;text-align: center;.mediumText;}
 .message.error {.red-light;}

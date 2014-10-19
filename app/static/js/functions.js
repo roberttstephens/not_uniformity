@@ -17,3 +17,23 @@ $(document).ready(function() {
     }
   });
 });
+
+
+
+
+function eqColumn(){
+//if ($(window).width() > 0){
+    var serviceWrap = $(".service-wrap");
+    //reset the height to auto
+    serviceWrap.css("height", "auto");
+    var biggest = 0;
+    $(serviceWrap).each(function(){
+        if ($(this).height() > biggest){
+            biggest = $(this).height();
+         }
+    });
+    serviceWrap.css("height", biggest);
+}
+//}
+
+$(window).on("load resize", eqColumn);
