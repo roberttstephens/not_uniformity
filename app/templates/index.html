@@ -1,140 +1,150 @@
 {% extends "base.html" %}
 {% block title %}Index{% endblock %}
 {% block content %}
+<!-- index.html -->
 <section class="container">
-    <table class="overview service-light">
-        <caption class="service-dark">
+    <div class="service">
+    <table class="overview">
+        <caption>
             <h3>service forms</h3>
         </caption>
         <thead>
             <tr>
-                <th class="service-dark col1" colspan="2">form</th>
-                <th class="caregiver-dark col2">caregiver</th>
-                <th class="service-dark col3">service provided</th>
-                <th class="client-dark col4">client</th>
+                <th colspan="2">form</th>
+                <th class="caregiver">caregiver</th>
+                <th class="service">service provided</th>
+                <th class="client">client</th>
             </tr>
         </thead>
         <tbody>
             <tr>
-                <td class="expiration-date red-cell">
+                <td class="expiration-date expired">
                     <span class="expiration-date"><span class="icon-cirlcereceived"></span>00-00-0000</span>
                 </td>
-                <td class="form-title red-cell">document title</td>
+                <td class="form-title expired">document title</td>
                 <td class="caregiver-cell">firstname lastname</td>
                 <td>service provided</td>
                 <td class="client-cell">firstname lastname</td>
             </tr>
             <tr>
-                <td class="expiration-date red-cell">
+                <td class="expiration-date expired">
                     <span class="expiration-date"><span class="icon-cirlcereceived"></span>00-00-0000</span>
                 </td>
-                <td class="form-title red-cell">what if there's a really long document title</td>
+                <td class="form-title expired">what if there's a really long document title</td>
                 <td class="caregiver-cell">firstname lastname</td>
                 <td>service provided</td>
                 <td class="client-cell">firstname lastname</td>
             </tr>
             <tr>
-                <td class="expiration-date red-cell">
+                <td class="expiration-date expired">
                     <span class="expiration-date"><span class="icon-cirlcereceived"></span>00-00-0000</span>
                 </td>
-                <td class="form-title red-cell">document title</td>
+                <td class="form-title expired">document title</td>
                 <td class="caregiver-cell">firstname lastname</td>
                 <td>service provided</td>
                 <td class="client-cell">firstname lastname</td>
             </tr>
         </tbody>
-    </table><!-- service -->
-    <a href="{{ url_for('service_overview') }}" class="button service-dark" role="button">view # more</a>
-    <br/><br/>
-    <table class="overview caregiver-light">
-        <caption class="caregiver-dark">
+    </table><!-- overview service -->
+    <a href="{{ url_for('service_overview') }}" class="button" role="button">view # more</a>
+    </div><!-- service -->
+    <br/>
+    <div class="caregiver">
+    <table class="overview">
+        <caption>
             <h3>caregiver forms</h3>
         </caption>
         <thead>
             <tr>
-                <th class="caregiver-dark" colspan="2">Form</th>
-                <th class="caregiver-dark col2">Caregiver</th>
+                <th colspan="2">Form</th>
+                <th class="role">Caregiver</th>
             </tr>
         </thead>
         <tbody>
             <tr>
-                <td class="expiration-date red-cell">
+                <td class="expiration-date expired">
                     <span class="expiration-date"><span class="icon-cirlcereceived"></span>00-00-0000</span>
                 </td>
-                <td class="form-title red-cell">document title</td>
+                <td class="form-title expired">document title</td>
                 <td>Jane Smith</td>
             </tr>
             <tr>
-                <td class="expiration-date red-cell">
+                <td class="expiration-date expired">
                     <span class="expiration-date"><span class="icon-cirlcereceived"></span>00-00-0000</span>
-                </td>
-                <td class="form-title red-cell">document title</td>
+                </td> 
+                <td class="form-title expired">document title</td>
                 <td>Jane Smith</td>
             </tr>
         </tbody>
         <tbody>
             <tr>
-                <td class="expiration-date yellow-cell">
+                <td class="expiration-date expiring-soon">
                     <span class="expiration-date"><span class="icon-cirlcereceived"></span>00-00-0000</span>
                 </td>
-                <td class="form-title yellow-cell">document title</td>
+                <td class="form-title expiring-soon">document title</td>
                 <td>Jane Smith</td>
             </tr>
             <tr>
-                <td class="expiration-date yellow-cell">
+                <td class="expiration-date expiring-soon">
                     <span class="expiration-date"><span class="icon-cirlcereceived"></span>00-00-0000</span>
                 </td>
-                <td class="form-title yellow-cell">document title</td>
+                <td class="form-title expiring-soon">document title</td>
                 <td>Jane Smith</td>
             </tr>
         </tbody>
-    </table><!-- caregiver -->
-    <a href="{{ url_for('caregiver_overview') }}" class="button caregiver-dark" role="button">view # more</a>
-    <br/><br/>
-    <table class="overview client-light">
-        <caption class="client-dark">
-            <h3>caregiver forms</h3>
+    </table><!-- overview caregiver -->
+    <a href="{{ url_for('caregiver_overview') }}" class="button" role="button">view # more</a>
+    </div><!-- caregiver -->
+    <br/>
+    <div class="client">
+    <table class="overview">
+        <caption>
+            <h3>client forms</h3>
         </caption>
         <thead>
             <tr>
-                <th class="client-dark" colspan="2">Form</th>
-                <th class="client-dark col2">Caregiver</th>
+                <th colspan="2">Form</th>
+                <th class="role">client</th>
             </tr>
         </thead>
         <tbody>
             <tr>
-                <td class="expiration-date red-cell">
+                <td class="expiration-date expired">
                     <span class="expiration-date"><span class="icon-cirlcereceived"></span>00-00-0000</span>
                 </td>
-                <td class="form-title red-cell">document title</td>
+                <td class="form-title expired">document title</td>
                 <td>Jane Smith</td>
             </tr>
             <tr>
-                <td class="expiration-date red-cell">
+                <td class="expiration-date expired">
                     <span class="expiration-date"><span class="icon-cirlcereceived"></span>00-00-0000</span>
                 </td>
-                <td class="form-title red-cell">document title</td>
+                <td class="form-title expired">document title</td>
                 <td>Jane Smith</td>
             </tr>
         </tbody>
         <tbody>
             <tr>
-                <td class="expiration-date yellow-cell">
+                <td class="expiration-date expiring-soon">
                     <span class="expiration-date"><span class="icon-cirlcereceived"></span>00-00-0000</span>
                 </td>
-                <td class="form-title yellow-cell">document title</td>
+                <td class="form-title expiring-soon">document title</td>
                 <td>Jane Smith</td>
             </tr>
             <tr>
-                <td class="expiration-date yellow-cell">
+                <td class="expiration-date expiring-soon">
                     <span class="expiration-date"><span class="icon-cirlcereceived"></span>00-00-0000</span>
                 </td>
-                <td class="form-title yellow-cell">document title</td>
+                <td class="form-title expiring-soon">document title</td>
                 <td>Jane Smith</td>
             </tr>
         </tbody>
-    </table><!-- client -->
-    <a href="{{ url_for('client_overview') }}" class="button client-dark" role="button">view # more</a>
+    </table>
+    <a href="{{ url_for('client_overview') }}" class="button" role="button">view # more</a>
+    </div><!-- client -->
+
+{% include 'footer.html' %}    
+    
 </section><!-- overview -->
 
 {% endblock %}

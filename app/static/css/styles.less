@@ -180,6 +180,12 @@ h4 {font-size:2em;line-height: 1em;}
 a {color:inherit;}
 a:visited {color:inherit;}
 
+.service-text {color:@service-dark;}
+.caregiver-text {color:@caregiver-dark;}
+.client-text {color:@client-dark;}
+
+
+
 
 .non-urgent {
     background:@green-light;
@@ -188,11 +194,7 @@ a:visited {color:inherit;}
     span {border-color:@green-dark;}
 }
 
-
-body {text-align: center;padding:10px;}
-
 .service-header {width:100%;}
-
 .service-wrap {
     display:inline-block;
     width:33.33%;
@@ -314,12 +316,19 @@ body {text-align: center;padding:10px;}
     
     table.roleList {border-color:@dark;color:@dark;
         th {background-color:@dark;border-color:@dark;color:white;.capitalize;padding:0px 4px;}
-        th.caregiver,th.service {.mediumText;.capitalize;}
-        th.service, th.forms, th.expired, th.expiring-soon {background-color:@service-dark;border-color:@service-dark;}
+        th.role,th.service {.mediumText;.capitalize;}
+        th.service, th.forms, th.expired-forms, th.expiring-soon-forms {background-color:@service-dark;border-color:@service-dark;}
         th.forms {.regularText;width:25%;text-align:center;}
-        th.expired, th.expiring-soon {.smallText;text-transform:uppercase;width:12.5%;text-align:center;padding:0px 0px 2px 0px;}
+        th.expired-forms, th.expiring-soon-forms {.smallText;text-transform:uppercase;width:12.5%;text-align:center;padding:0px 0px 2px 0px;}
         td {.mediumText;.capitalize;padding:2px 4px;}
-        td.expired, td.expiring-soon {border-color:@service-dark;}
+        td.expired-forms, td.expiring-soon-forms {border-color:@service-dark;}
+        
+         &.role-overview {
+            th.role {width:40%;}
+            th.service, th.forms, th.expired-forms, th.expiring-soon-forms {background-color:@dark;border-color:@dark;}
+            td.expired-forms, td.expiring-soon-forms {border-color:@dark;}
+        }
+       
     }
     
     table.forms {border-color:@dark;color:@dark;
@@ -372,6 +381,25 @@ body {text-align: center;padding:10px;}
     }
     
     .button {background-color:@dark;}
+    
+    .box {background:@light;border-color:@dark;color:@dark;}
+    
+    .page-title {
+        .box;
+        .radius;
+        padding:8px;
+        border:2px solid;
+        margin-bottom: 10px;
+        text-align: center;}
+    .page-title p.title {.regularText;.uppercase;}
+    
+    input, select {border-color:@dark;color:@dark;}
+    input::-webkit-input-placeholder, {color:@mid;}
+    input:-moz-placeholder {color:@mid;}
+    input::-moz-placeholder {color:@mid;}
+    input:-ms-input-placeholder {color:@mid;}
+    button, input[type="button"], input[type="submit"], a.button {background-color:@dark;border-color:@dark;color:#fff;}
+    a {color:@dark;}
      
 }
 
@@ -380,40 +408,6 @@ body {text-align: center;padding:10px;}
 .client {.global(@dark:@client-dark,@mid:@client-med,@light:@client-light);}
 .service {.global(@dark:@service-dark,@mid:@service-med,@light:@service-light);}
 
-
-
-
-/* not sure what this is...
-
-table.list tbody:after {height: 0px;}
-
-table.list tr td {.regularText;.capitalize;}--cells--
-
-table tr td.green-cell a.button {.green-mid;}
-table tr td.yellow-cell a.button {.yellow-dark;}
-table tr td.red-cell a.button {.red-dark;}
-
-table.list .forms-col {text-align:center;}
-
-table.list tr th {.mediumText;.capitalize;}--headers--
-table.list tr th.col3 {.regularText;}
-table.list tr th.col4 {.smallText;text-transform:uppercase;}
-*/
-
-
-
-
-/*--
-TABLE COLORS
---*/
-.client-col {border-color:@client-dark;}
-.service-col {border-color:@service-dark;}
-
-.service-bdr {border-color:@service-dark;}
-.service-text {color:@service-dark;}
-
-.caregiver-text {color:@caregiver-dark;}
-.client-text {color:@client-dark;}
 
 
 
@@ -446,8 +440,6 @@ input:-ms-input-placeholder {.capitalize;}
 .box button, .box input[type="button"], .box input[type="submit"], .box a.button {font-size:@regularText;line-height:30px;}
 .search-form button, .search-form input[type="button"], .search-form input[type="submit"], .search-form a.button {font-size:inherit;line-height:30px;}
 .profile-info  .summary {.smallText;text-align:center;font-weight:bold;margin-top:8px;}
-.page-title {text-align: center;}
-.page-title p.title {.regularText;.uppercase;}
 
 a {text-decoration:none;font-size:inherit;}
 
@@ -741,32 +733,8 @@ COLORS
 --*/
 
 .caregiver-light {background-color:@caregiver-light;border-color:@caregiver-dark;color:@caregiver-dark;border-color:@caregiver-dark;}
-    .caregiver-light input, .caregiver-light select {border-color:@caregiver-dark;color:@caregiver-dark;}
-    .caregiver-light input::-webkit-input-placeholder, {color:@caregiver-med;}
-    .caregiver-light input:-moz-placeholder {color:@caregiver-med;}
-    .caregiver-light input::-moz-placeholder {color:@caregiver-med;}
-    .caregiver-light input:-ms-input-placeholder {color:@caregiver-med;}
-    .caregiver-light button, .caregiver-light input[type="button"], .caregiver-light input[type="submit"], .caregiver-light a.button {background-color:@caregiver-dark;border-color:@caregiver-dark;color:#fff;}
-    .caregiver-light a {color:@caregiver-dark;}
-    table.caregiver-light {background:none;}
 .client-light {background-color:@client-light;border-color:@client-dark;color:@client-dark;border-color:@client-dark;}
-    .client-light input, .client-light select {border-color:@client-dark;color:@client-dark;}
-    .client-light input::-webkit-input-placeholder, {color:@client-med;}
-    .client-light input:-moz-placeholder {color:@client-med;}
-    .client-light input::-moz-placeholder {color:@client-med;}
-    .client-light input:-ms-input-placeholder {color:@client-med;}
-    .client-light button, .client-light a.button {background-color:@client-dark;border-color:@client-dark;color:#fff;}
-    .client-light a {color:@client-dark;}
-    table.client-light {background:none;}
 .service-light {background-color:@service-light;border-color:@service-dark;;color:@service-dark;border-color:@service-dark;}
-    .service-light input, .service-light select {border-color:@service-dark;color:@service-dark;}
-    .service-light input::-webkit-input-placeholder, {color:@service-med;}
-    .service-light input:-moz-placeholder {color:@service-med;}
-    .service-light input::-moz-placeholder {color:@service-med;}
-    .service-light input:-ms-input-placeholder {color:@service-med;}
-    .service-light button, .service-light a.button {background-color:@service-dark;border-color:@service-dark;color:#fff;}
-    .service-light a {color:@service-dark;}
-    table.service-light {background:none;}
     
     table.caregiver-light td.red-light, table.caregiver-light td.yellow-light {border-color:@caregiver-dark;}
     table.client-light td.red-light, table.lient-light td.yellow-light {border-color:@client-dark;}

@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% block title %}{{ client.name }}{% endblock %}
 {% block content %}
+<!-- client.html -->
 <section class="container">
     <div class="grid">
         <div class="col-1-2">
@@ -52,23 +53,20 @@
         <li><i class="icon-edit"> </i><a href="{{ url_for('client_edit', client_id=client.id)}}">edit client</a></li>
         <li><i class="icon-print"> </i>print record</li>
     </ul>
-    <table class="profile caregiver-light">
-        <colgroup>
-            <col class="caregiver-col">
-            <col class="service-col">
-            <col>
-            <col class="forms-col">
-            <col class="forms-col">
-        </colgroup>
+
+<div class="caregiver">
+    <a href="{{ url_for('service_add', client_id=client.id) }}" class="button caregiver-dark" role="button">add caregiver</a>
+    <br/><br/>
+    <table class="roleList">
         <thead>
             <tr>
-                <th class="caregiver-dark col1" rowspan="2">caregivers</th>
-                <th class="service-dark col2" rowspan="2">service provided</th>
-                <th class="service-dark col3" colspan="2">forms</th>
+                <th class="role" rowspan="2">caregivers</th>
+                <th class="service" rowspan="2">service provided</th>
+                <th class="forms" colspan="2">forms</th>
             </tr>
             <tr>
-                <th class="service-dark col4">expired</th>
-                <th class="service-dark col4">expiring soon</th>
+                <th class="expired-forms">expired</th>
+                <th class="expiring-soon-forms">expiring soon</th>
             </tr>
         </thead>
         <tbody>
@@ -80,40 +78,43 @@
                     <td class="service-cell">
                         <a href="{{ url_for('service', service_id=service.id) }}">{{ service.name }}</a>
                     </td>
-                    <td class="service-bdr red-cell expired">{{ service.num_expired }}</td>
-                    <td class="service-bdr expiring-soon">
-                        {{ service.num_expiring_soon }}
-                    </td>
+                    <td class="expired-forms">{{ service.num_expired }}</td>
+                    <td class="expiring-soon-forms">{{ service.num_expiring_soon }}</td>
                 </tr>
             {% endfor %}
         </tbody>
-    </table><!-- client list -->
-    <a href="{{ url_for('service_add', client_id=client.id) }}" class="button caregiver-dark" role="button">add caregiver</a>
+    </table><!-- caregiver list -->
+</div><!-- caregiver style -->
+
+<br/><br/>
+  
+<div class="client">
+    <a href="#" class="button client-dark" role="button">add new client form</a>
     <br/><br/>
-    <table class="profile client-light role-forms">
+    <table class="forms">
         <thead>
             <tr>
-                <th class="client-dark" colspan="2">client forms</th>
+                <th class="caregiver-dark" colspan="2">client forms</th>
             </tr>
         </thead>
         <tbody>
-            {% if expired_forms %}
+           {% if expired_forms %}
                 {% for form in expired_forms %}
                     <tr>
-                        <td class="expiration-date red-cell">
-                            <span class="expiration-date"><span class="icon-cirlcereceived"></span>weeeeee</span>
+                        <td class="expiration-date expired">
+                            <span class="expiration-date"><span class="icon-cirlcereceived"></span>07-14-1987</span>
                         </td>
-                        <td class="form-title red-cell">{{ form.name }}</td>
+                        <td class="form-title expired">{{ form.name }}</td>
                     </tr>
                 {% endfor %}
             {% endif %}
             {% if expiring_soon_forms %}
                 {% for form in expiring_soon_forms %}
                     <tr>
-                        <td class="expiration-date yellow-cell">
-                            <span class="expiration-date"><span class="icon-cirlcereceived"></span>weeeeee</span>
+                        <td class="expiration-date expiring-soon">
+                            <span class="expiration-date"><span class="icon-cirlcereceived"></span>07-14-2015</span>
                         </td>
-                        <td class="form-title yellow-cell">{{ form.name }}</td>
+                        <td class="form-title expiring-soon">{{ form.name }}</td>
                     </tr>
                 {% endfor %}
             {% endif %}
@@ -123,14 +124,17 @@
                 {% for form in non_urgent_forms %}
                     <tr>
                         <td class="expiration-date">
-                            <span class="expiration-date"><span class="icon-cirlcereceived"></span>weee</span>
+                            <span class="expiration-date"><span class="icon-cirlcereceived"></span>07-14-2087</span>
                         </td>
                         <td class="form-title">{{ form.name }}</td>
                     </tr>
                 {% endfor %}
             {% endif %}
         </tbody>
-    </table><!-- caregiver forms -->
-    <a href="#" class="button client-dark" role="button">add new client form</a>
+    </table>
+</div><!-- client --> 
+   
+{% include 'footer.html' %}
+    
 </section>
 {% endblock %}

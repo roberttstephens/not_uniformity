@@ -1,80 +1,73 @@
 {% extends "base.html" %}
 {% block title %}The name{% endblock %}
 {% block content %}
+<!-- service_form.html -->
 <section class="container">
-    <div class="grid">
-        <div class="col-1-3">
-            <div class="box-title caregiver-light">
-                <p class="title">caregiver</p>
-                <p class="name">jennifer lawrence</p>
-                <p class="phone">
-                    <i class="icon-user-add"></i>555-555-1234</p>
+   <div class="service-header">
+        <div class="service-wrap">
+           <div class="caregiver">
+                <div class="serviceBox">
+                    <text class="service-title">caregiver</text>
+                    <text class="service">longfirstname longlastname</text>
+                    <text class="phone">555-555-1234</text>
+                </div><!-- serviceBox -->
             </div><!-- caregiver -->
-        </div>
-        <div class="col-1-3">
-            <div class="box-title service-light">
-                <p class="title">service</p>
-                <div class="service-wrap">
-                    <p class="service">supported living coach</p>
-                </div>
+        </div><!-- service-wrap --><div class="service-wrap"><div class="service"><div class="serviceBox">
+                    <text class="service-title">service</text>
+                    <text class="service">rediculously long service title name</text>
+                </div><!-- serviceBox -->
             </div><!-- service -->
-        </div>
-        <div class="col-1-3">
-            <div class="box-title client-light">
-                <p class="title">client</p>
-                <p class="name">miley cyrus</p>
-                <p class="phone">555-555-1234</p>
+        </div><!-- service-wrap --><div class="service-wrap"><div class="client"><div class="serviceBox">
+                    <text class="service-title">client</text>
+                    <text class="service">longfirstnamez</text>
+                    <text class="phone">555-555-1234</text>
+                </div><!-- serviceBox -->
             </div><!-- client -->
-        </div>
-    </div>
+        </div><!-- service-wrap -->
+    </div><!-- service-header -->
 </section><!-- service header -->
 <section class="container">
-   <table class="form current-status service-light">
-      <caption class="service-dark">
-        <h3>form title</h3>
-      </caption>
+ <div class="service">   
+    <table class="form-current expiring-soon">
+        <caption>
+            <h3>form title</h3>
+        </caption>
         <tbody>
             <tr>
-                <td class="expiration-date yellow-cell">
+                <td class="expiration-date">
                     <span class="expiration-date"><span class="icon-cirlcereceived"></span>00-00-0000</span>
                 </td>
-                <td class="status yellow-cell">this form will expire soon!</td>
-                <td class="edit yellow-cell"><a href="#" class="button" role="button"><i class="icon-edit"> </i>edit status</a></td>
+                <td class="status">this form will expire soon!</td>
+                <td class="edit"><a href="#" class="button" role="button"><i class="icon-edit"> </i>edit status</a></td>
             </tr>
         </tbody>
     </table>
-    <table class="form record service-light">
+    
+    <table class="form-record expired">
         <tbody>
             <tr>
-                <td class="expiration-date green-cell">
+                <td class="expiration-date">
                     <span class="expiration-date"><span class="icon-cirlcereceived"></span>00-00-0000</span>
                 </td>
-                <td class="status green-cell">reveived on 00-00-0000</td>
-                <td class="edit green-cell"><a href="#"><i class="icon-edit"> </i>edit</a></td>
+                <td class="status">reveived on 00-00-0000</td>
+                <td class="edit"><a href="#"><i class="icon-edit"> </i>edit</a></td>
             </tr>
             <tr>
-                <td class="expiration-date green-cell">
+                <td class="expiration-date">
                     <span class="expiration-date"><span class="icon-cirlcereceived"></span>00-00-0000</span>
                 </td>
-                <td class="status green-cell">reveived on 00-00-0000</td>
-                <td class="edit green-cell"><a href="#"><i class="icon-edit"> </i>edit</a></td>
+                <td class="status">reveived on 00-00-0000</td>
+                <td class="edit"><a href="#"><i class="icon-edit"> </i>edit</a></td>
             </tr>
             <tr>
-                <td class="expiration-date green-cell">
+                <td class="expiration-date">
                     <span class="expiration-date"><span class="icon-cirlcereceived"></span>00-00-0000</span>
                 </td>
-                <td class="status green-cell">reveived on 00-00-0000</td>
-                <td class="edit green-cell"><a href="#"><i class="icon-edit"> </i>edit</a></td>
-            </tr>
-            <tr>
-                <td class="expiration-date green-cell">
-                    <span class="expiration-date"><span class="icon-cirlcereceived"></span>00-00-0000</span>
-                </td>
-                <td class="status green-cell">reveived on 00-00-0000</td>
-                <td class="edit green-cell"><a href="#"><i class="icon-edit"> </i>edit</a></td>
+                <td class="status">reveived on 00-00-0000</td>
+                <td class="edit"><a href="#"><i class="icon-edit"> </i>edit</a></td>
             </tr>
         </tbody>
-    </table><!-- role forms -->
-    <a href="#" class="button service-dark" role="button">add service form</a>
+    </table>
+</div><!-- service -->
 </section><!-- overview -->
 {% endblock %}
