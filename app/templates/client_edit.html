@@ -12,23 +12,23 @@
 
 <section class="container">
     <div class="client">
-    {% from "_formhelpers.html" import render_field %}
-    <form method=post action="">
-        {{ form.hidden_tag() }}
-        <div class="box">
-            <h3>personal information</h3>
-            {{ render_field(form.name) }}
-            {{ render_field(form.birth_date) }}
-            {{ render_field(form.phone_number) }}
-            {{ render_field(form.phone_extension) }}
-            {{ render_field(form.address_1) }}
-            {{ render_field(form.address_2) }}
-            {{ render_field(form.city) }}
-            {{ render_field(form.state) }}
-            {{ render_field(form.zip_code) }}
-        </div> 
-        <input type=submit value=Save>
-    </form>
+        {% from "_formhelpers.html" import render_field %}
+        <form method=post action="">
+            {{ form.hidden_tag() }}
+            <div class="box">
+                <h3>personal information</h3>
+                {{ render_field(form.name) }}
+                {{ render_field(form.birth_date) }}
+                {{ render_field(form.phone_number) }}
+                {{ render_field(form.phone_extension) }}
+                {{ render_field(form.address_1) }}
+                {{ render_field(form.address_2) }}
+                {{ render_field(form.city) }}
+                {{ render_field(form.state) }}
+                {{ render_field(form.zip_code) }}
+            </div><!-- box -->
+            <input type=submit value=Save>
+        </form>
     </div><!-- client -->
     
 {% include 'footer.html' %}

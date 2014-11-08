@@ -75,7 +75,7 @@
                     <td>
                         <a href="{{ url_for('caregiver', caregiver_id=service.caregiver.id) }}">{{ service.caregiver.name }}</a>
                     </td>
-                    <td class="service-cell">
+                    <td class="service">
                         <a href="{{ url_for('service', service_id=service.id) }}">{{ service.name }}</a>
                     </td>
                     <td class="expired-forms">{{ service.num_expired }}</td>

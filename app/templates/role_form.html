@@ -9,10 +9,33 @@
     </div><!-- {{ role }} -->
 </section><!-- role header -->
 <section class="container">
-<div class="{{ role }}">   
+{% include 'action_nav.html' %}
+<div class="{{ role }}">
+<h2>Extremely Abnoxiously Long Form Title</h2>
+<div class="grid">
+    <form method=post action="">
+        <div class="col-1-2">
+            <div class="form-header">
+                <div class="form-field">
+                    <label for="exp">Change Expiration Date</label>
+                    <input type="date" id="input-expdate" name="exp" />
+                </div>
+            </div>
+        </div>
+        <div class="col-1-2">
+            <div class="form-header">
+                <div class="form-field">
+                    <label for="exp">Mark as Received</label>
+                    <input type="date" id="input-expdate" name="exp" />
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<input type=submit value=Save>
     <table class="form-current expiring-soon">
         <caption>
-            <h3>form title</h3>
+            <h3>forms</h3>
         </caption>
         <tbody>
             <tr>
@@ -50,7 +73,7 @@
             </tr>
         </tbody>
     </table>
-    <a href="#" class="button {{ role }}-dark" role="button">add {{ role }} form</a>
 </div><!-- {{ role }} -->
+{% include 'footer.html' %}
 </section><!-- overview -->
 {% endblock %}

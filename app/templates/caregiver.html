@@ -74,7 +74,7 @@
                     <td>
                         <a href="{{ url_for('client', client_id=service.client.id) }}">{{ service.client.name }}</a>
                     </td>
-                    <td class="service-cell">
+                    <td class="service">
                         <a href="{{ url_for('service', service_id=service.id) }}">{{ service.name }}</a>
                     </td>
                     <td class="expired-forms">{{ service.num_expired }}</td>
