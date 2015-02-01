@@ -199,8 +199,10 @@ def service_add():
     client_disabled = False
     if request.args.get('caregiver_id'):
         caregiver_disabled = True
+        next_url = url_for('caregiver', caregiver_id=request.args.get('caregiver_id'))
     if request.args.get('client_id'):
         client_disabled = True
+        next_url = url_for('client', client_id=request.args.get('client_id'))
     caregivers = Caregiver.query.\
         join(Agency).\
         filter(Agency.id == g.user.id).\
@@ -221,6 +223,8 @@ def service_add():
         db.session.add(service)
         db.session.commit()
         flash('Successfully added ' + service.name)
+        if next_url:
+            return redirect(next_url)
     return render_template(
         'service_add_edit.html',
         form=form,
