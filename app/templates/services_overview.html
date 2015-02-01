@@ -1,49 +1,55 @@
 {% extends "base.html" %}
 {% block title %}Index{% endblock %}
 {% block content %}
+<!-- services_overview.html -->
 <section class="container">
-    <table class="overview service-light">
-        <caption class="service-dark">
+{% include 'action_nav.html' %}
+<div class="service">
+    <table class="overview">
+        <caption>
             <h3>service forms</h3>
         </caption>
         <thead>
             <tr>
-                <th class="service-dark col1" colspan="2">form</th>
-                <th class="caregiver-dark col2">caregiver</th>
-                <th class="service-dark col3">service provided</th>
-                <th class="client-dark col4">client</th>
+                <th colspan="2">form</th>
+                <th class="caregiver">caregiver</th>
+                <th class="service">service provided</th>
+                <th class="client">client</th>
             </tr>
         </thead>
         <tbody>
             <tr>
-                <td class="expiration-date red-cell">
+                <td class="expiration-date expired">
                     <span class="expiration-date"><span class="icon-cirlcereceived"></span>00-00-0000</span>
                 </td>
-                <td class="form-title red-cell">document title</td>
-                <td class="caregiver-cell">firstname lastname</text></td>
+                <td class="form-title expired">document title</td>
+                <td class="caregiver-cell">firstname lastname</td>
                 <td>service provided</td>
                 <td class="client-cell">firstname lastname</td>
             </tr>
             <tr>
-                <td class="expiration-date red-cell">
+                <td class="expiration-date expired">
                     <span class="expiration-date"><span class="icon-cirlcereceived"></span>00-00-0000</span>
                 </td>
-                <td class="form-title red-cell">what if there's a really long document title</td>
-                <td class="caregiver-cell">firstname lastname</text></td>
+                <td class="form-title expired">what if there's a really long document title</td>
+                <td class="caregiver-cell">firstname lastname</td>
                 <td>service provided</td>
                 <td class="client-cell">firstname lastname</td>
             </tr>
             <tr>
-                <td class="expiration-date red-cell">
+                <td class="expiration-date expired">
                     <span class="expiration-date"><span class="icon-cirlcereceived"></span>00-00-0000</span>
                 </td>
-                <td class="form-title red-cell">document title</td>
-                <td class="caregiver-cell">firstname lastname</text></td>
+                <td class="form-title expired">document title</td>
+                <td class="caregiver-cell">firstname lastname</td>
                 <td>service provided</td>
                 <td class="client-cell">firstname lastname</td>
             </tr>
         </tbody>
-    </table><!-- service -->
+    </table><!-- overview service -->
+</div>
+{% include 'footer.html' %}
+    
 </section><!-- overview -->
 
 {% endblock %}

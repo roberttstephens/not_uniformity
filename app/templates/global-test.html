@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html class="no-js">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Place favicon.ico and apple-touch-icon(s) in the root directory -->
+
+    {% assets "app_css" %}
+        <link rel="stylesheet" href="{{ ASSET_URL }}" />
+    {% endassets %}
+    <link rel="stylesheet/less" type="text/css" href="../static/css/styles.less">
+    <link href='http://fonts.googleapis.com/css?family=Oswald:400,700' rel='stylesheet' type='text/css'>
+    {% assets "app_js" %}
+        <script type="text/javascript" src="{{ ASSET_URL }}"></script>
+    {% endassets %}
+
+</head>
+
+<body>
+    <div id="topbg">
+        <header>
+            <nav>
+                <ul>
+                    <li>
+                        <a href="#" class="header-nav-tab link-tab"><span class="icon-managedhosting"></span>settings</a>
+                    </li>
+                    <li>
+                        <a href="#" class="header-nav-tab link-tab"><span class="icon-switch"></span>log out</a>
+                    </li>
+                    <li>
+                        <a href="#" class="header-nav-tab link-tab"><span class="icon-medkit"></span>support</a>
+                    </li>
+                </ul>
+            </nav>
+            <!--[if lt IE 8]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+            <![endif]-->
+        </header>
+
+        <div class="top">
+            <nav>
+                <ul>
+                    <li>
+                        <a href="#">
+                            <p class="top-nav-tab service-text">overview</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <p class="top-nav-tab caregiver-text">caregivers</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <p class="top-nav-tab client-text">clients</p>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+        <!-- top -->
+
+        <section class="container">
+            
+        </section><!-- overview -->
+
+        <footer>
+            <p>&copy; Copyright 2014 <a href="#" title="#">#</a> | All rights reserved.</p>
+        </footer>
+
+    </div>
+    <!-- top -->
+
+</body>
+
+</html>

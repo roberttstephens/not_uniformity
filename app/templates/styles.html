@@ -1,81 +1,388 @@
-<!DOCTYPE html>
-<html class="no-js">
+{% extends "base.html" %}
+{% block title %}Index{% endblock %}
+{% block content %}
+<section class="container">
+<div class="service">   
+    <table class="form-current expiring-soon">
+        <caption>
+            <h3>form title</h3>
+        </caption>
+        <tbody>
+            <tr>
+                <td class="expiration-date">
+                    <span class="expiration-date"><span class="icon-cirlcereceived"></span>00-00-0000</span>
+                </td>
+                <td class="status">this form will expire soon!</td>
+                <td class="edit"><a href="#" class="button" role="button"><i class="icon-edit"> </i>edit status</a></td>
+            </tr>
+        </tbody>
+    </table>
+    
+    <table class="form-record expired">
+        <tbody>
+            <tr>
+                <td class="expiration-date">
+                    <span class="expiration-date"><span class="icon-cirlcereceived"></span>00-00-0000</span>
+                </td>
+                <td class="status">reveived on 00-00-0000</td>
+                <td class="edit"><a href="#"><i class="icon-edit"> </i>edit</a></td>
+            </tr>
+            <tr>
+                <td class="expiration-date">
+                    <span class="expiration-date"><span class="icon-cirlcereceived"></span>00-00-0000</span>
+                </td>
+                <td class="status">reveived on 00-00-0000</td>
+                <td class="edit"><a href="#"><i class="icon-edit"> </i>edit</a></td>
+            </tr>
+            <tr>
+                <td class="expiration-date">
+                    <span class="expiration-date"><span class="icon-cirlcereceived"></span>00-00-0000</span>
+                </td>
+                <td class="status">reveived on 00-00-0000</td>
+                <td class="edit"><a href="#"><i class="icon-edit"> </i>edit</a></td>
+            </tr>
+        </tbody>
+    </table>
+</div><!-- service -->
+</section>
 
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title></title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- Place favicon.ico and apple-touch-icon(s) in the root directory -->
 
-    {% assets "app_css" %}
-        <link rel="stylesheet" href="{{ ASSET_URL }}" />
-    {% endassets %}
-    <link rel="stylesheet/less" type="text/css" href="../static/css/styles.less">
-    <link href='http://fonts.googleapis.com/css?family=Oswald:400,700' rel='stylesheet' type='text/css'>
-    {% assets "app_js" %}
-        <script type="text/javascript" src="{{ ASSET_URL }}"></script>
-    {% endassets %}
 
-</head>
 
-<body>
-    <div id="topbg">
-        <header>
-            <nav>
-                <ul>
-                    <li>
-                        <a href="#" class="header-nav-tab link-tab"><span class="icon-managedhosting"></span>settings</a>
-                    </li>
-                    <li>
-                        <a href="#" class="header-nav-tab link-tab"><span class="icon-switch"></span>log out</a>
-                    </li>
-                    <li>
-                        <a href="#" class="header-nav-tab link-tab"><span class="icon-medkit"></span>support</a>
-                    </li>
-                </ul>
-            </nav>
-            <!--[if lt IE 8]>
-            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-            <![endif]-->
-        </header>
+<section class="container">
+<div class="service">   
+    <table class="forms">
+        <thead>
+            <tr>
+                <th class="caregiver-dark" colspan="2">service forms</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="expiration-date expired">
+                    <span class="expiration-date"><span class="icon-cirlcereceived"></span>07-14-1987</span>
+                </td>
+                <td class="form-title expired">form name</td>
+            </tr>
+            <tr>
+                <td class="expiration-date expiring-soon">
+                    <span class="expiration-date"><span class="icon-cirlcereceived"></span>07-14-2015</span>
+                </td>
+                <td class="form-title expiring-soon">form name</td>
+            </tr>
+        </tbody>
+        <tbody>
+            <tr>
+                <td class="expiration-date">
+                    <span class="expiration-date"><span class="icon-cirlcereceived"></span>07-14-2087</span>
+                </td>
+                <td class="form-title">form name</td>
+            </tr>
+        </tbody>
+    </table>
+</div><!-- service --> 
 
-        <div class="top">
-            <nav>
-                <ul>
-                    <li>
-                        <a href="#">
-                            <p class="top-nav-tab service-text">overview</p>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <p class="top-nav-tab caregiver-text">caregivers</p>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <p class="top-nav-tab client-text">clients</p>
-                        </a>
-                    </li>
-                </ul>
-            </nav>
-        </div>
-        <!-- top -->
+<div class="client">   
+    <table class="forms">
+        <thead>
+            <tr>
+                <th class="caregiver-dark" colspan="2">client forms</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="expiration-date expired">
+                    <span class="expiration-date"><span class="icon-cirlcereceived"></span>07-14-1987</span>
+                </td>
+                <td class="form-title expired">form name</td>
+            </tr>
+            <tr>
+                <td class="expiration-date expiring-soon">
+                    <span class="expiration-date"><span class="icon-cirlcereceived"></span>07-14-2015</span>
+                </td>
+                <td class="form-title expiring-soon">form name</td>
+            </tr>
+        </tbody>
+        <tbody>
+            <tr>
+                <td class="expiration-date">
+                    <span class="expiration-date"><span class="icon-cirlcereceived"></span>07-14-2087</span>
+                </td>
+                <td class="form-title">form name</td>
+            </tr>
+        </tbody>
+    </table>
+</div><!-- client --> 
 
-        <section class="container">
-            
-        </section><!-- overview -->
+<div class="caregiver">   
+    <table class="forms">
+        <thead>
+            <tr>
+                <th class="caregiver-dark" colspan="2">caregiver forms</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="expiration-date expired">
+                    <span class="expiration-date"><span class="icon-cirlcereceived"></span>07-14-1987</span>
+                </td>
+                <td class="form-title expired">form name</td>
+            </tr>
+            <tr>
+                <td class="expiration-date expiring-soon">
+                    <span class="expiration-date"><span class="icon-cirlcereceived"></span>07-14-2015</span>
+                </td>
+                <td class="form-title expiring-soon">form name</td>
+            </tr>
+        </tbody>
+        <tbody>
+            <tr>
+                <td class="expiration-date">
+                    <span class="expiration-date"><span class="icon-cirlcereceived"></span>07-14-2087</span>
+                </td>
+                <td class="form-title">form name</td>
+            </tr>
+        </tbody>
+    </table>
+</div><!-- caregiver -->    
+</section>
 
-        <footer>
-            <p>&copy; Copyright 2014 <a href="#" title="#">#</a> | All rights reserved.</p>
-        </footer>
 
-    </div>
-    <!-- top -->
 
-</body>
 
-</html>
+<section class="container">
+    <div class="service-header">
+        <div class="service-wrap">
+           <div class="caregiver">
+                <div class="serviceBox">
+                    <text class="service-title">caregiver</text>
+                    <text class="service">longfirstname longlastname</text>
+                    <text class="phone">555-555-1234</text>
+                </div><!-- serviceBox -->
+            </div><!-- caregiver -->
+        </div><!-- service-wrap --><div class="service-wrap"><div class="service"><div class="serviceBox">
+                    <text class="service-title">service</text>
+                    <text class="service">rediculously long service title name</text>
+                </div><!-- serviceBox -->
+            </div><!-- service -->
+        </div><!-- service-wrap --><div class="service-wrap"><div class="client"><div class="serviceBox">
+                    <text class="service-title">client</text>
+                    <text class="service">longfirstnamez</text>
+                    <text class="phone">555-555-1234</text>
+                </div><!-- serviceBox -->
+            </div><!-- client -->
+        </div><!-- service-wrap -->
+    </div><!-- service-header -->
+</section>
+
+
+
+
+<section class="container">
+    <div class="client">
+    <table class="roleList">
+        <thead>
+            <tr>
+                <th class="role" rowspan="2">clients</th>
+                <th class="service" rowspan="2">service provided</th>
+                <th class="forms" colspan="2">forms</th>
+            </tr>
+            <tr>
+                <th class="expired-forms">expired</th>
+                <th class="expiring-soon-forms">expiring soon</th>
+            </tr>
+        </thead>
+        <tbody>
+                <tr>
+                    <td>
+                        <a href="#">firstname lastname</a>
+                    </td>
+                    <td class="service-cell">
+                        extralong service name
+                    </td>
+                    <td class="expired-forms">2</td>
+                    <td class="expiring-soon-forms">2</td>
+                </tr>
+        </tbody>
+    </table><!-- client list -->
+    </div><!-- client style -->
+
+    <div class="caregiver">
+    <table class="roleList">
+        <thead>
+            <tr>
+                <th class="role" rowspan="2">caregivers</th>
+                <th class="service" rowspan="2">service provided</th>
+                <th class="forms" colspan="2">forms</th>
+            </tr>
+            <tr>
+                <th class="expired-forms">expired</th>
+                <th class="expiring-soon-forms">expiring soon</th>
+            </tr>
+        </thead>
+        <tbody>
+                <tr>
+                    <td>
+                        <a href="#">firstname lastname</a>
+                    </td>
+                    <td class="service-cell">
+                        extralong service name
+                    </td>
+                    <td class="expired-forms">2</td>
+                    <td class="expiring-soon-forms">2</td>
+                </tr>
+        </tbody>
+    </table><!-- caregiver list -->
+    </div><!-- caregiver style -->
+</section><!-- roleList -->
+
+
+
+
+<section class="container">
+    <div class="service">
+    <table class="overview">
+        <caption>
+            <h3>service forms</h3>
+        </caption>
+        <thead>
+            <tr>
+                <th colspan="2">form</th>
+                <th class="caregiver">caregiver</th>
+                <th class="service">service provided</th>
+                <th class="client">client</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="expiration-date expired">
+                    <span class="expiration-date"><span class="icon-cirlcereceived"></span>00-00-0000</span>
+                </td>
+                <td class="form-title expired">document title</td>
+                <td class="caregiver-cell">firstname lastname</td>
+                <td>service provided</td>
+                <td class="client-cell">firstname lastname</td>
+            </tr>
+            <tr>
+                <td class="expiration-date expired">
+                    <span class="expiration-date"><span class="icon-cirlcereceived"></span>00-00-0000</span>
+                </td>
+                <td class="form-title expired">what if there's a really long document title</td>
+                <td class="caregiver-cell">firstname lastname</td>
+                <td>service provided</td>
+                <td class="client-cell">firstname lastname</td>
+            </tr>
+            <tr>
+                <td class="expiration-date expired">
+                    <span class="expiration-date"><span class="icon-cirlcereceived"></span>00-00-0000</span>
+                </td>
+                <td class="form-title expired">document title</td>
+                <td class="caregiver-cell">firstname lastname</td>
+                <td>service provided</td>
+                <td class="client-cell">firstname lastname</td>
+            </tr>
+        </tbody>
+    </table><!-- overview service -->
+    <a href="{{ url_for('service_overview') }}" class="button" role="button">view # more</a>
+    </div><!-- service -->
+    <br/>
+    <div class="caregiver">
+    <table class="overview">
+        <caption>
+            <h3>caregiver forms</h3>
+        </caption>
+        <thead>
+            <tr>
+                <th colspan="2">Form</th>
+                <th class="role">Caregiver</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="expiration-date expired">
+                    <span class="expiration-date"><span class="icon-cirlcereceived"></span>00-00-0000</span>
+                </td>
+                <td class="form-title expired">document title</td>
+                <td>Jane Smith</td>
+            </tr>
+            <tr>
+                <td class="expiration-date expired">
+                    <span class="expiration-date"><span class="icon-cirlcereceived"></span>00-00-0000</span>
+                </td> 
+                <td class="form-title expired">document title</td>
+                <td>Jane Smith</td>
+            </tr>
+        </tbody>
+        <tbody>
+            <tr>
+                <td class="expiration-date expiring-soon">
+                    <span class="expiration-date"><span class="icon-cirlcereceived"></span>00-00-0000</span>
+                </td>
+                <td class="form-title expiring-soon">document title</td>
+                <td>Jane Smith</td>
+            </tr>
+            <tr>
+                <td class="expiration-date expiring-soon">
+                    <span class="expiration-date"><span class="icon-cirlcereceived"></span>00-00-0000</span>
+                </td>
+                <td class="form-title expiring-soon">document title</td>
+                <td>Jane Smith</td>
+            </tr>
+        </tbody>
+    </table><!-- overview caregiver -->
+    <a href="{{ url_for('caregiver_overview') }}" class="button" role="button">view # more</a>
+    </div><!-- caregiver -->
+    <br />
+    <div class="client">
+    <table class="overview">
+        <caption>
+            <h3>client forms</h3>
+        </caption>
+        <thead>
+            <tr>
+                <th colspan="2">Form</th>
+                <th class="role">client</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="expiration-date expired">
+                    <span class="expiration-date"><span class="icon-cirlcereceived"></span>00-00-0000</span>
+                </td>
+                <td class="form-title expired">document title</td>
+                <td>Jane Smith</td>
+            </tr>
+            <tr>
+                <td class="expiration-date expired">
+                    <span class="expiration-date"><span class="icon-cirlcereceived"></span>00-00-0000</span>
+                </td>
+                <td class="form-title expired">document title</td>
+                <td>Jane Smith</td>
+            </tr>
+        </tbody>
+        <tbody>
+            <tr>
+                <td class="expiration-date expiring-soon">
+                    <span class="expiration-date"><span class="icon-cirlcereceived"></span>00-00-0000</span>
+                </td>
+                <td class="form-title expiring-soon">document title</td>
+                <td>Jane Smith</td>
+            </tr>
+            <tr>
+                <td class="expiration-date expiring-soon">
+                    <span class="expiration-date"><span class="icon-cirlcereceived"></span>00-00-0000</span>
+                </td>
+                <td class="form-title expiring-soon">document title</td>
+                <td>Jane Smith</td>
+            </tr>
+        </tbody>
+    </table>
+    <a href="{{ url_for('caregiver_overview') }}" class="button" role="button">view # more</a>
+    </div><!-- client -->
+
+{% include 'footer.html' %}
+    
+</section><!-- overview -->
+
+{% endblock %}

@@ -1,59 +1,79 @@
 {% extends "base.html" %}
 {% block title %}The name{% endblock %}
 {% block content %}
+<!-- role_form.html -->
 <section class="container">
     <div class="box page-title {{ role }}-light">
         <p class="title">{{ role }}</p>
-        <p class="hugeText">jennifer lawrence</p>
+        <h2>jennifer lawrence</h2>
     </div><!-- {{ role }} -->
 </section><!-- role header -->
 <section class="container">
-   <table class="form current-status {{ role }}-light">
-      <caption class="{{ role }}-dark">
-        <h3>form title</h3>
-      </caption>
+{% include 'action_nav.html' %}
+<div class="{{ role }}">
+<h1>Extremely Abnoxiously Long Form Title</h1>
+<div class="grid">
+    <form method=post action="">
+        <div class="col-1-2">
+            <div class="form-header">
+                <div class="form-field">
+                    <label for="exp">Change Expiration Date</label>
+                    <input type="date" id="input-expdate" name="exp" />
+                </div>
+            </div>
+        </div>
+        <div class="col-1-2">
+            <div class="form-header">
+                <div class="form-field">
+                    <label for="exp">Mark as Received</label>
+                    <input type="date" id="input-expdate" name="exp" />
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<input type=submit value=Save>
+    <table class="form-current expiring-soon">
+        <caption>
+            <h3>form title</h3>
+        </caption>
         <tbody>
             <tr>
-                <td class="expiration-date yellow-cell">
+                <td class="expiration-date">
                     <span class="expiration-date"><span class="icon-cirlcereceived"></span>00-00-0000</span>
                 </td>
-                <td class="status yellow-cell">this form will expire soon!</td>
-                <td class="edit yellow-cell"><a href="#" class="button" role="button"><i class="icon-edit"> </i>edit status</a></td>
+                <td class="status">this form will expire soon!</td>
+                <td class="edit"><a href="#" class="button" role="button"><i class="icon-edit"> </i>edit status</a></td>
             </tr>
         </tbody>
     </table>
-    <table class="form record {{ role }}-light">
+    
+    <table class="form-record expired">
         <tbody>
             <tr>
-                <td class="expiration-date green-cell">
+                <td class="expiration-date">
                     <span class="expiration-date"><span class="icon-cirlcereceived"></span>00-00-0000</span>
                 </td>
-                <td class="status green-cell">reveived on 00-00-0000</td>
-                <td class="edit green-cell"><a href="#"><i class="icon-edit"> </i>edit</a></td>
+                <td class="status">reveived on 00-00-0000</td>
+                <td class="edit"><a href="#"><i class="icon-edit"> </i>edit</a></td>
             </tr>
             <tr>
-                <td class="expiration-date green-cell">
+                <td class="expiration-date">
                     <span class="expiration-date"><span class="icon-cirlcereceived"></span>00-00-0000</span>
                 </td>
-                <td class="status green-cell">reveived on 00-00-0000</td>
-                <td class="edit green-cell"><a href="#"><i class="icon-edit"> </i>edit</a></td>
+                <td class="status">reveived on 00-00-0000</td>
+                <td class="edit"><a href="#"><i class="icon-edit"> </i>edit</a></td>
             </tr>
             <tr>
-                <td class="expiration-date green-cell">
+                <td class="expiration-date">
                     <span class="expiration-date"><span class="icon-cirlcereceived"></span>00-00-0000</span>
                 </td>
-                <td class="status green-cell">reveived on 00-00-0000</td>
-                <td class="edit green-cell"><a href="#"><i class="icon-edit"> </i>edit</a></td>
-            </tr>
-            <tr>
-                <td class="expiration-date green-cell">
-                    <span class="expiration-date"><span class="icon-cirlcereceived"></span>00-00-0000</span>
-                </td>
-                <td class="status green-cell">reveived on 00-00-0000</td>
-                <td class="edit green-cell"><a href="#"><i class="icon-edit"> </i>edit</a></td>
+                <td class="status">reveived on 00-00-0000</td>
+                <td class="edit"><a href="#"><i class="icon-edit"> </i>edit</a></td>
             </tr>
         </tbody>
-    </table><!-- role forms -->
-    <a href="#" class="button {{ role }}-dark" role="button">add {{ role }} form</a>
+    </table>
+</div><!-- {{ role }} -->
+{% include 'footer.html' %}
 </section><!-- overview -->
 {% endblock %}

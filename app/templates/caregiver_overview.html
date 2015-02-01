@@ -1,50 +1,58 @@
 {% extends "base.html" %}
 {% block title %}Index{% endblock %}
 {% block content %}
+<!-- caregiver_overview.html -->
 <section class="container">
-    <table class="overview caregiver-light">
-        <caption class="caregiver-dark">
+{% include 'action_nav.html' %}
+<div class="caregiver">
+    <table class="overview">
+        <caption>
             <h3>caregiver forms</h3>
         </caption>
         <thead>
             <tr>
-                <th class="caregiver-dark" colspan="2">Form</th>
-                <th class="caregiver-dark col2">Caregiver</th>
+                <th colspan="2">Form</th>
+                <th class="role">Caregiver</th>
             </tr>
         </thead>
         <tbody>
             <tr>
-                <td class="expiration-date red-cell">
+                <td class="expiration-date expired">
                     <span class="expiration-date"><span class="icon-cirlcereceived"></span>00-00-0000</span>
                 </td>
-                <td class="form-title red-cell">document title</td>
+                <td class="form-title expired">document title</td>
                 <td>Jane Smith</td>
             </tr>
             <tr>
-                <td class="expiration-date red-cell">
+                <td class="expiration-date expired">
                     <span class="expiration-date"><span class="icon-cirlcereceived"></span>00-00-0000</span>
-                </td>
-                <td class="form-title red-cell">document title</td>
+                </td> 
+                <td class="form-title expired">document title</td>
                 <td>Jane Smith</td>
             </tr>
         </tbody>
         <tbody>
             <tr>
-                <td class="expiration-date yellow-cell">
+                <td class="expiration-date expiring-soon">
                     <span class="expiration-date"><span class="icon-cirlcereceived"></span>00-00-0000</span>
                 </td>
-                <td class="form-title yellow-cell">document title</td>
+                <td class="form-title expiring-soon">document title</td>
                 <td>Jane Smith</td>
             </tr>
             <tr>
-                <td class="expiration-date yellow-cell">
+                <td class="expiration-date expiring-soon">
                     <span class="expiration-date"><span class="icon-cirlcereceived"></span>00-00-0000</span>
                 </td>
-                <td class="form-title yellow-cell">document title</td>
+                <td class="form-title expiring-soon">document title</td>
                 <td>Jane Smith</td>
             </tr>
         </tbody>
-    </table><!-- caregiver -->
+    </table><!-- overview caregiver -->
+    <a href="{{ url_for('caregiver_overview') }}" class="button" role="button">view # more</a>
+</div><!-- caregiver -->
+
+{% include 'footer.html' %}
+
 </section><!-- overview -->
 
 {% endblock %}
