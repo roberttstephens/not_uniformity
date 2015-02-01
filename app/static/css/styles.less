@@ -321,9 +321,6 @@ a:visited {color:inherit;}
         th.forms {.regularText;width:25%;text-align:center;}
         th.expired-forms, th.expiring-soon-forms {.smallText;text-transform:uppercase;width:12.5%;text-align:center;padding:0px 0px 2px 0px;}
         td {.mediumText;.capitalize;padding:2px 4px;}
-        td.service {border-color:@service-dark;color:@service-dark;
-            a:link, a:visited, a:hover, a:active {color:@service-dark;}
-        }
         td.expired-forms, td.expiring-soon-forms {border-color:@service-dark;}
         
          &.role-overview {
@@ -356,13 +353,13 @@ a:visited {color:inherit;}
         }
         &.expired {
             td {background:@red-light;color:@red-dark;border-color:inherit;
-                span {color:@red-dark;border-color:@red-dark}
+                span {border-color:@red-dark}
             }
             .button {background-color:@red-dark}
         }
         &.expiring-soon {
             td {background:@yellow-light;color:@yellow-dark;border-color:inherit;
-                span {color:@yellow-dark;border-color:@yellow-dark}
+                span {border-color:@yellow-dark}
             }
             .button {background-color:@yellow-dark}
         }
@@ -383,9 +380,7 @@ a:visited {color:inherit;}
         }
     }
     
-    .button {background-color:@dark;
-        *[class*="icon-"] {color:white;}
-    }
+    .button {background-color:@dark;}
     
     .box {background:@light;border-color:@dark;color:@dark;}
     
@@ -398,25 +393,6 @@ a:visited {color:inherit;}
         text-align: center;}
     .page-title p.title {.regularText;.uppercase;}
     
-    .form-header {
-        .box;
-        .radius;
-        padding: 8px;
-        border: 2px solid;
-        margin-bottom: 10px;
-        text-align: center;
-        vertical-align: middle;
-        label {
-            display: inline-block;
-            margin: 0px 5px 0px 0px;
-            padding-top:10px;
-            width: auto;
-            .mediumText;
-            vertical-align: middle;
-        }
-        input* {display: inline-block;}
-    }
-    
     input, select {border-color:@dark;color:@dark;}
     input::-webkit-input-placeholder, {color:@mid;}
     input:-moz-placeholder {color:@mid;}
@@ -428,9 +404,9 @@ a:visited {color:inherit;}
 }
 
 
-div.caregiver {.global(@dark:@caregiver-dark,@mid:@caregiver-med,@light:@caregiver-light);}
-div.client {.global(@dark:@client-dark,@mid:@client-med,@light:@client-light);}
-div.service {.global(@dark:@service-dark,@mid:@service-med,@light:@service-light);}
+.caregiver {.global(@dark:@caregiver-dark,@mid:@caregiver-med,@light:@caregiver-light);}
+.client {.global(@dark:@client-dark,@mid:@client-med,@light:@client-light);}
+.service {.global(@dark:@service-dark,@mid:@service-med,@light:@service-light);}
 
 
 
