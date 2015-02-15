@@ -85,25 +85,15 @@ class FormInstanceMixin(object):
 
     @hybrid_property
     def expired(self):
-        return self.expiration_date <= date.today()
+        return (self.expiration_date <= date.today()) & (self.received_date == None)
 
     @hybrid_property
     def expiring_soon(self):
-        if self.expired:
-            return False
-        if self.expiration_date <= date.today()+timedelta(days=EXPIRING_SOON_DAYS):
-            return True
-        return False
+        return (self.expiration_date <= date.today()+timedelta(days=EXPIRING_SOON_DAYS)) & (self.expiration_date >= date.today()) & (self.received_date == None)
 
     @hybrid_property
     def urgent(self):
-        if (not self.received) and (self.expired or self.expiring_soon):
-            return True
-        return False
-
-    @hybrid_property
-    def not_urgent(self):
-        return not self.urgent
+        return (self.expired) | (self.expiring_soon)
 
 
 class PhoneMixin(object):
@@ -188,69 +178,59 @@ class Caregiver(db.Model, BaseMixin, CreateUpdateMixin, PhoneMixin, AgencyMixin,
     forms = db.relationship('CaregiverForm', lazy='dynamic')
     services = db.relationship('Service', uselist=True, backref='caregiver')
 
-    def get_expired_forms(self):
-        return CaregiverForm.query.\
-            join(CaregiverFormInstance).\
-            join(Caregiver).\
-            filter(CaregiverFormInstance.received_date == None).\
-            filter(CaregiverFormInstance.expiration_date <= date.today()).\
-            filter(Caregiver.id == self.id).\
-            order_by(CaregiverFormInstance.expiration_date.desc()).\
-            all()
-
-
-    def get_expiring_soon_forms(self):
-        expiring_soon_forms = CaregiverForm.query.\
-            join(CaregiverFormInstance).\
-            join(Caregiver).\
-            filter(CaregiverFormInstance.received_date == None).\
-            filter(CaregiverFormInstance.expiration_date <= date.today()+timedelta(days=EXPIRING_SOON_DAYS)).\
-            filter(Caregiver.id == self.id).\
-            order_by(CaregiverFormInstance.expiration_date.desc()).\
-            all()
-        # Filter out expired forms.
-        return set(expiring_soon_forms) - set(self.get_expired_forms())
-
-    def get_urgent_forms(self):
-        return CaregiverForm.query.\
-            join(CaregiverFormInstance).\
-            join(Caregiver).\
-            filter(CaregiverFormInstance.received_date == None).\
-            filter(
-                (CaregiverFormInstance.expiration_date <= date.today()+timedelta(days=EXPIRING_SOON_DAYS))\
-                | (CaregiverFormInstance.expiration_date <= date.today())
-            ).\
-            filter(Caregiver.id == self.id).\
-            order_by(CaregiverFormInstance.expiration_date.desc()).\
-            all()
-
-    def get_form_instances(self):
+    def expired_form_instances(self):
         return CaregiverFormInstance.query.\
             join(CaregiverForm).\
             join(Caregiver).\
+            filter(CaregiverFormInstance.expired == True).\
             filter(Caregiver.id == self.id).\
-            order_by(CaregiverFormInstance.expiration_date.desc()).\
+            order_by(CaregiverFormInstance.expiration_date.asc()).\
             all()
 
-    def get_non_urgent_forms(self):
-        all_forms = CaregiverForm.query.\
+
+    def expiring_soon_form_instances(self):
+        return CaregiverFormInstance.query.\
+            join(CaregiverForm).\
             join(Caregiver).\
+            filter(CaregiverFormInstance.expiring_soon == True).\
             filter(Caregiver.id == self.id).\
+            order_by(CaregiverFormInstance.expiration_date.asc()).\
             all()
-        return set(all_forms) - set(self.get_expired_forms()) - set(self.get_expiring_soon_forms())
 
-    @hybrid_property
+    def urgent_form_instances(self):
+        return CaregiverFormInstance.query.\
+            join(CaregiverForm).\
+            join(Caregiver).\
+            filter(CaregiverFormInstance.urgent == True).\
+            filter(Caregiver.id == self.id).\
+            order_by(CaregiverFormInstance.expiration_date.asc()).\
+            all()
+
+    def non_urgent_form_instances(self):
+        return CaregiverFormInstance.query.\
+            join(CaregiverForm).\
+            join(Caregiver).\
+            filter(CaregiverFormInstance.urgent == False).\
+            filter(Caregiver.id == self.id).\
+            order_by(CaregiverFormInstance.expiration_date.asc()).\
+            all()
+
+    @property
     def num_expired(self):
-        return str(self.forms.join(CaregiverFormInstance).filter(CaregiverFormInstance.expiration_date <= date.today()).count())
+        return str(len(self.expired_form_instances()))
 
 
-    @hybrid_property
+    @property
     def num_expiring_soon(self):
-        instance = CaregiverFormInstance
-        count = self.forms.join(instance)\
-        .filter(instance.expiration_date >= date.today()-timedelta(days=EXPIRING_SOON_DAYS))\
-        .count()
-        return str(count)
+        return str(len(self.expiring_soon_form_instances()))
+
+    @property
+    def num_urgent(self):
+        return str(len(self.urgent_form_instances()))
+
+    @property
+    def num_non_urgent(self):
+        return str(len(self.non_urgent_form_instances()))
 
 class Client(db.Model, BaseMixin, CreateUpdateMixin, PhoneMixin, AgencyMixin, AddressMixin):
     name = db.Column(db.String(128))
@@ -259,30 +239,63 @@ class Client(db.Model, BaseMixin, CreateUpdateMixin, PhoneMixin, AgencyMixin, Ad
     forms = db.relationship('ClientForm')
     services = db.relationship('Service', uselist=True, backref='client')
 
-    def get_form_instances(self):
+    def expired_form_instances(self):
         return ClientFormInstance.query.\
             join(ClientForm).\
             join(Client).\
-            filter(Client.id == 1).\
-            order_by(ClientFormInstance.expiration_date.desc()).\
+            filter(ClientFormInstance.expired == True).\
+            filter(Client.id == self.id).\
+            order_by(ClientFormInstance.expiration_date.asc()).\
             all()
+
+
+    def expiring_soon_form_instances(self):
+        return ClientFormInstance.query.\
+            join(ClientForm).\
+            join(Client).\
+            filter(ClientFormInstance.expiring_soon == True).\
+            filter(Client.id == self.id).\
+            order_by(ClientFormInstance.expiration_date.asc()).\
+            all()
+
+    def urgent_form_instances(self):
+        return ClientFormInstance.query.\
+            join(ClientForm).\
+            join(Client).\
+            filter(ClientFormInstance.urgent == True).\
+            filter(Client.id == self.id).\
+            order_by(ClientFormInstance.expiration_date.asc()).\
+            all()
+
+    def non_urgent_form_instances(self):
+        return ClientFormInstance.query.\
+            join(ClientForm).\
+            join(Client).\
+            filter(ClientFormInstance.urgent == False).\
+            filter(Client.id == self.id).\
+            order_by(ClientFormInstance.expiration_date.asc()).\
+            all()
+
+    @property
+    def num_expired(self):
+        return str(len(self.expired_form_instances()))
+
+
+    @property
+    def num_expiring_soon(self):
+        return str(len(self.expiring_soon_form_instances()))
+
+    @property
+    def num_urgent(self):
+        return str(len(self.urgent_form_instances()))
+
+    @property
+    def num_non_urgent(self):
+        return str(len(self.non_urgent_form_instances()))
 
 class CaregiverForm(db.Model, BaseMixin, CreateUpdateMixin, FormMixin):
     caregiver_id = db.Column(db.Integer, db.ForeignKey('caregiver.id'), nullable=False)
     caregiver = db.relationship("Caregiver", uselist=False, backref='caregiver')
-
-    @hybrid_property
-    def expired(self):
-        #count = self.instances.filter_by(expired = True).count()
-        session = object_session(self)
-        count = session.query(CaregiverForm).\
-                join(CaregiverFormInstance).\
-                filter_by(expired = True)\
-                .filter(CaregiverForm.id == self.id)\
-                .count()
-        if count:
-            return True
-        return False
 
 class ClientForm(db.Model, BaseMixin, CreateUpdateMixin, FormMixin):
     client_id = db.Column(db.Integer, db.ForeignKey('client.id'), nullable=False)

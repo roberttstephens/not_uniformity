@@ -18,30 +18,17 @@ for agency in agencies:
     print('Agency: ' + agency.name)
     for caregiver in agency.caregivers:
         print('Caregiver: ' + caregiver.name)
-        print('Expired ' + caregiver.num_expired)
-        print('Expiring soon ' + caregiver.num_expiring_soon)
+        print('Non urgent ' + caregiver.num_non_urgent)
+        form_instances = caregiver.non_urgent_form_instances()
+        for instance in form_instances:
+            print('Received: ' + str(instance.received_date))
+            print('Expires: ' + str(instance.expiration_date))
+            print()
         #for service in caregiver.services:
         #    pprint(service.name)
         #    pprint(service.client.name)
         #    for service_form in service.forms:
         #        for service_form_instance in service_form.instances:
         #            print('Instance of ' + service_form.name + 'expires on ' + service_form_instance.expiration_date.strftime("%Y-%m-%d"))
-        for form in caregiver.forms:
-            print(form.expired)
-            continue
-            print('Caregiver form: ' + form.name)
-            for instance in form.instances:
-                if instance.received_date:
-                    continue
-                print('Instance of ' + form.name + ' expires on ' + instance.expiration_date.strftime("%Y-%m-%d"))
-                if instance.received_date:
-                    print('Instance of ' + form.name + ' received on ' + instance.received_date.strftime("%Y-%m-%d"))
-                else:
-                    print('Instance of ' + form.name + ' has not been received yet!')
-                if instance.urgent:
-                    print('it is urgent')
-                else:
-                    print('not urgent')
-                print('')
 
 exit()
