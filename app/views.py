@@ -18,9 +18,10 @@ from .models import (
     Address,
     Agency,
     Caregiver,
+    CaregiverForm as CaregiverFormModel,
     Client,
     Service,
-    ClientForm,
+    ClientForm as ClientFormModel,
     ClientFormInstance
 )
 from .forms import (
@@ -270,7 +271,7 @@ def caregiver_form_add(caregiver_id):
         first_or_404()
     form = RoleForm()
     if form.validate_on_submit():
-        caregiver_form = CaregiverForm()
+        caregiver_form = CaregiverFormModel()
         form.populate_obj(caregiver_form)
         caregiver_form.status = True
         caregiver_form.caregiver = caregiver
