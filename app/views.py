@@ -278,6 +278,8 @@ def caregiver_form_add(caregiver_id):
         db.session.add(caregiver_form)
         db.session.commit()
         flash('Successfully added ' + caregiver_form.name)
+        next_url = url_for('caregiver', caregiver_id=caregiver_id)
+        return redirect(next_url)
     return render_template(
         'caregiver_form_add.html',
         form=form
