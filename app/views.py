@@ -18,9 +18,10 @@ from .models import (
     Address,
     Agency,
     Caregiver,
+    CaregiverForm as CaregiverFormModel,
     Client,
     Service,
-    ClientForm,
+    ClientForm as ClientFormModel,
     ClientFormInstance
 )
 from .forms import (
@@ -30,6 +31,7 @@ from .forms import (
     LoginForm,
     PasswordForm,
     RegisterForm,
+    RoleForm,
     ServiceForm
 )
 from .util.security import ts
@@ -259,10 +261,29 @@ def service_edit(service_id):
         form=form
     )
 
-@app.route('/caregivers/<int:id>/forms/add')
+@app.route('/caregivers/<int:caregiver_id>/forms/add', methods=['GET', 'POST'])
 @login_required
-def caregiver_form_add(id):
-    return render_template('role_form_add_edit.html')
+def caregiver_form_add(caregiver_id):
+    caregiver = Caregiver.\
+        query.\
+        filter(Caregiver.id == caregiver_id).\
+        filter(Agency.id == g.user.id).\
+        first_or_404()
+    form = RoleForm()
+    if form.validate_on_submit():
+        caregiver_form = CaregiverFormModel()
+        form.populate_obj(caregiver_form)
+        caregiver_form.status = True
+        caregiver_form.caregiver = caregiver
+        db.session.add(caregiver_form)
+        db.session.commit()
+        flash('Successfully added ' + caregiver_form.name)
+        next_url = url_for('caregiver', caregiver_id=caregiver_id)
+        return redirect(next_url)
+    return render_template(
+        'caregiver_form_add.html',
+        form=form
+    )
 
 @app.route('/clients/<int:id>/forms/add')
 @login_required

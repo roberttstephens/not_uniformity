@@ -68,6 +68,15 @@ class CaregiverForm(Form):
         validators.Length(min=5, max=5)
     ])
 
+class RoleForm(Form):
+    """
+    A form used to add/edit caregiver and client forms.
+    """
+    name = StringField('Name', validators=[
+        validators.input_required(),
+        validators.Length(min=2, max=128)
+    ])
+
 class ClientForm(Form):
     """
     A form used to add/edit clients.

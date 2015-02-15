@@ -58,7 +58,7 @@ db.session.commit()
 fingerprint_card_instance = CaregiverFormInstance(
     caregiver_form = fingerprint_card,
     status = True,
-    expiration_date = date(2014, 6, 14),
+    expiration_date = date(2015, 2, 10),
 )
 db.session.add(fingerprint_card_instance)
 db.session.commit()
@@ -78,8 +78,8 @@ db.session.commit()
 first_aid_instance = CaregiverFormInstance(
     caregiver_form = first_aid,
     status = True,
-    expiration_date = date(2013, 3, 28),
-    received_date = date(2013, 5, 2),
+    expiration_date = date(2015, 2, 28),
+    received_date = date(2015, 1, 2),
 )
 db.session.add(first_aid_instance)
 db.session.commit()
@@ -108,7 +108,7 @@ db.session.commit()
 some_caregiver_form_instance = CaregiverFormInstance(
     caregiver_form = some_caregiver_form,
     status = True,
-    expiration_date = date(2014, 1, 2),
+    expiration_date = date(2016, 1, 2),
 )
 db.session.add(some_caregiver_form_instance)
 db.session.commit()

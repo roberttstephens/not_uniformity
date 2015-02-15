@@ -76,7 +76,7 @@
 </div><!-- client style -->
 <br/><br/>
 <div class="caregiver">
-    <a href="#" class="button" role="button">add new caregiver form</a>
+    <a href="{{ url_for('caregiver_form_add', caregiver_id=caregiver.id) }}" class="button" role="button">add new caregiver form</a>
     <br/><br/>
     <table class="forms">
         <thead>
