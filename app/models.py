@@ -7,7 +7,8 @@ from werkzeug.security import generate_password_hash, check_password_hash
 
 from sqlalchemy import event
 from sqlalchemy.ext.declarative import declared_attr
-from sqlalchemy.ext.hybrid import hybrid_property
+from sqlalchemy.ext.hybrid import hybrid_property, hybrid_method
+from sqlalchemy.orm.session import object_session
 
 #TODO increase the length of names.
 
@@ -63,24 +64,30 @@ class CreateUpdateMixin(object):
 class FormMixin(object):
     name = db.Column(db.String(128))
 
+    @property
+    def instance_class(self):
+        '''
+        Which form instance class to use.
+        '''
+        return self.__class__.__name__ + 'Instance'
+
+
 class FormInstanceMixin(object):
     expiration_date = db.Column(db.Date, nullable=False)
     received_date = db.Column(db.Date, nullable=True)
     status = db.Column(db.Boolean, nullable=False)
 
-    @property
+    @hybrid_property
     def received(self):
         if self.received_date:
             return True
         return False
 
-    @property
+    @hybrid_property
     def expired(self):
-        if self.expiration_date <= date.today():
-            return True
-        return False
+        return self.expiration_date <= date.today()
 
-    @property
+    @hybrid_property
     def expiring_soon(self):
         if self.expired:
             return False
@@ -88,11 +95,15 @@ class FormInstanceMixin(object):
             return True
         return False
 
-    @property
+    @hybrid_property
     def urgent(self):
         if (not self.received) and (self.expired or self.expiring_soon):
             return True
         return False
+
+    @hybrid_property
+    def not_urgent(self):
+        return not self.urgent
 
 
 class PhoneMixin(object):
@@ -259,6 +270,19 @@ class Client(db.Model, BaseMixin, CreateUpdateMixin, PhoneMixin, AgencyMixin, Ad
 class CaregiverForm(db.Model, BaseMixin, CreateUpdateMixin, FormMixin):
     caregiver_id = db.Column(db.Integer, db.ForeignKey('caregiver.id'), nullable=False)
     caregiver = db.relationship("Caregiver", uselist=False, backref='caregiver')
+
+    @hybrid_property
+    def expired(self):
+        #count = self.instances.filter_by(expired = True).count()
+        session = object_session(self)
+        count = session.query(CaregiverForm).\
+                join(CaregiverFormInstance).\
+                filter_by(expired = True)\
+                .filter(CaregiverForm.id == self.id)\
+                .count()
+        if count:
+            return True
+        return False
 
 class ClientForm(db.Model, BaseMixin, CreateUpdateMixin, FormMixin):
     client_id = db.Column(db.Integer, db.ForeignKey('client.id'), nullable=False)
