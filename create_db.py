@@ -1,17 +1,19 @@
 #!/usr/bin/env python
+"""
+Create the database and insert some preliminary data.
+"""
 import os
-import readline
-from datetime import timedelta, date
+from datetime import date
 import time
 
 from flask import *
 from app import *
+from app import db
+from app.models import *
 
 os.environ['PYTHONINSPECT'] = 'True'
 
 
-from app import db
-from app.models import *
 db.drop_all()
 db.create_all()
 
