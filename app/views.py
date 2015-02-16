@@ -343,7 +343,10 @@ def client_overview():
 @app.route('/caregivers')
 @login_required
 def caregiver_index():
-    caregivers = Caregiver.query.all()
+    caregivers = Caregiver.query.\
+        join(Agency).\
+        filter(Agency.id == g.user.id).\
+        all()
     return render_template(
         'role_index.html',
         role='caregiver',
@@ -364,7 +367,10 @@ def caregiver(caregiver_id):
 @app.route('/clients')
 @login_required
 def client_index():
-    clients = Client.query.all()
+    clients = Client.query.\
+        join(Agency).\
+        filter(Agency.id == g.user.id).\
+        all()
     return render_template(
         'role_index.html',
         role='client',
