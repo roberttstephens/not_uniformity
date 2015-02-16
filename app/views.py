@@ -102,7 +102,12 @@ def reset_with_token(token):
 @app.route('/overview', alias=True)
 @login_required
 def index():
-    return render_template('index.html')
+    agency = g.user
+    return render_template(
+        'index.html',
+        caregiver_forms=agency.urgent_caregiver_form_instances(),
+        client_forms=agency.urgent_client_form_instances()
+    )
 
 @app.route('/services/forms')
 @login_required
@@ -112,7 +117,12 @@ def service_overview():
 @app.route('/caregivers/forms')
 @login_required
 def caregiver_overview():
-    return render_template('caregiver_overview.html')
+    agency = g.user
+    return render_template(
+        'caregiver_overview.html',
+        urgent_forms=agency.urgent_caregiver_form_instances(),
+        non_urgent_forms=agency.non_urgent_caregiver_form_instances()
+    )
 
 @app.route('/caregivers/add', methods=['GET', 'POST'])
 @login_required
@@ -323,7 +333,12 @@ def client_form_edit(client_id, form_id):
 @app.route('/clients/forms')
 @login_required
 def client_overview():
-    return render_template('client_overview.html')
+    agency = g.user
+    return render_template(
+        'client_overview.html',
+        urgent_forms=agency.urgent_client_form_instances(),
+        non_urgent_forms=agency.non_urgent_client_form_instances()
+    )
 
 @app.route('/caregivers')
 @login_required
@@ -342,8 +357,7 @@ def caregiver(caregiver_id):
     return render_template(
         'caregiver.html',
         caregiver=caregiver,
-        expired=caregiver.expired_form_instances(),
-        expiring_soon=caregiver.expiring_soon_form_instances(),
+        urgent=caregiver.urgent_form_instances(),
         non_urgent=caregiver.non_urgent_form_instances()
     )
 
@@ -364,8 +378,7 @@ def client(client_id):
     return render_template(
         'client.html',
         client=client,
-        expired=client.expired_form_instances(),
-        expiring_soon=client.expiring_soon_form_instances(),
+        urgent=client.urgent_form_instances(),
         non_urgent=client.non_urgent_form_instances()
     )
 

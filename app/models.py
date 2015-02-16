@@ -95,6 +95,13 @@ class FormInstanceMixin(object):
     def urgent(self):
         return (self.expired) | (self.expiring_soon)
 
+    @property
+    def expiration_status(self):
+        if self.expired:
+            return 'expired'
+        elif self.expiring_soon:
+            return 'expiring_soon'
+        return ''
 
 class PhoneMixin(object):
     phone_number = db.Column(db.String(15), nullable=False)
@@ -148,6 +155,7 @@ class Agency(db.Model, BaseMixin, CreateUpdateMixin, PhoneMixin, AddressMixin):
     contact_title = db.Column(db.String(128), nullable=False)
     status = db.Column(db.Boolean, nullable=False)
     caregivers = db.relationship('Caregiver')
+    clients = db.relationship('Client')
 
     def check_password(self, password):
         return check_password_hash(self.password, password)
@@ -166,6 +174,112 @@ class Agency(db.Model, BaseMixin, CreateUpdateMixin, PhoneMixin, AddressMixin):
 
     def set_password(self, password):
         self.password = generate_password_hash(password, 'pbkdf2:sha512:1000')
+
+    def expired_caregiver_form_instances(self):
+        return CaregiverFormInstance.query.\
+            join(CaregiverForm).\
+            join(Caregiver).\
+            filter(CaregiverFormInstance.expired == True).\
+            filter(Caregiver.agency_id == self.id).\
+            order_by(CaregiverFormInstance.expiration_date.asc()).\
+            all()
+
+    def expiring_soon_caregiver_form_instances(self):
+        return CaregiverFormInstance.query.\
+            join(CaregiverForm).\
+            join(Caregiver).\
+            filter(CaregiverFormInstance.expiring_soon == True).\
+            filter(Caregiver.agency_id == self.id).\
+            order_by(CaregiverFormInstance.expiration_date.asc()).\
+            all()
+
+    def urgent_caregiver_form_instances(self):
+        return CaregiverFormInstance.query.\
+            join(CaregiverForm).\
+            join(Caregiver).\
+            filter(CaregiverFormInstance.urgent == True).\
+            filter(Caregiver.agency_id == self.id).\
+            order_by(CaregiverFormInstance.expiration_date.asc()).\
+            all()
+
+    def non_urgent_caregiver_form_instances(self):
+        return CaregiverFormInstance.query.\
+            join(CaregiverForm).\
+            join(Caregiver).\
+            filter(CaregiverFormInstance.urgent == False).\
+            filter(Caregiver.agency_id == self.id).\
+            order_by(CaregiverFormInstance.expiration_date.desc()).\
+            all()
+
+    @property
+    def num_caregiver_expired(self):
+        return str(len(self.expired_caregiver_form_instances()))
+
+
+    @property
+    def num_caregiver_expiring_soon(self):
+        return str(len(self.expiring_soon_caregiver_form_instances()))
+
+    @property
+    def num_caregiver_urgent(self):
+        return str(len(self.urgent_caregiver_form_instances()))
+
+    @property
+    def num_caregiver_non_urgent(self):
+        return str(len(self.non_urgent_caregiver_form_instances()))
+
+    def expired_client_form_instances(self):
+        return ClientFormInstance.query.\
+            join(ClientForm).\
+            join(Client).\
+            filter(ClientFormInstance.expired == True).\
+            filter(Client.agency_id == self.id).\
+            order_by(ClientFormInstance.expiration_date.asc()).\
+            all()
+
+    def expiring_soon_client_form_instances(self):
+        return ClientFormInstance.query.\
+            join(ClientForm).\
+            join(Client).\
+            filter(ClientFormInstance.expiring_soon == True).\
+            filter(Client.agency_id == self.id).\
+            order_by(ClientFormInstance.expiration_date.asc()).\
+            all()
+
+    def urgent_client_form_instances(self):
+        return ClientFormInstance.query.\
+            join(ClientForm).\
+            join(Client).\
+            filter(ClientFormInstance.urgent == True).\
+            filter(Client.agency_id == self.id).\
+            order_by(ClientFormInstance.expiration_date.asc()).\
+            all()
+
+    def non_urgent_client_form_instances(self):
+        return ClientFormInstance.query.\
+            join(ClientForm).\
+            join(Client).\
+            filter(ClientFormInstance.urgent == False).\
+            filter(Client.agency_id == self.id).\
+            order_by(ClientFormInstance.expiration_date.desc()).\
+            all()
+
+    @property
+    def num_client_expired(self):
+        return str(len(self.expired_client_form_instances()))
+
+
+    @property
+    def num_client_expiring_soon(self):
+        return str(len(self.expiring_soon_client_form_instances()))
+
+    @property
+    def num_client_urgent(self):
+        return str(len(self.urgent_client_form_instances()))
+
+    @property
+    def num_client_non_urgent(self):
+        return str(len(self.non_urgent_client_form_instances()))
 
 class Caregiver(db.Model, BaseMixin, CreateUpdateMixin, PhoneMixin, AgencyMixin, AddressMixin):
     __table_args__ = (

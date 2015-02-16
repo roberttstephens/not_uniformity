@@ -1,0 +1,14 @@
+{% macro form_instance_tr(instance, show_caregiver=False, show_client=False) -%}
+    <tr>
+        <td class="expiration-date {{ instance.expiration_status|replace('_', '-') }}">
+            <span class="expiration-date"><span class="icon-cirlcereceived"></span>{{ instance.expiration_date }}</span>
+        </td>
+        <td class="form-title {{ instance.expiration_status|replace('_', '-') }}">{{ instance.form.name }}</td>
+        {% if show_caregiver %}
+            <td>{{ instance.form.caregiver.name }}</td>
+        {% endif %}
+        {% if show_client %}
+            <td>{{ instance.form.client.name }}</td>
+        {% endif %}
+    </ tr>
+{%- endmacro %}

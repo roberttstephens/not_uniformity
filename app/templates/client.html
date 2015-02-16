@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% from "macros.html" import form_instance_tr with context %}
 {% block title %}{{ client.name }}{% endblock %}
 {% block content %}
 <!-- client.html -->
@@ -96,36 +97,16 @@
             </tr>
         </thead>
         <tbody>
-           {% if expired %}
-                {% for instance in expired %}
-                    <tr>
-                        <td class="expiration-date expired">
-                            <span class="expiration-date"><span class="icon-cirlcereceived"></span>{{ instance.expiration_date }}</span>
-                        </td>
-                        <td class="form-title expired">{{ instance.form.name }}</td>
-                    </tr>
-                {% endfor %}
-            {% endif %}
-            {% if expiring_soon %}
-                {% for instance in expiring_soon %}
-                    <tr>
-                        <td class="expiration-date expiring-soon">
-                            <span class="expiration-date"><span class="icon-cirlcereceived"></span>{{ instance.expiration_date }}</span>
-                        </td>
-                        <td class="form-title expiring-soon">{{ instance.form.name }}</td>
-                    </tr>
+           {% if urgent %}
+                {% for instance in urgent %}
+                    {{ form_instance_tr(instance) }}
                 {% endfor %}
             {% endif %}
         </tbody>
         <tbody>
             {% if non_urgent %}
                 {% for instance in non_urgent %}
-                    <tr>
-                        <td class="expiration-date">
-                            <span class="expiration-date"><span class="icon-cirlcereceived"></span>{{ instance.expiration_date }}</span>
-                        </td>
-                        <td class="form-title">{{ instance.form.name }}</td>
-                    </tr>
+                    {{ form_instance_tr(instance) }}
                 {% endfor %}
             {% endif %}
         </tbody>

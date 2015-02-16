@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% from "macros.html" import form_instance_tr with context %}
 {% block title %}Index{% endblock %}
 {% block content %}
 <!-- index.html -->
@@ -61,36 +62,11 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td class="expiration-date expired">
-                    <span class="expiration-date"><span class="icon-cirlcereceived"></span>00-00-0000</span>
-                </td>
-                <td class="form-title expired">document title</td>
-                <td>Jane Smith</td>
-            </tr>
-            <tr>
-                <td class="expiration-date expired">
-                    <span class="expiration-date"><span class="icon-cirlcereceived"></span>00-00-0000</span>
-                </td> 
-                <td class="form-title expired">document title</td>
-                <td>Jane Smith</td>
-            </tr>
-        </tbody>
-        <tbody>
-            <tr>
-                <td class="expiration-date expiring-soon">
-                    <span class="expiration-date"><span class="icon-cirlcereceived"></span>00-00-0000</span>
-                </td>
-                <td class="form-title expiring-soon">document title</td>
-                <td>Jane Smith</td>
-            </tr>
-            <tr>
-                <td class="expiration-date expiring-soon">
-                    <span class="expiration-date"><span class="icon-cirlcereceived"></span>00-00-0000</span>
-                </td>
-                <td class="form-title expiring-soon">document title</td>
-                <td>Jane Smith</td>
-            </tr>
+           {% if caregiver_forms %}
+                {% for instance in caregiver_forms %}
+                    {{ form_instance_tr(instance, show_caregiver=True) }}
+                {% endfor %}
+            {% endif %}
         </tbody>
     </table><!-- overview caregiver -->
     <a href="{{ url_for('caregiver_overview') }}" class="button" role="button">view # more</a>
@@ -108,36 +84,11 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td class="expiration-date expired">
-                    <span class="expiration-date"><span class="icon-cirlcereceived"></span>00-00-0000</span>
-                </td>
-                <td class="form-title expired">document title</td>
-                <td>Jane Smith</td>
-            </tr>
-            <tr>
-                <td class="expiration-date expired">
-                    <span class="expiration-date"><span class="icon-cirlcereceived"></span>00-00-0000</span>
-                </td>
-                <td class="form-title expired">document title</td>
-                <td>Jane Smith</td>
-            </tr>
-        </tbody>
-        <tbody>
-            <tr>
-                <td class="expiration-date expiring-soon">
-                    <span class="expiration-date"><span class="icon-cirlcereceived"></span>00-00-0000</span>
-                </td>
-                <td class="form-title expiring-soon">document title</td>
-                <td>Jane Smith</td>
-            </tr>
-            <tr>
-                <td class="expiration-date expiring-soon">
-                    <span class="expiration-date"><span class="icon-cirlcereceived"></span>00-00-0000</span>
-                </td>
-                <td class="form-title expiring-soon">document title</td>
-                <td>Jane Smith</td>
-            </tr>
+           {% if client_forms %}
+                {% for instance in client_forms %}
+                    {{ form_instance_tr(instance, show_client=True) }}
+                {% endfor %}
+            {% endif %}
         </tbody>
     </table>
     <a href="{{ url_for('client_overview') }}" class="button" role="button">view # more</a>
