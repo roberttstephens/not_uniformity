@@ -85,11 +85,9 @@
         </tbody>
     </table><!-- caregiver list -->
 </div><!-- caregiver style -->
-
 <br/><br/>
-  
 <div class="client">
-    <a href="#" class="button client-dark" role="button">add new client form</a>
+    <a href="{{ url_for('client_form_add', client_id=client.id) }}" class="button client-dark" role="button">add new client form</a>
     <br/><br/>
     <table class="forms">
         <thead>
@@ -98,35 +96,35 @@
             </tr>
         </thead>
         <tbody>
-           {% if expired_forms %}
-                {% for form in expired_forms %}
+           {% if expired %}
+                {% for instance in expired %}
                     <tr>
                         <td class="expiration-date expired">
-                            <span class="expiration-date"><span class="icon-cirlcereceived"></span>07-14-1987</span>
+                            <span class="expiration-date"><span class="icon-cirlcereceived"></span>{{ instance.expiration_date }}</span>
                         </td>
-                        <td class="form-title expired">{{ form.name }}</td>
+                        <td class="form-title expired">{{ instance.form.name }}</td>
                     </tr>
                 {% endfor %}
             {% endif %}
-            {% if expiring_soon_forms %}
-                {% for form in expiring_soon_forms %}
+            {% if expiring_soon %}
+                {% for instance in expiring_soon %}
                     <tr>
                         <td class="expiration-date expiring-soon">
-                            <span class="expiration-date"><span class="icon-cirlcereceived"></span>07-14-2015</span>
+                            <span class="expiration-date"><span class="icon-cirlcereceived"></span>{{ instance.expiration_date }}</span>
                         </td>
-                        <td class="form-title expiring-soon">{{ form.name }}</td>
+                        <td class="form-title expiring-soon">{{ instance.form.name }}</td>
                     </tr>
                 {% endfor %}
             {% endif %}
         </tbody>
         <tbody>
-            {% if non_urgent_forms %}
-                {% for form in non_urgent_forms %}
+            {% if non_urgent %}
+                {% for instance in non_urgent %}
                     <tr>
                         <td class="expiration-date">
-                            <span class="expiration-date"><span class="icon-cirlcereceived"></span>07-14-2087</span>
+                            <span class="expiration-date"><span class="icon-cirlcereceived"></span>{{ instance.expiration_date }}</span>
                         </td>
-                        <td class="form-title">{{ form.name }}</td>
+                        <td class="form-title">{{ instance.form.name }}</td>
                     </tr>
                 {% endfor %}
             {% endif %}

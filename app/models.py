@@ -212,7 +212,7 @@ class Caregiver(db.Model, BaseMixin, CreateUpdateMixin, PhoneMixin, AgencyMixin,
             join(Caregiver).\
             filter(CaregiverFormInstance.urgent == False).\
             filter(Caregiver.id == self.id).\
-            order_by(CaregiverFormInstance.expiration_date.asc()).\
+            order_by(CaregiverFormInstance.expiration_date.desc()).\
             all()
 
     @property
@@ -273,7 +273,7 @@ class Client(db.Model, BaseMixin, CreateUpdateMixin, PhoneMixin, AgencyMixin, Ad
             join(Client).\
             filter(ClientFormInstance.urgent == False).\
             filter(Client.id == self.id).\
-            order_by(ClientFormInstance.expiration_date.asc()).\
+            order_by(ClientFormInstance.expiration_date.desc()).\
             all()
 
     @property
@@ -307,7 +307,7 @@ class ServiceForm(db.Model, BaseMixin, CreateUpdateMixin, FormMixin):
 
 class CaregiverFormInstance(db.Model, BaseMixin, CreateUpdateMixin, FormInstanceMixin):
     caregiver_form_id = db.Column(db.Integer, db.ForeignKey('caregiver_form.id'), nullable=False)
-    caregiver_form = db.relationship(
+    form = db.relationship(
         "CaregiverForm",
         uselist=False,
         backref='instances'
@@ -316,7 +316,7 @@ class CaregiverFormInstance(db.Model, BaseMixin, CreateUpdateMixin, FormInstance
 
 class ClientFormInstance(db.Model, BaseMixin, CreateUpdateMixin, FormInstanceMixin):
     client_form_id = db.Column(db.Integer, db.ForeignKey('client_form.id'), nullable=False)
-    client_form = db.relationship(
+    form = db.relationship(
         "ClientForm",
         uselist=False,
         backref='instances'
@@ -324,7 +324,7 @@ class ClientFormInstance(db.Model, BaseMixin, CreateUpdateMixin, FormInstanceMix
 
 class ServiceFormInstance(db.Model, BaseMixin, CreateUpdateMixin, FormInstanceMixin):
     service_form_id = db.Column(db.Integer, db.ForeignKey('service_form.id'), nullable=False)
-    service_form = db.relationship(
+    form = db.relationship(
         "ServiceForm",
         uselist=False,
         backref='instances'

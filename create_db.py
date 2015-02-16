@@ -2,6 +2,7 @@
 import os
 import readline
 from datetime import timedelta, date
+import time
 
 from flask import *
 from app import *
@@ -56,16 +57,16 @@ fingerprint_card = CaregiverForm(
 db.session.add(fingerprint_card)
 db.session.commit()
 fingerprint_card_instance = CaregiverFormInstance(
-    caregiver_form = fingerprint_card,
+    form = fingerprint_card,
     status = True,
-    expiration_date = date(2015, 2, 10),
+    expiration_date = date.fromtimestamp(time.time() - (60*60*24*10)),
 )
 db.session.add(fingerprint_card_instance)
 db.session.commit()
 fingerprint_card_instance = CaregiverFormInstance(
-    caregiver_form = fingerprint_card,
+    form = fingerprint_card,
     status = True,
-    expiration_date = date(2015, 2, 22),
+    expiration_date = date.fromtimestamp(time.time() + (60*60*24*10)),
 )
 db.session.add(fingerprint_card_instance)
 db.session.commit()
@@ -76,7 +77,7 @@ first_aid = CaregiverForm(
 db.session.add(first_aid)
 db.session.commit()
 first_aid_instance = CaregiverFormInstance(
-    caregiver_form = first_aid,
+    form = first_aid,
     status = True,
     expiration_date = date(2015, 2, 28),
     received_date = date(2015, 1, 2),
@@ -84,7 +85,7 @@ first_aid_instance = CaregiverFormInstance(
 db.session.add(first_aid_instance)
 db.session.commit()
 first_aid_instance = CaregiverFormInstance(
-    caregiver_form = first_aid,
+    form = first_aid,
     status = True,
     expiration_date = date(2012, 5, 28),
     received_date = date(2012, 3, 2),
@@ -92,7 +93,7 @@ first_aid_instance = CaregiverFormInstance(
 db.session.add(first_aid_instance)
 db.session.commit()
 first_aid_instance = CaregiverFormInstance(
-    caregiver_form = first_aid,
+    form = first_aid,
     status = True,
     expiration_date = date(2014, 1, 2),
 )
@@ -106,23 +107,23 @@ db.session.add(some_caregiver_form)
 db.session.commit()
 
 some_caregiver_form_instance = CaregiverFormInstance(
-    caregiver_form = some_caregiver_form,
-    status = True,
-    expiration_date = date(2016, 1, 2),
+    form=some_caregiver_form,
+    status=True,
+    expiration_date=date(2016, 1, 2),
 )
 db.session.add(some_caregiver_form_instance)
 db.session.commit()
 
 
 non_urgent = CaregiverForm(
-    name = 'Non urgent',
-    caregiver = chase,
+    name='Non urgent',
+    caregiver=chase,
 )
 db.session.add(non_urgent)
 db.session.commit()
 
 non_urgent_form_instance = CaregiverFormInstance(
-    caregiver_form = non_urgent,
+    form = non_urgent,
     status = True,
     expiration_date = date(2014, 1, 2),
     received_date = date(2014, 1, 1),
@@ -147,6 +148,49 @@ emmanuel = Client(
 )
 db.session.add(emmanuel)
 db.session.commit()
+
+expiring_soon = ClientForm(
+    name='Expiring soon',
+    client=emmanuel,
+)
+db.session.add(expiring_soon)
+db.session.commit()
+
+expiring_soon_instance = ClientFormInstance(
+    form = expiring_soon,
+    status = True,
+    expiration_date = date.fromtimestamp(time.time() + (60*60*24*10)),
+)
+
+expired = ClientForm(
+    name='Expired',
+    client=emmanuel,
+)
+db.session.add(expired)
+db.session.commit()
+
+expired_form_instance = ClientFormInstance(
+    form = expired,
+    status = True,
+    expiration_date = date(2015, 1, 2),
+)
+
+non_urgent = ClientForm(
+    name='Non urgent',
+    client=emmanuel,
+)
+db.session.add(non_urgent)
+db.session.commit()
+
+non_urgent_form_instance = ClientFormInstance(
+    form = non_urgent,
+    status = True,
+    expiration_date = date(2014, 1, 2),
+    received_date = date(2014, 1, 1),
+)
+
+db.session.add(non_urgent_form_instance)
+db.session.commit()
 supported_living_coach = Service(
     name = 'supported living coach',
     status = True,
@@ -163,14 +207,14 @@ some_service_form = ServiceForm(
 db.session.add(some_service_form)
 db.session.commit()
 some_service_form_instance = ServiceFormInstance(
-    service_form = some_service_form,
+    form = some_service_form,
     status = True,
     expiration_date = date(2014, 1, 2),
 )
 db.session.add(some_service_form_instance)
 db.session.commit()
 some_other_service_form_instance = ServiceFormInstance(
-    service_form = some_service_form,
+    form = some_service_form,
     status = True,
     expiration_date = date(2014, 6, 1),
 )
