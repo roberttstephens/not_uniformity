@@ -20,8 +20,8 @@ from .models import (
     Caregiver,
     CaregiverForm as CaregiverFormModel,
     Client,
-    Service,
     ClientForm as ClientFormModel,
+    Service,
     ClientFormInstance
 )
 from .forms import (
@@ -285,10 +285,29 @@ def caregiver_form_add(caregiver_id):
         form=form
     )
 
-@app.route('/clients/<int:id>/forms/add')
+@app.route('/clients/<int:client_id>/forms/add', methods=['GET', 'POST'])
 @login_required
-def client_form_add(id):
-    return render_template('role_form_add_edit.html')
+def client_form_add(client_id):
+    client = Client.\
+        query.\
+        filter(Client.id == client_id).\
+        filter(Agency.id == g.user.id).\
+        first_or_404()
+    form = RoleForm()
+    if form.validate_on_submit():
+        client_form = ClientFormModel()
+        form.populate_obj(client_form)
+        client_form.status = True
+        client_form.client = client
+        db.session.add(client_form)
+        db.session.commit()
+        flash('Successfully added ' + client_form.name)
+        next_url = url_for('client', client_id=client_id)
+        return redirect(next_url)
+    return render_template(
+        'client_form_add.html',
+        form=form
+    )
 
 @app.route('/caregivers/<int:caregiver_id>/forms/<int:form_id>/edit')
 @login_required
@@ -320,15 +339,12 @@ def caregiver_index():
 @login_required
 def caregiver(caregiver_id):
     caregiver = Caregiver.query.filter_by(id=caregiver_id).first_or_404()
-    expired_forms = caregiver.get_expired_forms()
-    expiring_soon_forms = caregiver.get_expiring_soon_forms()
-    non_urgent_forms = caregiver.get_non_urgent_forms()
     return render_template(
         'caregiver.html',
         caregiver=caregiver,
-        expired_forms=expired_forms,
-        expiring_soon_forms=expiring_soon_forms,
-        non_urgent_forms=non_urgent_forms
+        expired=caregiver.expired_form_instances(),
+        expiring_soon=caregiver.expiring_soon_form_instances(),
+        non_urgent=caregiver.non_urgent_form_instances()
     )
 
 @app.route('/clients')
@@ -345,11 +361,12 @@ def client_index():
 @login_required
 def client(client_id):
     client = Client.query.filter_by(id=client_id).first_or_404()
-    form_instances = client.get_form_instances()
     return render_template(
         'client.html',
         client=client,
-        form_instances=form_instances
+        expired=client.expired_form_instances(),
+        expiring_soon=client.expiring_soon_form_instances(),
+        non_urgent=client.non_urgent_form_instances()
     )
 
 @app.route('/login', methods=['GET', 'POST'])
