@@ -291,8 +291,9 @@ def caregiver_form_add(caregiver_id):
         next_url = url_for('caregiver', caregiver_id=caregiver_id)
         return redirect(next_url)
     return render_template(
-        'caregiver_form_add.html',
-        form=form
+        'role_form_add_edit.html',
+        form=form,
+        role='caregiver'
     )
 
 @app.route('/clients/<int:client_id>/forms/add', methods=['GET', 'POST'])
