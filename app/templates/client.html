@@ -17,7 +17,7 @@
                     {{ client.address.zip_code }}
                 </p>
                 <p class="phone">
-                    <span class="phone-number">{{ client.phone_number }}</span>
+                    <span class="phone-number">{{ client.formatted_phone_number }}</span>
                     <span class="phone-extension">{{ client.phone_extension }}</span>
                 </p>
                 {% if client.birth_date %}
