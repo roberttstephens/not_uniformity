@@ -3,10 +3,12 @@
 {% block content %}
 <!-- role_form.html -->
 <section class="container">
-    <div class="box page-title {{ role }}-light">
-        <p class="title">{{ role }}</p>
-        <h2>jennifer lawrence</h2>
-    </div><!-- {{ role }} -->
+    <div class="{{ role }}">
+        <div class="page-title">
+            <p class="title">{{ role }}</p>
+            <h2>jennifer lawrence</h2>
+        </div><!-- {{ role }} -->
+    </div>
 </section><!-- role header -->
 <section class="container">
 {% include 'action_nav.html' %}

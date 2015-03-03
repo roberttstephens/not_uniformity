@@ -77,6 +77,12 @@ class RoleForm(Form):
         validators.Length(min=2, max=128)
     ])
 
+class CaregiverFormInstanceForm(Form):
+    expiration_date = DateField('Expiration date', format='%Y-%m-%d')
+    received_date = DateField('Received date', format='%Y-%m-%d', validators=[
+        validators.Optional()
+    ])
+
 class ClientForm(Form):
     """
     A form used to add/edit clients.
