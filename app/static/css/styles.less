@@ -167,8 +167,8 @@ TEXT STYLES
 --*/
 @tinyText:1rem;@tinyTextLH:1rem;
 @smallText:1.2rem;@smallTextLH:1rem;
-@regularText:1.5rem;@regularTextLH:1rem;
-@mediumText:2rem;@mediumTextLH:1rem;
+@regularText:1.5rem;@regularTextLH:1.5rem;
+@mediumText:2rem;@mediumTextLH:2.1rem;
 @largeText:2.5rem;@largeTextLH:1.4rem;
 @hugeText:3rem;@hugeTextLH:1rem;
 .tinyText {font-size:@tinyText;line-height:@tinyTextLH;}
@@ -318,7 +318,7 @@ a:visited {color:inherit;}
 
 
 .global (@dark,@mid,@light) {
-    caption {background-color:@dark;color:white;}
+    caption {background-color:@dark;color:white;margin-bottom:5px;padding:10px;}
     .serviceBox {background-color:@light;border-color:@dark;color:@dark;}
     h1 {color:@dark;}
     table {
@@ -356,12 +356,12 @@ a:visited {color:inherit;}
     }/*table*/
     
     table.overview {border-color:@dark;color:@dark;
-        th {background-color:@dark;border-color:@dark;color:white;.regularText;.capitalize;padding:2px 4px;}
+        th {background-color:@dark;border-color:@dark;color:white;.regularText;.capitalize;padding:4px;}
         th.role {width:40%;}
         th.caregiver,th.service,th.client {width:20%;}
         th.caregiver {background-color:@caregiver-dark;border-color:@caregiver-dark;}
         th.client {background-color:@client-dark;border-color:@client-dark;}
-        td {.regularText;.capitalize;padding:4px;text-align:left;line-height:1.5rem;}
+        td {.regularText;.capitalize;padding:4px;text-align:left;}
         span.expiration-date {margin:1px 0px;}
         td.expiration-date {width:98px;padding:1px 0px 1px 4px;
             span.expiration-date [class*="icon-"] {margin:1px 0px 0px 0px;}
@@ -384,13 +384,14 @@ a:visited {color:inherit;}
             th.role {width:40%;}
             th.service, th.forms, th.expired-forms, th.expiring-soon-forms {background-color:@dark;border-color:@dark;}
             td.expired-forms, td.expiring-soon-forms {border-color:@dark;}
+            td {padding:5px;}
         }
        
     }/*table.roleList*/
     
     table.forms {border-color:@dark;color:@dark;
         th {background-color:@dark;border-color:@dark;color:white;.mediumText;.capitalize;padding:12px 5px;}
-        tr td.form-title {text-align: left;padding:2px 4px 4px 4px;}
+        tr td.form-title {text-align: left;padding:10px 5px;}
         td {.mediumText;.capitalize;text-align:left;.non-urgent;}
         span.expiration-date {margin:1px 0px;}
         td.expiration-date {width:120px;padding:1px 0px 2px 4px;
@@ -441,14 +442,16 @@ a:visited {color:inherit;}
         *[class*="icon-"] {color:white;}
     }
     
+    & > .button {margin-bottom:5px;}
+    
     .box {background:@light;border-color:@dark;color:@dark;}
     
     .profile-info {
         #grid > .cell;
         #grid > .span(6);
-        background:yellow;
-        
+        color:@dark;
         h1 {display:block;margin-bottom:1rem;}
+        p {.mediumText;margin-bottom: 1.5rem;line-height: 150%;}
         
         .summary {
             #grid;
@@ -555,7 +558,6 @@ nav {.capitalize;}
 TABLES
 --*/
 table {width:100%;border-collapse:collapse;text-align:left;}
-table caption {margin-bottom:5px;padding:7px 10px;}
     span.caption {padding:7px 10px;display:block;}
     caption h3 {margin:0;}
 table tbody::after {content: '';display: block;height: 6px;}
