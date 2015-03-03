@@ -31,9 +31,7 @@
         </div><!--profile-info-->
         
         <a href="https://www.google.com/maps/preview#!q={{ caregiver.address.urlencode }}" class="googlemap" style="background-image:url(http://maps.google.com/maps/api/staticmap?size=640x250&zoom=13&maptype=roadmap&markers=color:green|{{ caregiver.address.urlencode }}&sensor=false)" target="_blank">
-            <p>
-                <span>Map Data &copy; Google</span>
-            </p>
+            <p><span>Map Data &copy; Google</span></p>
             <img src="http://maps.google.com/maps/api/staticmap?size=640x250&zoom=13&maptype=roadmap&markers=color:green|{{ caregiver.address.urlencode }}&sensor=false" alt="Map" class="map" />
         </a>
     </div><!--caregiver-->
@@ -45,8 +43,7 @@
         <li><i class="icon-print"> </i>print record</li>
     </ul>
 <div class="client">
-   <a href="{{ url_for('service_add', caregiver_id=caregiver.id) }}" class="button" role="button">add client</a>
-    <br/><br/>
+    <a href="{{ url_for('service_add', caregiver_id=caregiver.id) }}" class="button" role="button">add client</a>
     <table class="roleList">
         <thead>
             <tr>
@@ -75,10 +72,9 @@
         </tbody>
     </table><!-- client list -->
 </div><!-- client style -->
-<br/><br/>
+<br/>
 <div class="caregiver">
     <a href="{{ url_for('caregiver_form_add', caregiver_id=caregiver.id) }}" class="button" role="button">add new caregiver form</a>
-    <br/><br/>
     <table class="forms">
         <thead>
             <tr>
