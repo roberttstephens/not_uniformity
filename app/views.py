@@ -22,10 +22,12 @@ from .models import (
     Client,
     ClientForm as ClientFormModel,
     Service,
+    CaregiverFormInstance,
     ClientFormInstance
 )
 from .forms import (
     CaregiverForm,
+    CaregiverFormInstanceForm,
     ClientForm,
     EmailForm,
     LoginForm,
@@ -291,7 +293,30 @@ def caregiver_form_add(caregiver_id):
         next_url = url_for('caregiver', caregiver_id=caregiver_id)
         return redirect(next_url)
     return render_template(
-        'caregiver_form_add.html',
+        'role_form_add_edit.html',
+        form=form,
+        role='caregiver'
+    )
+
+@app.route('/caregivers/<int:caregiver_id>/forms/<int:form_id>/add', methods=['GET', 'POST'])
+@login_required
+def caregiver_form_instance_add(caregiver_id, form_id):
+    caregiver_form = CaregiverFormModel.\
+        query.\
+        filter(Caregiver.id == caregiver_id).\
+        filter(Agency.id == g.user.id).\
+        filter(CaregiverFormModel.id == form_id).\
+        first_or_404()
+    form = CaregiverFormInstanceForm()
+    if form.validate_on_submit():
+        caregiver_form_instance = CaregiverFormInstance()
+        form.populate_obj(caregiver_form_instance)
+        caregiver_form_instance.status = True
+        caregiver_form_instance.caregiver_form_id = form_id
+        db.session.add(caregiver_form_instance)
+        db.session.commit()
+    return render_template(
+        'caregiver_form_instance_add.html',
         form=form
     )
 

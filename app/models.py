@@ -1,6 +1,7 @@
 from app import db
 from app.constants import EXPIRING_SOON_DAYS
 from datetime import datetime, date, timedelta
+import phonenumbers
 import re
 from urllib.parse import quote_plus
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -106,6 +107,16 @@ class FormInstanceMixin(object):
 class PhoneMixin(object):
     phone_number = db.Column(db.String(15), nullable=False)
     phone_extension = db.Column(db.String(10), nullable=False)
+
+    @property
+    def formatted_phone_number(self):
+        '''
+        Format the phone number like (407) 123-0456.
+        '''
+        return phonenumbers.format_number(
+            phonenumbers.parse(self.phone_number, 'US'),
+            phonenumbers.PhoneNumberFormat.NATIONAL
+        )
 
 class Address(db.Model, BaseMixin, CreateUpdateMixin):
     address_1 = db.Column(db.String(512), nullable=False)
