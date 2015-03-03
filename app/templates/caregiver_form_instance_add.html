@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% block title %}Add caregiver form instance{% endblock %}
+{% block content %}
+<section class="container">
+    <div class="box page-title caregiver-light">
+        <h2>add new caregiver form instance</h2>
+    </div><!-- caregiver -->
+</section><!-- service header -->
+<section class="container">
+    {% from "_formhelpers.html" import render_field %}
+    <form method=post action="">
+      {{ form.hidden_tag() }}
+      <div class="box caregiver-light">
+        {{ render_field(form.expiration_date) }}
+        <div class="form-field">
+          <label><label for="received">Received</label></label>
+          <input id="received" name="received" type="checkbox" value="y" class="valid">
+        </div>
+        {{ render_field(form.received_date) }}
+      </div>
+      <input class="caregiver-dark" type=submit value=Save>
+    </form>
+</section>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery.maskedinput/1.3.1/jquery.maskedinput.min.js"></script>
+    <script>
+        jQuery(function($) {
+            var triggerReceivedDate = function() {
+                if (!$('#received').is(':checked')) {
+                    $('#received_date').val('');
+                    $('#received_date').prop('disabled', true);
+                    $('#received_date').hide();
+                    $('label[for="received_date"]').hide();
+                }
+                else {
+                    $('#received_date').prop('disabled', false);
+                    $('#received_date').show();
+                    $('label[for="received_date"]').show();
+                }
+            }
+            $(document).ready(triggerReceivedDate());
+            $('#received').change(function() {
+                triggerReceivedDate();
+            });
+        });
+    </script>
+{% endblock %}
