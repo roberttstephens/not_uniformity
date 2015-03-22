@@ -192,6 +192,8 @@ class Agency(db.Model, BaseMixin, CreateUpdateMixin, PhoneMixin, AddressMixin):
             join(Caregiver).\
             filter(CaregiverFormInstance.expired == True).\
             filter(Caregiver.agency_id == self.id).\
+            filter(Caregiver.status == True).\
+            filter(CaregiverFormInstance.status == True).\
             order_by(CaregiverFormInstance.expiration_date.asc()).\
             all()
 
@@ -201,6 +203,8 @@ class Agency(db.Model, BaseMixin, CreateUpdateMixin, PhoneMixin, AddressMixin):
             join(Caregiver).\
             filter(CaregiverFormInstance.expiring_soon == True).\
             filter(Caregiver.agency_id == self.id).\
+            filter(Caregiver.status == True).\
+            filter(CaregiverFormInstance.status == True).\
             order_by(CaregiverFormInstance.expiration_date.asc()).\
             all()
 
@@ -210,6 +214,8 @@ class Agency(db.Model, BaseMixin, CreateUpdateMixin, PhoneMixin, AddressMixin):
             join(Caregiver).\
             filter(CaregiverFormInstance.urgent == True).\
             filter(Caregiver.agency_id == self.id).\
+            filter(Caregiver.status == True).\
+            filter(CaregiverFormInstance.status == True).\
             order_by(CaregiverFormInstance.expiration_date.asc()).\
             all()
 
@@ -219,6 +225,8 @@ class Agency(db.Model, BaseMixin, CreateUpdateMixin, PhoneMixin, AddressMixin):
             join(Caregiver).\
             filter(CaregiverFormInstance.urgent == False).\
             filter(Caregiver.agency_id == self.id).\
+            filter(Caregiver.status == True).\
+            filter(CaregiverFormInstance.status == True).\
             order_by(CaregiverFormInstance.expiration_date.desc()).\
             all()
 
@@ -245,6 +253,8 @@ class Agency(db.Model, BaseMixin, CreateUpdateMixin, PhoneMixin, AddressMixin):
             join(Client).\
             filter(ClientFormInstance.expired == True).\
             filter(Client.agency_id == self.id).\
+            filter(Client.status == True).\
+            filter(ClientFormInstance.status == True).\
             order_by(ClientFormInstance.expiration_date.asc()).\
             all()
 
@@ -254,6 +264,8 @@ class Agency(db.Model, BaseMixin, CreateUpdateMixin, PhoneMixin, AddressMixin):
             join(Client).\
             filter(ClientFormInstance.expiring_soon == True).\
             filter(Client.agency_id == self.id).\
+            filter(Client.status == True).\
+            filter(ClientFormInstance.status == True).\
             order_by(ClientFormInstance.expiration_date.asc()).\
             all()
 
@@ -263,6 +275,8 @@ class Agency(db.Model, BaseMixin, CreateUpdateMixin, PhoneMixin, AddressMixin):
             join(Client).\
             filter(ClientFormInstance.urgent == True).\
             filter(Client.agency_id == self.id).\
+            filter(Client.status == True).\
+            filter(ClientFormInstance.status == True).\
             order_by(ClientFormInstance.expiration_date.asc()).\
             all()
 
@@ -272,6 +286,8 @@ class Agency(db.Model, BaseMixin, CreateUpdateMixin, PhoneMixin, AddressMixin):
             join(Client).\
             filter(ClientFormInstance.urgent == False).\
             filter(Client.agency_id == self.id).\
+            filter(Client.status == True).\
+            filter(ClientFormInstance.status == True).\
             order_by(ClientFormInstance.expiration_date.desc()).\
             all()
 
@@ -309,6 +325,7 @@ class Caregiver(db.Model, BaseMixin, CreateUpdateMixin, PhoneMixin, AgencyMixin,
             join(Caregiver).\
             filter(CaregiverFormInstance.expired == True).\
             filter(Caregiver.id == self.id).\
+            filter(CaregiverFormInstance.status == True).\
             order_by(CaregiverFormInstance.expiration_date.asc()).\
             all()
 
@@ -319,6 +336,7 @@ class Caregiver(db.Model, BaseMixin, CreateUpdateMixin, PhoneMixin, AgencyMixin,
             join(Caregiver).\
             filter(CaregiverFormInstance.expiring_soon == True).\
             filter(Caregiver.id == self.id).\
+            filter(CaregiverFormInstance.status == True).\
             order_by(CaregiverFormInstance.expiration_date.asc()).\
             all()
 
@@ -328,6 +346,7 @@ class Caregiver(db.Model, BaseMixin, CreateUpdateMixin, PhoneMixin, AgencyMixin,
             join(Caregiver).\
             filter(CaregiverFormInstance.urgent == True).\
             filter(Caregiver.id == self.id).\
+            filter(CaregiverFormInstance.status == True).\
             order_by(CaregiverFormInstance.expiration_date.asc()).\
             all()
 
@@ -337,6 +356,7 @@ class Caregiver(db.Model, BaseMixin, CreateUpdateMixin, PhoneMixin, AgencyMixin,
             join(Caregiver).\
             filter(CaregiverFormInstance.urgent == False).\
             filter(Caregiver.id == self.id).\
+            filter(CaregiverFormInstance.status == True).\
             order_by(CaregiverFormInstance.expiration_date.desc()).\
             all()
 
@@ -370,6 +390,7 @@ class Client(db.Model, BaseMixin, CreateUpdateMixin, PhoneMixin, AgencyMixin, Ad
             join(Client).\
             filter(ClientFormInstance.expired == True).\
             filter(Client.id == self.id).\
+            filter(ClientFormInstance.status == True).\
             order_by(ClientFormInstance.expiration_date.asc()).\
             all()
 
@@ -380,6 +401,7 @@ class Client(db.Model, BaseMixin, CreateUpdateMixin, PhoneMixin, AgencyMixin, Ad
             join(Client).\
             filter(ClientFormInstance.expiring_soon == True).\
             filter(Client.id == self.id).\
+            filter(ClientFormInstance.status == True).\
             order_by(ClientFormInstance.expiration_date.asc()).\
             all()
 
@@ -389,6 +411,7 @@ class Client(db.Model, BaseMixin, CreateUpdateMixin, PhoneMixin, AgencyMixin, Ad
             join(Client).\
             filter(ClientFormInstance.urgent == True).\
             filter(Client.id == self.id).\
+            filter(ClientFormInstance.status == True).\
             order_by(ClientFormInstance.expiration_date.asc()).\
             all()
 
@@ -398,6 +421,7 @@ class Client(db.Model, BaseMixin, CreateUpdateMixin, PhoneMixin, AgencyMixin, Ad
             join(Client).\
             filter(ClientFormInstance.urgent == False).\
             filter(Client.id == self.id).\
+            filter(ClientFormInstance.status == True).\
             order_by(ClientFormInstance.expiration_date.desc()).\
             all()
 
@@ -467,6 +491,7 @@ class Service(db.Model, BaseMixin, CreateUpdateMixin):
         instance = ServiceFormInstance
         count = self.forms.join(instance)\
         .filter(instance.expiration_date <= date.today())\
+        .filter(instance.status == True)\
         .count()
         return str(count)
 
@@ -475,5 +500,6 @@ class Service(db.Model, BaseMixin, CreateUpdateMixin):
         instance = ServiceFormInstance
         count = self.forms.join(instance)\
         .filter(instance.expiration_date >= date.today()-timedelta(days=EXPIRING_SOON_DAYS))\
+        .filter(instance.status == True)\
         .count()
         return str(count)
