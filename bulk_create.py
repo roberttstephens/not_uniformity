@@ -59,7 +59,7 @@ def create_caregiver(agency):
     caregiver = Caregiver(
         agency=agency,
         address=create_address(),
-        name='agency: ' + agency.name + ' ' + FAKE.name(),
+        name= FAKE.name(),
         email=FAKE.email(),
         status=FAKE.pybool(),
         phone_number=FAKE.numerify(text="##########"),
@@ -74,7 +74,7 @@ def create_caregiver_form(caregiver):
     Create and return a caregiver form.
     '''
     form = CaregiverForm(
-        name='caregiver: ' + caregiver.name + ' '.join(FAKE.words(nb=2)),
+        name= ' '.join(FAKE.words(nb=2)),
         caregiver=caregiver,
     )
     db.session.add(form)
@@ -88,7 +88,7 @@ def create_caregiver_form_instance(form):
     form_instance = CaregiverFormInstance(
         form=form,
         status=FAKE.pybool(),
-        expiration_date=FAKE.date_time_between('-2y', '+2y')
+        expiration_date=FAKE.date_time_between('-1y', '+1y')
     )
     db.session.add(form_instance)
     db.session.commit()
@@ -101,7 +101,7 @@ def create_client(agency):
     client = Client(
         agency=agency,
         address=create_address(),
-        name='agency: ' + agency.name + ' ' + FAKE.name(),
+        name= FAKE.name(),
         status=FAKE.pybool(),
         phone_number=FAKE.numerify(text="##########"),
         phone_extension='',
@@ -115,7 +115,7 @@ def create_client_form(client):
     Create and return a client form.
     '''
     form = ClientForm(
-        name='client: ' + client.name + ' '.join(FAKE.words(nb=2)),
+        name= ' '.join(FAKE.words(nb=2)),
         client=client,
     )
     db.session.add(form)
@@ -129,7 +129,7 @@ def create_client_form_instance(form):
     form_instance = ClientFormInstance(
         form=form,
         status=FAKE.pybool(),
-        expiration_date=FAKE.date_time_between('-2y', '+2y')
+        expiration_date=FAKE.date_time_between('-1y', '+1y')
     )
     db.session.add(form_instance)
     db.session.commit()
@@ -180,29 +180,28 @@ def main():
     Bulk insert data.
     '''
     # Create 10 agencies.
-    for i in range(10):
-        agency = create_agency()
-        '''
-        Each agency has 10 caregivers.
-        '''
-        for j in range(10):
-            caregiver = create_caregiver(agency)
-            for k in range(2):
-                form = create_caregiver_form(caregiver)
-                create_caregiver_form_instance(form)
-                create_caregiver_form_instance(form)
-            client = create_client(agency)
-            for k in range(2):
-                form = create_client_form(client)
-                create_client_form_instance(form)
-                create_client_form_instance(form)
-            if FAKE.pybool():
-                service = create_service(agency, caregiver, client)
-                form = create_service_form(service)
-                create_service_form_instance(form)
-                service = create_service(agency, caregiver, client)
-                form = create_service_form(service)
-                create_service_form_instance(form)
+    agency = Agency.query.filter_by(id=1).first_or_404()
+    '''
+    Each agency has 10 caregivers.
+    '''
+    for j in range(30):
+        caregiver = create_caregiver(agency)
+        for k in range(2):
+            form = create_caregiver_form(caregiver)
+            create_caregiver_form_instance(form)
+            create_caregiver_form_instance(form)
+        client = create_client(agency)
+        for k in range(2):
+            form = create_client_form(client)
+            create_client_form_instance(form)
+            create_client_form_instance(form)
+        if FAKE.pybool():
+            service = create_service(agency, caregiver, client)
+            form = create_service_form(service)
+            create_service_form_instance(form)
+            service = create_service(agency, caregiver, client)
+            form = create_service_form(service)
+            create_service_form_instance(form)
 
 if __name__ == '__main__':
     main()
