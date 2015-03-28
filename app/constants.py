@@ -51,7 +51,7 @@ STATES = {
     'TN': 'Tennessee',
     'TX': 'Texas',
     'UT': 'Utah',
-'VA': 'Virginia',
+    'VA': 'Virginia',
     'VI': 'Virgin Islands',
     'VT': 'Vermont',
     'WA': 'Washington',
