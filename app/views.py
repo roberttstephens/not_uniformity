@@ -6,7 +6,8 @@ from flask.ext.login import (login_user, logout_user, current_user,
 from . import app, db
 from .models import (Address, Agency, Caregiver, CaregiverForm as
                      CaregiverFormModel, Client, ClientForm as ClientFormModel,
-                     Service, CaregiverFormInstance)
+                     Service, ServiceForm as ServiceFormModel,
+                     CaregiverFormInstance)
 from .forms import (CaregiverForm, CaregiverFormInstanceForm, ClientForm,
                     EmailForm, LoginForm, PasswordForm, RegisterForm, RoleForm,
                     ServiceForm)
@@ -424,9 +425,11 @@ def client_form(client_id, form_id):
 
 @app.route('/services/<int:service_id>/forms/<int:form_id>')
 def service_form(service_id, form_id):
-    print(service_id)
-    service = Service.query.get(service_id)
-    return render_template('service_form.html', item=service)
+    service = Service.query.filter_by(id=service_id).first_or_404()
+    service_form = ServiceFormModel.query.filter_by(id=form_id).first_or_404()
+    return render_template('service_form.html',
+                           service=service,
+                           service_form=service_form)
 
 
 @app.route('/services/<int:service_id>')
