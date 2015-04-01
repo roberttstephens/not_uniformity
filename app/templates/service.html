@@ -28,18 +28,15 @@
 </section><!-- service header -->
 
 <section class="container">
-    <ul class="actionNav">
-        <li>
-            <i class="icon-edit"> </i>
-            <a href="{{ url_for('service_edit', service_id=service.id) }}">edit service</a>
-        </li>
-        <li>
-            <i class="icon-print"> </i>print record
-        </li>
-    </ul>
+    <div class="action-nav float-right">
+        <div class="service"><a href="{{ url_for('service_edit', service_id=service.id) }}" class="action"><span class="upload"><i class="fa fa-pencil fa-stack-1x"></i></span><p>Edit Service</p></a></div>
+        <a href="#" class="action"><span class="upload"><i class="fa fa-print fa-stack-1x"></i></span><p>Print Records</p></a>
+    </div>
 <div class="service">
-    <a href="#" class="button service-dark" role="button">add service form</a>
-    <br/><br/>  
+    <div class="action-nav float-left">
+        <a href="#" class="action"><span class="upload"><i class="fa fa-file-o fa-stack-1x"></i>
+    <i class="fa fa-plus fa-stack-2x"></i></span><p>Add New Service Form</p></a>
+    </div>
     <table class="forms">
         <thead>
             <tr>

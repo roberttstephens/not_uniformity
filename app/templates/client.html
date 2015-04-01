@@ -30,20 +30,22 @@
             </div>
         </div><!--profile-info-->
         <a href="https://www.google.com/maps/preview#!q={{ client.address.urlencode }}" class="googlemap" style="background-image:url(http://maps.google.com/maps/api/staticmap?size=640x250&zoom=13&maptype=roadmap&markers=color:green|{{ client.address.urlencode }}&sensor=false)" target="_blank">
-            <p><span>Map Data &copy; Google</span></p>
+            <span>Map Data &copy; Google</span>
             <img src="http://maps.google.com/maps/api/staticmap?size=640x250&zoom=13&maptype=roadmap&markers=color:green|{{ client.address.urlencode }}&sensor=false" alt="Map" class="map" />
         </a>
     </div><!--client-->
 </section>
 
 <section class="container">
-    <ul class="actionNav">
-        <li><i class="icon-edit"> </i><a href="{{ url_for('client_edit', client_id=client.id)}}">edit client</a></li>
-        <li><i class="icon-print"> </i>print record</li>
-    </ul>
+    <div class="action-nav float-right">
+        <div class="client"><a href="{{ url_for('client_edit', client_id=client.id)}}" class="action"><span class="upload"><i class="fa fa-pencil fa-stack-1x"></i></span><p>Edit Caregiver</p></a></div>
+        <a href="#" class="action"><span class="upload"><i class="fa fa-print fa-stack-1x"></i></span><p>Print Records</p></a>
+    </div>
 
 <div class="caregiver">
-    <a href="{{ url_for('service_add', client_id=client.id) }}" class="button caregiver-dark" role="button">add caregiver</a>
+    <div class="action-nav float-left">
+        <a href="{{ url_for('service_add', client_id=client.id) }}" class="action"><span class="upload"><i class="fa fa-user-plus fa-stack-1x"></i></span><p>Add New Client</p></a>
+    </div>
     <table class="roleList">
         <thead>
             <tr>
@@ -74,7 +76,10 @@
 </div><!-- caregiver style -->
 <br/>
 <div class="client">
-    <a href="{{ url_for('client_form_add', client_id=client.id) }}" class="button client-dark" role="button">add new client form</a>
+    <div class="action-nav float-left">
+        <a href="{{ url_for('client_form_add', client_id=client.id) }}" class="action"><span class="upload"><i class="fa fa-file-o fa-stack-1x"></i>
+    <i class="fa fa-plus fa-stack-2x"></i></span><p>Add New Client Form</p></a>
+    </div>
     <table class="forms">
         <thead>
             <tr>

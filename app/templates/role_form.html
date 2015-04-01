@@ -11,36 +11,11 @@
     </div>
 </section><!-- role header -->
 <section class="container">
-{% include 'action_nav.html' %}
-<div class="{{ role }}">
-<h1>Extremely Abnoxiously Long Form Title</h1>
-
-<form action="" id="edit-form" class="edit-form">
-  <div class="box"></div>
-  <div class="box"></div>
-</form>
-
-<div class="grid">
-    <form method=post action="">
-        <div class="col-1-2">
-            <div class="form-header">
-                <div class="form-field">
-                    <label for="exp">Change Expiration Date</label>
-                    <input type="date" id="input-expdate" name="exp" />
-                </div>
-            </div>
-        </div>
-        <div class="col-1-2">
-            <div class="form-header">
-                <div class="form-field">
-                    <label for="exp">Mark as Received</label>
-                    <input type="date" id="input-expdate" name="exp" />
-                </div>
-            </div>
-        </div>
-    </form>
+<div class="action-nav float-right">
+        <a href="#" class="action"><span class="upload"><i class="fa fa-print fa-stack-1x"></i></span><p>Print Records</p></a>
 </div>
-<input type=submit value=Save>
+<div class="{{ role }}">
+
     <table class="form-current expiring-soon">
         <caption>
             <h3>form title</h3>
@@ -51,7 +26,7 @@
                     <span class="expiration-date"><span class="icon-cirlcereceived"></span>00-00-0000</span>
                 </td>
                 <td class="status">this form will expire soon!</td>
-                <td class="edit"><a href="#" class="button" role="button"><i class="icon-edit"> </i>edit status</a></td>
+                <td class="edit"><a href="#" class="button" role="button"><i class="icon-edit"> </i>Edit Details</a></td>
             </tr>
         </tbody>
     </table>
@@ -63,21 +38,21 @@
                     <span class="expiration-date"><span class="icon-cirlcereceived"></span>00-00-0000</span>
                 </td>
                 <td class="status">reveived on 00-00-0000</td>
-                <td class="edit"><a href="#"><i class="icon-edit"> </i>edit</a></td>
+                <td class="edit"><a href="#"><i class="icon-edit"> </i>Edit Details</a></td>
             </tr>
             <tr>
                 <td class="expiration-date">
                     <span class="expiration-date"><span class="icon-cirlcereceived"></span>00-00-0000</span>
                 </td>
                 <td class="status">reveived on 00-00-0000</td>
-                <td class="edit"><a href="#"><i class="icon-edit"> </i>edit</a></td>
+                <td class="edit"><a href="#"><i class="icon-edit"> </i>Edit Details</a></td>
             </tr>
             <tr>
                 <td class="expiration-date">
                     <span class="expiration-date"><span class="icon-cirlcereceived"></span>00-00-0000</span>
                 </td>
                 <td class="status">reveived on 00-00-0000</td>
-                <td class="edit"><a href="#"><i class="icon-edit"> </i>edit</a></td>
+                <td class="edit"><a href="#"><i class="icon-edit"> </i>Edit Details</a></td>
             </tr>
         </tbody>
     </table>

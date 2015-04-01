@@ -3,11 +3,13 @@
 {% block content %}
 <!-- role_index.html -->
 <section class="container">
-<ul class="actionNav">
-    <li><i class="icon-print"> </i><a href="#">print record</a></li>
-</ul>
+<div class="action-nav float-right">
+        <a href="#" class="action"><span class="upload"><i class="fa fa-print fa-stack-1x"></i></span><p>Print Records</p></a>
+</div>
 <div class="{{role}}">
-    <a href="{{ url_for(role ~ '_add') }}" class="button {{role}}-dark" role="button">add new {{role}}</a>
+    <div class="action-nav float-left">
+        <a href="{{ url_for(role ~ '_add') }}" class="action"><span class="upload"><i class="fa fa-user-plus fa-stack-1x"></i></span><p>Add New {{role}}</p></a>
+    </div>
     <table class="roleList role-overview">
         <thead>
             <tr>
