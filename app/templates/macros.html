@@ -3,12 +3,26 @@
         <td class="expiration-date {{ instance.expiration_status|replace('_', '-') }}">
             <span class="expiration-date"><span class="icon-cirlcereceived"></span>{{ instance.expiration_date }}</span>
         </td>
-        <td class="form-title {{ instance.expiration_status|replace('_', '-') }}">{{ instance.form.name }}</td>
+        <td class="form-title {{ instance.expiration_status|replace('_', '-') }}">
+            {% if instance.form.caregiver %}
+                <a href="{{ url_for('caregiver_form', caregiver_id=instance.form.caregiver.id, form_id=instance.form.id) }}">
+                    {{ instance.form.name }}
+                </a>
+            {% elif instance.form.client %}
+                <a href="{{ url_for('client_form', client_id=instance.form.client.id, form_id=instance.form.id) }}">
+                    {{ instance.form.name }}
+                </a>
+            {% endif %}
+        </td>
         {% if show_caregiver %}
-            <td>{{ instance.form.caregiver.name }}</td>
+            <td>
+                <a href="{{ url_for('caregiver', caregiver_id=instance.form.caregiver.id) }}">{{ instance.form.caregiver.name }}</a>
+            </td>
         {% endif %}
         {% if show_client %}
-            <td>{{ instance.form.client.name }}</td>
+            <td>
+                <a href="{{ url_for('client', client_id=instance.form.client.id) }}">{{ instance.form.client.name }}</a>
+            </td>
         {% endif %}
     </ tr>
 {%- endmacro %}

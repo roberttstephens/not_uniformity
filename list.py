@@ -9,7 +9,6 @@ from app import *
 
 os.environ['PYTHONINSPECT'] = 'True'
 
-
 from app import db
 from app.models import *
 agencies = db.session.query(Agency).all()

@@ -15,6 +15,7 @@ from faker import Faker
 FAKE = Faker()
 os.environ['PYTHONINSPECT'] = 'True'
 
+
 def create_address():
     '''
     Create and return an address.
@@ -23,13 +24,12 @@ def create_address():
         address_2 = FAKE.secondary_address()
     else:
         address_2 = ''
-    return Address(
-        address_1=FAKE.street_address(),
-        address_2=address_2,
-        city=FAKE.city(),
-        state=FAKE.state_abbr(),
-        zip_code=FAKE.zipcode(),
-    )
+    return Address(address_1=FAKE.street_address(),
+                   address_2=address_2,
+                   city=FAKE.city(),
+                   state=FAKE.state_abbr(),
+                   zip_code=FAKE.zipcode(),)
+
 
 def create_agency():
     '''
@@ -52,34 +52,32 @@ def create_agency():
     db.session.commit()
     return agency
 
+
 def create_caregiver(agency):
     '''
     Create a caregiver, assign it to an agency, return the caregiver.
     '''
-    caregiver = Caregiver(
-        agency=agency,
-        address=create_address(),
-        name= FAKE.name(),
-        email=FAKE.email(),
-        status=FAKE.pybool(),
-        phone_number=FAKE.numerify(text="##########"),
-        phone_extension='',
-    )
+    caregiver = Caregiver(agency=agency,
+                          address=create_address(),
+                          name=FAKE.name(),
+                          email=FAKE.email(),
+                          status=FAKE.pybool(),
+                          phone_number=FAKE.numerify(text="##########"),
+                          phone_extension='',)
     db.session.add(caregiver)
     db.session.commit()
     return caregiver
+
 
 def create_caregiver_form(caregiver):
     '''
     Create and return a caregiver form.
     '''
-    form = CaregiverForm(
-        name= ' '.join(FAKE.words(nb=2)),
-        caregiver=caregiver,
-    )
+    form = CaregiverForm(name=' '.join(FAKE.words(nb=2)), caregiver=caregiver,)
     db.session.add(form)
     db.session.commit()
     return form
+
 
 def create_caregiver_form_instance(form):
     '''
@@ -88,66 +86,62 @@ def create_caregiver_form_instance(form):
     form_instance = CaregiverFormInstance(
         form=form,
         status=FAKE.pybool(),
-        expiration_date=FAKE.date_time_between('-1y', '+1y')
-    )
+        expiration_date=FAKE.date_time_between('-1y', '+1y'))
     db.session.add(form_instance)
     db.session.commit()
     return form
+
 
 def create_client(agency):
     '''
     Create a client, assign it to an agency, return the client.
     '''
-    client = Client(
-        agency=agency,
-        address=create_address(),
-        name= FAKE.name(),
-        status=FAKE.pybool(),
-        phone_number=FAKE.numerify(text="##########"),
-        phone_extension='',
-    )
+    client = Client(agency=agency,
+                    address=create_address(),
+                    name=FAKE.name(),
+                    status=FAKE.pybool(),
+                    phone_number=FAKE.numerify(text="##########"),
+                    phone_extension='',)
     db.session.add(client)
     db.session.commit()
     return client
+
 
 def create_client_form(client):
     '''
     Create and return a client form.
     '''
-    form = ClientForm(
-        name= ' '.join(FAKE.words(nb=2)),
-        client=client,
-    )
+    form = ClientForm(name=' '.join(FAKE.words(nb=2)), client=client,)
     db.session.add(form)
     db.session.commit()
     return form
+
 
 def create_client_form_instance(form):
     '''
     Create and return a client form instance.
     '''
-    form_instance = ClientFormInstance(
-        form=form,
-        status=FAKE.pybool(),
-        expiration_date=FAKE.date_time_between('-1y', '+1y')
-    )
+    form_instance = ClientFormInstance(form=form,
+                                       status=FAKE.pybool(),
+                                       expiration_date=FAKE.date_time_between(
+                                           '-1y', '+1y'))
     db.session.add(form_instance)
     db.session.commit()
     return form
+
 
 def create_service(agency, caregiver, client):
     '''
     Create a service, assign it to an agency, return the service.
     '''
-    service = Service(
-        name='agency: ' + agency.name + ' ' + FAKE.name(),
-        status=FAKE.pybool(),
-        caregiver=caregiver,
-        client=client
-    )
+    service = Service(name='agency: ' + agency.name + ' ' + FAKE.name(),
+                      status=FAKE.pybool(),
+                      caregiver=caregiver,
+                      client=client)
     db.session.add(service)
     db.session.commit()
     return service
+
 
 def create_service_form(service):
     '''
@@ -155,21 +149,20 @@ def create_service_form(service):
     '''
     form = ServiceForm(
         name='service: ' + service.name + ' '.join(FAKE.words(nb=2)),
-        service=service,
-    )
+        service=service,)
     db.session.add(form)
     db.session.commit()
     return form
+
 
 def create_service_form_instance(form):
     '''
     Create and return a service form instance.
     '''
-    form_instance = ServiceFormInstance(
-        form=form,
-        status=FAKE.pybool(),
-        expiration_date=FAKE.date_time_between('-2y', '+2y')
-    )
+    form_instance = ServiceFormInstance(form=form,
+                                        status=FAKE.pybool(),
+                                        expiration_date=FAKE.date_time_between(
+                                            '-2y', '+2y'))
     db.session.add(form_instance)
     db.session.commit()
     return form
@@ -202,6 +195,7 @@ def main():
             service = create_service(agency, caregiver, client)
             form = create_service_form(service)
             create_service_form_instance(form)
+
 
 if __name__ == '__main__':
     main()
