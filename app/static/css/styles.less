@@ -127,7 +127,6 @@ body {background-color:#3aaff8;font-family: 'Century Gothic','Open Sans', sans-s
   font-size:0!important;
   & > * {
     text-align:left;
-    font-size:medium;
   }
   &:after {
     content: '';
@@ -588,7 +587,7 @@ input:-moz-placeholder {.capitalize;}
 input::-moz-placeholder {.capitalize;}
 input:-ms-input-placeholder {.capitalize;}
 
-.commandnav p {font-size:1.6em;line-height:1em;}
+.commandnav p {font-size:1.6rem;line-height:1em;}
 
 .box p, .search-form p {.regularText;} 
 .container button, .container input[type="button"], .container input[type="submit"], .container a.button,
@@ -679,7 +678,7 @@ TOP NAV
     box-shadow:         0px 0px 8px 1px #fff;
     -moz-border-radius:18px 18px 0px 0px;-webkit-border-radius:18px 18px 0px 0px;border-radius:18px 18px 0px 0px;/* future proofing */-khtml-border-radius:18px 18px 0px 0px;/* for old Konqueror browsers */
     text-align:center;
-    font-size:1.8em;}
+    font-size:1.8rem;}
 .top-nav-tab:hover {
     background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#fff), to(#fff));/* Safari 4-5, Chrome 1-9 */
     background: -webkit-linear-gradient(top, #fff, #fff);/* Safari 5.1, Chrome 10+ */
@@ -761,6 +760,7 @@ a.action {
         vertical-align:middle;
         margin:0;
         padding-left:6px;
+        font-size:2rem;
       }
 
       &:hover {    
@@ -906,7 +906,7 @@ footer {
         h3 {text-transform: capitalize;color:white;margin:0;}
         ul {
             color:@grayLight;
-            font-size:1.6em;
+            font-size:1.6rem;
             width:125px;
             margin:0;
             padding:0; 
@@ -1140,7 +1140,7 @@ label.error {color:#ff0000;}
     -webkit-box-shadow: 0px 2px 1px #98dfff,inset 0px 0px 7px #1784b7;
     box-shadow:         0px 2px 1px #98dfff,inset 0px 0px 7px #1784b7;
     color:white;
-    font-size: 2em;
+    font-size: 2rem;
     transition: all 0.4s ease;}
     
 .loginBox input[type="text"]:hover, .loginBox input[type="password"]:hover {
@@ -1330,50 +1330,38 @@ STYLE GUIDE
     position:relative;
     h2 {
         #grid > .cell;
+        position:relative;
         background:@grayDark;
         color:white;
         height:30px;
         text-align: center;
 
-        /*&:after {
+        &:after {
             display:block;
             position:absolute;
             text-align:center;
-            top:2px;
+            top:7px;
             z-index:99;
             width:100%;
             font-size:1.5rem;
-          }*/
-        
-        &:nth-of-type(1) {#grid > .span (12);}
-        
-        &:nth-of-type(2) {#grid > .span (6);}
-        &:nth-of-type(3) {#grid > .span (6);}
-        
-        &:nth-of-type(4) {#grid > .span (4);}
-        &:nth-of-type(5) {#grid > .span (4);}
-        &:nth-of-type(6) {#grid > .span (4);}
-        
-        &:nth-of-type(7) {#grid > .span (8);}
-        &:nth-of-type(8) {#grid > .span (4);}
-        
-        &:nth-of-type(9) {#grid > .span (2);}
-        &:nth-of-type(10) {#grid > .span (3);}
-        &:nth-of-type(11) {#grid > .span (6);}
-        &:nth-of-type(12) {#grid > .span (1);}
+          }
 
-        /*&:nth-of-type(1) {#grid > .span (12); &:after {content:"1";}}
-        &:nth-of-type(2) {#grid > .span (6); &:after {content:"1/2";}}
-        &:nth-of-type(3) {#grid > .span (6); &:after {content:"1/2";}}
-        &:nth-of-type(4) {#grid > .span (4); &:after {content:"1/3";}}
-        &:nth-of-type(5) {#grid > .span (4); &:after {content:"1/3";}}
-        &:nth-of-type(6) {#grid > .span (4); &:after {content:"1/3";}}
-        &:nth-of-type(7) {#grid > .span (8); &:after {content:"2/3";}}
-        &:nth-of-type(8) {#grid > .span (4); &:after {content:"1/3";}}
-        &:nth-of-type(9) {#grid > .span (2); &:after {content:"1/6";}}
-        &:nth-of-type(10) {#grid > .span (3); &:after {content:"1/4";}}
+        &:nth-of-type(1) {#grid > .span (12); &:after {content:"12/12";}}
+        
+        &:nth-of-type(2) {#grid > .span (6); &:after {content:"6/12";}}
+        &:nth-of-type(3) {#grid > .span (6); &:after {content:"6/12";}}
+        
+        &:nth-of-type(4) {#grid > .span (4); &:after {content:"4/12";}}
+        &:nth-of-type(5) {#grid > .span (4); &:after {content:"4/12";}}
+        &:nth-of-type(6) {#grid > .span (4); &:after {content:"4/12";}}
+        
+        &:nth-of-type(7) {#grid > .span (8); &:after {content:"9/12";}}
+        &:nth-of-type(8) {#grid > .span (4); &:after {content:"3/12";}}
+        
+        &:nth-of-type(9) {#grid > .span (2); &:after {content:"2/12";}}
+        &:nth-of-type(10) {#grid > .span (4); &:after {content:"4/12";}}
         &:nth-of-type(11) {#grid > .span (5); &:after {content:"5/12";}}
-        &:nth-of-type(12) {#grid > .span (1); &:after {content:"1/12";}}*/
+        &:nth-of-type(12) {#grid > .span (1); &:after {content:"1/12";}}
     }/* h2 */
 }/* grid-test */
 
