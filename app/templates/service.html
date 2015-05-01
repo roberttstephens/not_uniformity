@@ -8,7 +8,7 @@
            <div class="caregiver">
                 <div class="serviceBox">
                     <text class="service-title">caregiver</text>
-                    <text class="service"><a href="">{{ service.caregiver.name }}</a></text>
+                    <text class="service"><a href="{{ url_for('caregiver', caregiver_id=service.caregiver.id) }}">{{ service.caregiver.name }}</a></text>
                     <text class="phone">{{ service.caregiver.phone_number }}</text>
                 </div><!-- serviceBox -->
             </div><!-- caregiver -->
@@ -19,7 +19,7 @@
             </div><!-- service -->
         </div><!-- service-wrap --><div class="service-wrap"><div class="client"><div class="serviceBox">
                     <text class="service-title">client</text>
-                    <text class="service"><a href="">{{ service.client.name }}</a></text>
+                    <text class="service"><a href="{{ url_for('client', client_id=service.client.id) }}">{{ service.client.name }}</a></text>
                     <text class="phone">{{ service.client.phone_number }}</text>
                 </div><!-- serviceBox -->
             </div><!-- client -->
