@@ -347,25 +347,27 @@ a:visited {color:inherit;}
         tr td.expiration-date {border-right:none;padding-right:0px;}
         tr td.form-title {border-left:none;}
         td.expired {
-            background:@urgentRedLight!important;
-            color:@urgentRed!important;
-            border-color:inherit;
-            text-align:center;
-            span {border-color:@urgentRed!important;}
+            background: @urgentRedLight!important;
+            color: @urgentRed!important;
+            border-color: inherit;
+            text-align: center;
+            opacity: 1!important;
+            span {border-color: @urgentRed!important;}
         }
         td.expiring-soon {
-            background:@urgentYellowLight!important;
-            color:@urgentYellow!important;
-            border-color:inherit;
-            text-align:center;
-            span {border-color:@urgentYellow!important;}
+            background: @urgentYellowLight!important;
+            color: @urgentYellow!important;
+            border-color: inherit;
+            text-align: center;
+            opacity: 1!important;
+            span {border-color: @urgentYellow!important;}
         }
     }/*table*/
     
     table.overview {border-color:@color;color:@color;
         th {background-color:@color;border-color:@color;color:white;.regularText;.capitalize;padding:4px;}
         th.role {width:40%;}
-        th.caregiver,th.service,th.client {width:20%;}
+        th.caregiver, th.service, th.client {width:20%;}
         th.caregiver {background-color:@caregiver;border-color:@caregiver;}
         th.client {background-color:@client;border-color:@client;}
         td {.regularText;.capitalize;padding:4px;text-align:left;}
@@ -375,34 +377,34 @@ a:visited {color:inherit;}
         }
     }/*table.overview*/
     
-    table.roleList {border-color:@color;color:@color;
-        th {background-color:@color;border-color:@color;color:white;.capitalize;padding:6px 5px;}
-        th.role,th.service {.mediumText;.capitalize;}
-        th.service, th.forms, th.expired-forms, th.expiring-soon-forms {background-color:@service;border-color:@service;}
-        th.forms {.regularText;width:25%;text-align:center;}
-        th.expired-forms, th.expiring-soon-forms {.smallText;text-transform:uppercase;width:12.5%;text-align:center;padding:0px 0px 2px 0px;}
-        td {.mediumText;.capitalize;padding:10px 5px;}
-        td.service {border-color:@service;color:@service;
-            a:link, a:visited, a:hover, a:active {color:@service;}
+    table.role-list {border-color: @color;color: @color;
+        th {background-color: @color;border-color: @color;color: white;.capitalize;padding: 6px 5px;}
+        th.role, th.service {.mediumText;}
+        th.service, th.forms, th.expired-forms, th.expiring-soon-forms {background-color: @service;border-color: @service;}
+        th.forms {.regularText;width: 25%;text-align: center;}
+        th.expired-forms, th.expiring-soon-forms {.smallText;text-transform: uppercase;width: 12.5%;text-align: center;padding: 0px 0px 2px 0px;}
+        td {.mediumText;.capitalize;padding: 10px 5px;}
+        td.service {border-color: @service;color: @service;
+            a:link, a:visited, a:hover, a:active {color: @service;}
         }
-        td.expired-forms, td.expiring-soon-forms {border-color:@service;}
+        td.expired-forms, td.expiring-soon-forms {text-align: center;color: @service;border-color: @service;opacity: .4;}
         
          &.role-overview {
-            th.role {width:40%;}
-            th.service, th.forms, th.expired-forms, th.expiring-soon-forms {background-color:@color;border-color:@color;}
-            td.expired-forms, td.expiring-soon-forms {border-color:@color;}
-            td {padding:5px;}
+            th.role {width: 40%;}
+            th.service, th.forms, th.expired-forms, th.expiring-soon-forms {background-color: @color;border-color: @color;}
+            td.expired-forms, td.expiring-soon-forms {color: @color;border-color: @color;opacity: .4;}
+            td {padding: 5px;}
         }
        
-    }/*table.roleList*/
+    }/*table.role-list*/
     
-    table.forms {border-color:@color;color:@color;
-        th {background-color:@color;border-color:@color;color:white;.mediumText;.capitalize;padding:12px 5px;}
-        tr td.form-title {text-align: left;padding:10px 5px;}
-        td {.mediumText;.capitalize;text-align:left;.non-urgent;}
-        span.expiration-date {margin:1px 0px;}
-        td.expiration-date {width:120px;padding:1px 0px 2px 4px;
-            span.expiration-date [class*="icon-"] {margin:1px 0px 0px 0px;}
+    table.forms {border-color: @color;color: @color;
+        th {background-color: @color;border-color: @color;color: white;.mediumText;.capitalize;padding: 12px 5px;}
+        tr td.form-title {text-align: left;padding: 10px 5px;}
+        td {.mediumText;.capitalize;text-align: left;.non-urgent;}
+        span.expiration-date {margin: 1px 0px;}
+        td.expiration-date {width: 120px;padding: 1px 0px 2px 4px;
+            span.expiration-date [class*="icon-"] {margin: 1px 0px 0px 0px;}
         }
     }/*table.forms*/
     
