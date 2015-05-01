@@ -3,16 +3,13 @@
 {% block content %}
 <!-- service_form.html -->
 <section class="container">
-   <div class="service-header">
+    <div class="service-header">
         <div class="service-wrap">
            <div class="caregiver">
                 <div class="serviceBox">
                     <text class="service-title">caregiver</text>
-                    <text class="service">{{ service.caregiver.name }}</text>
-                    <text class="phone">
-                        <span class="phone-number">{{ service.caregiver.formatted_phone_number }} </span>
-                        <span class="phone-extension">{{ service.caregiver.phone_extension }}</span>
-                    </text>
+                    <text class="service"><a href="{{ url_for('caregiver', caregiver_id=service.caregiver.id) }}">{{ service.caregiver.name }}</a></text>
+                    <text class="phone">{{ service.caregiver.phone_number }}</text>
                 </div><!-- serviceBox -->
             </div><!-- caregiver -->
         </div><!-- service-wrap --><div class="service-wrap"><div class="service"><div class="serviceBox">
@@ -22,11 +19,8 @@
             </div><!-- service -->
         </div><!-- service-wrap --><div class="service-wrap"><div class="client"><div class="serviceBox">
                     <text class="service-title">client</text>
-                    <text class="service">{{ service.client.name }}</text>
-                    <text class="phone">
-                        <span class="phone-number">{{ service.client.formatted_phone_number }} </span>
-                        <span class="phone-extension">{{ service.client.phone_extension }}</span>
-                    </text>
+                    <text class="service"><a href="{{ url_for('client', client_id=service.client.id) }}">{{ service.client.name }}</a></text>
+                    <text class="phone">{{ service.client.phone_number }}</text>
                 </div><!-- serviceBox -->
             </div><!-- client -->
         </div><!-- service-wrap -->
