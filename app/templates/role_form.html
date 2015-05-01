@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% block title %}The name{% endblock %}
+{% block title %}{{ item.name }}{% endblock %}
 {% block content %}
 <!-- role_form.html -->
 <section class="container">
@@ -15,8 +15,8 @@
         <a href="#" class="action"><span class="upload"><i class="fa fa-print fa-stack-1x"></i></span><p>Print Records</p></a>
 </div>
 <div class="{{ role }}">
-    <h2>Form Title</h2>
-    <caption>Form Title</caption>
+    <h2>{{ form.name }}</h2>
+    <caption>{{ form.name }}</caption>
     <table class="form-current expiring-soon">
         <caption>
             <h3>form title</h3>
