@@ -1,3 +1,5 @@
+@import url("global.less");
+
 /*! HTML5 Boilerplate v4.3.0 | MIT License | http://h5bp.com/ */
 
 /*
@@ -162,6 +164,38 @@ body {background-color:#3aaff8;font-family: 'Century Gothic','Open Sans', sans-s
 }/*  GRID  */
 
 #topbg {background-image:url('../img/app-header-op.jpg');background-position:top center;background-repeat:no-repeat;overflow:auto;}
+
+
+body#login {
+    background-image:url('../img/main-header.jpg');background-position:50% -92px;background-repeat:no-repeat;
+    background-color:#3aaff8;
+    
+    .header-logo {
+        height:275px;
+        width:100%;
+        padding-top:35px;
+        text-align:center;
+    }
+    
+    .uniformity-logo {
+        width:300px;
+        fill:@grayDark;
+        background:url('../img/logo-glow.png') center center no-repeat;
+        padding:10px;
+        padding-top:15px;
+    }
+
+    .uniformity-logo-light {
+        fill:@grayMid;
+    }
+
+    .uniformity-logo-blue {
+        fill:@serviceDark;
+}
+}
+#top-login {
+    
+}
 
 header {height:75px;min-width:880px;width:75%;margin:0px auto 0px auto;}
 
@@ -468,13 +502,7 @@ a:visited {color:inherit;}
             a {font-size:.7em;}
         }
     }/*table.form-record*/
-    
-    .button {background-color:@color;
-        *[class*="icon-"] {color:white;}
-    }
-    
-    & > .button {margin-bottom:5px;}
-    
+        
     .box {background:@light;border-color:@color;color:@color;}
     
     .profile-info {
@@ -529,7 +557,8 @@ a:visited {color:inherit;}
     
     
     
-      a.action {
+    button.action,
+    a.action {
         color:@dark;
 
         &:hover {
@@ -579,7 +608,6 @@ a:visited {color:inherit;}
     input:-moz-placeholder {color:@mid;}
     input::-moz-placeholder {color:@mid;}
     input:-ms-input-placeholder {color:@mid;}
-    button, input[type="button"], input[type="submit"], a.button {background-color:@color;border-color:@color;color:#fff;}
     a {color:@color;}
      
 }/*global*/
@@ -613,11 +641,12 @@ input:-ms-input-placeholder {.capitalize;}
 
 .commandnav p {font-size:1.6rem;line-height:1em;}
 
-.box p, .search-form p {.regularText;} 
-.container button, .container input[type="button"], .container input[type="submit"], .container a.button,
+.box p, .search-form p {.regularText;}
+
+/*.container button, .container input[type="button"], .container input[type="submit"], .container a.button,
 .overview-top button, .overview-top input[type="button"], .overview-top input[type="submit"], .overview-top a.button,
 .box button, .box input[type="button"], .box input[type="submit"], .box a.button {font-size:@regularText;line-height:30px;}
-.search-form button, .search-form input[type="button"], .search-form input[type="submit"], .search-form a.button {font-size:inherit;line-height:30px;}
+.search-form button, .search-form input[type="button"], .search-form input[type="submit"], .search-form a.button {font-size:inherit;line-height:30px;}*/
 
 a {text-decoration:none;font-size:inherit;}
 
@@ -768,6 +797,7 @@ header nav ul li {display:inline-block;padding-left:2px;}
     }  
 }/* action-nav */
 
+button.action,
 a.action {
       @paperIconHeight:32px;
       @paperIconBorderRadius:@paperIconHeight*.15px;
@@ -1023,7 +1053,7 @@ COLORS
 /*--
 BUTTONS
 --*/
-@defaultDuration: .3s;
+/*@defaultDuration: .3s;
 @secondaryColour: #fff;
 @shadowColour: rgba(0, 0, 0, .6);
 
@@ -1054,8 +1084,8 @@ a.button {
             position: absolute;
             -moz-border-radius:8px;
             -webkit-border-radius:8px;
-            border-radius:8px; /* future proofing */
-            -khtml-border-radius:8px; /* for old Konqueror browsers */
+            border-radius:8px;
+            -khtml-border-radius:8px;
             border: white solid @innerBorderWidth;
             top: @outerBorderWidth;
             left: @outerBorderWidth;
@@ -1083,7 +1113,7 @@ form a.button {margin:14px 0 0 0;}
 [class*='col-'] button,
 [class*='col-'] input[type="button"],
 [class*='col-'] input[type="submit"],
-[class*='col-'] a.button {width:100%;}
+[class*='col-'] a.button {width:100%;}*/
 
 
 
@@ -1134,55 +1164,128 @@ li {display: inline-block;.smallText;.capitalize;color:red;}}
 label.error {color:#ff0000;}
 
 
-.loginBox {border:2px solid;border-color:@serviceMid;
-    width:60%;margin:20px auto;padding:20px;
-    -moz-box-shadow:    0px 0px 5px @service,0px 0px 8px 1px @service,inset 0px 0px 100px 1px #29a4eb;
-    -webkit-box-shadow: 0px 0px 5px @service,0px 0px 8px 1px @service,inset 0px 0px 100px 1px #29a4eb;
-    box-shadow:         0px 0px 5px @service,0px 0px 8px 1px @service,inset 0px 0px 100px 1px #29a4eb;
-    -moz-border-radius: 18px;
-    -webkit-border-radius:18px;
-    border-radius:18px;/* future proofing */
-    -khtml-border-radius:18px;/* for old Konqueror browsers */
-    text-align:center;
-    background: -webkit-gradient(linear, 0% 0%, 0% 110%, from(@service), to(@serviceMid));/* Safari 4-5, Chrome 1-9 */
-    background: -webkit-linear-gradient(top, @serviceMid, @service);/* Safari 5.1, Chrome 10+ */
-    background: -moz-linear-gradient(top, @serviceMid, @service);/* Firefox 3.6+ */
-    background: -ms-linear-gradient(top, @serviceMid, @service);/* IE 10 */
-    background: -o-linear-gradient(top, @serviceMid, @service);/* Opera 11.10+ */
-    color:white;}
-    
-.loginBox form {width:350px;text-align: left;margin:auto;text-align: center;}
-    
-.loginBox form label {.regularText;width: 100%;text-align: left;}
-    
-.loginBox input[type="text"] {margin-bottom:20px;}
-    
-.loginBox input[type="text"], .loginBox input[type="password"] {
-    border:none;width:100%;
-    background-color:rgba(53,170,227,0.38);
-    -moz-box-shadow:    0px 2px 1px #98dfff,inset 0px 0px 7px #1784b7;
-    -webkit-box-shadow: 0px 2px 1px #98dfff,inset 0px 0px 7px #1784b7;
-    box-shadow:         0px 2px 1px #98dfff,inset 0px 0px 7px #1784b7;
-    color:white;
-    font-size: 2rem;
-    transition: all 0.4s ease;}
-    
-.loginBox input[type="text"]:hover, .loginBox input[type="password"]:hover {
-    border:1px solid #98dfff;}
 
-.loginBox input[type="text"]:focus, .loginBox input[type="password"]:focus {
+
+.login-box {
+    padding:30px 0 40px;
+    
+    i.fa-user,
+    i.fa-key {
+        display:inline-block;
+        font-size:2rem; 
+        color:rgba(0,100,150,.4);
+        z-index:99;
+        position:relative;
+        top:-29px;
+        left:15px;
+    }
+
+    form {width:350px;text-align: left;margin:auto;}
+    
+    form label {
+        font-size:1.8rem;
+        width: 100%;
+        text-align: left;
+        margin:0;
+        color:@grayDark;
+        text-shadow: 2px 2px 2px white;
+    }
+    
+    .form-field {display:block;margin:0;}
+    
+    input[type="text"],
+    input[type="password"] {
+        display:block;
+        width:100%;
+        margin:0;
+        border:2px solid gray;
+        background:white;
+    }
+    
+    button.action {
+        @loginDark:#ff5401;
+        @loginMid:#ffb239;
+        
+        background:none;
+        display:block;
+        margin:auto;
+
+        color:@loginDark;
+
+        &:hover {
+            
+            border-color:@loginDark;
+            background:@loginDark;
+            
+            .upload {
+                &:after {
+                  background: -webkit-linear-gradient(45deg, @loginMid 50%, @loginDark 50%);
+                  background: -moz-linear-gradient(45deg, @loginMid 50%, @loginDark 50%);
+                  background: -o-linear-gradient(45deg, @loginMid 50%, @loginDark 50%);
+                  background: -ms-linear-gradient(45deg, @loginMid 50%, @loginDark 50%);
+                  background: linear-gradient(45deg, @loginMid 50%, @loginDark 50%);
+            }
+          }/* upload */
+        }/* hover */
+
+        .upload {
+            background:@loginMid;
+            
+            &:after {
+              background: -webkit-linear-gradient(45deg, @loginDark 50%, #eaf9ff 50%);
+              background: -moz-linear-gradient(45deg, @loginDark 50%, #eaf9ff 50%);
+              background: -o-linear-gradient(45deg, @loginDark 50%, #eaf9ff 50%);
+              background: -ms-linear-gradient(45deg, @loginDark 50%, #eaf9ff 50%);
+              background: linear-gradient(45deg, @loginDark 50%, #eaf9ff 50%);
+            }
+        }/* upload */
+    }
+}
+    
+.login-box input[type="text"], .login-box input[type="password"] {
+    border:none;width:100%;
+    
+    background:white;
+    border: 2px solid white;
+    box-shadow:
+        0px 0px 4px #b0e0f7,
+        2px 2px 20px #bbdbea,
+        0px 0px 75px #d5f2ff,
+         inset 4px 4px 8px #c5dee9;
+    color:@grayMid;
+    font-size: 2rem;
+    padding-left:40px;
+    transition: all 0.4s ease;
+    
+    &:focus {
+        color:@serviceDark;
+        border-color:@serviceMid;
+        box-shadow:
+        2px 2px 10px #bbdbea,
+        0px 0px 60px @serviceLight,
+         inset 4px 4px 8px @serviceLight;
+    }
+}
+    
+/*.login-box input[type="text"]:hover, .login-box input[type="password"]:hover {
+    border:1px solid #98dfff;
+}
+
+.login-box input[type="text"]:focus, .login-box input[type="password"]:focus {
     border:1px solid #98dfff;
     -moz-box-shadow:    0px 0px 4px #ccefff,0px 2px 1px #98dfff,inset 0px 0px 7px #1784b7;
     -webkit-box-shadow: 0px 0px 4px #ccefff,0px 2px 1px #98dfff,inset 0px 0px 7px #1784b7;
-    box-shadow:         0px 0px 4px #ccefff,0px 2px 1px #98dfff,inset 0px 0px 7px #1784b7;}
+    box-shadow:         0px 0px 4px #ccefff,0px 2px 1px #98dfff,inset 0px 0px 7px #1784b7;
+}
     
-.loginBox input[type="submit"] {border:1px solid #ee9046;
+.login-box input[type="submit"] {border:1px solid #ee9046;
     -moz-box-shadow:    inset 0px 1px 1px #fffced,inset 0px 0px 10px #fc9e56,2px 2px 7px #0279b7;
     -webkit-box-shadow: inset 0px 1px 1px #fffced,inset 0px 0px 10px #fc9e56,2px 2px 7px #0279b7;
     box-shadow:         inset 0px 1px 1px #fffced,inset 0px 0px 10px #fc9e56,2px 2px 7px #0279b7;
     background-color:#ffca60;
     color:#ff4200;
-    height:35px;}
+    height:35px;
+}*/
 
 
 
