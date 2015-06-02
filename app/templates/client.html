@@ -80,19 +80,17 @@
         <a href="{{ url_for('client_form_add', client_id=client.id) }}" class="action"><span class="upload"><i class="fa fa-file-o fa-stack-1x"></i>
     <i class="fa fa-plus fa-stack-2x"></i></span><p>Add New Client Form</p></a>
     </div>
+    <h2 class="caption">Client Forms</h2>
     <table class="forms">
-        <thead>
-            <tr>
-                <th class="caregiver-dark" colspan="2">client forms</th>
-            </tr>
-        </thead>
         <tbody>
            {% if urgent %}
                 {% for instance in urgent %}
                     {{ form_instance_tr(instance) }}
                 {% endfor %}
             {% endif %}
-        </tbody>
+        </tbody>            
+    </table>
+    <table class="forms">
         <tbody>
             {% if non_urgent %}
                 {% for instance in non_urgent %}
