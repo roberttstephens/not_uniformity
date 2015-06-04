@@ -1,5 +1,87 @@
-{% extends "base.html" %}
-{% block title %}The name{% endblock %}
-{% block content %}
-<p>Hello</p>
+{% extends "base.html" %} {% block title %}The name{% endblock %} {% block content %}
+<!-- service_form_add_edit.html -->
+<section class="container">
+    <div class="service-header">
+        <div class="service-wrap">
+            <div class="caregiver">
+                <div class="serviceBox">
+                    <text class="service-title">caregiver</text>
+                    <text class="service">longfirstname longlastname</text>
+                    <text class="phone">555-555-1234</text>
+                </div>
+                <!-- serviceBox -->
+            </div>
+            <!-- caregiver -->
+        </div>
+        <!-- service-wrap -->
+        <div class="service-wrap">
+            <div class="service">
+                <div class="serviceBox">
+                    <text class="service-title">service</text>
+                    <text class="service">rediculously long service title name</text>
+                </div>
+                <!-- serviceBox -->
+            </div>
+            <!-- service -->
+        </div>
+        <!-- service-wrap -->
+        <div class="service-wrap">
+            <div class="client">
+                <div class="serviceBox">
+                    <text class="service-title">client</text>
+                    <text class="service">longfirstnamez</text>
+                    <text class="phone">555-555-1234</text>
+                </div>
+                <!-- serviceBox -->
+            </div>
+            <!-- client -->
+        </div>
+        <!-- service-wrap -->
+    </div>
+    <!-- service-header -->
+</section>
+<!-- container -->
+
+<section class="container">
+    <div class="service">
+        <h1>Add new form for this service</h1>
+        <form method=post action="">
+            <div class="box form">
+                <h3>Form Information</h3>
+                <fieldset>
+                    <ol>
+                        <li>
+                            <label for="fullname">Full Name*</label>
+                            <input type="text" id="fullname" name="fullname" placeholder="Full Name*" required />
+                            <span class="helper">Example: Johnathan Appleseed</span>
+                        </li>
+                        <li class="date-picker">
+                            <label for="date-expired">Expiration Date*</label>
+                            <input type="text" id="input_text" name="date-expired" placeholder="Expiration Date*">
+                            <input type="text" id="input_date">
+                            <span class="helper">Example: 09/22/1959</span>
+                            <i class="fa fa-calendar"></i>
+                        </li>
+                    </ol>
+                </fieldset>
+            </div>
+            <!-- box -->
+            <button type="submit" class="action"><span class="upload"><i class="fa fa-plus fa-stack-1x"></i></span>
+                <p>Save new form</p>
+            </button>
+        </form>
+    </div>
+    <!-- service -->
+
+    {% include 'footer.html' %}
+</section>
+<!-- overview -->
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery.maskedinput/1.3.1/jquery.maskedinput.min.js"></script>
+<script>
+    jQuery(function ($) {
+        $("#phone_number").mask("(999) 999-9999");
+    });
+</script>
 {% endblock %}
