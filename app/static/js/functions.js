@@ -69,7 +69,7 @@ $(function(){
   var activeClass = "active",
       showClass = "show";
   
-  $("input").bind("checkval",function(){
+  $("input, select").bind("checkval",function(){
     var label = $(this).prevAll("label");
     if(this.value !== ""){
       label.addClass(showClass);

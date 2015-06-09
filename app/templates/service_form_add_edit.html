@@ -1,4 +1,6 @@
-{% extends "base.html" %} {% block title %}The name{% endblock %} {% block content %}
+{% extends "base.html" %}
+{% block title %}The name{% endblock %}
+{% block content %}
 <!-- service_form_add_edit.html -->
 <section class="container">
     <div class="service-header">
@@ -51,9 +53,9 @@
                 <fieldset>
                     <ol>
                         <li>
-                            <label for="fullname">Full Name*</label>
-                            <input type="text" id="fullname" name="fullname" placeholder="Full Name*" required />
-                            <span class="helper">Example: Johnathan Appleseed</span>
+                            <label for="fullname">Form Name*</label>
+                            <input type="text" id="formname" name="formname" placeholder="Form Name*" required />
+                            <span class="helper">Example: Supported Living Coach</span>
                         </li>
                         <li class="date-picker">
                             <label for="date-expired">Expiration Date*</label>
