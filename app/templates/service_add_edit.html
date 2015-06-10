@@ -1,38 +1,94 @@
-{% extends "base.html" %}
-{% block title %}The name{% endblock %}
-{% block content %}
+{% extends "base.html" %} {% block title %}The name{% endblock %} {% block content %}
 <!-- service_add_edit.html -->
 <section class="container">
-    <div class="box page-title service-light">
-        <h2>add new service</h2>
-    </div><!-- caregiver -->
-</section><!-- service header -->
-<section class="container">
-{% from "_formhelpers.html" import render_field %}
-<form method=post action="">
-    {{ form.hidden_tag() }}
-    <div class="grid">
-        <div class="col-1-3">
-            <div class="service-title caregiver-light">
-                {% if caregiver_disabled %}
-                    {{ render_field(form.caregiver_id, disabled=True) }}
-                {% else %}
-                    {{ render_field(form.caregiver_id) }}
-                {% endif %}
-            </div><!-- caregiver -->
-        </div>
-        <div class="col-1-3">
-            <div class="service-title service-light">
-                {{ render_field(form.name) }}
-            </div><!-- service -->
-        </div>
-        <div class="col-1-3">
-            <div class="service-title client-light">
-                {{ render_field(form.client_id) }}
-            </div><!-- client -->
+    <div class="caregiver"> <!--MAKE DYNAMIC if adding client to caregiver, say caregiver - vise versa-->
+        <div class="box page-title">
+            <h2>New Client for Chase Whiteside</h2> <!--MAKE DYNAMIC if adding client to caregiver, say "New Client for  Caregiver Name - vise versa-->
         </div>
     </div>
-    <input class="service-dark" type="submit" name="" id="" value="submit" />
-</form>
 </section>
+<!-- service header -->
+
+<section class="container">
+    <form method="post" action="" class="assign-roll">
+            <div class="client"><!-- MAKE DYNAMIC if adding client to garegiver, say client - vise versa -->
+                <div class="box form">
+                    <h3>Client Information</h3><!-- MAKE DYNAMIC if adding client to garegiver, say client - vise versa -->
+                    <fieldset>
+                        <ol>
+                            <li>
+                                <label for="clientname">Client Name*</label>
+                                <input type="text" id="clientname" name="clientname" placeholder="Client Name*" required />
+                                <span class="helper">Example: Jane Smith</span>
+                            </li>
+                        </ol>
+                    </fieldset>
+                </div><!-- box -->
+            </div><!-- client -->
+            <div class="service">
+                <div class="box form">
+                    <h3>Service Information</h3>
+                    <fieldset>
+                        <ol>
+                            <li>
+                                <label for="clientname">Service Provided*</label>
+                                <input type="text" id="servicename" name="servicetname" placeholder="Service Provided*" required />
+                                <span class="helper">Example: Supported Living Coach</span>
+                            </li>
+                        </ol>
+                    </fieldset>
+                </div><!-- box -->
+            </div><!-- service -->
+            <div><!-- button wrap for grid -->
+            <button type="submit"><span class="upload"><i class="fa fa-check fa-stack-1x"></i></span><p>Save New Service</p>
+            </button>
+        </div>
+    </form>
+</section>
+
+<!--OLD-->
+<section class="container">
+   OLD - leaving for code reference
+    {% from "_formhelpers.html" import render_field %}
+    <form method=post action="">
+        {{ form.hidden_tag() }}
+        <div class="service-header">
+            <div class="service-wrap">
+                <div class="caregiver">
+                    <div class="serviceBox">
+                        {% if caregiver_disabled %} {{ render_field(form.caregiver_id, disabled=True) }} {% else %} {{ render_field(form.caregiver_id) }} {% endif %}
+                    </div>
+                    <!-- serviceBox -->
+                </div>
+                <!-- caregiver -->
+            </div>
+            <!-- service-wrap -->
+            <div class="service-wrap">
+                <div class="service">
+                    <div class="serviceBox">
+                        {{ render_field(form.name) }}
+                    </div>
+                    <!-- serviceBox -->
+                </div>
+                <!-- service -->
+            </div>
+            <!-- service-wrap -->
+            <div class="service-wrap">
+                <div class="client">
+                    <div class="serviceBox">
+                        {{ render_field(form.client_id) }}
+                    </div>
+                    <!-- serviceBox -->
+                </div>
+                <!-- client -->
+            </div>
+            <!-- service-wrap -->
+        </div>
+        <!-- service-header -->
+        <input class="service-dark" type="submit" name="" id="" value="submit" />
+    </form>
+</section>
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery.maskedinput/1.3.1/jquery.maskedinput.min.js"></script>
 {% endblock %}
