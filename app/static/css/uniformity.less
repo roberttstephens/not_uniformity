@@ -221,7 +221,8 @@ a:visited {color:inherit;}
     display:inline-block;
     vertical-align: top;
     text-align:center;
-    padding:0px 5px;
+    width: 33.3%;
+    padding:0px .45%;
       
     &:last-of-type {padding-right: 0px;}
     &:first-of-type {padding-left: 0px;}
@@ -456,6 +457,55 @@ a:visited {color:inherit;}
             a {font-size:.7em;}
         }
     }/*table.form-record*/
+    
+    .picker__holder {
+        border-color:@color;
+        @shadow:0px 6px 7px 0px desaturate(@color,25%);
+        -webkit-box-shadow: @shadow;
+        -moz-box-shadow: @shadow;
+        box-shadow: @shadow;
+
+        .picker__table {
+            th {
+                background-color:@color;
+                border-color:@color;
+                color:white;
+            }
+            td {
+                color:@dark;
+                border-color:@color!important;
+            }
+            .picker__day--outfocus {
+                color:@light;
+            }
+        }
+    
+        .picker__nav--prev:before {border-right-color: @dark;}
+        .picker__nav--next:before {border-left-color: @dark;}
+        
+        .picker--focused .picker__day--selected,
+        .picker__day--selected,
+        .picker__day--selected:hover {
+            background: @dark;
+            color: white
+        }
+        
+        .picker--focused .picker__day--highlighted,
+        .picker__day--highlighted:hover,
+        .picker__day--infocus:hover,
+        .picker__day--outfocus:hover {
+            color: @dark;
+            background: @light
+        }
+        
+        .picker__day--today:before {
+            border-top-color:@dark
+        }
+        
+        .picker__day--selected.picker__day--today:before {
+            border-top-color:white
+        }
+    }
         
     .box {background:@light;border-color:@color;color:@color;}
     

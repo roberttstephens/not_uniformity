@@ -306,7 +306,13 @@ var $inputDate = $('#input_date').pickadate({
     formatSubmit: 'mm/dd/yyyy',
     today: '',
     clear: 'Clear selection',
-    close: 'Cancel'
+    close: 'Cancel',
+    labelMonthNext: 'Go to the next month',
+    labelMonthPrev: 'Go to the previous month',
+    labelMonthSelect: 'Pick a month from the dropdown',
+    labelYearSelect: 'Pick a year from the dropdown',
+    selectMonths: true,
+    selectYears: true
 }),
     picker = $inputDate.pickadate('picker'),
     $inputText = $('#input_text').on({
