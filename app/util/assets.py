@@ -7,9 +7,6 @@ bundles = {
                      'js/lib/plugins.js', 'js/lib/H5F.js', 'js/functions.js',
                      output='gen/app.js',
                      filters='jsmin'),
-    'app_css': Bundle('css/lib/normalize.css',
-                      output='gen/app.css',
-                      filters='cssmin'),
 }
 
 assets = Environment(app)
