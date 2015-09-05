@@ -17,41 +17,16 @@
         {{ form.hidden_tag() }}
         <div class="box">
             <h3>personal information</h3>
-            <ul>
-                <li>
-                    {{ render_field(form.name) }}
-                </li>
-                <li>
-                    {{ render_field(form.birth_date) }}
-                </li>
-                <li>
-                    {{ render_field(form.email) }}
-                </li>
-                <li>
-                    {{ render_field(form.email) }}
-                </li>
-                <li>
-                    {{ render_field(form.phone_number) }}
-                </li>
-                <li>
-                    {{ render_field(form.phone_extension) }}
-                </li>
-                <li>
-                    {{ render_field(form.address_1) }}
-                </li>
-                <li>
-                    {{ render_field(form.address_2) }}
-                </li>
-                <li>
-                    {{ render_field(form.city) }}
-                </li>
-                <li>
-                    {{ render_field(form.state) }}
-                </li>
-                <li>
-                    {{ render_field(form.zip_code) }}
-                </li>
-            </ul>
+            {{ render_field(form.name, placeholder='Name') }}
+            {{ render_field(form.birth_date) }}
+            {{ render_field(form.email) }}
+            {{ render_field(form.phone_number) }}
+            {{ render_field(form.phone_extension) }}
+            {{ render_field(form.address_1) }}
+            {{ render_field(form.address_2) }}
+            {{ render_field(form.city) }}
+            {{ render_field(form.state) }}
+            {{ render_field(form.zip_code) }}
         </div> 
         <input type=submit value=Save>
     </form>

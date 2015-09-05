@@ -11,17 +11,21 @@
 
 <section class="container">
     <form method="post" action="" class="assign-roll">
+        {% from "_formhelpers.html" import render_field %}
+        <form method=post action="">
+            {{ form.hidden_tag() }}
+            <div class="hidden">
+                {% if caregiver_disabled %} {{ render_field(form.caregiver_id, disabled=True) }} {% else %} {{ render_field(form.caregiver_id) }} {% endif %}
+            </div>
             <div class="client"><!-- MAKE DYNAMIC if adding client to garegiver, say client - vise versa -->
                 <div class="box form">
                     <h3>Client Information</h3><!-- MAKE DYNAMIC if adding client to garegiver, say client - vise versa -->
-                    <fieldset>
-                        <ol>
-                            <li>
-                                <label for="clientname">Client Name*</label>
-                                <input type="text" id="clientname" name="clientname" placeholder="Client Name*" required />
-                                <span class="helper">Example: Jane Smith</span>
-                            </li>
-                        </ol>
+                        <form method=post action="">
+                            <ol>
+                                <li>
+                                    {{ render_field(form.client_id) }}
+                                </li>
+                            </ol>
                     </fieldset>
                 </div><!-- box -->
             </div><!-- client -->
@@ -31,9 +35,7 @@
                     <fieldset>
                         <ol>
                             <li>
-                                <label for="clientname">Service Provided*</label>
-                                <input type="text" id="servicename" name="servicetname" placeholder="Service Provided*" required />
-                                <span class="helper">Example: Supported Living Coach</span>
+                                {{ render_field(form.name, placeholder='Name of Service*') }}
                             </li>
                         </ol>
                     </fieldset>
@@ -43,49 +45,6 @@
             <button type="submit"><span class="upload"><i class="fa fa-check fa-stack-1x"></i></span><p>Save New Service</p>
             </button>
         </div>
-    </form>
-</section>
-
-<!--OLD-->
-<section class="container">
-   OLD - leaving for code reference
-    {% from "_formhelpers.html" import render_field %}
-    <form method=post action="">
-        {{ form.hidden_tag() }}
-        <div class="service-header">
-            <div class="service-wrap">
-                <div class="caregiver">
-                    <div class="serviceBox">
-                        {% if caregiver_disabled %} {{ render_field(form.caregiver_id, disabled=True) }} {% else %} {{ render_field(form.caregiver_id) }} {% endif %}
-                    </div>
-                    <!-- serviceBox -->
-                </div>
-                <!-- caregiver -->
-            </div>
-            <!-- service-wrap -->
-            <div class="service-wrap">
-                <div class="service">
-                    <div class="serviceBox">
-                        {{ render_field(form.name) }}
-                    </div>
-                    <!-- serviceBox -->
-                </div>
-                <!-- service -->
-            </div>
-            <!-- service-wrap -->
-            <div class="service-wrap">
-                <div class="client">
-                    <div class="serviceBox">
-                        {{ render_field(form.client_id) }}
-                    </div>
-                    <!-- serviceBox -->
-                </div>
-                <!-- client -->
-            </div>
-            <!-- service-wrap -->
-        </div>
-        <!-- service-header -->
-        <input class="service-dark" type="submit" name="" id="" value="submit" />
     </form>
 </section>
 

@@ -4,7 +4,7 @@
 {% block content %}
 <!-- index.html -->
 <section class="container">
-    <div class="service">
+    <div class="service overview">
     <table class="overview">
         <caption>
             <h3>service forms</h3>
@@ -47,10 +47,10 @@
             </tr>
         </tbody>
     </table><!-- overview service -->
-    <a href="{{ url_for('service_overview') }}" class="button" role="button">view # more</a>
+    <a href="{{ url_for('service_overview') }}" class="action"><span class="upload"><i class="fa fa-files-o fa-stack-1x"></i></span><p>view # more</p></a>
     </div><!-- service -->
-    <br/>
-    <div class="caregiver">
+
+    <div class="caregiver overview">
     <table class="overview">
         <caption>
             <h3>caregiver forms</h3>
@@ -69,10 +69,10 @@
             {% endif %}
         </tbody>
     </table><!-- overview caregiver -->
-    <a href="{{ url_for('caregiver_overview') }}" class="button" role="button">view # more</a>
+    <a href="{{ url_for('caregiver_overview') }}" class="action"><span class="upload"><i class="fa fa-files-o fa-stack-1x"></i></span><p>view # more</p></a>
     </div><!-- caregiver -->
-    <br/>
-    <div class="client">
+
+    <div class="client overview">
     <table class="overview">
         <caption>
             <h3>client forms</h3>
@@ -91,7 +91,7 @@
             {% endif %}
         </tbody>
     </table>
-    <a href="{{ url_for('client_overview') }}" class="button" role="button">view # more</a>
+    <a href="{{ url_for('client_overview') }}" class="action"><span class="upload"><i class="fa fa-files-o fa-stack-1x"></i></span><p>view # more</p></a>
     </div><!-- client -->
 
 {% include 'footer.html' %}    

@@ -32,7 +32,7 @@ body#login {
 
     .uniformity-logo-blue {
         fill:@serviceDark;
-}
+    }
 }
 #top-login {
     
@@ -550,6 +550,9 @@ p, {text-transform:capitalize;margin:0;padding:0;vertical-align:middle;}
     .box.warning p {.mediumText;text-transform:none;margin:10px 0px;}
 
 
+// margin between 'view more' buttons
+div.overview { margin-bottom: 2rem }
+
 .overview-top h3 {text-align: center;magrin:0; padding-bottom:10px;}
     .overview-top-caregiver h3 {text-shadow: 0px 0px 8px @caregiverLight;}
     .overview-top-client h3 {text-shadow: 0px 0px 8px @clientLight;}
@@ -581,7 +584,7 @@ TABLES
 --*/
 table {width:100%;border-collapse:collapse;text-align:left;}
     span.caption {padding:7px 10px;display:block;}
-    caption h3 {margin:0;}
+    caption h3 {margin:0; text-transform: capitalize; }
 table tbody::after {content: '';display: block;height: 6px;}
 table tr {border-left:6px solid;}
 table td, th {border:2px solid;}
@@ -973,7 +976,7 @@ footer {
             a,
             a:visited {color:white;}
               @media @desktop-xl {
-                font-size: 1.5vw;
+                font-size: 2.2rem;
               }
               @media @tablet {
                 font-size:2rem;
@@ -987,7 +990,7 @@ footer {
             font-size:1.2rem;
             padding:5px 15px 0px 0px;
             @media @desktop-xl {
-              font-size: 1.4vw;
+              font-size: 2rem;
             }
             @media @tablet {
               display:inline-block;
