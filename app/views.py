@@ -256,7 +256,7 @@ def caregiver_form_instance_add(caregiver_id, form_id):
         caregiver_form_instance.caregiver_form_id = form_id
         db.session.add(caregiver_form_instance)
         db.session.commit()
-    return render_template('caregiver_form_instance_add.html', form=form)
+    return render_template('caregiver_form_instance_add.html', caregiver_form=caregiver_form, form=form)
 
 
 @app.route('/clients/<int:client_id>/forms/add', methods=['GET', 'POST'])
