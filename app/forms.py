@@ -5,6 +5,13 @@ import re
 from wtforms import StringField, PasswordField, TextField, SelectField, validators
 from wtforms.fields.html5 import TelField, EmailField, DateField
 
+from wtforms.validators import ValidationError
+from datetime import date
+
+def date_not_in_future(form, field):
+    if field.data > date.today():
+        raise ValidationError('Must not be a date in the future.')
+
 
 def only_digits(string):
     """Ensure that a string contains only digits."""
@@ -69,13 +76,12 @@ class RoleForm(Form):
                                    validators.Length(min=2,
                                                      max=128)])
 
-
 class CaregiverFormInstanceForm(Form):
     """The form for the caregiver form instance."""
     expiration_date = DateField('Expiration date', format='%Y-%m-%d')
     received_date = DateField('Received date',
                               format='%Y-%m-%d',
-                              validators=[validators.Optional()])
+                              validators=[validators.Optional(), date_not_in_future])
 
 
 class ClientForm(Form):
