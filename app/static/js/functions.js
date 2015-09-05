@@ -303,7 +303,7 @@ return((r[1].length===0)?r[0]:null);};};$D.parseExact=function(s,fx){return $D.g
 
 var $inputDate = $('#input_date').pickadate({
     format: 'mmmm d, yyyy',
-    formatSubmit: 'mm/dd/yyyy',
+    formatSubmit: 'yyyy-mm-dd',
     today: '',
     clear: 'Clear selection',
     close: 'Cancel',
