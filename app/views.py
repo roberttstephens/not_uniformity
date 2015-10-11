@@ -411,9 +411,16 @@ def form():
 
 @app.route('/caregivers/<int:caregiver_id>/forms/<int:form_id>')
 def caregiver_form(caregiver_id, form_id):
-    caregiver_form = CaregiverFormModel.query.join(Caregiver).join(Agency).filter(
-        Agency.id == g.user.id).filter(CaregiverFormModel.caregiver_id == caregiver_id).first_or_404()
-    return render_template('role_form.html', role='caregiver', item=caregiver_form.caregiver, form=caregiver_form)
+    caregiver_form = CaregiverFormModel.query.join(Caregiver).join(
+        Agency).filter(
+            Agency.id == g.user.id).filter(
+                CaregiverFormModel.caregiver_id == caregiver_id).filter(
+                    CaregiverFormModel.id == form_id).first_or_404()
+    return render_template('role_form.html',
+                           role='caregiver',
+                           item=caregiver_form.caregiver,
+                           form=caregiver_form)
+
 
 
 @app.route('/clients/<int:client_id>/forms/<int:form_id>')
