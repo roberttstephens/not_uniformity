@@ -16,7 +16,7 @@ from .util.security import ts
 
 @app.route('/reset', methods=["GET", "POST"])
 def reset():
-    if current_user.is_authenticated():
+    if current_user.is_authenticated:
         return redirect(url_for("index"))
     form = EmailForm()
     if form.validate_on_submit():
@@ -47,7 +47,7 @@ def reset():
 
 @app.route('/reset/<token>', methods=["GET", "POST"])
 def reset_with_token(token):
-    if current_user.is_authenticated():
+    if current_user.is_authenticated:
         return redirect(url_for("index"))
     try:
         email = ts.loads(token, salt="recover-key", max_age=86400)
@@ -339,7 +339,7 @@ def client(client_id):
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
-    if current_user.is_authenticated():
+    if current_user.is_authenticated:
         return redirect(url_for("index"))
     form = LoginForm()
     if form.validate_on_submit():
@@ -375,7 +375,7 @@ def logout():
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
-    if current_user.is_authenticated():
+    if current_user.is_authenticated:
         return redirect(url_for("index"))
     form = RegisterForm()
     if form.validate_on_submit():

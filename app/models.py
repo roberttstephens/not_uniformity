@@ -190,12 +190,15 @@ class Agency(db.Model, BaseMixin, CreateUpdateMixin, PhoneMixin, AddressMixin):
     def get_id(self):
         return str(self.id)
 
+    @property
     def is_active(self):
         return self.status
 
+    @property
     def is_anonymous(self):
         return False
 
+    @property
     def is_authenticated(self):
         return True
 
