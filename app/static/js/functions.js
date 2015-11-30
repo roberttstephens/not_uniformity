@@ -44,79 +44,34 @@ $(document).ready(function() {
     
     
     function eqColumn(){
-//if ($(window).width() > 0){
-    var serviceWrap = $(".service-wrap");
-    //reset the height to auto
-    serviceWrap.css("height", "auto");
-    var biggest = 0;
-    $(serviceWrap).each(function(){
-        if ($(this).height() > biggest){
-            biggest = $(this).height();
-         }
+        //if ($(window).width() > 0){
+        var serviceWrap = $(".service-wrap");
+        //reset the height to auto
+        serviceWrap.css("height", "auto");
+        var biggest = 0;
+        $(serviceWrap).each(function(){
+            if ($(this).height() > biggest){
+                biggest = $(this).height();
+             }
+        });
+        serviceWrap.css("height", biggest);
+    }
+    //}
+
+    $(window).on("load resize", eqColumn);
+
+
+    $(function() {
+        $(
     });
-    serviceWrap.css("height", biggest);
-}
-//}
-
-$(window).on("load resize", eqColumn);
-
-// Float Label (slightly modified) based on version by Aaron Barker www.codepen.io/aaronbarker/
-$(function(){  
-  var activeClass = "active",
-      showClass = "show";
-  
-  $("input, select").bind("checkval",function(){
-    var label = $(this).prevAll("label");
-    if(this.value !== ""){
-      label.addClass(showClass);
-    } else {
-      label.removeClass(showClass);
-    }
-  })
-  .on("keyup",function(){
-    $(this).trigger("checkval");
-  })
-  .on("focus",function(){
-    $(this).prevAll("label").addClass("active show");
-  })
-  .on("blur",function(){
-		$(this).prevAll("label").removeClass(activeClass);
-  })
-  .trigger("checkval");
-});
 
 
-// Helper Label by Chase Whiteside www.codepen.io/chasebank/
-$(function(){
-  var hideClass = "hide";
-  
-  $('.helper').hide().addClass('hide');
-  
-  $("input").bind("checkval",function(){
-    var label = $(this).prevAll("label"),
-        labelMargin = label.width(),
-        helper = $(this).nextAll(".helper");
-    if(this.value !== ""){
-      helper.css("margin-left",labelMargin+10);
-    } else {
-      helper.removeAttr('style');
-    }
-  })
-  .on("keyup",function(){
-    $(this).trigger("checkval");
-  })
-  .on("focus",function(){
-    $(this).trigger("checkval").nextAll(".helper").removeClass(hideClass);
-  })
-  .on("blur",function(){
-		$(this).nextAll(".helper").removeAttr('style').addClass(hideClass);
-  }).trigger("checkval");
-});
+ 
 
 
-$("#validate").click(function(){
-    $('#fullname').closest('li').addClass('error');
-});
+    $("#validate").click(function(){
+        $('#fullname').closest('li').addClass('error');
+    });
 
 
 });

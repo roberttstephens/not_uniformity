@@ -3,10 +3,10 @@
 * > :first-child {margin-top:0!important;}
 * > :last-child {margin-bottom:0!important;}
 section.container:last-of-type {padding-bottom:0px;}//make sure footer is flush with bottom
-* { 
-  -moz-box-sizing: border-box; 
-  -webkit-box-sizing: border-box; 
-  box-sizing: border-box; 
+* {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 @columns: 12;
@@ -55,17 +55,18 @@ section.container:last-of-type {padding-bottom:0px;}//make sure footer is flush 
 }/*  GRID  */
 
 .opacity (@opacity) {
-	-webkit-opacity: 	@opacity;
-	-moz-opacity: 		@opacity;
-	opacity: 		@opacity;
+  -webkit-opacity: 	@opacity;
+  -moz-opacity: 		@opacity;
+  opacity: 		@opacity;
 }
 
 @radius:10px;
-.radius {
+.radius (@radius:@radius) {
     -moz-border-radius:@radius;
     -webkit-border-radius:@radius;
-    border-radius:@radius;/* future proofing */
-    -khtml-border-radius:@radius; /* for old Konqueror browsers */}
+    border-radius:@radius; /* future proofing */
+    -khtml-border-radius:@radius; /* for old Konqueror browsers */
+}
 
 /*Add label in top-left corner desplaying current media query state.*/
 body {
@@ -99,14 +100,47 @@ body {
   }
 }
 
-// MQ trigger
+
+/*--
+COLOR STYLES
+--*/
+@grayDark:#4f586f;
+@gray:#646c80;
+@grayMid:#8b94ab;
+@grayLight:#e8eff8;
+@caregiverDark:#007d6d;
+@caregiver:#009a86;
+@caregiverLight:#e0f2ed;
+@caregiverMid:#66CAA6;
+@clientDark:#6545da;
+@client:#8654FF;
+@clientLight:#EFE9FC;
+@clientMid:#B698FF;
+@serviceDark:#1d8de3;
+@service:#3aaff8;
+@serviceLight:#E0F2FB;
+@serviceMid:#86D0FF;
+@urgentRed:#ED1C24;
+@urgentRedLight:#FFF0E1;
+@urgentYellow:#FF6200;
+@urgentYellowLight:#FFFCD5;
+@nonurgentGreen:#00A651;
+@nonurgentGreenMid:#00ce65;
+@nonurgentGreenLight:#E9FFE5;
+@yellow:#fff200;
+
+
+
 // Breakpoints
-// ------------------------- Source: http://blog.scur.pl/2012/06/variable-media-queries-less-css/
+// Source: http://blog.scur.pl/2012/06/variable-media-queries-less-css/
 @highdensity: ~"only screen and (-webkit-min-device-pixel-ratio: 1.5)",
               ~"only screen and (min--moz-device-pixel-ratio: 1.5)",
               ~"only screen and (-o-min-device-pixel-ratio: 3/2)",
               ~"only screen and (min-device-pixel-ratio: 1.5)";
-@mobile:      ~"only screen and (max-width: 529px)";
+@phone:       ~"only screen and (max-width: 529px)";
+  @notPhone:  ~"only screen and (min-width: 530px)"; // Everything bigger than phones
 @tablet:      ~"only screen and (min-width: 530px) and (max-width: 768px)";
+@mobile:      ~"only screen and (max-width: 768px)"; // Phones and Tablets
+  @notMobile: ~"only screen and (min-width: 769px)"; // Everything bigger than phone and tablet
 @desktop:     ~"only screen and (min-width: 769px) and (max-width: 1128px)";
 @desktop-xl:  ~"only screen and (min-width: 1129px)";

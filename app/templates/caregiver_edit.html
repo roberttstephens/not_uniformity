@@ -15,8 +15,8 @@
     {% from "_formhelpers.html" import render_field %}
     <form method=post action="">
         {{ form.hidden_tag() }}
+        <h3>personal information</h3>
         <div class="box">
-            <h3>personal information</h3>
             {{ render_field(form.name) }}
             {{ render_field(form.birth_date) }}
             {{ render_field(form.email) }}
