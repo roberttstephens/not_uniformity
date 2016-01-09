@@ -60,13 +60,7 @@ $(document).ready(function() {
 
     $(window).on("load resize", eqColumn);
 
-
-    $(function() {
-        $(
-    });
-
-
- 
+    
 
 
     $("#validate").click(function(){
