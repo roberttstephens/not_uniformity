@@ -69,3 +69,63 @@ $(document).ready(function() {
 
 
 });
+
+
+$.fn.slideFadeToggle  = function(speed, easing, callback) {
+   return this.animate({opacity: 'toggle', height: 'toggle', padding: 'toggle'}, speed, easing, callback);
+};
+
+
+$('div.edit-form').hide();
+var cancelButtonWidth = $('.cancel-edit-form-button').outerWidth();
+$('.cancel-edit-form-button').hide();
+
+$('.edit-toggle').click(function() {
+   var editToggle = $(this),
+       allEditToggles = $('.edit-toggle'),
+       editThisForm = $(this).next('div.edit-form'),
+       editButton = $(this).find('.edit-form-button'),
+       editButtonWidth = $(this).find('.edit-form-button').outerWidth(),
+       cancelButton = $(this).find('.cancel-edit-form-button');
+      
+   // Untoggle everything except this one
+   $('.edit-form[toggled="1"]').not(editThisForm).prevAll('.edit-toggle').children('.edit-form-button, .cancel-edit-form-button').fadeToggle();
+   $('.edit-form[toggled="1"]').not(editThisForm).removeAttr('toggled').slideFadeToggle();
+   
+   if ($(editThisForm).attr('toggled')) {
+      // If this one is toggled, untoggle it
+      $(editThisForm).removeAttr('toggled').slideFadeToggle();
+      $(editButton).fadeToggle();
+      $(cancelButton).fadeToggle();
+   } else {
+      // If this one isn't toggled, toggle it
+      $(editThisForm).attr('toggled', '1').slideFadeToggle();
+      $(editButton).fadeToggle();
+      $(cancelButton).fadeToggle();
+   }
+});
+
+
+$('.edit-form .checkbox :checkbox').each(function() {
+   var receivedDateWrap = $(this).closest('label').siblings('.received-date'),
+       receivedDateInput = $(receivedDateWrap).find('input');
+      
+   if ( this.checked ) {
+      $(receivedDateWrap).removeClass('disabled');
+      $(receivedDateInput).prop('disabled', false);
+   } else {
+      $(receivedDateWrap).addClass('disabled');
+      $(receivedDateInput).val("").prop('disabled', true);
+   }
+   
+   $(this).change(function() {
+      
+       if ( this.checked ) {
+         $(receivedDateWrap).removeClass('disabled');
+         $(receivedDateInput).prop('disabled', false);
+      } else {
+         $(receivedDateWrap).addClass('disabled');
+         $(receivedDateInput).val("").prop('disabled', true);
+      }
+   })
+});
