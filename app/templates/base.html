@@ -15,6 +15,9 @@
     {% assets "app_js" %}
     <script type="text/javascript" src="{{ ASSET_URL }}"></script>
     {% endassets %}
+    <!-- MVP: Used to quickly print dates for prototype -->
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.0/moment.min.js"></script>
+    <!-- END MVP -->
 </head>
 
 {% if not session.logged_in %}

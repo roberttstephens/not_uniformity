@@ -44,6 +44,20 @@
             </tr>
         </thead>
         <tbody>
+            <!-- MVP: This form data should be populated from the web server on load. Fake data is used right now. -->
+            <tr>
+                <td class="expiration-date expired">
+                    <span class="expiration-date"><span class="icon-cirlcereceived"></span>05-25-2014</span>
+                </td>
+                <td class="form-title expired"><a href="/services/1/forms/1">Example expired form name</a></td>
+            </tr>
+            <tr>
+                <td class="expiration-date expired">
+                    <span class="expiration-date"><span class="icon-cirlcereceived"></span>05-25-2015</span>
+                </td>
+                <td class="form-title expired"><a href="/services/1/forms/1">Another expired form</a></td>
+            </tr>
+            <!-- end MVP -->
            {% if expired_forms %}
                 {% for form in expired_forms %}
                     <tr>
@@ -54,6 +68,28 @@
                     </tr>
                 {% endfor %}
             {% endif %}
+            <!-- MVP: This form data should be populated from the web server on load. Fake data is used right now. -->
+            <tr>
+                <td class="expiration-date expiring-soon">
+                    <span class="expiration-date"><span class="icon-cirlcereceived"></span>
+                        <script type="text/javascript" charset="utf-8">
+                            document.write(moment().add(5, 'days').format('MM-DD-YYYY'));
+                        </script>
+                    </span>
+                </td>
+                <td class="form-title expiring-soon"><a href="/services/1/forms/1">Expiring soon form example</a></td>
+            </tr>
+            <tr>
+                <td class="expiration-date expiring-soon">
+                    <span class="expiration-date"><span class="icon-cirlcereceived"></span>
+                        <script type="text/javascript" charset="utf-8">
+                            document.write(moment().add(8, 'days').format('MM-DD-YYYY'));
+                        </script>
+                    </span>
+                </td>
+                <td class="form-title expiring-soon"><a href="/services/1/forms/1">Another form expiring soon</a></td>
+            </tr>
+            <!-- MVP -->
             {% if expiring_soon_forms %}
                 {% for form in expiring_soon_forms %}
                     <tr>
@@ -66,6 +102,20 @@
             {% endif %}
         </tbody>
         <tbody>
+            <!-- MVP: This form data should be populated from the web server on load. Fake data is used right now. -->
+            <tr>
+                <td class="expiration-date">
+                    <span class="expiration-date"><span class="icon-cirlcereceived"></span>07-14-2017</span>
+                </td>
+                <td class="form-title"><a href="/services/1/forms/1">Fingerprint Card</a></td>
+            </tr>
+            <tr>
+                <td class="expiration-date">
+                    <span class="expiration-date"><span class="icon-cirlcereceived"></span>03-07-2015</span>
+                </td>
+                <td class="form-title"><a href="/services/1/forms/1">Fingerprint Card</a></td>
+            </tr>
+            <!-- MVP -->
              {% if non_urgent_forms %}
                 {% for form in non_urgent_forms %}
                     <tr>
