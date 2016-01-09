@@ -10,4 +10,5 @@ bundles = {
 }
 
 assets = Environment(app)
+app.config['ASSETS_DEBUG'] = True
 assets.register(bundles)
