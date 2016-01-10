@@ -5,7 +5,7 @@
 <section class="container">
     <div class="client">
         <div class="page-title">
-            <h2>edit {{ client.name }}</h2>
+            <h2>Edit {{ client.name }}</h2>
         </div><!-- page-title -->
     </div><!-- client -->
 </section>
@@ -16,7 +16,7 @@
         <form method=post action="">
             {{ form.hidden_tag() }}
             <div class="box">
-                <h3>personal information</h3>
+                <h3>Personal Information</h3>
                 {{ render_field(form.name) }}
                 {{ render_field(form.birth_date) }}
                 {{ render_field(form.phone_number) }}
