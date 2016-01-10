@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% block title %}{{ service.name|title }}{% endblock %}
+{% from "macros.html" import anchor_button with context %}
 {% block content %}
 <!-- service.html -->
 <section class="container">
@@ -29,13 +30,12 @@
 
 <section class="container">
     <div class="action-nav float-right">
-        <div class="service"><a href="{{ url_for('service_edit', service_id=service.id) }}" class="action"><span class="upload"><i class="fa fa-pencil fa-stack-1x"></i></span><p>Edit Service</p></a></div>
-        <a href="#" class="action"><span class="upload"><i class="fa fa-print fa-stack-1x"></i></span><p>Print Records</p></a>
+        <div class="service">{{ anchor_button(url_for('service_edit', service_id=service.id), 'fa-pencil', 'Edit Service') }}</div>
+        {{ anchor_button('#', 'fa-print', 'Print Records') }}
     </div>
 <div class="service">
     <div class="action-nav float-left">
-        <a href="#" class="action"><span class="upload"><i class="fa fa-file-o fa-stack-1x"></i>
-    <i class="fa fa-plus fa-stack-2x"></i></span><p>Add New Service Form</p></a>
+        {{ anchor_button('#', 'fa-user-plus', 'Add New Service Form') }}
     </div>
     <table class="forms">
         <thead>

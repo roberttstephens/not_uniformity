@@ -1,20 +1,12 @@
-{% extends "base.html" %}
-{% from "macros.html" import form_instance_tr with context %}
-{% block title %}{{ caregiver.name }}{% endblock %}
-{% from "macros.html" import anchor_button with context %}
-{% block content %}
+{% extends "base.html" %} {% from "macros.html" import form_instance_tr with context %} {% block title %}{{ caregiver.name }}{% endblock %} {% from "macros.html" import anchor_button with context %} {% block content %}
 <!-- caregiv.html -->
-<section class="container">
-    <div class="caregiver">
-        <div class="profile-info">
+<section class="container profile">
+    <div class="profile-info">
+        <div class="caregiver">
             <h1>{{ caregiver.name }}</h1>
             <p class="address">
-                {{ caregiver.address.address_1 }}
-                {{ caregiver.address.address_2 }}
-                <br />
-                {{ caregiver.address.city }}
-                {{ caregiver.address.state }}
-                {{ caregiver.address.zip_code }}
+                {{ caregiver.address.address_1 }} {{ caregiver.address.address_2 }}
+                <br /> {{ caregiver.address.city }} {{ caregiver.address.state }} {{ caregiver.address.zip_code }}
             </p>
             <p class="phone">
                 <span class="phone-number">{{ caregiver.formatted_phone_number }}</span>
@@ -25,17 +17,17 @@
                 {{ caregiver.birth_date }}
             </p>
             {% endif %}
-            <div class="summary">
-                <div class="box yellow-light">{{ caregiver.num_expiring_soon }} Forms Expiring Soon</div>
-                <div class="box red-light">{{ caregiver.num_expired }} Forms Expired</div>
-            </div>
-        </div><!--profile-info-->
-        
-        <a href="https://www.google.com/maps/preview#!q={{ caregiver.address.urlencode }}" class="googlemap" style="background-image:url(http://maps.google.com/maps/api/staticmap?size=640x250&zoom=13&maptype=roadmap&markers=color:green|{{ caregiver.address.urlencode }}&sensor=false)" target="_blank">
-            <span>Map Data &copy; Google</span>
-            <img src="http://maps.google.com/maps/api/staticmap?size=640x250&zoom=13&maptype=roadmap&markers=color:green|{{ caregiver.address.urlencode }}&sensor=false" alt="Map" class="map" />
-        </a>
-    </div><!--caregiver-->
+        </div>
+        <div class="summary">
+            <div class="box expiring-soon"><i class="fa fa-exclamation-circle"></i> {{ caregiver.num_expiring_soon }} Forms Expiring Soon</div>
+            <div class="box expired"><i class="fa fa-times-circle"></i> {{ caregiver.num_expired }} Forms Expired</div>
+        </div>
+    </div>
+    <!--profile-info-->
+    <a href="https://www.google.com/maps/preview#!q={{ caregiver.address.urlencode }}" class="googlemap" style="background-image:url(http://maps.google.com/maps/api/staticmap?size=640x250&zoom=13&maptype=roadmap&markers=color:green|{{ caregiver.address.urlencode }}&sensor=false)" target="_blank">
+        <span>Map Data &copy; Google</span>
+        <img src="http://maps.google.com/maps/api/staticmap?size=640x250&zoom=13&maptype=roadmap&markers=color:green|{{ caregiver.address.urlencode }}&sensor=false" alt="Map" class="map" />
+    </a>
 </section>
 
 <section class="container">
@@ -43,7 +35,7 @@
         <div class="caregiver">{{ anchor_button(url_for('caregiver_edit', caregiver_id=caregiver.id), 'fa-pencil', 'Edit Caregiver') }}</div>
         {{ anchor_button('#', 'fa-print', 'Print Records') }}
     </div>
-    
+
     <div class="client">
         <div class="action-nav float-left">
             {{ anchor_button(url_for('service_add', caregiver_id=caregiver.id), 'fa-user-plus', 'Add New Client') }}
@@ -62,47 +54,42 @@
             </thead>
             <tbody>
                 {% for service in caregiver.services %}
-                    <tr>
-                        <td>
-                            <a href="{{ url_for('client', client_id=service.client.id) }}">{{ service.client.name }}</a>
-                        </td>
-                        <td class="service">
-                            <a href="{{ url_for('service', service_id=service.id) }}">{{ service.name }}</a>
-                        </td>
-                        <td class="expired-forms">{{ service.num_expired }}</td>
-                        <td class="expiring-soon-forms">{{ service.num_expiring_soon }}</td>
-                    </tr>
+                <tr>
+                    <td>
+                        <a href="{{ url_for('client', client_id=service.client.id) }}">{{ service.client.name }}</a>
+                    </td>
+                    <td class="service">
+                        <a href="{{ url_for('service', service_id=service.id) }}">{{ service.name }}</a>
+                    </td>
+                    <td class="expired-forms">{{ service.num_expired }}</td>
+                    <td class="expiring-soon-forms">{{ service.num_expiring_soon }}</td>
+                </tr>
                 {% endfor %}
             </tbody>
-        </table><!-- client list -->
-    </div><!-- client style -->
-<br/>
-<div class="caregiver">
-    <div class="action-nav float-left">
-        {{ anchor_button(url_for('caregiver_form_add', caregiver_id=caregiver.id), 'fa-user-plus', 'Add New Caregiver Form') }}
+        </table>
+        <!-- client list -->
     </div>
-    <h2 class="caption">Caregiver Forms</h2>
-    <table class="forms">
-        <tbody>
-           {% if urgent %}
-                {% for instance in urgent %}
-                    {{ form_instance_tr(instance) }}
-                {% endfor %}
-            {% endif %}
-        </tbody>
-    </table>
-    <table class="forms">
-        <tbody>
-            {% if non_urgent %}
-                {% for instance in non_urgent %}
-                    {{ form_instance_tr(instance) }}
-                {% endfor %}
-            {% endif %}
-        </tbody>
-    </table>
-</div><!-- caregiver -->
+    <!-- client style -->
+    <br/>
+    <div class="caregiver">
+        <div class="action-nav float-left">
+            {{ anchor_button(url_for('caregiver_form_add', caregiver_id=caregiver.id), 'fa-user-plus', 'Add New Caregiver Form') }}
+        </div>
+        <h2 class="caption">Caregiver Forms</h2>
+        <table class="forms">
+            <tbody>
+                {% if urgent %} {% for instance in urgent %} {{ form_instance_tr(instance) }} {% endfor %} {% endif %}
+            </tbody>
+        </table>
+        <table class="forms">
+            <tbody>
+                {% if non_urgent %} {% for instance in non_urgent %} {{ form_instance_tr(instance) }} {% endfor %} {% endif %}
+            </tbody>
+        </table>
+    </div>
+    <!-- caregiver -->
 
-{% include 'footer.html' %}
+    {% include 'footer.html' %}
 
 </section>
 {% endblock %}
