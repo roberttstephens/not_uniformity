@@ -155,20 +155,22 @@ supported_living_coach = Service(name='supported living coach',
                                  client=emmanuel,)
 db.session.add(supported_living_coach)
 db.session.commit()
-some_service_form = ServiceForm(name='Some service form',
-                                service=supported_living_coach)
-db.session.add(some_service_form)
-db.session.commit()
-some_service_form_instance = ServiceFormInstance(form=some_service_form,
-                                                 status=True,
-                                                 expiration_date=date(2014, 1,
-                                                                      2),)
-db.session.add(some_service_form_instance)
-db.session.commit()
-some_other_service_form_instance = ServiceFormInstance(form=some_service_form,
-                                                       status=True,
-                                                       expiration_date=date(
-                                                           2014, 6, 1),)
-db.session.add(some_other_service_form_instance)
-db.session.commit()
+
+sf_names = ['Implementation Plan', 'Support Plan', 'Annual Report', 'Functional Community Assessment']
+for sf_name in sf_names:
+    some_service_form = ServiceForm(name=sf_name,
+                                    service=supported_living_coach)
+    db.session.add(some_service_form)
+    db.session.commit()
+    some_service_form_instance = ServiceFormInstance(form=some_service_form,
+                                                     status=True,
+                                                     expiration_date=date.fromtimestamp(time.time() - (60 * 60 * 24 * 10)),)
+    db.session.add(some_service_form_instance)
+    db.session.commit()
+    some_other_service_form_instance = ServiceFormInstance(form=some_service_form,
+                                                           status=True,
+                                                           expiration_date=date(
+                                                               2014, 6, 1),)
+    db.session.add(some_other_service_form_instance)
+    db.session.commit()
 exit()
