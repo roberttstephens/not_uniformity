@@ -405,11 +405,13 @@ def styles():
 
 
 @app.route('/forms')
+@login_required
 def form():
     return render_template('form.html')
 
 
 @app.route('/caregivers/<int:caregiver_id>/forms/<int:form_id>')
+@login_required
 def caregiver_form(caregiver_id, form_id):
     caregiver_form = CaregiverFormModel.query.join(Caregiver).join(
         Agency).filter(
@@ -424,6 +426,7 @@ def caregiver_form(caregiver_id, form_id):
 
 
 @app.route('/clients/<int:client_id>/forms/<int:form_id>')
+@login_required
 def client_form(client_id, form_id):
     client = Client.query.filter_by(id=client_id).first_or_404()
     client_form = ClientFormModel.query.join(Client).join(Agency).filter(
@@ -432,6 +435,7 @@ def client_form(client_id, form_id):
 
 
 @app.route('/services/<int:service_id>/forms/<int:form_id>')
+@login_required
 def service_form(service_id, form_id):
     service = Service.query.filter_by(id=service_id).first_or_404()
     service_form = ServiceFormModel.query.filter_by(id=form_id).first_or_404()
@@ -441,18 +445,21 @@ def service_form(service_id, form_id):
 
 
 @app.route('/services/<int:service_id>')
+@login_required
 def service(service_id):
     service = Service.query.filter_by(id=service_id).first_or_404()
     return render_template('service.html', service=service)
 
 
 @app.route('/services/<int:service_id>/forms/<int:form_id>/edit')
+@login_required
 def service_form_edit(service_id, form_id):
     service = Service.query.get(service_id)
     return render_template('service_form_add_edit.html', item=service)
 
 
 @app.route('/services/<int:service_id>/forms/add')
+@login_required
 def service_form_add(service_id):
     service = Service.query.get(service_id)
     return render_template('service_form_add_edit.html', item=service)
