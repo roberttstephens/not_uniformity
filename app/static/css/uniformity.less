@@ -336,7 +336,10 @@ a:visited {
             border-top-color: @dark;
         }
     }
-    table {
+    // DEBUG
+    table.overview,
+    table.role-list,
+    table.forms {
         tr,
         tr td {
             .capitalize;
@@ -404,8 +407,6 @@ a:visited {
                 //text-align: center;
             }
         }
-        /*td*/
-        tr.expired {}
     }
     /*table*/
     table.overview {
@@ -776,14 +777,7 @@ a:visited {
         @color,
         white);
     }
-    /* a.action */
-    form.edit-form {
-        #grid;
-        .box {
-            #grid > .cell;
-            #grid > .span(6);
-        }
-    }
+    
     input,
     select {
         border-color: @color;
@@ -817,21 +811,18 @@ div.caregiver {
     @color: @caregiver,
     @mid: @caregiverMid,
     @light: @caregiverLight);
-    #grid;
 }
 div.client {
     .global(@dark: @clientDark,
     @color: @client,
     @mid: @clientMid,
     @light: @clientLight);
-    #grid;
 }
 div.service {
     .global(@dark: @serviceDark,
     @color: @service,
     @mid: @serviceMid,
     @light: @serviceLight);
-    #grid;
 }
 p,
 {
@@ -1134,7 +1125,7 @@ header nav ul li {
 --------------------*/
 
 .container {
-    #grid;
+    //#grid;
     border: 3px solid #fff;
     min-width: 880px;
     width: 85%;
