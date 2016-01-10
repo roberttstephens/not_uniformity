@@ -310,6 +310,15 @@ class Agency(db.Model, BaseMixin, CreateUpdateMixin, PhoneMixin, AddressMixin):
         """The number of non urgent clients."""
         return str(len(self.non_urgent_client_form_instances()))
 
+    def urgent_service_form_instances(self):
+        """Return urgent service form instances."""
+        return ServiceFormInstance.query.join(ServiceForm).join(Service).join(
+            Caregiver).filter(ServiceFormInstance.urgent == True).filter(
+                Caregiver.agency_id == self.id).filter(
+                    Service.status == True).filter(
+                        ServiceFormInstance.status == True).order_by(
+                            ServiceFormInstance.expiration_date.asc()).all()
+
 
 class Caregiver(db.Model, BaseMixin, CreateUpdateMixin, PhoneMixin,
                 AgencyMixin, AddressMixin):
