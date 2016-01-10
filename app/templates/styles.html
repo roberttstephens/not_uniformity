@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% block title %}Index{% endblock %}
+{% from "macros.html" import anchor_button with context %}
 {% block content %}
 <section class="container">
     <h1>Heading 1</h1>
@@ -28,6 +29,15 @@
         <h2></h2>
         <h2></h2>
     </div>
+</section>
+
+<section class="container">
+    <h2>Buttons</h2>
+    {{ anchor_button('#', 'fa-print', 'Print Records') }}
+    {{ anchor_button('#', 'fa-user-plus', 'Add New') }}
+    {{ anchor_button('#', 'fa-pencil', 'Edit') }}
+    {{ anchor_button('#', 'fa-files-o', 'View More') }}
+    {{ anchor_button('#', 'fa-calendar-check-o', 'Save') }}
 </section>
 
 <section class="container">

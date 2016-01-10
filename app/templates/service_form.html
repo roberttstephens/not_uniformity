@@ -29,11 +29,11 @@
 </section><!-- service header -->
 <section class="container">
 <div class="action-nav float-right">
-        {{ anchor_button('#', 'fa-print', 'Where is this text going? I dont see it') }}
-        <a href="#" class="button"><span class="upload"><i class="fa fa-print fa-stack-1x"></i></span><p>Print Records</p></a>
+        {{ anchor_button('#', 'fa-print', 'Print Records') }}
 </div>
 
- <div class="service">
+<div class="service">
+   {{ anchor_button('#', 'fa-pencil', 'Edit Form') }}
    <h2 class="caption">{{service_form.name}}</h2>
    
    <table class="form-instances">

@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% from "macros.html" import form_instance_tr with context %}
 {% block title %}{{ client.name }}{% endblock %}
+{% from "macros.html" import anchor_button with context %}
 {% block content %}
 <!-- client.html -->
 <section class="container">
@@ -38,13 +39,13 @@
 
 <section class="container">
     <div class="action-nav float-right">
-        <div class="client"><a href="{{ url_for('client_edit', client_id=client.id)}}" class="action"><span class="upload"><i class="fa fa-pencil fa-stack-1x"></i></span><p>Edit Caregiver</p></a></div>
-        <a href="#" class="action"><span class="upload"><i class="fa fa-print fa-stack-1x"></i></span><p>Print Records</p></a>
+        <div class="client">{{ anchor_button(url_for('client_edit', client_id=client.id), 'fa-pencil', 'Edit Client') }}</div>
+        {{ anchor_button('#', 'fa-print', 'Print Records') }}
     </div>
 
 <div class="caregiver">
     <div class="action-nav float-left">
-        <a href="{{ url_for('service_add', client_id=client.id) }}" class="action"><span class="upload"><i class="fa fa-user-plus fa-stack-1x"></i></span><p>Add New Caregiver</p></a>
+        {{ anchor_button(url_for('service_add', client_id=client.id), 'fa-user-plus', 'Add New Caregiver') }}
     </div>
     <table class="role-list">
         <thead>
@@ -77,9 +78,7 @@
 <br/>
 <div class="client">
     <div class="action-nav float-left">
-        <a href="{{ url_for('client_form_add', client_id=client.id) }}" class="action"><span class="upload"><i class="fa fa-file-o fa-stack-1x"></i>
-    <i class="fa fa-plus fa-stack-2x"></i></span><p>Add New Client Form</p></a>
-    </div>
+        {{ anchor_button(url_for('client_form_add', client_id=client.id), 'fa-user-plus', 'Add New Client Form') }}</div>
     <h2 class="caption">Client Forms</h2>
     <table class="forms">
         <tbody>
