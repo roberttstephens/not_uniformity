@@ -1,14 +1,15 @@
 {% extends "base.html" %}
 {% block title %}{{ role|capitalize }}s{% endblock %}
+{% from "macros.html" import anchor_button with context %}
 {% block content %}
 <!-- role_index.html -->
 <section class="container">
 <div class="action-nav float-right">
-        <a href="#" class="action"><span class="upload"><i class="fa fa-print fa-stack-1x"></i></span><p>Print Records</p></a>
+    {{ anchor_button('#', 'fa-print', 'Print Records') }}
 </div>
 <div class="{{role}}">
     <div class="action-nav float-left">
-        <a href="{{ url_for(role ~ '_add') }}" class="action"><span class="upload"><i class="fa fa-user-plus fa-stack-1x"></i></span><p>Add New {{role}}</p></a>
+        {{ anchor_button('url_for(role ~ '_add')', 'fa-user-plus', 'Add New {{role}}') }
     </div>
     <table class="role-list role-overview">
         <thead>

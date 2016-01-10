@@ -1,11 +1,12 @@
 {% extends "base.html" %}
 {% from "macros.html" import form_instance_tr with context %}
 {% block title %}Index{% endblock %}
+{% from "macros.html" import anchor_button with context %}
 {% block content %}
 <!-- caregiver_overview.html -->
 <section class="container">
 <div class="action-nav float-right">
-        <a href="#" class="action"><span class="upload"><i class="fa fa-print fa-stack-1x"></i></span><p>Print Records</p></a>
+    {{ anchor_button('#', 'fa-print', 'Print Records') }}
 </div>
 <div class="caregiver">
     <table class="overview">
