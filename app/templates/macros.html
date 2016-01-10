@@ -1,10 +1,14 @@
-{% macro form_instance_tr(instance, show_caregiver=False, show_client=False) -%}
+{% macro form_instance_tr(instance, type) -%}
     <tr>
         <td class="expiration-date {{ instance.expiration_status|replace('_', '-') }}">
             <span class="expiration-date"><span class="icon-cirlcereceived"></span>{{ instance.expiration_date }}</span>
         </td>
         <td class="form-title {{ instance.expiration_status|replace('_', '-') }}">
-            {% if instance.form.caregiver %}
+            {% if type == 'service' %}
+                <a href="{{ url_for('service_form', service_id=instance.form.service.id, form_id=instance.form.id) }}">
+                    {{ instance.form.name }}
+                </a>
+            {% elif instance.form.caregiver %}
                 <a href="{{ url_for('caregiver_form', caregiver_id=instance.form.caregiver.id, form_id=instance.form.id) }}">
                     {{ instance.form.name }}
                 </a>
@@ -14,15 +18,18 @@
                 </a>
             {% endif %}
         </td>
-        {% if show_caregiver %}
+        {% if type == 'caregiver' %}
             <td>
                 <a href="{{ url_for('caregiver', caregiver_id=instance.form.caregiver.id) }}">{{ instance.form.caregiver.name }}</a>
             </td>
-        {% endif %}
-        {% if show_client %}
+        {% elif type == 'client' %}
             <td>
                 <a href="{{ url_for('client', client_id=instance.form.client.id) }}">{{ instance.form.client.name }}</a>
             </td>
+        {% elif type == 'service' %}
+            <td class="caregiver-cell"><a href="{{ url_for('caregiver', caregiver_id=instance.form.service.caregiver.id) }}">{{ instance.form.service.caregiver.name }}</a></td>
+            <td><a href="{{ url_for('service', service_id=instance.form.service.id) }}">{{ instance.form.service.name }}</a></td>
+            <td class="client-cell"><a href="{{ url_for('client', client_id=instance.form.service.client.id) }}">{{ instance.form.service.client.name }}</a></td>
         {% endif %}
     </tr>
 {%- endmacro %}

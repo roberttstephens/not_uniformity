@@ -80,6 +80,7 @@ def index():
     return render_template(
         'index.html',
         caregiver_forms=agency.urgent_caregiver_form_instances(),
+        service_forms=agency.urgent_service_form_instances(),
         client_forms=agency.urgent_client_form_instances())
 
 

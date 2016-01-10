@@ -22,14 +22,14 @@
         <tbody>
            {% if urgent_forms %}
                 {% for instance in urgent_forms %}
-                    {{ form_instance_tr(instance, show_caregiver=True) }}
+                    {{ form_instance_tr(instance, type='caregiver') }}
                 {% endfor %}
             {% endif %}
         </tbody>
         <tbody>
            {% if non_urgent_forms %}
                 {% for instance in non_urgent_forms %}
-                    {{ form_instance_tr(instance, show_caregiver=True) }}
+                    {{ form_instance_tr(instance, type='caregiver') }}
                 {% endfor %}
             {% endif %}
         </tbody>
