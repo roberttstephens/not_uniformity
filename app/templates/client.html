@@ -4,37 +4,35 @@
 {% from "macros.html" import anchor_button with context %}
 {% block content %}
 <!-- client.html -->
-<section class="container">
-    <div class="client">
+<section class="container profile">
         <div class="profile-info">
-            <h1>{{ client.name }}</h1>
-            <p class="address">
-                {{ client.address.address_1 }}
-                {{ client.address.address_2 }}
-                <br />
-                {{ client.address.city }}
-                {{ client.address.state }}
-                {{ client.address.zip_code }}
-            </p>
-            <p class="phone">
-                <span class="phone-number">{{ client.formatted_phone_number }}</span>
-                <span class="phone-extension">{{ client.phone_extension }}</span>
-            </p>
-            {% if client.birth_date %}
-            <p class="birth-date">
-                {{ client.birth_date }}
-            </p>
-            {% endif %}
-            <div class="summary">
-                <div class="box yellow-light">{{ client.num_expiring_soon }} Forms Expiring Soon</div>
-                <div class="box red-light">{{ client.num_expired }} Forms Expired</div>
+           <div class="client">
+                <h1>{{ client.name }}</h1>
+                <p class="address">
+                    {{ client.address.address_1 }} {{ client.address.address_2 }}
+                    <br /> {{ client.address.city }} {{ client.address.state }} {{ client.address.zip_code }}
+                </p>
+                <p class="phone">
+                    <span class="phone-number">{{ client.formatted_phone_number }}</span>
+                    <span class="phone-extension">{{ client.phone_extension }}</span>
+                </p>
+                {% if client.birth_date %}
+                <p class="birth-date">
+                    {{ client.birth_date }}
+                </p>
+                {% endif %}
             </div>
-        </div><!--profile-info-->
+            <div class="summary">
+                <div class="box expiring-soon"><i class="fa fa-exclamation-circle"></i>  {{ client.num_expiring_soon }} Forms Expiring Soon</div>
+                <div class="box expired"><i class="fa fa-times-circle"></i>  {{ client.num_expired }} Forms Expired</div>
+            </div>
+        </div>
+        <!--profile-info-->
         <a href="https://www.google.com/maps/preview#!q={{ client.address.urlencode }}" class="googlemap" style="background-image:url(http://maps.google.com/maps/api/staticmap?size=640x250&zoom=13&maptype=roadmap&markers=color:green|{{ client.address.urlencode }}&sensor=false)" target="_blank">
             <span>Map Data &copy; Google</span>
             <img src="http://maps.google.com/maps/api/staticmap?size=640x250&zoom=13&maptype=roadmap&markers=color:green|{{ client.address.urlencode }}&sensor=false" alt="Map" class="map" />
         </a>
-    </div><!--client-->
+    <!--client-->
 </section>
 
 <section class="container">
