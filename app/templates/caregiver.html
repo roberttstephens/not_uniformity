@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% from "macros.html" import form_instance_tr with context %}
 {% block title %}{{ caregiver.name }}{% endblock %}
+{% from "macros.html" import anchor_button with context %}
 {% block content %}
 <!-- caregiv.html -->
 <section class="container">
@@ -39,12 +40,12 @@
 
 <section class="container">
     <div class="action-nav float-right">
-        <div class="caregiver"><a href="{{ url_for('caregiver_edit', caregiver_id=caregiver.id)}}" class="action"><span class="upload"><i class="fa fa-pencil fa-stack-1x"></i></span><p>Edit Caregiver</p></a></div>
-        <a href="#" class="action"><span class="upload"><i class="fa fa-print fa-stack-1x"></i></span><p>Print Records</p></a>
+        <div class="caregiver">{{ anchor_button(url_for('caregiver_edit', caregiver_id=caregiver.id), 'fa-pencil', 'Edit Caregiver') }}</div>
+        {{ anchor_button('#', 'fa-print', 'Print Records') }}
     </div>
 <div class="client">
    <div class="action-nav float-left">
-        <a href="{{ url_for('service_add', caregiver_id=caregiver.id) }}" class="action"><span class="upload"><i class="fa fa-user-plus fa-stack-1x"></i></span><p>Add New Client</p></a>
+        {{ anchor_button(url_for('service_add', caregiver_id=caregiver.id), 'fa-user-plus', 'Add New Client') }}
     </div>
     <table class="role-list">
         <thead>
