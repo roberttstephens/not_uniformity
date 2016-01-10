@@ -53,42 +53,7 @@ tbody {
    }
 }
 
-.buttonColors (@darkButton: @grayDark, @color: @gray, @mid: @grayMid, @light: @grayLight) {
-   background: fade(@color,10%);
-   color: @darkButton;
-   
-   &.button-active {
-      background: light;
-   }
-   
-   span.paper-icon {
-      background: @mid;
-      background: linear-gradient(45deg, @mid 86%, fade(@mid,0%) 14%);
 
-      i.fa {
-         color: white;
-      }
-
-      &:before {
-         background: fade(@mid,100%);
-      }
-
-      &:after {
-         background: linear-gradient(45deg, @color 50%, transparent 50%);
-      }
-   }
-   
-   &:hover {
-      background: @darkButton;
-      color: white;
-      
-      span.paper-icon {
-         &:before {
-            background: fade(@mid,100%);
-         }
-      }
-   }
-}
 
 .form-instance-colors(@dark: @grayDark, @mid: @grayMid, @color: @gray, @light: @grayLight) {
    
@@ -191,6 +156,45 @@ table.form-instances {
 table.form-instances {
    width: 100%;
    border-collapse: collapse;
+    
+    
+    //button colors are slightly different inside the form-instance table
+    .buttonColors (@darkButton: @grayDark, @color: @gray, @mid: @grayMid, @light: @grayLight) {
+   background: fade(@color,10%);
+   color: @darkButton;
+
+   &.button-active {
+      background: light;
+   }
+
+   span.paper-icon {
+      background: @mid;
+      background: linear-gradient(45deg, @mid 86%, fade(@mid,0%) 14%);
+
+      i.fa {
+         color: white;
+      }
+
+      &:before {
+         background: fade(@mid,100%);
+      }
+
+      &:after {
+         background: linear-gradient(45deg, @color 50%, transparent 50%);
+      }
+   }
+
+   &:hover {
+      background: @darkButton;
+      color: white;
+
+      span.paper-icon {
+         &:before {
+            background: fade(@mid,100%);
+         }
+      }
+   }
+}
    
    td > span {
       display: inline-block;

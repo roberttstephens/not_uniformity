@@ -15,8 +15,8 @@
         {% from "_formhelpers.html" import render_field %}
         <form method=post action="">
             {{ form.hidden_tag() }}
-            <div class="box">
                 <h3>Personal Information</h3>
+                <ul class="box">
                 {{ render_field(form.name) }}
                 {{ render_field(form.birth_date) }}
                 {{ render_field(form.phone_number) }}
@@ -26,7 +26,7 @@
                 {{ render_field(form.city) }}
                 {{ render_field(form.state) }}
                 {{ render_field(form.zip_code) }}
-            </div><!-- box -->
+                </ul>
             <input type=submit value=Save>
         </form>
     </div><!-- client -->

@@ -1,4 +1,4 @@
-{% extends "base.html" %} {% block title %}The name{% endblock %} {% block content %}
+{% extends "base.html" %} {% block title %}The name{% endblock %} {% block content %} {% from "macros.html" import submit_button with context %}
 <!-- service_add_edit.html -->
 <section class="container">
     <div class="caregiver"> <!--MAKE DYNAMIC if adding client to caregiver, say caregiver - vise versa-->
@@ -38,10 +38,11 @@
                 </div><!-- box -->
             </div><!-- service -->
             <div><!-- button wrap for grid -->
-            <button type="submit"><span class="upload"><i class="fa fa-check fa-stack-1x"></i></span><p>Save New Service</p>
-            </button>
+            {{ submit_button('fa-check', 'Save New Service') }}
         </div>
     </form>
+    
+    {% include 'footer.html' %}
 </section>
 
 {% endblock %}

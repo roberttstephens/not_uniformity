@@ -5,7 +5,7 @@
 <section class="container">
     <div class="caregiver">
         <div class="page-title">
-            <h2>add new caregiver</h2>
+            <h2>Add New Caregiver</h2>
         </div><!-- page-title -->
     </div><!-- caregiver -->
 </section><!-- header -->
@@ -16,8 +16,7 @@
     <form method=post action="">
         {{ form.hidden_tag() }}
         <h3>Personal Information</h3>
-        <div class="box">
-            <ol>
+            <ul class="box">
                 {{ render_field(form.name, placeholder='Full Name') }}
                 {{ render_field(form.birth_date, placeholder='Birth Date') }}
                 {{ render_field(form.email, placeholder='Birth Date') }}
@@ -28,8 +27,7 @@
                 {{ render_field(form.city) }}
                 {{ render_field(form.state) }}
                 {{ render_field(form.zip_code) }}
-            </ol>
-        </div> 
+            </ul>
         <input type=submit value=Save>
     </form>
     </div><!-- caregiver -->

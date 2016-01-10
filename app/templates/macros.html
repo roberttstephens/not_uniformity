@@ -37,3 +37,7 @@
 {% macro anchor_button(href, fa_class, text) -%}
 <a href="{{href}}" class="button"><span class="paper-icon"><i class="fa {{fa_class}}"></i></span><span class="button-text">{{text}}</span></a>
 {%- endmacro %}
+
+{% macro submit_button(fa_class, text) -%}
+<button type="submit" value="Submit" class="button"><span class="paper-icon"><i class="fa {{fa_class}}"></i></span><span class="button-text">{{text}}</span></button>
+{%- endmacro %}
