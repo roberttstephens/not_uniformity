@@ -28,47 +28,183 @@
 </section><!-- service header -->
 <section class="container">
 <div class="action-nav float-right">
-        <a href="#" class="action"><span class="upload"><i class="fa fa-print fa-stack-1x"></i></span><p>Print Records</p></a>
+        <a href="#" class="button"><span class="upload"><i class="fa fa-print fa-stack-1x"></i></span><p>Print Records</p></a>
 </div>
+
  <div class="service">
    <h2 class="caption">{{service_form.name}}</h2>
-    <table class="form-current expiring-soon">
-        <tbody>
-            <tr>
-                <td class="expiration-date">
-                    <span class="expiration-date"><span class="icon-cirlcereceived"></span>00-00-0000</span>
-                </td>
-                <td class="status">this form will expire soon!</td>
-                <td class="edit"><a href="#" class="button" role="button"><i class="icon-edit"> </i>edit status</a></td>
-            </tr>
-        </tbody>
-    </table>
-    
-    <table class="form-record expired">
-        <tbody>
-            <tr>
-                <td class="expiration-date">
-                    <span class="expiration-date"><span class="icon-cirlcereceived"></span>00-00-0000</span>
-                </td>
-                <td class="status">reveived on 00-00-0000</td>
-                <td class="edit"><a href="#"><i class="icon-edit"> </i>edit</a></td>
-            </tr>
-            <tr>
-                <td class="expiration-date">
-                    <span class="expiration-date"><span class="icon-cirlcereceived"></span>00-00-0000</span>
-                </td>
-                <td class="status">reveived on 00-00-0000</td>
-                <td class="edit"><a href="#"><i class="icon-edit"> </i>edit</a></td>
-            </tr>
-            <tr>
-                <td class="expiration-date">
-                    <span class="expiration-date"><span class="icon-cirlcereceived"></span>00-00-0000</span>
-                </td>
-                <td class="status">reveived on 00-00-0000</td>
-                <td class="edit"><a href="#"><i class="icon-edit"> </i>edit</a></td>
-            </tr>
-        </tbody>
-    </table>
+   
+   <table class="form-instances">
+   <tbody>
+      <tr>
+         <td class="expired">
+            <span class="expiration-date"><i class="fa fa-times-circle"></i> 11-11-1111</span>
+            <span class="status">Expired</span>
+            <span class="edit-toggle">
+               <div class="edit-form-button small-button"><i class="fa fa-pencil-square-o"></i>&nbsp;<span class="button-text">Edit</span></div>
+               <div class="cancel-edit-form-button small-button"><i class="fa fa-times"></i>&nbsp;<span class="button-text">Cancel</span></div>
+            </span>
+            <div class="edit-form">
+               <form>
+               <ol>
+                  <li>
+                     <label for="expiration-date">Expiration Date:</label>
+                     <input type="text" name="expiration-date" id="expiration-date" placeholder="MM/DD/YYYY" />
+                  </li>
+                  <li>
+                     <label class="control checkbox">
+                        <input type="checkbox">
+                        <span class="control-indicator"></span> Received
+                     </label>
+                     <span id="wtf" class="received-date">
+                        <label for="received-date">Date:</label>
+                        <input type="text" name="received-date" id="received-date" placeholder="MM/DD/YYYY" />
+                     </span>
+                  </li>
+                  <li>
+                     <button type="submit" form="form1" value="Submit" class="button"><span class="paper-icon"><i class="fa fa-calendar-check-o"></i></span><span class="button-text">Save</span></button>
+                  </li>
+               </ol>
+               </form>
+            </div>
+         </td>
+      </tr>
+      <tr>
+         <td class="expiring-soon">
+            <span class="expiration-date"><i class="fa fa-exclamation-circle"></i> 08-31-1988</span>
+            <span class="status">Expiring soon</span>
+            <span class="edit-toggle">
+               <div class="edit-form-button small-button"><i class="fa fa-pencil-square-o"></i>&nbsp;<span class="button-text">Edit</span></div>
+               <div class="cancel-edit-form-button small-button"><i class="fa fa-times"></i>&nbsp;<span class="button-text">Cancel</span></div>
+            </span>
+            <div class="edit-form">
+               <form>
+               <ol>
+                  <li>
+                     <label for="expiration-date">Expiration Date:</label>
+                     <input type="text" name="expiration-date" id="expiration-date" placeholder="MM/DD/YYYY" />
+                  </li>
+                  <li>
+                     <label class="control checkbox">
+                        <input type="checkbox">
+                        <span class="control-indicator"></span> Received
+                     </label>
+                     <span id="wtf" class="received-date">
+                        <label for="received-date">Date:</label>
+                        <input type="text" name="received-date" id="received-date" placeholder="MM/DD/YYYY" />
+                     </span>
+                  </li>
+                  <li>
+                     <button type="submit" value="Submit" class="button"><span class="paper-icon"><i class="fa fa-calendar-check-o"></i></span><span class="button-text">Save</span></button>
+                  </li>
+               </ol>
+               </form>
+            </div>
+         </td>
+      </tr>
+   </tbody>
+   <tbody>
+      <tr>
+         <td>
+            <span class="expiration-date"><i class="fa fa-check-circle"></i> 08-31-1988</span>
+            <span class="status">Up to date</span>
+            <span class="edit-toggle">
+               <div class="edit-form-button small-button"><i class="fa fa-pencil-square-o"></i>&nbsp;<span class="button-text">Edit</span></div>
+               <div class="cancel-edit-form-button small-button"><i class="fa fa-times"></i>&nbsp;<span class="button-text">Cancel</span></div>
+            </span>
+            <div class="edit-form">
+               <form>
+               <ol>
+                  <li>
+                     <label for="expiration-date">Expiration Date:</label>
+                     <input type="text" name="expiration-date" id="expiration-date" placeholder="MM/DD/YYYY" />
+                  </li>
+                  <li>
+                     <label class="control checkbox">
+                        <input type="checkbox">
+                        <span class="control-indicator"></span> Received
+                     </label>
+                     <span id="wtf" class="received-date">
+                        <label for="received-date">Date:</label>
+                        <input type="text" name="received-date" id="received-date" placeholder="MM/DD/YYYY" />
+                     </span>
+                  </li>
+                  <li>
+                     <button type="submit" value="Submit" class="button"><span class="paper-icon"><i class="fa fa-calendar-check-o"></i></span><span class="button-text">Save</span></button>
+                  </li>
+               </ol>
+               </form>
+            </div>
+         </td>
+      </tr>
+      <tr>
+         <td>
+            <span class="expiration-date"><i class="fa fa-check-circle"></i> 08-31-1988</span>
+            <span class="status">Up to date</span>
+            <span class="edit-toggle">
+               <div class="edit-form-button small-button"><i class="fa fa-pencil-square-o"></i>&nbsp;<span class="button-text">Edit</span></div>
+               <div class="cancel-edit-form-button small-button"><i class="fa fa-times"></i>&nbsp;<span class="button-text">Cancel</span></div>
+            </span>
+            <div class="edit-form">
+               <form>
+               <ol>
+                  <li>
+                     <label for="expiration-date">Expiration Date:</label>
+                     <input type="text" name="expiration-date" id="expiration-date" placeholder="MM/DD/YYYY" />
+                  </li>
+                  <li>
+                     <label class="control checkbox">
+                        <input type="checkbox">
+                        <span class="control-indicator"></span> Received
+                     </label>
+                     <span id="wtf" class="received-date">
+                        <label for="received-date">Date:</label>
+                        <input type="text" name="received-date" id="received-date" placeholder="MM/DD/YYYY" />
+                     </span>
+                  </li>
+                  <li>
+                     <button type="submit" value="Submit" class="button"><span class="paper-icon"><i class="fa fa-calendar-check-o"></i></span><span class="button-text">Save</span></button>
+                  </li>
+               </ol>
+               </form>
+            </div>
+         </td>
+      </tr>
+      <tr>
+         <td>
+            <span class="expiration-date"><i class="fa fa-check-circle"></i> 08-31-1988</span>
+            <span class="status">Received on 08/31/1988</span>
+            <span class="edit-toggle">
+               <div class="edit-form-button small-button"><i class="fa fa-pencil-square-o"></i>&nbsp;<span class="button-text">Edit</span></div>
+               <div class="cancel-edit-form-button small-button"><i class="fa fa-times"></i>&nbsp;<span class="button-text">Cancel</span></div>
+            </span>
+            <div class="edit-form">
+               <form>
+               <ol>
+                  <li>
+                     <label for="expiration-date">Expiration Date:</label>
+                     <input type="text" name="expiration-date" id="expiration-date" placeholder="MM/DD/YYYY" />
+                  </li>
+                  <li>
+                     <label class="control checkbox">
+                        <input type="checkbox">
+                        <span class="control-indicator"></span> Received
+                     </label>
+                     <span id="wtf" class="received-date">
+                        <label for="received-date">Date:</label>
+                        <input type="text" name="received-date" id="received-date" placeholder="MM/DD/YYYY" />
+                     </span>
+                  </li>
+                  <li>
+                     <button type="submit" value="Submit" class="button"><span class="paper-icon"><i class="fa fa-calendar-check-o"></i></span><span class="button-text">Save</span></button>
+                  </li>
+               </ol>
+               </form>
+            </div>
+         </td>
+      </tr>
+   </tbody>
+</table>
 </div><!-- service -->
 </section><!-- overview -->
 {% endblock %}
