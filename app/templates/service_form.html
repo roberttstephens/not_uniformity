@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% from "macros.html" import anchor_button with context %}
 {% block title %}{{ service.name|title }}{% endblock %}
 {% block content %}
 <!-- service_form.html -->
@@ -28,7 +29,8 @@
 </section><!-- service header -->
 <section class="container">
 <div class="action-nav float-right">
-        <a href="#" class="action"><span class="upload"><i class="fa fa-print fa-stack-1x"></i></span><p>Print Records</p></a>
+        {{ anchor_button('#', 'fa-print', 'Where is this text going? I dont see it') }}
+        <a href="#" class="action"><span class="upload"><i class="fa fa-print fa-stack-1x"></i></span><p>After Print Records</p></a>
 </div>
  <div class="service">
    <h2 class="caption">{{service_form.name}}</h2>
