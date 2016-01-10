@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% from "macros.html" import form_instance_tr with context %}
 {% block title %}{{ caregiver.name }}{% endblock %}
+{% from "macros.html" import anchor_button with context %}
 {% block content %}
 <!-- caregiv.html -->
 <section class="container">
@@ -39,46 +40,46 @@
 
 <section class="container">
     <div class="action-nav float-right">
-        <div class="caregiver"><a href="{{ url_for('caregiver_edit', caregiver_id=caregiver.id)}}" class="action"><span class="upload"><i class="fa fa-pencil fa-stack-1x"></i></span><p>Edit Caregiver</p></a></div>
-        <a href="#" class="action"><span class="upload"><i class="fa fa-print fa-stack-1x"></i></span><p>Print Records</p></a>
+        <div class="caregiver">{{ anchor_button(url_for('caregiver_edit', caregiver_id=caregiver.id), 'fa-pencil', 'Edit Caregiver') }}</div>
+        {{ anchor_button('#', 'fa-print', 'Print Records') }}
     </div>
-<div class="client">
-   <div class="action-nav float-left">
-        <a href="{{ url_for('service_add', caregiver_id=caregiver.id) }}" class="action"><span class="upload"><i class="fa fa-user-plus fa-stack-1x"></i></span><p>Add New Client</p></a>
-    </div>
-    <table class="role-list">
-        <thead>
-            <tr>
-                <th class="role" rowspan="2">clients</th>
-                <th class="service" rowspan="2">service provided</th>
-                <th class="forms" colspan="2">forms</th>
-            </tr>
-            <tr>
-                <th class="expired-forms">expired</th>
-                <th class="expiring-soon-forms">expiring soon</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for service in caregiver.services %}
+    
+    <div class="client">
+        <div class="action-nav float-left">
+            {{ anchor_button(url_for('service_add', caregiver_id=caregiver.id), 'fa-user-plus', 'Add New Client') }}
+        </div>
+        <table class="role-list">
+            <thead>
                 <tr>
-                    <td>
-                        <a href="{{ url_for('client', client_id=service.client.id) }}">{{ service.client.name }}</a>
-                    </td>
-                    <td class="service">
-                        <a href="{{ url_for('service', service_id=service.id) }}">{{ service.name }}</a>
-                    </td>
-                    <td class="expired-forms">{{ service.num_expired }}</td>
-                    <td class="expiring-soon-forms">{{ service.num_expiring_soon }}</td>
+                    <th class="role" rowspan="2">clients</th>
+                    <th class="service" rowspan="2">service provided</th>
+                    <th class="forms" colspan="2">forms</th>
                 </tr>
-            {% endfor %}
-        </tbody>
-    </table><!-- client list -->
-</div><!-- client style -->
+                <tr>
+                    <th class="expired-forms">expired</th>
+                    <th class="expiring-soon-forms">expiring soon</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for service in caregiver.services %}
+                    <tr>
+                        <td>
+                            <a href="{{ url_for('client', client_id=service.client.id) }}">{{ service.client.name }}</a>
+                        </td>
+                        <td class="service">
+                            <a href="{{ url_for('service', service_id=service.id) }}">{{ service.name }}</a>
+                        </td>
+                        <td class="expired-forms">{{ service.num_expired }}</td>
+                        <td class="expiring-soon-forms">{{ service.num_expiring_soon }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table><!-- client list -->
+    </div><!-- client style -->
 <br/>
 <div class="caregiver">
     <div class="action-nav float-left">
-        <a href="{{ url_for('caregiver_form_add', caregiver_id=caregiver.id) }}" class="action"><span class="upload"><i class="fa fa-file-o fa-stack-1x"></i>
-    <i class="fa fa-plus fa-stack-2x"></i></span><p>Add New Caregiver Form</p></a>
+        {{ anchor_button(url_for('caregiver_form_add', caregiver_id=caregiver.id), 'fa-user-plus', 'Add New Caregiver Form') }}
     </div>
     <h2 class="caption">Caregiver Forms</h2>
     <table class="forms">
