@@ -1,4 +1,4 @@
-{% extends "base.html" %} {% block title %}Add {{ role }} form{% endblock %} {% block content %}
+{% extends "base.html" %} {% block title %}Add {{ role }} form{% endblock %} {% block content %} {% from "macros.html" import submit_button with context %}
 <!-- role_form_add_edit.html -->
 <section class="container">
     <div class="{{ role }}">
@@ -16,7 +16,7 @@
             <ul class="box {{ role }}">
                 {{ render_field(form.name) }}
             </ul>
-            <input class="{{ role }}-dark" type=submit value=Save>
+            {{ submit_button('fa-check', 'Save Form') }}
         </form>
     </div>
     
