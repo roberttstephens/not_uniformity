@@ -196,7 +196,7 @@ def service_add():
         flash('Successfully added ' + service.name)
         if next_url:
             return redirect(next_url)
-    return render_template('service_add_edit.html',
+    return render_template('service_add.html',
                            form=form,
                            caregiver_disabled=caregiver_disabled,
                            client_disabled=client_disabled,)
@@ -218,7 +218,7 @@ def service_edit(service_id):
         db.session.add(service)
         db.session.commit()
         return redirect(url_for("service", service_id=service.id))
-    return render_template('service_add_edit.html', form=form)
+    return render_template('service_edit.html')
 
 
 @app.route('/caregivers/<int:caregiver_id>/forms/add', methods=['GET', 'POST'])
