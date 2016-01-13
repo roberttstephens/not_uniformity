@@ -15,7 +15,7 @@
             </div><!-- caregiver -->
         </div><!-- service-wrap --><div class="service-wrap"><div class="service"><div class="serviceBox">
                     <text class="service-title">service</text>
-                    <text class="service">{{ service.name|title }}</text>
+                    <text class="service"><a href="{{url_for('service', service_id=service.id)}}">{{ service.name|title }}</a></text>
                 </div><!-- serviceBox -->
             </div><!-- service -->
         </div><!-- service-wrap --><div class="service-wrap"><div class="client"><div class="serviceBox">
