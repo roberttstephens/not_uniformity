@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% block title %}{{ item.name }}{% endblock %}
+{% block title %}{{ person.name }}{% endblock %}
 {% from "macros.html" import anchor_button with context %}
 {% block content %}
 <!-- role_form.html -->
@@ -7,7 +7,13 @@
     <div class="{{ role }}">
         <div class="page-title">
             <p class="title">{{ role }}</p>
-            <h2><a href="http://form.management/caregivers/1">Taya Whiteside</a></h2>
+            <h2>
+                {% set person_url = url_for('client', client_id=person.id) %}
+                {% if role == 'caregiver' %}
+                    {% set person_url = url_for('caregiver', caregiver_id=person.id) %}
+                {% endif %}
+                <a href="{{ person_url }}">{{ person.name }}</a>
+            </h2>
         </div><!-- {{ role }} -->
     </div>
 </section><!-- role header -->
@@ -16,7 +22,11 @@
     {{ anchor_button('#', 'fa-print', 'Print Records') }}
 </div>
 <div class="{{ role }}">
-   {{ anchor_button('#', 'fa-pencil', 'Edit Form') }}
+    {% set edit_form_url = url_for('client_form_edit', client_id=person.id, form_id = form.id) %}
+    {% if role == 'caregiver' %}
+        {% set edit_form_url = url_for('caregiver_form_edit', caregiver_id=person.id, form_id = form.id) %}
+    {% endif %}
+    {{ anchor_button(edit_form_url, 'fa-pencil', 'Edit Form') }}
     <h2 class="caption">{{ form.name }}</h2>
     
     <table class="form-instances">
