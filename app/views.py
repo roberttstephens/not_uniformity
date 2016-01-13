@@ -471,10 +471,13 @@ def client_form(client_id, form_id):
 @app.route('/services/<int:service_id>/forms/<int:form_id>')
 @login_required
 def service_form(service_id, form_id):
-    service = Service.query.filter_by(id=service_id).first_or_404()
-    service_form = ServiceFormModel.query.filter_by(id=form_id).first_or_404()
+    service_form = ServiceFormModel.query.join(Service).join(Caregiver).join(
+        Agency).filter(
+            Agency.id == g.user.id).filter(
+                ServiceFormModel.service_id == service_id).filter(
+                    ServiceFormModel.id == form_id).first_or_404()
     return render_template('service_form.html',
-                           service=service,
+                           service=service_form.service,
                            service_form=service_form)
 
 
