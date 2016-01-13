@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% block title %}Add caregiver{% endblock %}
+{% from "macros.html" import submit_button with context %}
 {% block content %}
 <!-- caregiver_add.html -->
 <section class="container">
@@ -28,7 +29,7 @@
                 {{ render_field(form.state) }}
                 {{ render_field(form.zip_code) }}
             </ul>
-        <input type=submit value=Save>
+        {{ submit_button('fa-check', 'Save Information') }}
     </form>
     </div><!-- caregiver -->
     

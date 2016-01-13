@@ -1,39 +1,43 @@
 // main: styles.less
 @import (reference) "global.less";
-
 .edit-toggle {
-   float: right;
-   min-width: 5.8rem;
-   min-height: 1rem;
-   
-   .small-button {
-      position: absolute;
-      right: .8rem;
-      opacity: .999;
-      transition: background .4s ease-out, color .4s ease-out;
-   }
-   
-   .cancel-edit-form-button {
-      // fixing icon baseline
-      i.fa { transform: translate3d(0,-5%,0); }
-   }
-   
-   .edit-form-button,
-   .cancel-edit-form-button {
-      
-      &::selection { background-color: transparent }
-      &::-moz-selection { background-color: transparent }
-      &::-webkit-selection { background-color: transparent }
-   }
+    float: right;
+    min-width: 5.8rem;
+    min-height: 1rem;
+    .small-button {
+        position: absolute;
+        right: .8rem;
+        padding: .6rem .8rem;
+        opacity: .999;
+        transition: background .4s ease-out, color .4s ease-out;
+    }
+    .cancel-edit-form-button {
+        // fixing icon baseline
+        i.fa {
+            transform: translate3d(0, -5%, 0);
+        }
+    }
+    .edit-form-button,
+    .cancel-edit-form-button {
+        &::selection {
+            background-color: transparent
+        }
+        &::-moz-selection {
+            background-color: transparent
+        }
+        &::-webkit-selection {
+            background-color: transparent
+        }
+    }
 }
 
 tbody {
-   &:after {
-      display: block;
-      content: '';
-      background: white;
-      height: 1rem;
-   }
+    &:after {
+        display: block;
+        content: '';
+        background: white;
+        height: 1rem;
+    }
 }
 
 
@@ -44,258 +48,232 @@ tbody {
 */
 
 .table-colors(@dark: @grayDark, @mid: @grayMid, @color: @gray, @light: @grayLight) {
-   color: @color;
-   border-color: @color;
-   
-   tr {
-      border-color: @color;
-      color: @color;
-   }
+    color: @color;
+    border-color: @color;
+    tr {
+        border-color: @color;
+        color: @color;
+    }
 }
-
-
 
 .form-instance-colors(@dark: @grayDark, @mid: @grayMid, @color: @gray, @light: @grayLight) {
-   
-   background: @light;
-   color: @color;
-   
-   .button {
-      .buttonColors(@dark,@color,@mid,@light);
-      color: @color;
-      
-      &:hover {
-         background: @color;
-      }
-   }
-   
-   .edit-toggle {
-      > div {
-         background: fade(@color,10%);
-         color: @color;
-         
-         &:hover {
-            background: fade(@color,100%);
-            color: white;
-         }
-      }
-   }
-   
-   input[type=text] {
-      border-color: @color;
-      color: @color;
-      outline: none;
-      
-      &:focus,
-      &:active {
-         border-color: @dark;
-      }
-      
-      &:hover {
-         border-color: @mid;
-         color: @dark;
-      }
-   }
-   
-   input[disabled]:hover {
-      border-color: @color;
-   }
-   
-   ::-webkit-input-placeholder {
-      color: @mid;
-   }
-
-   :-moz-placeholder { /* Firefox 18- */
-      color: @mid;  
-   }
-
-   ::-moz-placeholder {  /* Firefox 19+ */
-      color: @mid;  
-   }
-
-   :-ms-input-placeholder {  
-      color: @mid;  
-   }
-   
-   .expiration-date {
-      border-color: @color;
-      color: @color;
-   }
-
-   /* Focus */
-   .control input ~ .control-indicator {
-     box-shadow: 0 0 0 .075rem #fff, 0 0 0 .3rem @color;
-   }
-
-   /* Focus */
-   .control input:focus ~ .control-indicator {
-     box-shadow: 0 0 0 .075rem #fff, 0 0 0 .3rem @mid!important;
-   }
-
-   /* Checked state */
-   .control input:checked ~ .control-indicator {
-      background-color: @color;
-      box-shadow: 0 0 0 .075rem #fff, 0 0 0 .3rem @dark;
-   }
-
-   /* Active */
-   .control input:active ~ .control-indicator {
-     background-color: @dark;
-   }
+    background: @light;
+    color: @color;
+    .button {
+        .buttonColors(@dark, @color, @mid, @light);
+        color: @color;
+        &:hover {
+            background: @color;
+        }
+    }
+    .edit-toggle {
+        > div {
+            background: fade(@color, 10%);
+            color: @color;
+            &:hover {
+                background: fade(@color, 100%);
+                color: white;
+            }
+        }
+    }
+    input[type=text] {
+        border-color: @color;
+        color: @color;
+        outline: none;
+        &:focus,
+        &:active {
+            border-color: @dark;
+        }
+        &:hover {
+            border-color: @mid;
+            color: @dark;
+        }
+    }
+    input[disabled]:hover {
+        border-color: @color;
+    }
+    ::-webkit-input-placeholder {
+        color: @mid;
+    }
+    :-moz-placeholder {
+        /* Firefox 18- */
+        color: @mid;
+    }
+    ::-moz-placeholder {
+        /* Firefox 19+ */
+        color: @mid;
+    }
+    :-ms-input-placeholder {
+        color: @mid;
+    }
+    .expiration-date {
+        border-color: @color;
+        color: @color;
+    }
+    /* Focus */
+    .control input ~ .control-indicator {
+        box-shadow: 0 0 0 .075rem #fff, 0 0 0 .3rem @color;
+    }
+    /* Focus */
+    .control input:focus ~ .control-indicator {
+        box-shadow: 0 0 0 .075rem #fff, 0 0 0 .3rem @mid!important;
+    }
+    /* Checked state */
+    .control input:checked ~ .control-indicator {
+        background-color: @color;
+        box-shadow: 0 0 0 .075rem #fff, 0 0 0 .3rem @dark;
+    }
+    /* Active */
+    .control input:active ~ .control-indicator {
+        background-color: @dark;
+    }
 }
 
 table.form-instances {
-   .table-colors(@color: @service);
-
-   td { .form-instance-colors(@dark: @nonurgentGreenDark, @mid: @nonurgentGreenMid, @color: @nonurgentGreen, @light: @nonurgentGreenLight); }
-   td.expiring-soon { .form-instance-colors(@dark: @urgentYellowDark, @mid: @urgentYellowMid, @color: @urgentYellow, @light: @urgentYellowLight); }
-   td.expired { .form-instance-colors(@dark: @urgentRedDark, @mid: @urgentRedMid, @color: @urgentRed, @light: @urgentRedLight); }
+    .table-colors(@color: @service);
+    td {
+        .form-instance-colors(@dark: @nonurgentGreenDark, @mid: @nonurgentGreenMid, @color: @nonurgentGreen, @light: @nonurgentGreenLight);
+    }
+    td.expiring-soon {
+        .form-instance-colors(@dark: @urgentYellowDark, @mid: @urgentYellowMid, @color: @urgentYellow, @light: @urgentYellowLight);
+    }
+    td.expired {
+        .form-instance-colors(@dark: @urgentRedDark, @mid: @urgentRedMid, @color: @urgentRed, @light: @urgentRedLight);
+    }
 }
 
-
 table.form-instances {
-   width: 100%;
-   border-collapse: collapse;
-    
-    
+    width: 100%;
+    border-collapse: collapse;
     //button colors are slightly different inside the form-instance table
     .buttonColors (@darkButton: @grayDark, @color: @gray, @mid: @grayMid, @light: @grayLight) {
-   background: fade(@color,10%);
-   color: @darkButton;
-
-   &.button-active {
-      background: light;
-   }
-
-   span.paper-icon {
-      background: @mid;
-      background: linear-gradient(45deg, @mid 86%, fade(@mid,0%) 14%);
-
-      i.fa {
-         color: white;
-      }
-
-      &:before {
-         background: fade(@mid,100%);
-      }
-
-      &:after {
-         background: linear-gradient(45deg, @color 50%, transparent 50%);
-      }
-   }
-
-   &:hover {
-      background: @darkButton;
-      color: white;
-
-      span.paper-icon {
-         &:before {
-            background: fade(@mid,100%);
-         }
-      }
-   }
-}
-   
-   td > span {
-      display: inline-block;
-   }
-   
-   span.status {
-      text-transform: uppercase;
-      font-size: 1.6rem;
-      padding: 4px;
-      transform: translate3d(0,2px,0);
-   }
-   
-   .expiration-date {
-      background: white;
-      float: left;
-      padding: 4px;
-      border: 2px;
-      border-style: solid;
-      border-radius: 6px;
-      font-size: 1.6rem;
-   }
-   
-   td {
-      position: relative;
-      padding: 8px;
-      vertical-align: middle;
-      font-size: 0.1px;
-      border: 2px solid;
-      border-left: 5px solid;
-      border-color: inherit;
-      text-align: center;
-   }
-   
-   span.edit {
-      cursor: pointer;
-      
-      &::selection { background-color: transparent }
-      &::-moz-selection { background-color: transparent }
-      &::-webkit-selection { background-color: transparent }
-   }
+        background: fade(@color, 10%);
+        color: @darkButton;
+        &.button-active {
+            background: light;
+        }
+        span.paper-icon {
+            background: @mid;
+            background: linear-gradient(45deg, @mid 86%, fade(@mid, 0%) 14%);
+            i.fa {
+                color: white;
+            }
+            &:before {
+                background: fade(@mid, 100%);
+            }
+            &:after {
+                background: linear-gradient(45deg, @color 50%, transparent 50%);
+            }
+        }
+        &:hover {
+            background: @darkButton;
+            color: white;
+            span.paper-icon {
+                &:before {
+                    background: fade(@mid, 100%);
+                }
+            }
+        }
+    }
+    td > span {
+        display: inline-block;
+    }
+    span.status {
+        text-transform: uppercase;
+        font-size: 1.6rem;
+        padding: 4px;
+        transform: translate3d(0, 2px, 0);
+    }
+    .expiration-date {
+        float: left;
+        padding-top: 4px;
+        padding-bottom: 4px;
+        font-size: 1.6rem;
+        top: 0;
+        margin-right: 0;
+    }
+    td {
+        position: relative;
+        padding: 8px;
+        vertical-align: middle;
+        font-size: 0.1px;
+        border: 2px solid;
+        border-left: 5px solid;
+        border-color: inherit;
+        text-align: center;
+    }
+    span.edit {
+        cursor: pointer;
+        &::selection {
+            background-color: transparent
+        }
+        &::-moz-selection {
+            background-color: transparent
+        }
+        &::-webkit-selection {
+            background-color: transparent
+        }
+    }
 }
 
 .edit-form {
-   display: block;
-   clear: both;
-   padding-top: 1rem;
-   width: 100%;
-   font-size: 1.6rem;
-   backface-visibility: hidden;
-   
-   ol {
-      padding: 0;
-      margin: 0;
-      list-style: none;
-      text-align: right;
-      
-      li {
-         display: inline-block;
-         margin-left: 4rem;
-          margin-bottom: 0;
-         
-         &:first-of-type { margin-left: 0; }
-      }
-      
-      .received-date {
-         transition: all .5s ease-out;
-         opacity: 1;
-      }
-      
-      .checkbox {
-         
-         &::selection { background-color: transparent }
-         &::-moz-selection { background-color: transparent }
-         &::-webkit-selection { background-color: transparent }
-      }
-      
-      input[type=text] {
-         padding: .6rem;
-         border-radius: .5rem;
-         border: 2px solid;
-         font-size: 1.8rem;
-         width: 117px;
-      }
-      
-      .control-indicator { font-size: 200%; }
-   }
-   
-   .button {
-      margin-top: -3px!important;
-   }
+    display: block;
+    clear: both;
+    padding-top: 1rem;
+    width: 100%;
+    font-size: 1.6rem;
+    backface-visibility: hidden;
+    ol {
+        padding: 0;
+        margin: 0;
+        list-style: none;
+        text-align: right;
+        li {
+            display: inline-block;
+            margin-left: 4rem;
+            margin-bottom: 0;
+            &:first-of-type {
+                margin-left: 0;
+            }
+        }
+        .received-date {
+            transition: all .5s ease-out;
+            opacity: 1;
+        }
+        .checkbox {
+            &::selection {
+                background-color: transparent
+            }
+            &::-moz-selection {
+                background-color: transparent
+            }
+            &::-webkit-selection {
+                background-color: transparent
+            }
+        }
+        input[type=text] {
+            padding: .6rem;
+            border-radius: .5rem;
+            border: 2px solid;
+            font-size: 1.8rem;
+            width: 117px;
+        }
+        .control-indicator {
+            font-size: 200%;
+        }
+    }
+    .button {
+        margin-top: -3px!important;
+    }
 }
 
 .disabled {
-   opacity: .35!important;
+    opacity: .35!important;
 }
 
 input[disabled] {
-   background: white;
+    background: white;
 }
-
-
 
 
 /*
@@ -303,53 +281,61 @@ input[disabled] {
  */
 
 .control {
-   position: relative;
-   display: inline-block;
-   padding-left: 1.5rem;
-   margin-left: 1.5rem;
-   cursor: pointer;
-}
-.control input {
-   position: absolute;
-   opacity: 0;
-   z-index: -1; /* Put the input behind the label so it doesn't overlay text */
-}
-.control-indicator {
-   position: absolute;
-   top: 0rem;
-   left: -1rem;
-   display: block;
-   width:  1.75rem;
-   height: 1.75rem;
-   line-height: 1rem;
-   font-size: 65%;
-   text-align: center;
-   background-color: #fff;
-   background-size: 50% 50%;
-   background-position: center center;
-   background-repeat: no-repeat;
-   -webkit-user-select: none;
-      -moz-user-select: none;
-       -ms-user-select: none;
-           user-select: none;
+    position: relative;
+    display: inline-block;
+    padding-left: 1.5rem;
+    margin-left: 1.5rem;
+    cursor: pointer;
 }
 
+.control input {
+    position: absolute;
+    opacity: 0;
+    z-index: -1;
+    /* Put the input behind the label so it doesn't overlay text */
+}
+
+.control-indicator {
+    position: absolute;
+    top: 0rem;
+    left: -1rem;
+    display: block;
+    width: 1.75rem;
+    height: 1.75rem;
+    line-height: 1rem;
+    font-size: 65%;
+    text-align: center;
+    background-color: #fff;
+    background-size: 50% 50%;
+    background-position: center center;
+    background-repeat: no-repeat;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
 
 
 /* Checked state */
+
 .control input:checked ~ .control-indicator {
-   color: #fff;
+    color: #fff;
 }
+
 
 /* Active */
+
 .control input:active ~ .control-indicator {
-  color: #fff;
+    color: #fff;
 }
 
+
 /* Checkbox modifiers */
+
 .checkbox .control-indicator {
-  border-radius: .25rem;
+    border-radius: .25rem;
 }
+
 .checkbox input:checked ~ .control-indicator {
-  background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4NCjwhLS0gR2VuZXJhdG9yOiBBZG9iZSBJbGx1c3RyYXRvciAxNy4xLjAsIFNWRyBFeHBvcnQgUGx1Zy1JbiAuIFNWRyBWZXJzaW9uOiA2LjAwIEJ1aWxkIDApICAtLT4NCjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+DQo8c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4Ig0KCSB2aWV3Qm94PSIwIDAgOCA4IiBlbmFibGUtYmFja2dyb3VuZD0ibmV3IDAgMCA4IDgiIHhtbDpzcGFjZT0icHJlc2VydmUiPg0KPHBhdGggZmlsbD0iI0ZGRkZGRiIgZD0iTTYuNCwxTDUuNywxLjdMMi45LDQuNUwyLjEsMy43TDEuNCwzTDAsNC40bDAuNywwLjdsMS41LDEuNWwwLjcsMC43bDAuNy0wLjdsMy41LTMuNWwwLjctMC43TDYuNCwxTDYuNCwxeiINCgkvPg0KPC9zdmc+DQo=);
+    background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4NCjwhLS0gR2VuZXJhdG9yOiBBZG9iZSBJbGx1c3RyYXRvciAxNy4xLjAsIFNWRyBFeHBvcnQgUGx1Zy1JbiAuIFNWRyBWZXJzaW9uOiA2LjAwIEJ1aWxkIDApICAtLT4NCjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+DQo8c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4Ig0KCSB2aWV3Qm94PSIwIDAgOCA4IiBlbmFibGUtYmFja2dyb3VuZD0ibmV3IDAgMCA4IDgiIHhtbDpzcGFjZT0icHJlc2VydmUiPg0KPHBhdGggZmlsbD0iI0ZGRkZGRiIgZD0iTTYuNCwxTDUuNywxLjdMMi45LDQuNUwyLjEsMy43TDEuNCwzTDAsNC40bDAuNywwLjdsMS41LDEuNWwwLjcsMC43bDAuNy0wLjdsMy41LTMuNWwwLjctMC43TDYuNCwxTDYuNCwxeiINCgkvPg0KPC9zdmc+DQo=);
 }

@@ -25,25 +25,6 @@ $(document).ready(function () {
         }
     });
 
-    //fade slide effect
-    $.fn.slideFadeToggle = function (speed, easing, callback) {
-        return this.animate({
-            opacity: 'toggle',
-            height: 'toggle'
-        }, speed, easing, callback);
-    };
-
-    //Edit button on role form instances
-    /*$('table.form-record td.edit a').css({position:"absolute", right:-4000, opacity:"hide"}).hide();
-    $('table.form-record tr').css.hover(
-         function () {
-           $(this).find('a').animate({right:0, opacity:"show"}, 1000);
-         }, 
-         function () {
-           $(this).find('a').animate({right:-4000, opacity:"hide"}, 1000);
-         }
-     );*/
-
 
 
 

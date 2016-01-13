@@ -1,44 +1,36 @@
-{% extends "base.html" %}
-{% from "macros.html" import form_instance_tr with context %}
-{% block title %}Index{% endblock %}
-{% from "macros.html" import anchor_button with context %}
-{% block content %}
+{% extends "base.html" %} {% from "macros.html" import form_instance_tr with context %} {% block title %}Index{% endblock %} {% from "macros.html" import anchor_button with context %} {% block content %}
 <!-- caregiver_overview.html -->
 <section class="container">
-<div class="action-nav float-right">
-    {{ anchor_button('#', 'fa-print', 'Print Records') }}
-</div>
-<div class="caregiver">
-    <table class="overview">
-        <caption>
-            <h3>caregiver forms</h3>
-        </caption>
-        <thead>
-            <tr>
-                <th colspan="2">Form</th>
-                <th class="role">Caregiver</th>
-            </tr>
-        </thead>
-        <tbody>
-           {% if urgent_forms %}
-                {% for instance in urgent_forms %}
-                    {{ form_instance_tr(instance, type='caregiver') }}
-                {% endfor %}
-            {% endif %}
-        </tbody>
-        <tbody>
-           {% if non_urgent_forms %}
-                {% for instance in non_urgent_forms %}
-                    {{ form_instance_tr(instance, type='caregiver') }}
-                {% endfor %}
-            {% endif %}
-        </tbody>
-    </table><!-- overview caregiver -->
-    <a href="{{ url_for('caregiver_overview') }}" class="button" role="button">view # more</a>
-</div><!-- caregiver -->
+    <div class="action-nav float-right">
+        {{ anchor_button('#', 'fa-print', 'Print Records') }}
+    </div>
+    <div class="caregiver">
+        <h2 class="caption">Caregiver Forms</h2>
+        <table class="overview">
+            <thead>
+                <tr>
+                    <th>Form</th>
+                    <th class="role">Caregiver</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% if urgent_forms %}
+                    {% for instance in urgent_forms %}
+                        {{ form_instance_tr(instance, type='caregiver') }}
+                    {% endfor %}
+                {% endif %}
+            </tbody>
+            <tbody>
+                {% if non_urgent_forms %} {% for instance in non_urgent_forms %} {{ form_instance_tr(instance, type='caregiver') }} {% endfor %} {% endif %}
+            </tbody>
+        </table>
+        <!-- overview caregiver -->
+    </div>
+    <!-- caregiver -->
 
-{% include 'footer.html' %}
+    {% include 'footer.html' %}
 
-</section><!-- overview -->
+</section>
+<!-- overview -->
 
 {% endblock %}

@@ -37,66 +37,58 @@
     <div class="action-nav float-left">
         {{ anchor_button('#', 'fa-user-plus', 'Add New Service Form') }}
     </div>
+    <h2 class="caption">Service Forms</h2>
     <table class="forms">
-        <thead>
-            <tr>
-                <th class="caregiver-dark" colspan="2">service forms</th>
-            </tr>
-        </thead>
         <tbody>
             <!-- MVP: This form data should be populated from the web server on load. Fake data is used right now. -->
             <tr>
                 <td class="expiration-date expired">
-                    <span class="expiration-date"><span class="icon-cirlcereceived"></span>05-25-2014</span>
+                    <span class="expiration-date">05-25-2014</span> <a href="/services/1/forms/1">Example expired form name</a>
                 </td>
-                <td class="form-title expired"><a href="/services/1/forms/1">Example expired form name</a></td>
             </tr>
             <tr>
                 <td class="expiration-date expired">
-                    <span class="expiration-date"><span class="icon-cirlcereceived"></span>05-25-2015</span>
+                    <span class="expiration-date">05-25-2015</span> <a href="/services/1/forms/1">Another expired form</a>
                 </td>
-                <td class="form-title expired"><a href="/services/1/forms/1">Another expired form</a></td>
             </tr>
             <!-- end MVP -->
            {% if expired_forms %}
                 {% for form in expired_forms %}
                     <tr>
                         <td class="expiration-date expired">
-                            <span class="expiration-date"><span class="icon-cirlcereceived"></span>07-14-1987</span>
+                            <span class="expiration-date">07-14-1987</span> <a href="">{{ form.name }}</a>
                         </td>
-                        <td class="form-title expired">{{ form.name }}</td>
                     </tr>
                 {% endfor %}
             {% endif %}
             <!-- MVP: This form data should be populated from the web server on load. Fake data is used right now. -->
             <tr>
                 <td class="expiration-date expiring-soon">
-                    <span class="expiration-date"><span class="icon-cirlcereceived"></span>
+                    <span class="expiration-date">
                         <script type="text/javascript" charset="utf-8">
                             document.write(moment().add(5, 'days').format('MM-DD-YYYY'));
                         </script>
                     </span>
+                    <a href="/services/1/forms/1">Expiring soon form example</a>
                 </td>
-                <td class="form-title expiring-soon"><a href="/services/1/forms/1">Expiring soon form example</a></td>
             </tr>
             <tr>
                 <td class="expiration-date expiring-soon">
-                    <span class="expiration-date"><span class="icon-cirlcereceived"></span>
+                    <span class="expiration-date">
                         <script type="text/javascript" charset="utf-8">
                             document.write(moment().add(8, 'days').format('MM-DD-YYYY'));
                         </script>
                     </span>
+                    <a href="/services/1/forms/1">Another form expiring soon</a>
                 </td>
-                <td class="form-title expiring-soon"><a href="/services/1/forms/1">Another form expiring soon</a></td>
             </tr>
             <!-- MVP -->
             {% if expiring_soon_forms %}
                 {% for form in expiring_soon_forms %}
                     <tr>
                         <td class="expiration-date expiring-soon">
-                            <span class="expiration-date"><span class="icon-cirlcereceived"></span>07-14-2015</span>
+                            <span class="expiration-date">07-14-2015</span> {{ form.name }}
                         </td>
-                        <td class="form-title expiring-soon">{{ form.name }}</td>
                     </tr>
                 {% endfor %}
             {% endif %}
@@ -105,24 +97,21 @@
             <!-- MVP: This form data should be populated from the web server on load. Fake data is used right now. -->
             <tr>
                 <td class="expiration-date">
-                    <span class="expiration-date"><span class="icon-cirlcereceived"></span>07-14-2017</span>
+                    <span class="expiration-date">07-14-2017</span> <a href="/services/1/forms/1">Fingerprint Card</a>
                 </td>
-                <td class="form-title"><a href="/services/1/forms/1">Fingerprint Card</a></td>
             </tr>
             <tr>
                 <td class="expiration-date">
-                    <span class="expiration-date"><span class="icon-cirlcereceived"></span>03-07-2015</span>
+                    <span class="expiration-date">03-07-2015</span> <a href="/services/1/forms/1">Fingerprint Card</a>
                 </td>
-                <td class="form-title"><a href="/services/1/forms/1">Fingerprint Card</a></td>
             </tr>
             <!-- MVP -->
              {% if non_urgent_forms %}
                 {% for form in non_urgent_forms %}
                     <tr>
                         <td class="expiration-date">
-                            <span class="expiration-date"><span class="icon-cirlcereceived"></span>07-14-2087</span>
-                        </td>
-                        <td class="form-title">{{ form.name }}</td>
+                            <span class="expiration-date">07-14-2087</span> 
+                        {{ form.name }}</td>
                     </tr>
                 {% endfor %}
             {% endif %}

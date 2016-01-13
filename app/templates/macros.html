@@ -1,9 +1,7 @@
 {% macro form_instance_tr(instance, type) -%}
     <tr>
         <td class="expiration-date {{ instance.expiration_status|replace('_', '-') }}">
-            <span class="expiration-date"><span class="icon-cirlcereceived"></span>{{ instance.expiration_date }}</span>
-        </td>
-        <td class="form-title {{ instance.expiration_status|replace('_', '-') }}">
+            <span class="expiration-date">{{ instance.expiration_date }}</span>
             {% if type == 'service' %}
                 <a href="{{ url_for('service_form', service_id=instance.form.service.id, form_id=instance.form.id) }}">
                     {{ instance.form.name }}

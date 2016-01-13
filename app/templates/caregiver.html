@@ -19,8 +19,8 @@
             {% endif %}
         </div>
         <div class="summary">
-            <div class="box expiring-soon"><i class="fa fa-exclamation-circle"></i> {{ caregiver.num_expiring_soon }} Forms Expiring Soon</div>
-            <div class="box expired"><i class="fa fa-times-circle"></i> {{ caregiver.num_expired }} Forms Expired</div>
+            <div class="box expiring-soon"><i class="fa fa-exclamation-circle"></i> <span>{{ caregiver.num_expiring_soon }} Forms Expiring Soo</span>n</div>
+            <div class="box expired"><i class="fa fa-times-circle"></i> <span>{{ caregiver.num_expired }} Forms Expired</span></div>
         </div>
     </div>
     <!--profile-info-->
@@ -38,7 +38,7 @@
 
     <div class="client">
         <div class="action-nav float-left">
-            {{ anchor_button(url_for('service_add', caregiver_id=caregiver.id), 'fa-user-plus', 'Add New Client') }}
+            {{ anchor_button(url_for('service_add', caregiver_id=caregiver.id), 'fa-user-plus', 'Assign New Client') }}
         </div>
         <table class="role-list">
             <thead>
@@ -80,8 +80,6 @@
             <tbody>
                 {% if urgent %} {% for instance in urgent %} {{ form_instance_tr(instance) }} {% endfor %} {% endif %}
             </tbody>
-        </table>
-        <table class="forms">
             <tbody>
                 {% if non_urgent %} {% for instance in non_urgent %} {{ form_instance_tr(instance) }} {% endfor %} {% endif %}
             </tbody>

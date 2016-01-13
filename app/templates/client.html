@@ -23,9 +23,9 @@
                 {% endif %}
             </div>
             <div class="summary">
-                <div class="box expiring-soon"><i class="fa fa-exclamation-circle"></i>  {{ client.num_expiring_soon }} Forms Expiring Soon</div>
-                <div class="box expired"><i class="fa fa-times-circle"></i>  {{ client.num_expired }} Forms Expired</div>
-            </div>
+            <div class="box expiring-soon"><i class="fa fa-exclamation-circle"></i> <span>{{ client.num_expiring_soon }} Forms Expiring Soo</span>n</div>
+            <div class="box expired"><i class="fa fa-times-circle"></i> <span>{{ client.num_expired }} Forms Expired</span></div>
+        </div>
         </div>
         <!--profile-info-->
         <a href="https://www.google.com/maps/preview#!q={{ client.address.urlencode }}" class="googlemap" style="background-image:url(http://maps.google.com/maps/api/staticmap?size=640x250&zoom=13&maptype=roadmap&markers=color:green|{{ client.address.urlencode }}&sensor=false)" target="_blank">
@@ -43,7 +43,7 @@
 
 <div class="caregiver">
     <div class="action-nav float-left">
-        {{ anchor_button(url_for('service_add', client_id=client.id), 'fa-user-plus', 'Add New Caregiver') }}
+        {{ anchor_button(url_for('service_add', client_id=client.id), 'fa-user-plus', 'Assign New Caregiver') }}
     </div>
     <table class="role-list">
         <thead>
@@ -85,9 +85,7 @@
                     {{ form_instance_tr(instance) }}
                 {% endfor %}
             {% endif %}
-        </tbody>            
-    </table>
-    <table class="forms">
+        </tbody>
         <tbody>
             {% if non_urgent %}
                 {% for instance in non_urgent %}

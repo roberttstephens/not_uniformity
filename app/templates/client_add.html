@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% block title %}Add client{% endblock %}
+{% from "macros.html" import submit_button with context %}
 {% block content %}
 <!-- client_add.html -->
 <section class="container">
@@ -17,17 +18,17 @@
       {{ form.hidden_tag() }}
       <h3>Personal Information</h3>
       <ul class="box">
-      {{ render_field(form.name) }}
-      {{ render_field(form.birth_date) }}
-      {{ render_field(form.phone_number) }}
-      {{ render_field(form.phone_extension) }}
-      {{ render_field(form.address_1) }}
-      {{ render_field(form.address_2) }}
-      {{ render_field(form.city) }}
-      {{ render_field(form.state) }}
-      {{ render_field(form.zip_code) }}
+          {{ render_field(form.name) }}
+          {{ render_field(form.birth_date) }}
+          {{ render_field(form.phone_number) }}
+          {{ render_field(form.phone_extension) }}
+          {{ render_field(form.address_1) }}
+          {{ render_field(form.address_2) }}
+          {{ render_field(form.city) }}
+          {{ render_field(form.state) }}
+          {{ render_field(form.zip_code) }}
       </ul>
-      <input class="client-dark" type=submit value=Save>
+      {{ submit_button('fa-check', 'Save Information') }}
     </form>
     </div><!-- client -->
     
