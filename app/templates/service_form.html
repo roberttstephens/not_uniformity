@@ -33,7 +33,7 @@
 </div>
 
 <div class="service">
-   {{ anchor_button('#', 'fa-pencil', 'Edit Form') }}
+    {{ anchor_button(url_for('service_form_edit', service_id=service.id, form_id = service_form.id), 'fa-pencil', 'Edit Form') }}
    <h2 class="caption">{{service_form.name}}</h2>
    
    <table class="form-instances">

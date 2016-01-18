@@ -279,7 +279,8 @@ def client_form_add(client_id):
     return render_template('client_form_add.html', form=form)
 
 
-@app.route('/caregivers/<int:caregiver_id>/forms/<int:form_id>/edit')
+@app.route('/caregivers/<int:caregiver_id>/forms/<int:form_id>/edit',
+        methods=['GET', 'POST'])
 @login_required
 def caregiver_form_edit(caregiver_id, form_id):
     caregiver_form = CaregiverFormModel.query.join(Caregiver).filter(
@@ -287,12 +288,19 @@ def caregiver_form_edit(caregiver_id, form_id):
             Agency.id == g.user.id).filter(
                 CaregiverFormModel.id == form_id).first_or_404()
     form = RoleForm(obj=caregiver_form)
+    if form.validate_on_submit():
+        form.populate_obj(caregiver_form)
+        db.session.add(caregiver_form)
+        db.session.commit()
+        return redirect(url_for("caregiver_form", caregiver_id=caregiver_id,
+            form_id=form_id))
     return render_template('role_form_add_edit.html',
                            form=form,
                            role='caregiver')
 
 
-@app.route('/clients/<int:client_id>/forms/<int:form_id>/edit')
+@app.route('/clients/<int:client_id>/forms/<int:form_id>/edit',
+        methods=['GET', 'POST'])
 @login_required
 def client_form_edit(client_id, form_id):
     client_form = ClientFormModel.query.join(Client).filter(
@@ -300,9 +308,12 @@ def client_form_edit(client_id, form_id):
             Agency.id == g.user.id).filter(
                 ClientFormModel.id == form_id).first_or_404()
     form = RoleForm(obj=client_form)
-    print(dir(client_form))
-    print(client_form.id)
-    print(client_form.name)
+    if form.validate_on_submit():
+        form.populate_obj(client_form)
+        db.session.add(client_form)
+        db.session.commit()
+        return redirect(url_for("client_form", client_id=client_id,
+            form_id=form_id))
     return render_template('role_form_add_edit.html',
                            form=form,
                            role='client')
@@ -460,10 +471,13 @@ def client_form(client_id, form_id):
 @app.route('/services/<int:service_id>/forms/<int:form_id>')
 @login_required
 def service_form(service_id, form_id):
-    service = Service.query.filter_by(id=service_id).first_or_404()
-    service_form = ServiceFormModel.query.filter_by(id=form_id).first_or_404()
+    service_form = ServiceFormModel.query.join(Service).join(Caregiver).join(
+        Agency).filter(
+            Agency.id == g.user.id).filter(
+                ServiceFormModel.service_id == service_id).filter(
+                    ServiceFormModel.id == form_id).first_or_404()
     return render_template('service_form.html',
-                           service=service,
+                           service=service_form.service,
                            service_form=service_form)
 
 
