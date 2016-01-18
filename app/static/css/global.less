@@ -9,50 +9,32 @@ section.container:last-of-type {padding-bottom:0px;}//make sure footer is flush 
   box-sizing: border-box;
 }
 
-@columns: 12;
-@column-width:4rem;
-@gutter-width: .8rem;
-@support-old-ie: true;
-
-#grid() {
-  text-align: justify !important;
-  text-justify: distribute-all-lines;
-  font-size:0!important;
-  & > * {
-    text-align:left;
-  }
-  &:after {
-    content: '';
-    display: inline-block;
-    width: 100%;
-  }
-  .cell() {
-    vertical-align: top;
-    display: inline-block;
-    width: 100%;
-  }
-  .span(@cols, @total: @columns) {
-    width: percentage((@column-width * @cols  + @gutter-width * (@cols  - 1)) /
-                      (@column-width * @total + @gutter-width * (@total - 1)));
-    margin-bottom: 1.9%;
-  }
-  .push(@cols, @total: @columns) {
-    left: percentage((@column-width + @gutter-width) * @cols /
-                     (@column-width * @total + @gutter-width * (@total - 1)));
-  }
-  .pull(@cols, @total: @columns) {
-    left: percentage((@column-width + @gutter-width) * -@cols /
-                     (@column-width * @total + @gutter-width * (@total - 1)));
-  }
-  .prepend(@cols, @total: @columns) {
-    margin-left: percentage((@column-width + @gutter-width) * @cols /
-                            (@column-width * @total + @gutter-width * (@total - 1)));
-  }
-  .append(@cols, @total: @columns) {
-    margin-right: percentage((@column-width + @gutter-width) * @cols /
-                             (@column-width * @total + @gutter-width * (@total - 1)));
-  }
-}/*  GRID  */
+@gridColumns: 12;
+@gridGutterWidth: 1rem;
+#grid {
+    text-align: justify!important;
+    text-justify: distribute-all-lines;
+    font-size: 0!important;
+    & > * {
+        vertical-align: top;
+        display: inline-block;
+        width: 100%;
+        text-align: left;
+        font-size: medium;
+        box-sizing: border-box;
+    }
+    &:after {
+        content: '';
+        display: inline-block;
+        width: 100%;
+    }
+    .span(@cols, @total: @gridColumns) {
+        @gutterCalc: @total / @cols;
+        @totalGutter: (@gutterCalc - 1) * @gridGutterWidth;
+        width: calc( ~"(100% - @{totalGutter}) / @{gutterCalc}" );
+        margin-bottom: @gridGutterWidth;
+    }
+}
 
 .opacity (@opacity) {
   -webkit-opacity: 	@opacity;

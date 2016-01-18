@@ -116,7 +116,7 @@ tbody {
     }
     /* Focus */
     .control input:focus ~ .control-indicator {
-        box-shadow: 0 0 0 .075rem #fff, 0 0 0 .3rem @mid!important;
+        box-shadow: 0 0 0 .075rem #fff, 0 0 0 .3rem @mid;
     }
     /* Checked state */
     .control input:checked ~ .control-indicator {
@@ -232,6 +232,9 @@ table.form-instances {
             display: inline-block;
             margin-left: 4rem;
             margin-bottom: 0;
+            
+            label { min-width: auto; }
+            
             &:first-of-type {
                 margin-left: 0;
             }

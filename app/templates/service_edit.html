@@ -1,10 +1,46 @@
 {% extends "base.html" %} {% block title %}The name{% endblock %} {% block content %} {% from "macros.html" import submit_button with context %}
 <!-- service_edit.html -->
 <section class="container">
-</section>
+    <div class="service-edit-header">
+        <div class="caregiver">
+            <div class="page-title">
+                <p class="title">Caregiver</p>
+                <h2>
+                    <a href="#">Taya Whiteside</a>
+                </h2>
+            </div>
+        </div>
+        <div class="client">
+            <div class="page-title">
+                <p class="title">Client</p>
+                <h2>
+                    <a href="#">Helen Keller</a>
+                </h2>
+            </div>
+        </div>
+    </div>
+</section><!-- service header -->
 <!-- service header -->
 
 <section class="container">
+    <form method="post" action="" class="service-edit">
+        <form method=post action="">
+            <div class="service">
+                <div class="box form">
+                    <h3>Service Information</h3>
+                    <fieldset>
+                        <ol>
+                            <li>
+                                <label for="name">Name of Service</label>
+                                <input id="name" name="name" type="text" value="">
+                            </li>
+                        </ol>
+                    </fieldset>
+                </div><!-- box -->
+                {{ submit_button('fa-check', 'Save Service') }}
+            </div><!-- service -->
+    </form>   
+   
     {% include 'footer.html' %}
 </section>
 

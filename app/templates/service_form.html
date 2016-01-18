@@ -5,27 +5,27 @@
 <!-- service_form.html -->
 <section class="container">
     <div class="service-header">
-        <div class="service-wrap">
-           <div class="caregiver">
-                <div class="serviceBox">
-                    <text class="service-title">caregiver</text>
-                    <text class="service"><a href="{{ url_for('caregiver', caregiver_id=service.caregiver.id) }}">{{ service.caregiver.name }}</a></text>
-                    <text class="phone">{{ service.caregiver.phone_number }}</text>
-                </div><!-- serviceBox -->
-            </div><!-- caregiver -->
-        </div><!-- service-wrap --><div class="service-wrap"><div class="service"><div class="serviceBox">
-                    <text class="service-title">service</text>
-                    <text class="service">{{ service.name|title }}</text>
-                </div><!-- serviceBox -->
-            </div><!-- service -->
-        </div><!-- service-wrap --><div class="service-wrap"><div class="client"><div class="serviceBox">
-                    <text class="service-title">client</text>
-                    <text class="service"><a href="{{ url_for('client', client_id=service.client.id) }}">{{ service.client.name }}</a></text>
-                    <text class="phone">{{ service.client.phone_number }}</text>
-                </div><!-- serviceBox -->
-            </div><!-- client -->
+        <div class="service-wrap caregiver">
+            <div class="service-box">
+                <text class="service-title">Caregiver</text>
+                <text class="service"><a href="{{ url_for('caregiver', caregiver_id=service.caregiver.id) }}">{{ service.caregiver.name }}</a></text>
+                <text class="phone">{{ service.caregiver.phone_number }}</text>
+            </div>
         </div><!-- service-wrap -->
-    </div><!-- service-header -->
+        <div class="service-wrap service">
+            <div class="service-box">
+                <text class="service-title">Service</text>
+                <text class="service">{{ service.name|title }}</text>
+            </div>
+        </div><!-- service-wrap -->
+        <div class="service-wrap client">
+            <div class="service-box">
+                <text class="service-title">Client</text>
+                <text class="service"><a href="{{ url_for('client', client_id=service.client.id) }}">{{ service.client.name }}</a></text>
+                <text class="phone">{{ service.client.phone_number }}</text>
+            </div>
+        </div>
+    </div>
 </section><!-- service header -->
 <section class="container">
 <div class="action-nav float-right">
@@ -47,7 +47,7 @@
                <div class="cancel-edit-form-button small-button"><i class="fa fa-times"></i>&nbsp;<span class="button-text">Cancel</span></div>
             </span>
             <div class="edit-form">
-               <form>
+               <form class="instance-edit">
                <ol>
                   <li>
                      <label for="expiration-date">Expiration Date:</label>
@@ -80,7 +80,7 @@
                <div class="cancel-edit-form-button small-button"><i class="fa fa-times"></i>&nbsp;<span class="button-text">Cancel</span></div>
             </span>
             <div class="edit-form">
-               <form>
+               <form class="instance-edit">
                <ol>
                   <li>
                      <label for="expiration-date">Expiration Date:</label>
@@ -115,7 +115,7 @@
                <div class="cancel-edit-form-button small-button"><i class="fa fa-times"></i>&nbsp;<span class="button-text">Cancel</span></div>
             </span>
             <div class="edit-form">
-               <form>
+               <form class="instance-edit">
                <ol>
                   <li>
                      <label for="expiration-date">Expiration Date:</label>
@@ -148,7 +148,7 @@
                <div class="cancel-edit-form-button small-button"><i class="fa fa-times"></i>&nbsp;<span class="button-text">Cancel</span></div>
             </span>
             <div class="edit-form">
-               <form>
+               <form class="instance-edit">
                <ol>
                   <li>
                      <label for="expiration-date">Expiration Date:</label>
@@ -181,7 +181,7 @@
                <div class="cancel-edit-form-button small-button"><i class="fa fa-times"></i>&nbsp;<span class="button-text">Cancel</span></div>
             </span>
             <div class="edit-form">
-               <form>
+               <form class="instance-edit">
                <ol>
                   <li>
                      <label for="expiration-date">Expiration Date:</label>

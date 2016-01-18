@@ -1,4 +1,6 @@
 // main: styles.less
+@import (reference) "global.less";
+
 body {
     background-color: #3aaff8;
     font-family: 'Century Gothic', 'Open Sans', sans-serif;
@@ -215,27 +217,15 @@ a:visited {
     }
 }
 .service-header {
-    width: 100%;
+    #grid;
 }
+
 .service-wrap {
-    display: inline-block;
-    vertical-align: top;
+    #grid > .span(4);
+    margin-bottom: 0;
     text-align: center;
-    width: 33.3%;
-    padding: 0px .45%;
-    &:last-of-type {
-        padding-right: 0px;
-    }
-    &:first-of-type {
-        padding-left: 0px;
-    }
-    .caregiver,
-    .service,
-    .client {
-        height: 100%;
-        width: 100%
-    }
-    .serviceBox {
+    
+    .service-box {
         .radius;
         display: table;
         border: 2px solid;
@@ -244,7 +234,7 @@ a:visited {
         padding: 5px;
         text-align: center;
         vertical-align: middle;
-        /*inner wrap*/
+
         text {
             display: table-row;
             width: 100%;
@@ -288,9 +278,14 @@ a:visited {
     /*serviceBox*/
 }
 
-/*service-wrap*/
-
-
+.service-edit-header {
+    #grid;
+    
+    > div {
+        #grid > .span(6);
+        margin-bottom: 0;
+    }
+}
 
 
 span.expiration-date {
@@ -404,7 +399,7 @@ table.form-instances {
         clear: both;
     }
     //caption {background-color:@color;color:white;margin-bottom:5px;padding:10px;}
-    .serviceBox {
+    .service-box {
         background-color: @light;
         border-color: @color;
         color: @color;
@@ -791,7 +786,8 @@ table.form-instances {
         background: transparent;
     }
     button,
-    a.action {
+    a.action,
+    .small-button {
         .buttonColors (@dark,
         @mid,
         @color,
@@ -862,7 +858,6 @@ div.service {
     #grid;
     
     .profile-info {
-        #grid > .cell;
         #grid > .span(6);
         
         margin-bottom: 0;
@@ -880,7 +875,6 @@ div.service {
             #grid;
             padding-top: 1rem;
             .box {
-                #grid > .cell;
                 #grid > .span(6);
                 margin-bottom: 0;
                 text-align: center;
@@ -906,7 +900,6 @@ div.service {
     }
     
     .googlemap {
-        #grid > .cell;
         #grid > .span(6);
         
         margin-bottom: 0;
@@ -1141,7 +1134,7 @@ HEADER NAV
 --*/
 
 header nav {
-    padding: 0px 13px;
+    padding: 0px 3.3rem;
     text-align: right;
 }
 header nav ul {
@@ -1967,7 +1960,6 @@ GOOGLE MAP
 }
 .googlemap {
     position: relative;
-    #grid > .cell;
     #grid > .span(6);
     background-position: 50% 50%;
     .radius;
@@ -2130,7 +2122,6 @@ STYLE GUIDE
     #grid;
     position: relative;
     h2 {
-        #grid > .cell;
         position: relative;
         background: @grayDark;
         color: white;

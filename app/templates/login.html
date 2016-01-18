@@ -6,9 +6,18 @@
         {% from "_formhelpers.html" import render_field %}
         <form method=post action="">
           {{ form.hidden_tag() }}
-          {{ render_field(form.name, autofocus=true, required=true, pattern=".{3,128}", title="3 to 128 characters") }}<i class="fa fa-user"></i>
-          {{ render_field(form.password, required=true, pattern=".{8,1000}", title="Minimum of 8 characters.") }}<i class="fa fa-key"></i>
-          <button type="submit" class="action"><span class="upload"><i class="fa fa-unlock-alt fa-stack-1x"></i></span><p>Log in</p></button>
+          <li class="username">
+                <label for="name">Agency name</label>
+                <input autofocus="" id="name" name="name" pattern=".{3,128}" required="" title="3 to 128 characters" type="text" value="" class="valid">
+            </li>
+            <li id="password-toggle" class="password">
+                <label for="password">Password</label>
+                <input id="password" name="password" pattern=".{8,1000}" required="" title="Minimum of 8 characters." type="password" value="" class="valid">
+            </li>
+            <li>
+                <span class="forgot-password"><a href="#">Retrieve forgotten password</a></span>
+            </li>
+            <button type="submit" class="login-button"><span class="paper-icon"><i class="fa fa-unlock-alt"></i></span><span class="button-text">Sign In</span></button>
         </form>
     </div>
     </section>

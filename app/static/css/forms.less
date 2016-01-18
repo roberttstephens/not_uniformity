@@ -1,4 +1,6 @@
 // main: styles.less
+@import (reference) "global.less";
+
 div.form {
     padding: 1.5rem;
     text-align: center;
@@ -104,10 +106,11 @@ label.error {
 form.assign-roll {
     #grid;
     > div {
-        #grid > .cell;
         #grid > .span(6);
         &:last-of-type {
-            #grid > .prepend(3);
+            //centered submit button
+            width: 100%;
+            text-align: center;
         }
     }
     button {
@@ -117,7 +120,21 @@ form.assign-roll {
     }
 }
 
-form {
+.service-edit {
+    > div {
+        width: 50%;
+        margin: 0 auto; 
+    }
+    
+    button {
+        display: block;
+        margin: auto;
+        .buttonColors (@serviceDark, @serviceMid, @service, white);
+    }
+}
+
+//.instance-edit refers to the edit instance drop down, which has very particular styling. The below rules work with every other form.
+form:not(.instance-edit) {
     ol,
     ul {
         padding: 0;
