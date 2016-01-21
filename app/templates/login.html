@@ -1,24 +1,35 @@
 {% extends "base.html" %}
 {% block title %}Login{% endblock %}
 {% block content %}
-    <section class="container">
-    <div class="login-box">
-        {% from "_formhelpers.html" import render_field %}
-        <form method=post action="">
-          {{ form.hidden_tag() }}
-          <li class="username">
-                <label for="name">Agency name</label>
-                <input autofocus="" id="name" name="name" pattern=".{3,128}" required="" title="3 to 128 characters" type="text" value="" class="valid">
-            </li>
-            <li id="password-toggle" class="password">
-                <label for="password">Password</label>
-                <input id="password" name="password" pattern=".{8,1000}" required="" title="Minimum of 8 characters." type="password" value="" class="valid">
-            </li>
-            <li>
-                <span class="forgot-password"><a href="#">Retrieve forgotten password</a></span>
-            </li>
-            <button type="submit" class="login-button"><span class="paper-icon"><i class="fa fa-unlock-alt"></i></span><span class="button-text">Sign In</span></button>
-        </form>
-    </div>
-    </section>
+    <main>
+        <div class="logo-outer">
+           <div id="main-logo" class="logo-inner">
+              <a href="">
+                 <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
+                    <use xlink:href="#uniformity-logo-fullcolor"></use>
+                 </svg>
+              </a>
+           </div>
+        </div>
+
+        <div class="login-box">
+            {% from "_formhelpers.html" import render_field %}
+            <form method="post" action="" class="login-form">
+                {{ form.hidden_tag() }}
+                <li class="username">
+                    <label for="name">Agency name</label>
+                    <input autofocus="" id="name" name="name" pattern=".{3,128}" required="" title="3 to 128 characters" type="text" value="" class="valid">
+                </li>
+                <li id="password-toggle" class="password">
+                    <label for="password">Password</label>
+                    <input id="password" name="password" pattern=".{8,1000}" required="" title="Minimum of 8 characters." type="password" value="" class="valid">
+                </li>
+                <li>
+                    <span class="forgot-password"><a href="#">Retrieve forgotten password</a></span>
+                </li>
+                <button type="submit" class="login-button"><span class="paper-icon"><i class="fa fa-unlock-alt"></i></span><span class="button-text">Sign In</span></button>
+            </form>
+        </div>
+    </main>
+    
 {% endblock %}

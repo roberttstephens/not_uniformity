@@ -7,12 +7,12 @@ $(document).ready(function () {
     $('td.expired-forms').each(function () {
         if ($(this).html() != '0') {
             $(this).addClass('expired');
-        };
+        }
     });
     $('td.expiring-soon-forms').each(function () {
         if ($(this).html() != '0') {
             $(this).addClass('expiring-soon');
-        };
+        }
     });
 
     /* When the 'x' of a flashed message is clicked, close the message. */
@@ -30,10 +30,11 @@ $(document).ready(function () {
 
     function eqColumn() {
         //if ($(window).width() > 0){
-        var serviceWrap = $(".service-wrap");
+        var serviceWrap = $(".service-wrap"),
+            biggest = 0;
         //reset the height to auto
         serviceWrap.css("height", "auto");
-        var biggest = 0;
+        
         $(serviceWrap).each(function () {
             if ($(this).height() > biggest) {
                 biggest = $(this).height();
@@ -116,6 +117,38 @@ $(document).ready(function () {
                 $(receivedDateInput).val("").prop('disabled', true);
             }
         });
+    });
+    
+    
+    
+    
+    // Login form float labels
+    // Float label if input already has value
+    $('.login-form input').each(function () {
+        var text_value = $(this).val();
+        if (text_value != '') {
+            $(this).parent().addClass('float-label');
+        }
+    });
+    
+    $('.login-form input[type=text], .login-form input[type=password]').focus(function () {
+        $(this).parent().addClass('float-label');
+    });
+    
+    $('.login-form input[type=text], .login-form input[type=password]').blur(function () {
+        if ($(this).val() == '') { $(this).parent().removeClass('float-label'); }
+    });
+    
+    // Login form password hide/shoe
+    $('input[type="password"]').after('<span class="password-toggle">Show<i class="fa fa-eye"></i></span>');
+
+    $('.password-toggle').on('click', function () {
+        var $this = $(this),
+            $password = $this.prev('input');
+
+        ('password' == $password.attr('type')) ? $password.attr('type', 'text') : $password.attr('type', 'password');
+        ('Hide' == $this.text()) ? $this.html('Show<i class="fa fa-eye"></i>') : $this.html('Hide<i class="fa fa-eye-slash"></i>');
+        $password.focus();
     });
 
 
