@@ -194,6 +194,8 @@ def service_add():
         db.session.add(service)
         db.session.commit()
         flash('Successfully added ' + service.name)
+        if next_url:
+            return redirect(next_url)
     return render_template('service_add.html',
                            form=form,
                            caregiver_disabled=caregiver_disabled,
