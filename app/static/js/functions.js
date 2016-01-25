@@ -65,9 +65,24 @@ $(document).ready(function () {
     };
 
 
+    
+    $('#add-new-instance-form tbody').hide();
+
+    $('a[href="#add-instance"]').click(function () {
+        $('#add-new-instance-form tbody').slideFadeToggle();
+        $('a[href="#add-instance"]').fadeToggle();
+    });
+
+    $('.add-instance .add-form-toggle').click(function () {
+        $('#add-new-instance-form tbody').slideFadeToggle();
+        $('a[href="#add-instance"]').fadeToggle();
+    });
+    
+    
+    
     $('div.edit-form').hide();
     var cancelButtonWidth = $('.cancel-edit-form-button').outerWidth();
-    $('.cancel-edit-form-button').hide();
+    $('td:not(.add-instance) .cancel-edit-form-button').hide();
 
     $('.edit-toggle').click(function () {
         var editToggle = $(this),
@@ -95,7 +110,7 @@ $(document).ready(function () {
     });
 
 
-    $('.edit-form .checkbox :checkbox').each(function () {
+    $('.edit-form .checkbox :checkbox, .add-form-instance .checkbox :checkbox').each(function () {
         var receivedDateWrap = $(this).closest('label').siblings('.received-date'),
             receivedDateInput = $(receivedDateWrap).find('input');
 

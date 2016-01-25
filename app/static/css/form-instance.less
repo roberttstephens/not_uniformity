@@ -216,13 +216,18 @@ table.form-instances {
     }
 }
 
+.add-form-instance,
 .edit-form {
-    display: block;
-    clear: both;
-    padding-top: 1rem;
-    width: 100%;
     font-size: 1.6rem;
     backface-visibility: hidden;
+    
+    &:not(.add-form-instance) {
+        clear: both;
+        display: block;
+        width: 100%;
+        padding-top: 1rem;
+    }
+    
     ol {
         padding: 0;
         margin: 0;
@@ -233,6 +238,7 @@ table.form-instances {
             margin-left: 4rem;
             margin-bottom: 0;
             
+            // dif from codepen
             label { min-width: auto; }
             
             &:first-of-type {
@@ -262,6 +268,7 @@ table.form-instances {
             width: 117px;
         }
         .control-indicator {
+            top:.25rem;
             font-size: 200%;
         }
     }
@@ -341,4 +348,48 @@ input[disabled] {
 
 .checkbox input:checked ~ .control-indicator {
     background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4NCjwhLS0gR2VuZXJhdG9yOiBBZG9iZSBJbGx1c3RyYXRvciAxNy4xLjAsIFNWRyBFeHBvcnQgUGx1Zy1JbiAuIFNWRyBWZXJzaW9uOiA2LjAwIEJ1aWxkIDApICAtLT4NCjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+DQo8c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4Ig0KCSB2aWV3Qm94PSIwIDAgOCA4IiBlbmFibGUtYmFja2dyb3VuZD0ibmV3IDAgMCA4IDgiIHhtbDpzcGFjZT0icHJlc2VydmUiPg0KPHBhdGggZmlsbD0iI0ZGRkZGRiIgZD0iTTYuNCwxTDUuNywxLjdMMi45LDQuNUwyLjEsMy43TDEuNCwzTDAsNC40bDAuNywwLjdsMS41LDEuNWwwLjcsMC43bDAuNy0wLjdsMy41LTMuNWwwLjctMC43TDYuNCwxTDYuNCwxeiINCgkvPg0KPC9zdmc+DQo=);
+}
+
+
+
+
+
+.add-instance {
+   text-align: justify!important;
+}
+
+.add-form-instance {
+   width: auto;
+   display: inline-block;
+   float:right;
+   padding: 0;
+}
+
+.add-form-toggle {
+   //display: inline-block;
+   min-width: 5.8rem;
+   min-height: 1rem;
+   position: absolute;
+   top: 50%;
+   transform: translateY(-50%);
+   
+   .small-button {
+      //position: absolute;
+      //right: .8rem;
+      opacity: .999;
+      transition: background .4s ease-out, color .4s ease-out;
+   }
+   
+   .cancel-edit-form-button {
+      // fixing icon baseline
+      i.fa { transform: translate3d(0,-5%,0); }
+   }
+   
+   .edit-form-button,
+   .cancel-edit-form-button {
+      
+      &::selection { background-color: transparent }
+      &::-moz-selection { background-color: transparent }
+      &::-webkit-selection { background-color: transparent }
+   }
 }
