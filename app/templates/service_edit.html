@@ -1,4 +1,8 @@
-{% extends "base.html" %} {% block title %}The name{% endblock %} {% block content %} {% from "macros.html" import submit_button with context %}
+{% extends "base.html" %}
+{% block title %}{{ service.name|title }}{% endblock %}
+{% block content %}
+{% from "macros.html" import submit_button with context %}
+{% from "_formhelpers.html" import render_field %}
 <!-- service_edit.html -->
 <section class="container">
     <div class="service-edit-header">
@@ -6,7 +10,7 @@
             <div class="page-title">
                 <p class="title">Caregiver</p>
                 <h2>
-                    <a href="#">Taya Whiteside</a>
+                    <a href="{{ url_for('caregiver', caregiver_id=service.caregiver.id)}}">{{ service.caregiver.name|title }}</a>
                 </h2>
             </div>
         </div>
@@ -14,7 +18,7 @@
             <div class="page-title">
                 <p class="title">Client</p>
                 <h2>
-                    <a href="#">Helen Keller</a>
+                    <a href="{{ url_for('client', client_id=service.client.id)}}">{{ service.client.name|title }}</a>
                 </h2>
             </div>
         </div>
@@ -24,21 +28,18 @@
 
 <section class="container">
     <form method="post" action="" class="service-edit">
-        <form method=post action="">
-            <div class="service">
-                <div class="box form">
-                    <h3>Service Information</h3>
-                    <fieldset>
-                        <ol>
-                            <li>
-                                <label for="name">Name of Service</label>
-                                <input id="name" name="name" type="text" value="">
-                            </li>
-                        </ol>
-                    </fieldset>
-                </div><!-- box -->
-                {{ submit_button('fa-check', 'Save Service') }}
-            </div><!-- service -->
+        {{ form.hidden_tag() }}
+        <div class="service">
+            <div class="box form">
+                <h3>Service Information</h3>
+                <fieldset>
+                    <ol>
+                        {{ render_field(form.name) }}
+                    </ol>
+                </fieldset>
+            </div><!-- box -->
+            {{ submit_button('fa-check', 'Save Service') }}
+        </div><!-- service -->
     </form>   
    
     {% include 'footer.html' %}

@@ -194,8 +194,6 @@ def service_add():
         db.session.add(service)
         db.session.commit()
         flash('Successfully added ' + service.name)
-        if next_url:
-            return redirect(next_url)
     return render_template('service_add.html',
                            form=form,
                            caregiver_disabled=caregiver_disabled,
@@ -205,20 +203,20 @@ def service_add():
 @app.route('/services/<int:service_id>/edit', methods=['GET', 'POST'])
 @login_required
 def service_edit(service_id):
-    service = Service.query.filter_by(id=service_id).first_or_404()
+    service = Service.query.join(Caregiver).join(Agency).filter(
+        Agency.id == g.user.id).filter(Service.id == service_id).first_or_404()
     form = ServiceForm(obj=service)
-    caregivers = Caregiver.query.join(Agency).filter(
-        Agency.id == g.user.id).order_by(Caregiver.name.asc()).all()
-    form.caregiver_id.choices = [(c.id, c.name) for c in caregivers]
-    clients = Client.query.join(Agency).filter(
-        Agency.id == g.user.id).order_by(Client.name.asc()).all()
-    form.client_id.choices = [(c.id, c.name) for c in clients]
+    # There are no drop downs, so just fake the data.
+    form.caregiver_id.choices = [(service.caregiver.id, service.caregiver.name)]
+    form.client_id.choices = [(service.client.id, service.client.name)]
     if form.validate_on_submit():
         form.populate_obj(service)
         db.session.add(service)
         db.session.commit()
         return redirect(url_for("service", service_id=service.id))
-    return render_template('service_edit.html')
+    return render_template('service_edit.html',
+                           form=form,
+                           service=service)
 
 
 @app.route('/caregivers/<int:caregiver_id>/forms/add', methods=['GET', 'POST'])
