@@ -1,44 +1,33 @@
 {% extends "base.html" %}
 {% block title %}The name{% endblock %}
 {% block content %}
+{% from "macros.html" import submit_button with context %}
 <!-- service_form_add_edit.html -->
 <section class="container">
     <div class="service-header">
-        <div class="service-wrap">
-            <div class="caregiver">
-                <div class="serviceBox">
-                    <text class="service-title">caregiver</text>
-                    <text class="service">longfirstname longlastname</text>
-                    <text class="phone">555-555-1234</text>
-                </div>
-                <!-- serviceBox -->
+       <!-- MVP This info should be dynamic -->
+        <div class="service-wrap caregiver">
+            <div class="service-box">
+                <text class="service-title">Caregiver</text>
+                <text class="service"><a href="#">Taya Whiteside</a></text>
+                <text class="phone">555-555-1234</text>
             </div>
-            <!-- caregiver -->
         </div>
         <!-- service-wrap -->
-        <div class="service-wrap">
-            <div class="service">
-                <div class="serviceBox">
-                    <text class="service-title">service</text>
-                    <text class="service">rediculously long service title name</text>
-                </div>
-                <!-- serviceBox -->
+        <div class="service-wrap service">
+            <div class="service-box">
+                <text class="service-title">Service</text>
+                <text class="service">Supported Living Coach</text>
             </div>
-            <!-- service -->
         </div>
         <!-- service-wrap -->
-        <div class="service-wrap">
-            <div class="client">
-                <div class="serviceBox">
-                    <text class="service-title">client</text>
-                    <text class="service">longfirstnamez</text>
-                    <text class="phone">555-555-1234</text>
-                </div>
-                <!-- serviceBox -->
+        <div class="service-wrap client">
+            <div class="service-box">
+                <text class="service-title">Client</text>
+                <text class="service"><a href="#">Helen Keller</a></text>
+                <text class="phone">555-555-1234</text>
             </div>
-            <!-- client -->
         </div>
-        <!-- service-wrap -->
     </div>
     <!-- service-header -->
 </section>
@@ -46,36 +35,21 @@
 
 <section class="container">
     <div class="service">
-        <h1>Add new form for this service</h1>
+        <h3>Service Form Information</h3>
+        {% from "_formhelpers.html" import render_field %}
         <form method=post action="">
-            <div class="box form">
-                <h3>Form Information</h3>
-                <fieldset>
-                    <ol>
-                        <li>
-                            <label for="fullname">Form Name*</label>
-                            <input type="text" id="formname" name="formname" placeholder="Form Name*" required />
-                            <span class="helper">Example: Supported Living Coach</span>
-                        </li>
-                        <li class="date-picker">
-                            <label for="date-expired">Expiration Date*</label>
-                            <input type="text" id="input_text" name="date-expired" placeholder="Expiration Date*">
-                            <input type="text" id="input_date">
-                            <span class="helper">Example: 09/22/1959</span>
-                            <i class="fa fa-calendar"></i>
-                        </li>
-                    </ol>
-                </fieldset>
-            </div>
-            <!-- box -->
-            <button type="submit"><span class="upload"><i class="fa fa-check fa-stack-1x"></i></span>
-                <p>Save new form</p>
-            </button>
+            <ul class="box {{ role }}">
+                <li>
+                    <label for="name">Name</label>
+                    <input id="name" name="name" type="text" value="nisi quisquam">
+                </li>
+            </ul>
+            {{ submit_button('fa-check', 'Save Form') }}
         </form>
     </div>
-    <!-- service -->
-
+    
     {% include 'footer.html' %}
+    
 </section>
 <!-- overview -->
 
