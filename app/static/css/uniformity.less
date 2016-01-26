@@ -328,7 +328,7 @@ td.non-urgent span.expiration-date:after {
 
 tr.expired,
 td.expired {
-    background-color: @urgentRedLight;
+    background-color: @urgentRedLight!important;
     color: @urgentRed;
     border-color: inherit;
     
@@ -338,7 +338,7 @@ td.expired {
 }
 tr.expiring-soon,
 td.expiring-soon {
-    background-color: @urgentYellowLight;
+    background-color: @urgentYellowLight!important;
     color: @urgentYellow;
     border-color: inherit;
     
@@ -354,7 +354,7 @@ tbody + tbody td.form {
 }
 
 .mixin-nonurgentForm {
-    background: @nonurgentGreenLight;
+    background: @nonurgentGreenLight!important;
     color: @nonurgentGreen;
     border-color: inherit;
     
@@ -437,6 +437,7 @@ table.form-instances {
         tr td {
             .capitalize;
             vertical-align: middle;
+            background: white;
         }
         
         td {
@@ -955,10 +956,6 @@ input:-ms-input-placeholder {
     .regularText;
 }
 
-/*.container button, .container input[type="button"], .container input[type="submit"], .container a.button,
-.overview-top button, .overview-top input[type="button"], .overview-top input[type="submit"], .overview-top a.button,
-.box button, .box input[type="button"], .box input[type="submit"], .box a.button {font-size:@regularText;line-height:30px;}
-.search-form button, .search-form input[type="button"], .search-form input[type="submit"], .search-form a.button {font-size:inherit;line-height:30px;}*/
 
 a {
     text-decoration: none;
@@ -995,6 +992,7 @@ table tbody::after {
     content: '';
     display: block;
     height: 6px;
+    background: transparent;
 }
 
 table.list .col1 {
@@ -1092,41 +1090,21 @@ TOP NAV
     border: 3px solid #fff;
     padding: 4px 10px;
     min-width: 150px;
-    background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#daf4ff), to(#fff));
-    /* Safari 4-5, Chrome 1-9 */
-    background: -webkit-linear-gradient(top, #fff, #daf4ff);
-    /* Safari 5.1, Chrome 10+ */
-    background: -moz-linear-gradient(top, #fff, #daf4ff);
-    /* Firefox 3.6+ */
-    background: -ms-linear-gradient(top, #fff, #daf4ff);
-    /* IE 10 */
-    background: -o-linear-gradient(top, #fff, #daf4ff);
-    /* Opera 11.10+ */
-    background-color: #e8f8ff;
-    -moz-box-shadow: 0px 0px 8px 1px #fff;
-    -webkit-box-shadow: 0px 0px 8px 1px #fff;
+    background-image: fade(white,80%) url(http://form.management/static/img/frost.png);
+    background-image: url(http://form.management/static/img/frost.png), linear-gradient(white, #C3E7FF);
     box-shadow: 0px 0px 8px 1px #fff;
-    -moz-border-radius: 18px 18px 0px 0px;
-    -webkit-border-radius: 18px 18px 0px 0px;
     border-radius: 18px 18px 0px 0px;
-    /* future proofing */
-    -khtml-border-radius: 18px 18px 0px 0px;
-    /* for old Konqueror browsers */
     text-align: center;
     font-size: 1.8rem;
+    transition: all .3s ease-out;
 }
-.top-nav-tab:hover {
-    background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#fff), to(#fff));
-    /* Safari 4-5, Chrome 1-9 */
-    background: -webkit-linear-gradient(top, #fff, #fff);
-    /* Safari 5.1, Chrome 10+ */
-    background: -moz-linear-gradient(top, #fff, #fff);
-    /* Firefox 3.6+ */
-    background: -ms-linear-gradient(top, #fff, #fff);
-    /* IE 10 */
-    background: -o-linear-gradient(top, #fff, #fff);
-    /* Opera 11.10+ */
-    background-color: #fff;
+
+.top a:hover {
+    transition: all .3s ease-out;
+    .top-nav-tab {
+        background-image: fade(white,100%) url(http://form.management/static/img/frost.png);
+        background-image: url(http://form.management/static/img/frost.png), linear-gradient(white, white);
+    }
 }
 
 /*--
@@ -1219,28 +1197,12 @@ header nav ul li {
     max-width: 1400px;
     padding: 10px;
     margin: 0 auto 14px auto;
-    background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#fff), to(#e8f8ff));
-    /* Safari 4-5, Chrome 1-9 */
-    background: -webkit-linear-gradient(top, #e8f8ff, #fff);
-    /* Safari 5.1, Chrome 10+ */
-    background: -moz-linear-gradient(top, #e8f8ff, #fff);
-    /* Firefox 3.6+ */
-    background: -ms-linear-gradient(top, #e8f8ff, #fff);
-    /* IE 10 */
-    background: -o-linear-gradient(top, #e8f8ff, #fff);
-    /* Opera 11.10+ */
-    background-color: #fff;
-    background-size: 100% 200px;
-    background-repeat: no-repeat;
-    -moz-box-shadow: 0px 0px 8px 1px #fff;
-    -webkit-box-shadow: 0px 0px 8px 1px #fff;
+    position: relative;
+    z-index: 1;
+    background-image: fade(white,80%) url(http://form.management/static/img/frost.png);
+    background-image: url(http://form.management/static/img/frost.png), linear-gradient(#E2F2FF, #d4eeff 100px);
     box-shadow: 0px 0px 8px 1px #fff;
-    -moz-border-radius: 18px;
-    -webkit-border-radius: 18px;
     border-radius: 18px;
-    /* future proofing */
-    -khtml-border-radius: 18px;
-    /* for old Konqueror browsers */
 }
 .container > *:last-child,
 .container > *:last-child > *:last-child,
