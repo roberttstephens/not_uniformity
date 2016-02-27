@@ -23,9 +23,9 @@
                 {% endif %}
             </div>
             <div class="summary">
-            <div class="box expiring-soon"><i class="fa fa-exclamation-circle"></i> <span>{{ client.num_expiring_soon }} Forms Expiring Soo</span>n</div>
-            <div class="box expired"><i class="fa fa-times-circle"></i> <span>{{ client.num_expired }} Forms Expired</span></div>
-        </div>
+                <span class="box expiring-soon">{{ client.num_expiring_soon }} Expiring Soon</span>
+                <span class="box expired">{{ client.num_expired }} Expired</span>
+            </div>
         </div>
         <!--profile-info-->
         <a href="https://www.google.com/maps/preview#!q={{ client.address.urlencode }}" class="googlemap" style="background-image:url(http://maps.google.com/maps/api/staticmap?size=640x250&zoom=13&maptype=roadmap&markers=color:green|{{ client.address.urlencode }}&sensor=false)" target="_blank">
