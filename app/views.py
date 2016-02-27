@@ -1,6 +1,6 @@
 """The views (or controllers)."""
 from datetime import datetime
-from flask import (request, flash, url_for, redirect, render_template, g)
+from flask import (abort, request, flash, url_for, redirect, render_template, g)
 from flask.ext.login import (login_user, logout_user, current_user,
                              login_required)
 from . import app, db
@@ -171,15 +171,28 @@ def client_edit(client_id):
 def service_add():
     form = ServiceForm(caregiver_id=request.args.get('caregiver_id'),
                        client_id=request.args.get('client_id'))
-    caregiver_disabled = False
-    client_disabled = False
+    add_to_caregiver = False
+    add_to_client = False
     if request.args.get('caregiver_id'):
-        caregiver_disabled = True
+        add_to_caregiver = True
         next_url = url_for('caregiver',
                            caregiver_id=request.args.get('caregiver_id'))
+        role = 'caregiver'
+        person = Caregiver.query.join(
+            Agency).filter(
+                Agency.id == g.user.id).filter(
+                    Caregiver.id == int(request.args.get('caregiver_id'))).first_or_404()
     if request.args.get('client_id'):
-        client_disabled = True
+        add_to_client = True
         next_url = url_for('client', client_id=request.args.get('client_id'))
+        role = 'client'
+        person = Client.query.join(
+            Agency).filter(
+                Agency.id == g.user.id).filter(
+                    Client.id == int(request.args.get('client_id'))).first_or_404()
+    if add_to_caregiver == add_to_client:
+        abort(409)
+    role_opposite = 'client' if add_to_caregiver == True else 'caregiver'
     caregivers = Caregiver.query.join(Agency).filter(
         Agency.id == g.user.id).order_by(Caregiver.name.asc()).all()
     form.caregiver_id.choices = [(c.id, c.name) for c in caregivers]
@@ -197,9 +210,10 @@ def service_add():
         if next_url:
             return redirect(next_url)
     return render_template('service_add.html',
-                           form=form,
-                           caregiver_disabled=caregiver_disabled,
-                           client_disabled=client_disabled,)
+                           role=role,
+                           person=person,
+                           role_opposite=role_opposite,
+                           form=form)
 
 
 @app.route('/services/<int:service_id>/edit', methods=['GET', 'POST'])

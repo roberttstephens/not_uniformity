@@ -1,9 +1,9 @@
 {% extends "base.html" %} {% block title %}The name{% endblock %} {% block content %} {% from "macros.html" import submit_button with context %}
 <!-- service_add_edit.html -->
 <section class="container">
-    <div class="caregiver"> <!--MAKE DYNAMIC if adding client to caregiver, say caregiver - vise versa-->
+    <div class="{{ role }}">
         <div class="page-title">
-            <h2>New Client for Chase Whiteside</h2> <!--MAKE DYNAMIC if adding client to caregiver, say "New Client for  Caregiver Name - vise versa-->
+            <h2>New {{ role_opposite|title }} for {{ person.name }}</h2>
         </div>
     </div>
 </section>
@@ -14,15 +14,16 @@
         {% from "_formhelpers.html" import render_field %}
         <form method=post action="">
             {{ form.hidden_tag() }}
-            <div class="hidden">
-                {% if caregiver_disabled %} {{ render_field(form.caregiver_id, disabled=True) }} {% else %} {{ render_field(form.caregiver_id) }} {% endif %}
-            </div>
-            <div class="client"><!-- MAKE DYNAMIC if adding client to garegiver, say client - vise versa -->
+            <div class="{{ role_opposite }}">
                 <div class="box form">
-                    <h3>Client Information</h3><!-- MAKE DYNAMIC if adding client to garegiver, say client - vise versa -->
+                    <h3>{{ role_opposite|title }} Information</h3>
                         <form method=post action="">
                             <ol>
-                                {{ render_field(form.client_id) }}
+                                {% if role == 'client' %}
+                                    {{ render_field(form.caregiver_id) }}
+                                {% else %}
+                                    {{ render_field(form.client_id) }}
+                                {% endif %}
                             </ol>
                     </fieldset>
                 </div><!-- box -->
