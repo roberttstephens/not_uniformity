@@ -251,7 +251,7 @@ def caregiver_form_add(caregiver_id):
         flash('Successfully added ' + caregiver_form.name)
         next_url = url_for('caregiver', caregiver_id=caregiver_id)
         return redirect(next_url)
-    return render_template('role_form_add_edit.html',
+    return render_template('role_form_add.html',
                            form=form,
                            role='caregiver')
 
@@ -290,7 +290,7 @@ def client_form_add(client_id):
         flash('Successfully added ' + client_form.name)
         next_url = url_for('client', client_id=client_id)
         return redirect(next_url)
-    return render_template('client_form_add.html', form=form)
+    return render_template('role_form_add.html', form=form)
 
 
 @app.route('/caregivers/<int:caregiver_id>/forms/<int:form_id>/edit',
@@ -308,7 +308,7 @@ def caregiver_form_edit(caregiver_id, form_id):
         db.session.commit()
         return redirect(url_for("caregiver_form", caregiver_id=caregiver_id,
             form_id=form_id))
-    return render_template('role_form_add_edit.html',
+    return render_template('role_form_edit.html',
                            form=form,
                            role='caregiver')
 
@@ -328,7 +328,7 @@ def client_form_edit(client_id, form_id):
         db.session.commit()
         return redirect(url_for("client_form", client_id=client_id,
             form_id=form_id))
-    return render_template('role_form_add_edit.html',
+    return render_template('role_form_edit.html',
                            form=form,
                            role='client')
 

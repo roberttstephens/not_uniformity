@@ -1,0 +1,35 @@
+{% extends "base.html" %} {% block title %}Add {{ role }} form{% endblock %} {% block content %} {% from "macros.html" import submit_button with context %}
+<!-- role_form_add_edit.html -->
+<section class="container">
+    <div class="{{ role }}">
+        <div class="page-title">
+           <!--MVP Below should be variable-->
+            <h2>{{ role }} Form for VARIABLE NAME</h2>
+        </div>
+    </div>
+</section>
+<!-- service header -->
+<section class="container">
+    <div class="{{ role }}">
+        <h3>{{ role }} Form Information</h3>
+        {% from "_formhelpers.html" import render_field %}
+        <form method=post action="">
+            {{ form.hidden_tag() }}
+            <ul class="box {{ role }}">
+                {{ render_field(form.name) }}
+            </ul>
+            {{ submit_button('fa-check', 'Save Form') }}
+        </form>
+    </div>
+    
+    {% include 'footer.html' %}
+    
+</section>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery.maskedinput/1.3.1/jquery.maskedinput.min.js"></script>
+<script>
+    jQuery(function ($) {
+        $("#phone_number").mask("(999) 999-9999");
+    });
+</script>
+{% endblock %}
